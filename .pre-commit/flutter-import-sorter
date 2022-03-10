@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if which fvm >/dev/null 2>&1; then
+  fvm flutter pub run import_sorter:main --exit-if-changed $1
+else
+  flutter pub run import_sorter:main --exit-if-changed $1
+fi

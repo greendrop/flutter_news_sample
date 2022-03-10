@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if which fvm >/dev/null 2>&1; then
+  fvm flutter analyze
+else
+  flutter analyze
+fi

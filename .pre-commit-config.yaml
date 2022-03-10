@@ -1,0 +1,30 @@
+repos:
+-
+  repo: local
+  hooks:
+    -
+      id: flutter-format
+      name: Flutter Format
+      entry: .pre-commit/flutter-format
+      language: script
+      files: \.dart$
+-
+  repo: local
+  hooks:
+    -
+      id: flutter-analyze
+      name: Flutter Analyze
+      entry: .pre-commit/flutter-analyze
+      language: script
+      files: (\.dart$|pubspec.yaml)
+      pass_filenames: false
+-
+  repo: local
+  hooks:
+    -
+      id: flutter-import-sorter
+      name: Flutter Import Sorter
+      entry: .pre-commit/flutter-import-sorter
+      language: script
+      files: \.dart$
+      require_serial: true
