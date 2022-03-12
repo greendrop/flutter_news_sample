@@ -7,7 +7,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import 'package:flutter_news_sample/ui/setting/setting_form.dart';
-import 'package:flutter_news_sample/ui/widgets/app_bottom_bavigation_bar.dart';
 
 class SettingPage extends HookConsumerWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -37,7 +36,6 @@ class SettingPage extends HookConsumerWidget {
     return Scaffold(
       appBar: appBar,
       body: body,
-      bottomNavigationBar: const AppBottomNavigationBar(),
     );
   }
 }
