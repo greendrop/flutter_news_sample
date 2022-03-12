@@ -1,2 +1,18 @@
 {
+  "@@locale": "en",
+  "appTitle": "Flutter News Sample",
+  "ok": "OK",
+  "ng": "NG",
+  "yes": "Yes",
+  "no": "No",
+  "headlineTitle": "Headline",
+  "settingTitle": "Setting",
+  "settingTheme": "Theme",
+  "settingThemeSystem": "System",
+  "settingThemeLight": "Light",
+  "settingThemeDark": "Dark",
+  "settingLocale": "Language",
+  "settingLocaleSystem": "System",
+  "settingLocaleEnglish": "English",
+  "settingLocaleJapanese": "日本語"
 }

@@ -47,10 +47,10 @@ linter:
     - cast_nullable_to_non_nullable
     - close_sinks
     - comment_references
-    - depend_on_referenced_packages
+    # - depend_on_referenced_packages
     - deprecated_consistency
-    - directives_ordering
-    #    - do_not_use_environment
+    # - directives_ordering
+    # - do_not_use_environment
     - eol_at_end_of_file
     - flutter_style_todos
     - invariant_booleans
