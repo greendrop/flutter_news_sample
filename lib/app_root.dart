@@ -20,7 +20,7 @@ class AppRoot extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isInitialized = useState(false);
+    final initialized = useState(false);
     final appRouter = useMemoized(AppRouter.new);
     final appThemeData = useMemoized(AppThemeData.new);
     final themeMode = ref.watch(themeModeStateNotifierProvider);
@@ -31,7 +31,7 @@ class AppRoot extends HookConsumerWidget {
         Timer.run(() async {
           await ref.read(themeModeStateNotifierProvider.notifier).initialize();
           await ref.read(localeStateNotifierProvider.notifier).initialize();
-          isInitialized.value = true;
+          initialized.value = true;
         });
 
         return () {};
@@ -39,7 +39,7 @@ class AppRoot extends HookConsumerWidget {
       [],
     );
 
-    if (!isInitialized.value) {
+    if (!initialized.value) {
       return const Center(child: CircularProgressIndicator());
     }
 

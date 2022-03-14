@@ -20,8 +20,10 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   freezed_annotation: ^1.1.0
   hooks_riverpod: ^1.0.3
+  http: ^0.13.4
   shared_preferences: ^2.0.13
   state_notifier: ^0.7.2+1
+  uri: ^1.0.0
 
 dev_dependencies:
   auto_route_generator: ^3.2.3
