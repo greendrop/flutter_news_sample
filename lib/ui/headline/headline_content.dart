@@ -57,9 +57,16 @@ class HeadlineContent extends HookConsumerWidget {
       );
     }).toList();
 
-    return GridView.count(
-      crossAxisCount: gridCrossAxisCount,
-      children: gridChildren,
+    return RefreshIndicator(
+      onRefresh: () async {
+        await ref
+            .read(newsHeadlineStateNotifierProvider.notifier)
+            .fetchAllCategories();
+      },
+      child: GridView.count(
+        crossAxisCount: gridCrossAxisCount,
+        children: gridChildren,
+      ),
     );
   }
 }
