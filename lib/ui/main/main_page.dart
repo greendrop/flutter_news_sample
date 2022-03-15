@@ -28,7 +28,7 @@ class MainPage extends HookConsumerWidget {
           onTap: tabsRouter.setActiveIndex,
           items: [
             BottomNavigationBarItem(
-              icon: const Icon(FontAwesomeIcons.list),
+              icon: const Icon(FontAwesomeIcons.newspaper),
               label: l10n.newsHeadlineTitle,
             ),
             BottomNavigationBarItem(
