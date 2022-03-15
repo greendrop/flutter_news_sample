@@ -7,6 +7,7 @@ import 'package:auto_route/auto_route.dart';
 // Project imports:
 import 'package:flutter_news_sample/ui/headline/headline_page.dart';
 import 'package:flutter_news_sample/ui/main/main_page.dart';
+import 'package:flutter_news_sample/ui/news_detail/news_detail.dart';
 import 'package:flutter_news_sample/ui/setting/setting_page.dart';
 
 part 'app_router.gr.dart';
@@ -22,6 +23,7 @@ part 'app_router.gr.dart';
         AutoRoute<Widget>(path: 'setting', page: SettingPage),
       ],
     ),
+    AutoRoute<Widget>(path: '/news_detail', page: NewsDetailPage),
   ],
 )
 class AppRouter extends _$AppRouter {}

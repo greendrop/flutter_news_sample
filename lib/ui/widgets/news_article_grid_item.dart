@@ -8,18 +8,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_news_sample/entities/news_article.dart';
 
 class NewsArticleGridItem extends HookConsumerWidget {
-  const NewsArticleGridItem({Key? key, required this.newsArticle})
+  const NewsArticleGridItem({Key? key, required this.newsArticle, this.onTap})
       : super(key: key);
 
   final NewsArticle newsArticle;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       child: InkWell(
-        onTap: () {
-          debugPrint(newsArticle.url);
-        },
+        onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(6),
           child: Column(
