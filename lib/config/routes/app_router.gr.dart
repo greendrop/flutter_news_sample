@@ -25,9 +25,9 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<Widget>(
           routeData: routeData, child: const NewsDetailPage());
     },
-    HeadlineRoute.name: (routeData) {
+    NewsHeadlineRoute.name: (routeData) {
       return MaterialPageX<Widget>(
-          routeData: routeData, child: const HeadlinePage());
+          routeData: routeData, child: const NewsHeadlinePage());
     },
     SettingRoute.name: (routeData) {
       return MaterialPageX<Widget>(
@@ -41,10 +41,10 @@ class _$AppRouter extends RootStackRouter {
           RouteConfig('#redirect',
               path: '',
               parent: MainRoute.name,
-              redirectTo: 'headline',
+              redirectTo: 'news_headline',
               fullMatch: true),
-          RouteConfig(HeadlineRoute.name,
-              path: 'headline', parent: MainRoute.name),
+          RouteConfig(NewsHeadlineRoute.name,
+              path: 'news_headline', parent: MainRoute.name),
           RouteConfig(SettingRoute.name,
               path: 'setting', parent: MainRoute.name)
         ]),
@@ -70,11 +70,12 @@ class NewsDetailRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [HeadlinePage]
-class HeadlineRoute extends PageRouteInfo<void> {
-  const HeadlineRoute() : super(HeadlineRoute.name, path: 'headline');
+/// [NewsHeadlinePage]
+class NewsHeadlineRoute extends PageRouteInfo<void> {
+  const NewsHeadlineRoute()
+      : super(NewsHeadlineRoute.name, path: 'news_headline');
 
-  static const String name = 'HeadlineRoute';
+  static const String name = 'NewsHeadlineRoute';
 }
 
 /// generated route for

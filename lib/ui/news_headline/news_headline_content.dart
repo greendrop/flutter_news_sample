@@ -13,8 +13,8 @@ import 'package:flutter_news_sample/config/routes/app_router.dart';
 import 'package:flutter_news_sample/providers/news_headline_state_notifier_provider.dart';
 import 'package:flutter_news_sample/ui/widgets/news_article_grid_item.dart';
 
-class HeadlineContent extends HookConsumerWidget {
-  const HeadlineContent({
+class NewsHeadlineContent extends HookConsumerWidget {
+  const NewsHeadlineContent({
     Key? key,
     required this.category,
     required this.gridCrossAxisCount,

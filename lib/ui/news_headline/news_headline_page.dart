@@ -10,10 +10,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // Project imports:
 import 'package:flutter_news_sample/config/app_config.dart';
 import 'package:flutter_news_sample/providers/news_headline_state_notifier_provider.dart';
-import 'package:flutter_news_sample/ui/headline/headline_content.dart';
+import 'package:flutter_news_sample/ui/news_headline/news_headline_content.dart';
 
-class HeadlinePage extends HookConsumerWidget {
-  const HeadlinePage({Key? key}) : super(key: key);
+class NewsHeadlinePage extends HookConsumerWidget {
+  const NewsHeadlinePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,7 +39,7 @@ class HeadlinePage extends HookConsumerWidget {
 
         final tabContents = appConfig.newsHeadlineCategories
             .map<Widget>(
-              (category) => HeadlineContent(
+              (category) => NewsHeadlineContent(
                 category: category,
                 gridCrossAxisCount: breakpoint.columns ~/ 2,
               ),
@@ -47,7 +47,7 @@ class HeadlinePage extends HookConsumerWidget {
             .toList();
 
         final appBar = AppBar(
-          title: Text(L10n.of(context)!.headlineTitle),
+          title: Text(L10n.of(context)!.newsHeadlineTitle),
           bottom: TabBar(tabs: tabs, isScrollable: true),
         );
 
@@ -69,19 +69,19 @@ class HeadlinePage extends HookConsumerWidget {
   String _categoryText(L10n l10n, String category) {
     switch (category) {
       case 'general':
-        return l10n.headlineCategoryGeneral;
+        return l10n.newsHeadlineCategoryGeneral;
       case 'business':
-        return l10n.headlineCategoryBusiness;
+        return l10n.newsHeadlineCategoryBusiness;
       case 'entertainment':
-        return l10n.headlineCategoryEntertainment;
+        return l10n.newsHeadlineCategoryEntertainment;
       case 'health':
-        return l10n.headlineCategoryHealth;
+        return l10n.newsHeadlineCategoryHealth;
       case 'science':
-        return l10n.headlineCategoryScience;
+        return l10n.newsHeadlineCategoryScience;
       case 'sports':
-        return l10n.headlineCategorySports;
+        return l10n.newsHeadlineCategorySports;
       case 'technology':
-        return l10n.headlineCategoryTechnology;
+        return l10n.newsHeadlineCategoryTechnology;
       default:
         return category;
     }
