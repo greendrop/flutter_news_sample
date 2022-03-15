@@ -10,7 +10,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsDetailPage extends HookConsumerWidget {
   const NewsDetailPage({
@@ -59,6 +61,14 @@ class NewsDetailPage extends HookConsumerWidget {
 
     final appBar = AppBar(
       title: Text(title),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            Platform.isIOS ? FontAwesomeIcons.safari : FontAwesomeIcons.chrome,
+          ),
+          onPressed: () => launch(url),
+        ),
+      ],
     );
 
     final body = IndexedStack(
