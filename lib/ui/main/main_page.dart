@@ -18,6 +18,7 @@ class MainPage extends HookConsumerWidget {
     return AutoTabsScaffold(
       routes: const [
         NewsHeadlineRoute(),
+        NewsSearchRoute(),
         SettingRoute(),
       ],
       bottomNavigationBuilder: (context, tabsRouter) {
@@ -30,6 +31,10 @@ class MainPage extends HookConsumerWidget {
             BottomNavigationBarItem(
               icon: const Icon(FontAwesomeIcons.newspaper),
               label: l10n.newsHeadlineTitle,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(FontAwesomeIcons.search),
+              label: l10n.newsSearchTitle,
             ),
             BottomNavigationBarItem(
               icon: const Icon(FontAwesomeIcons.cog),
