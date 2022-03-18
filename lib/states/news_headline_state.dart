@@ -9,9 +9,8 @@ part 'news_headline_state.freezed.dart';
 @freezed
 class NewsHeadlineState with _$NewsHeadlineState {
   factory NewsHeadlineState({
-    @Default(<String, List<NewsArticle>>{})
-        Map<String, List<NewsArticle>> categoryArticles,
-    @Default(<String, bool>{}) Map<String, bool> categoryArticlesFetching,
+    @Default(<NewsArticle>[]) List<NewsArticle> articles,
+    @Default(false) bool fetching,
   }) = _NewsHeadlineState;
   const NewsHeadlineState._();
 }

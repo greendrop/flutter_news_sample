@@ -25,18 +25,18 @@ class NewsHeadlineContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final newsHeadlineState = ref.watch(newsHeadlineStateNotifierProvider);
+    final newsHeadlineState =
+        ref.watch(newsHeadlineStateNotifierProvider(category));
 
-    if (newsHeadlineState.categoryArticlesFetching[category] == true) {
+    if (newsHeadlineState.fetching) {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (newsHeadlineState.categoryArticles[category] == null) {
+    if (newsHeadlineState.articles.isEmpty) {
       return Container();
     }
 
-    final gridChildren =
-        newsHeadlineState.categoryArticles[category]!.map<Widget>((article) {
+    final gridChildren = newsHeadlineState.articles.map<Widget>((article) {
       return NewsArticleGridItem(
         newsArticle: article,
         onTap: () {
@@ -60,8 +60,8 @@ class NewsHeadlineContent extends HookConsumerWidget {
     return RefreshIndicator(
       onRefresh: () async {
         await ref
-            .read(newsHeadlineStateNotifierProvider.notifier)
-            .fetchAllCategories();
+            .read(newsHeadlineStateNotifierProvider(category).notifier)
+            .fetch();
       },
       child: GridView.count(
         crossAxisCount: gridCrossAxisCount,

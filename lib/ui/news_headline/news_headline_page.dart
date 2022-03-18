@@ -22,9 +22,12 @@ class NewsHeadlinePage extends HookConsumerWidget {
 
     useEffect(
       () {
-        ref
-            .read(newsHeadlineStateNotifierProvider.notifier)
-            .fetchAllCategories();
+        for (final caetgory in appConfig.newsHeadlineCategories) {
+          ref
+              .read(newsHeadlineStateNotifierProvider(caetgory).notifier)
+              .fetch();
+        }
+
         return () {};
       },
       [],

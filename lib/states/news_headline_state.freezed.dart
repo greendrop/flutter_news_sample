@@ -19,12 +19,11 @@ class _$NewsHeadlineStateTearOff {
   const _$NewsHeadlineStateTearOff();
 
   _NewsHeadlineState call(
-      {Map<String, List<NewsArticle>> categoryArticles =
-          const <String, List<NewsArticle>>{},
-      Map<String, bool> categoryArticlesFetching = const <String, bool>{}}) {
+      {List<NewsArticle> articles = const <NewsArticle>[],
+      bool fetching = false}) {
     return _NewsHeadlineState(
-      categoryArticles: categoryArticles,
-      categoryArticlesFetching: categoryArticlesFetching,
+      articles: articles,
+      fetching: fetching,
     );
   }
 }
@@ -34,10 +33,8 @@ const $NewsHeadlineState = _$NewsHeadlineStateTearOff();
 
 /// @nodoc
 mixin _$NewsHeadlineState {
-  Map<String, List<NewsArticle>> get categoryArticles =>
-      throw _privateConstructorUsedError;
-  Map<String, bool> get categoryArticlesFetching =>
-      throw _privateConstructorUsedError;
+  List<NewsArticle> get articles => throw _privateConstructorUsedError;
+  bool get fetching => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewsHeadlineStateCopyWith<NewsHeadlineState> get copyWith =>
@@ -49,9 +46,7 @@ abstract class $NewsHeadlineStateCopyWith<$Res> {
   factory $NewsHeadlineStateCopyWith(
           NewsHeadlineState value, $Res Function(NewsHeadlineState) then) =
       _$NewsHeadlineStateCopyWithImpl<$Res>;
-  $Res call(
-      {Map<String, List<NewsArticle>> categoryArticles,
-      Map<String, bool> categoryArticlesFetching});
+  $Res call({List<NewsArticle> articles, bool fetching});
 }
 
 /// @nodoc
@@ -65,18 +60,18 @@ class _$NewsHeadlineStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? categoryArticles = freezed,
-    Object? categoryArticlesFetching = freezed,
+    Object? articles = freezed,
+    Object? fetching = freezed,
   }) {
     return _then(_value.copyWith(
-      categoryArticles: categoryArticles == freezed
-          ? _value.categoryArticles
-          : categoryArticles // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<NewsArticle>>,
-      categoryArticlesFetching: categoryArticlesFetching == freezed
-          ? _value.categoryArticlesFetching
-          : categoryArticlesFetching // ignore: cast_nullable_to_non_nullable
-              as Map<String, bool>,
+      articles: articles == freezed
+          ? _value.articles
+          : articles // ignore: cast_nullable_to_non_nullable
+              as List<NewsArticle>,
+      fetching: fetching == freezed
+          ? _value.fetching
+          : fetching // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -88,9 +83,7 @@ abstract class _$NewsHeadlineStateCopyWith<$Res>
           _NewsHeadlineState value, $Res Function(_NewsHeadlineState) then) =
       __$NewsHeadlineStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {Map<String, List<NewsArticle>> categoryArticles,
-      Map<String, bool> categoryArticlesFetching});
+  $Res call({List<NewsArticle> articles, bool fetching});
 }
 
 /// @nodoc
@@ -106,18 +99,18 @@ class __$NewsHeadlineStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? categoryArticles = freezed,
-    Object? categoryArticlesFetching = freezed,
+    Object? articles = freezed,
+    Object? fetching = freezed,
   }) {
     return _then(_NewsHeadlineState(
-      categoryArticles: categoryArticles == freezed
-          ? _value.categoryArticles
-          : categoryArticles // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<NewsArticle>>,
-      categoryArticlesFetching: categoryArticlesFetching == freezed
-          ? _value.categoryArticlesFetching
-          : categoryArticlesFetching // ignore: cast_nullable_to_non_nullable
-              as Map<String, bool>,
+      articles: articles == freezed
+          ? _value.articles
+          : articles // ignore: cast_nullable_to_non_nullable
+              as List<NewsArticle>,
+      fetching: fetching == freezed
+          ? _value.fetching
+          : fetching // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -126,20 +119,19 @@ class __$NewsHeadlineStateCopyWithImpl<$Res>
 
 class _$_NewsHeadlineState extends _NewsHeadlineState {
   _$_NewsHeadlineState(
-      {this.categoryArticles = const <String, List<NewsArticle>>{},
-      this.categoryArticlesFetching = const <String, bool>{}})
+      {this.articles = const <NewsArticle>[], this.fetching = false})
       : super._();
 
   @JsonKey()
   @override
-  final Map<String, List<NewsArticle>> categoryArticles;
+  final List<NewsArticle> articles;
   @JsonKey()
   @override
-  final Map<String, bool> categoryArticlesFetching;
+  final bool fetching;
 
   @override
   String toString() {
-    return 'NewsHeadlineState(categoryArticles: $categoryArticles, categoryArticlesFetching: $categoryArticlesFetching)';
+    return 'NewsHeadlineState(articles: $articles, fetching: $fetching)';
   }
 
   @override
@@ -147,17 +139,15 @@ class _$_NewsHeadlineState extends _NewsHeadlineState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NewsHeadlineState &&
-            const DeepCollectionEquality()
-                .equals(other.categoryArticles, categoryArticles) &&
-            const DeepCollectionEquality().equals(
-                other.categoryArticlesFetching, categoryArticlesFetching));
+            const DeepCollectionEquality().equals(other.articles, articles) &&
+            const DeepCollectionEquality().equals(other.fetching, fetching));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(categoryArticles),
-      const DeepCollectionEquality().hash(categoryArticlesFetching));
+      const DeepCollectionEquality().hash(articles),
+      const DeepCollectionEquality().hash(fetching));
 
   @JsonKey(ignore: true)
   @override
@@ -166,15 +156,14 @@ class _$_NewsHeadlineState extends _NewsHeadlineState {
 }
 
 abstract class _NewsHeadlineState extends NewsHeadlineState {
-  factory _NewsHeadlineState(
-      {Map<String, List<NewsArticle>> categoryArticles,
-      Map<String, bool> categoryArticlesFetching}) = _$_NewsHeadlineState;
+  factory _NewsHeadlineState({List<NewsArticle> articles, bool fetching}) =
+      _$_NewsHeadlineState;
   _NewsHeadlineState._() : super._();
 
   @override
-  Map<String, List<NewsArticle>> get categoryArticles;
+  List<NewsArticle> get articles;
   @override
-  Map<String, bool> get categoryArticlesFetching;
+  bool get fetching;
   @override
   @JsonKey(ignore: true)
   _$NewsHeadlineStateCopyWith<_NewsHeadlineState> get copyWith =>
