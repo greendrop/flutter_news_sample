@@ -2,17 +2,20 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:state_notifier/state_notifier.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import 'package:flutter_news_sample/repositories/theme_mode_repository.dart';
 
 class ThemeModeStateNotifier extends StateNotifier<ThemeMode> {
-  ThemeModeStateNotifier({ThemeModeRepository? themeModeRepository})
-      : super(ThemeMode.system) {
+  ThemeModeStateNotifier({
+    required this.ref,
+    ThemeModeRepository? themeModeRepository,
+  }) : super(ThemeMode.system) {
     this.themeModeRepository = themeModeRepository ?? ThemeModeRepository();
   }
 
+  Ref ref;
   late ThemeModeRepository themeModeRepository;
 
   Future<void> initialize() async {

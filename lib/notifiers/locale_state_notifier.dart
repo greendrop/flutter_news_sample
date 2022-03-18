@@ -2,16 +2,20 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:state_notifier/state_notifier.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import 'package:flutter_news_sample/repositories/locale_repository.dart';
 
 class LocaleStateNotifier extends StateNotifier<Locale?> {
-  LocaleStateNotifier({LocaleRepository? localeRepository}) : super(null) {
+  LocaleStateNotifier({
+    required this.ref,
+    LocaleRepository? localeRepository,
+  }) : super(null) {
     this.localeRepository = localeRepository ?? LocaleRepository();
   }
 
+  Ref ref;
   late LocaleRepository localeRepository;
 
   Future<void> initialize() async {

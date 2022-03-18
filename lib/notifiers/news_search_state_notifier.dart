@@ -3,7 +3,6 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:state_notifier/state_notifier.dart';
 
 // Project imports:
 import 'package:flutter_news_sample/entities/news_article.dart';
@@ -11,11 +10,14 @@ import 'package:flutter_news_sample/repositories/news_search_repository.dart';
 import 'package:flutter_news_sample/states/news_search_state.dart';
 
 class NewsSearchStateNotifier extends StateNotifier<NewsSearchState> {
-  NewsSearchStateNotifier({NewsSearchRepository? newsSearchRepository})
-      : super(NewsSearchState()) {
+  NewsSearchStateNotifier({
+    required this.ref,
+    NewsSearchRepository? newsSearchRepository,
+  }) : super(NewsSearchState()) {
     this.newsSearchRepository = newsSearchRepository ?? NewsSearchRepository();
   }
 
+  Ref ref;
   late final NewsSearchRepository newsSearchRepository;
 
   Future<void> fetch({required String keyword}) {

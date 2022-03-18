@@ -9,5 +9,5 @@ import 'package:flutter_news_sample/notifiers/theme_mode_state_notifier.dart';
 
 final themeModeStateNotifierProvider =
     StateNotifierProvider<ThemeModeStateNotifier, ThemeMode>(
-  (_) => ThemeModeStateNotifier(),
+  (ref) => ThemeModeStateNotifier(ref: ref),
 );

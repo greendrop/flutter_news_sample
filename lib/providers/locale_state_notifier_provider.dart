@@ -9,5 +9,5 @@ import 'package:flutter_news_sample/notifiers/locale_state_notifier.dart';
 
 final localeStateNotifierProvider =
     StateNotifierProvider<LocaleStateNotifier, Locale?>(
-  (_) => LocaleStateNotifier(),
+  (ref) => LocaleStateNotifier(ref: ref),
 );

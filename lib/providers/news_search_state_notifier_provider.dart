@@ -7,5 +7,5 @@ import 'package:flutter_news_sample/states/news_search_state.dart';
 
 final newsSearchStateNotifierProvider =
     StateNotifierProvider<NewsSearchStateNotifier, NewsSearchState>(
-  (ref) => NewsSearchStateNotifier(),
+  (ref) => NewsSearchStateNotifier(ref: ref),
 );
