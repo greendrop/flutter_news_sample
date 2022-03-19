@@ -30,8 +30,8 @@ class NewsDetailPage extends HookConsumerWidget {
     final webViewController = useState<InAppWebViewController?>(null);
     final stackIndex = useState(_progressIndex);
     final promptTextController = useTextEditingController();
-    final initialOptions = useMemoized(
-      () => InAppWebViewGroupOptions(
+    final initialOptions = useMemoized(() {
+      return InAppWebViewGroupOptions(
         crossPlatform: InAppWebViewOptions(
           useShouldOverrideUrlLoading: true,
           mediaPlaybackRequiresUserGesture: false,
@@ -42,10 +42,15 @@ class NewsDetailPage extends HookConsumerWidget {
         ios: IOSInAppWebViewOptions(
           allowsInlineMediaPlayback: true,
         ),
-      ),
-    );
-    final pullToRefreshController = useMemoized(
-      () => PullToRefreshController(
+      );
+    });
+    final pullToRefreshController = useMemoized(() {
+      final themeData = Theme.of(context);
+      return PullToRefreshController(
+        options: PullToRefreshOptions(
+          color: themeData.colorScheme.primary,
+          backgroundColor: themeData.canvasColor,
+        ),
         onRefresh: () async {
           if (Platform.isAndroid) {
             await webViewController.value?.reload();
@@ -56,8 +61,8 @@ class NewsDetailPage extends HookConsumerWidget {
             );
           }
         },
-      ),
-    );
+      );
+    });
 
     final appBar = AppBar(
       title: Text(title),
@@ -85,6 +90,18 @@ class NewsDetailPage extends HookConsumerWidget {
           onLoadStart: (controller, url) {
             stackIndex.value = _progressIndex;
           },
+          onLoadStop: (controller, url) async {
+            await pullToRefreshController.endRefreshing();
+            stackIndex.value = _webViewIndex;
+          },
+          onLoadError: (controller, url, code, message) async {
+            await pullToRefreshController.endRefreshing();
+            stackIndex.value = _webViewIndex;
+          },
+          onLoadHttpError: (controller, url, statusCode, description) async {
+            await pullToRefreshController.endRefreshing();
+            stackIndex.value = _webViewIndex;
+          },
           androidOnPermissionRequest: (controller, origin, resources) async {
             return PermissionRequestResponse(
               resources: resources,
@@ -93,6 +110,7 @@ class NewsDetailPage extends HookConsumerWidget {
           },
           onProgressChanged: (controller, progress) async {
             if (progress >= 100) {
+              await pullToRefreshController.endRefreshing();
               stackIndex.value = _webViewIndex;
             }
           },
