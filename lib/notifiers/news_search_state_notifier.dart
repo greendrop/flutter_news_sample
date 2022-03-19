@@ -28,18 +28,11 @@ class NewsSearchStateNotifier extends StateNotifier<NewsSearchState> {
       final decoded = json.decode(response.body) as Map<String, dynamic>;
       if (decoded.containsKey('articles')) {
         for (final Map<String, dynamic> item in decoded['articles']) {
-          final newsArticle = NewsArticle(
-            title: item.containsKey('title') && item['title'] != null
-                ? item['title'].toString()
-                : null,
-            url: item.containsKey('url') && item['url'] != null
-                ? item['url'].toString()
-                : null,
-            imageUrl:
-                item.containsKey('urlToImage') && item['urlToImage'] != null
-                    ? item['urlToImage'].toString()
-                    : null,
-          );
+          final newsArticle = NewsArticle.fromJson(<String, dynamic>{
+            'title': item['title'],
+            'url': item['url'],
+            'imageUrl': item['urlToImage'],
+          });
           articles.add(newsArticle);
         }
       }

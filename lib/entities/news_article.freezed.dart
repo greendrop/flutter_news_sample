@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+NewsArticle _$NewsArticleFromJson(Map<String, dynamic> json) {
+  return _NewsArticle.fromJson(json);
+}
+
 /// @nodoc
 class _$NewsArticleTearOff {
   const _$NewsArticleTearOff();
@@ -24,6 +28,10 @@ class _$NewsArticleTearOff {
       url: url,
       imageUrl: imageUrl,
     );
+  }
+
+  NewsArticle fromJson(Map<String, Object?> json) {
+    return NewsArticle.fromJson(json);
   }
 }
 
@@ -36,6 +44,7 @@ mixin _$NewsArticle {
   String? get url => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $NewsArticleCopyWith<NewsArticle> get copyWith =>
       throw _privateConstructorUsedError;
@@ -124,9 +133,12 @@ class __$NewsArticleCopyWithImpl<$Res> extends _$NewsArticleCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_NewsArticle extends _NewsArticle {
   _$_NewsArticle({this.title, this.url, this.imageUrl}) : super._();
+
+  factory _$_NewsArticle.fromJson(Map<String, dynamic> json) =>
+      _$$_NewsArticleFromJson(json);
 
   @override
   final String? title;
@@ -161,12 +173,20 @@ class _$_NewsArticle extends _NewsArticle {
   @override
   _$NewsArticleCopyWith<_NewsArticle> get copyWith =>
       __$NewsArticleCopyWithImpl<_NewsArticle>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_NewsArticleToJson(this);
+  }
 }
 
 abstract class _NewsArticle extends NewsArticle {
   factory _NewsArticle({String? title, String? url, String? imageUrl}) =
       _$_NewsArticle;
   _NewsArticle._() : super._();
+
+  factory _NewsArticle.fromJson(Map<String, dynamic> json) =
+      _$_NewsArticle.fromJson;
 
   @override
   String? get title;
