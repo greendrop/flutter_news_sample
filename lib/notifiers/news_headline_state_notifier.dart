@@ -5,7 +5,8 @@ import 'dart:convert';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'package:flutter_news_sample/entities/news_article.dart';
+import 'package:flutter_news_sample/entities/news_headline_response.dart';
+import 'package:flutter_news_sample/exceptions/app_exception.dart';
 import 'package:flutter_news_sample/repositories/news_headline_repository.dart';
 import 'package:flutter_news_sample/states/news_headline_state.dart';
 
@@ -24,23 +25,22 @@ class NewsHeadlineStateNotifier extends StateNotifier<NewsHeadlineState> {
   late final NewsHeadlineRepository newsHeadlineRepository;
 
   Future<void> fetch() async {
-    state = state.copyWith(articles: [], fetching: true);
-    return newsHeadlineRepository
-        .fetch(category: category)
-        .then<void>((response) {
-      final articles = <NewsArticle>[];
-      final decoded = json.decode(response.body) as Map<String, dynamic>;
-      if (decoded.containsKey('articles')) {
-        for (final Map<String, dynamic> item in decoded['articles']) {
-          final newsArticle = NewsArticle.fromJson(<String, dynamic>{
-            'title': item['title'],
-            'url': item['url'],
-            'imageUrl': item['urlToImage'],
-          });
-          articles.add(newsArticle);
-        }
-      }
-      state = state.copyWith(articles: articles, fetching: false);
-    });
+    state = state.copyWith(articles: const AsyncValue.loading());
+
+    try {
+      final response = await newsHeadlineRepository.fetch(category: category);
+      final decoded =
+          json.decode(response.data.toString()) as Map<String, dynamic>;
+      final newsHeadlineResponse = NewsHeadlineResponse.fromJson(decoded);
+      state = state.copyWith(
+        articles: AsyncValue.data(newsHeadlineResponse.articles ?? []),
+      );
+      return Future.value();
+    } on Exception catch (error) {
+      final appException =
+          error is AppException ? error : AppException(parentException: error);
+      state = state.copyWith(articles: AsyncValue.error(appException));
+      return Future.error(appException);
+    }
   }
 }

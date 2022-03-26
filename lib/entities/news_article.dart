@@ -7,9 +7,13 @@ part 'news_article.g.dart';
 @freezed
 class NewsArticle with _$NewsArticle {
   factory NewsArticle({
+    String? author,
     String? title,
+    String? description,
     String? url,
-    String? imageUrl,
+    String? urlToImage,
+    DateTime? publishedAt,
+    String? content,
   }) = _NewsArticle;
   const NewsArticle._();
 

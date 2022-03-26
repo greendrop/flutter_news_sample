@@ -20,23 +20,25 @@ class NewsSearchStateNotifier extends StateNotifier<NewsSearchState> {
   Ref ref;
   late final NewsSearchRepository newsSearchRepository;
 
-  Future<void> fetch({required String keyword}) {
+  Future<void> fetch({required String keyword}) async {
     state = state.copyWith(articles: [], fetching: true);
 
-    return newsSearchRepository.fetch(keyword: keyword).then<void>((response) {
-      final articles = <NewsArticle>[];
-      final decoded = json.decode(response.body) as Map<String, dynamic>;
-      if (decoded.containsKey('articles')) {
-        for (final Map<String, dynamic> item in decoded['articles']) {
-          final newsArticle = NewsArticle.fromJson(<String, dynamic>{
-            'title': item['title'],
-            'url': item['url'],
-            'imageUrl': item['urlToImage'],
-          });
-          articles.add(newsArticle);
-        }
+    final response = await newsSearchRepository.fetch(keyword: keyword);
+
+    final articles = <NewsArticle>[];
+    final decoded = json.decode(response.body) as Map<String, dynamic>;
+    if (decoded.containsKey('articles')) {
+      for (final Map<String, dynamic> item in decoded['articles']) {
+        final newsArticle = NewsArticle.fromJson(<String, dynamic>{
+          'title': item['title'],
+          'url': item['url'],
+          'urlToImage': item['urlToImage'],
+        });
+        articles.add(newsArticle);
       }
-      state = state.copyWith(articles: articles, fetching: false);
-    });
+    }
+
+    state = state.copyWith(articles: articles, fetching: false);
+    return Future.value();
   }
 }

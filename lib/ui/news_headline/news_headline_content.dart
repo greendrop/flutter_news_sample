@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
 import 'package:flutter_news_sample/config/routes/app_router.dart';
+import 'package:flutter_news_sample/exceptions/app_exception.dart';
 import 'package:flutter_news_sample/providers/news_headline_state_notifier_provider.dart';
 import 'package:flutter_news_sample/ui/widgets/news_article_grid_item.dart';
 
@@ -28,45 +29,47 @@ class NewsHeadlineContent extends HookConsumerWidget {
     final newsHeadlineState =
         ref.watch(newsHeadlineStateNotifierProvider(category));
 
-    if (newsHeadlineState.fetching) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (newsHeadlineState.articles.isEmpty) {
-      return Container();
-    }
-
-    final gridChildren = newsHeadlineState.articles.map<Widget>((article) {
-      return NewsArticleGridItem(
-        newsArticle: article,
-        onTap: () {
-          if (article.url == null) {
-            return;
-          }
-
-          if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
-            final uriBuilder = UriBuilder()
-              ..path = const NewsDetailRoute().path
-              ..queryParameters['title'] = article.title.toString()
-              ..queryParameters['url'] = article.url.toString();
-            AutoRouter.of(context).pushNamed(uriBuilder.build().toString());
-          } else {
-            launch(article.url.toString());
-          }
-        },
-      );
-    }).toList();
-
-    return RefreshIndicator(
-      onRefresh: () async {
-        await ref
-            .read(newsHeadlineStateNotifierProvider(category).notifier)
-            .fetch();
+    return newsHeadlineState.articles.when(
+      loading: () {
+        return const Center(child: CircularProgressIndicator());
       },
-      child: GridView.count(
-        crossAxisCount: gridCrossAxisCount,
-        children: gridChildren,
-      ),
+      error: (error, stackTrace) {
+        return Center(child: Text((error as AppException).message));
+      },
+      data: (articles) {
+        final gridChildren = articles.map<Widget>((article) {
+          return NewsArticleGridItem(
+            newsArticle: article,
+            onTap: () {
+              if (article.url == null) {
+                return;
+              }
+
+              if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
+                final uriBuilder = UriBuilder()
+                  ..path = const NewsDetailRoute().path
+                  ..queryParameters['title'] = article.title.toString()
+                  ..queryParameters['url'] = article.url.toString();
+                AutoRouter.of(context).pushNamed(uriBuilder.build().toString());
+              } else {
+                launch(article.url.toString());
+              }
+            },
+          );
+        }).toList();
+
+        return RefreshIndicator(
+          onRefresh: () async {
+            await ref
+                .read(newsHeadlineStateNotifierProvider(category).notifier)
+                .fetch();
+          },
+          child: GridView.count(
+            crossAxisCount: gridCrossAxisCount,
+            children: gridChildren,
+          ),
+        );
+      },
     );
   }
 }

@@ -19,11 +19,10 @@ class _$NewsHeadlineStateTearOff {
   const _$NewsHeadlineStateTearOff();
 
   _NewsHeadlineState call(
-      {List<NewsArticle> articles = const <NewsArticle>[],
-      bool fetching = false}) {
+      {AsyncValue<List<NewsArticle>> articles =
+          const AsyncValue.data(<NewsArticle>[])}) {
     return _NewsHeadlineState(
       articles: articles,
-      fetching: fetching,
     );
   }
 }
@@ -33,8 +32,8 @@ const $NewsHeadlineState = _$NewsHeadlineStateTearOff();
 
 /// @nodoc
 mixin _$NewsHeadlineState {
-  List<NewsArticle> get articles => throw _privateConstructorUsedError;
-  bool get fetching => throw _privateConstructorUsedError;
+  AsyncValue<List<NewsArticle>> get articles =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewsHeadlineStateCopyWith<NewsHeadlineState> get copyWith =>
@@ -46,7 +45,7 @@ abstract class $NewsHeadlineStateCopyWith<$Res> {
   factory $NewsHeadlineStateCopyWith(
           NewsHeadlineState value, $Res Function(NewsHeadlineState) then) =
       _$NewsHeadlineStateCopyWithImpl<$Res>;
-  $Res call({List<NewsArticle> articles, bool fetching});
+  $Res call({AsyncValue<List<NewsArticle>> articles});
 }
 
 /// @nodoc
@@ -61,17 +60,12 @@ class _$NewsHeadlineStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? articles = freezed,
-    Object? fetching = freezed,
   }) {
     return _then(_value.copyWith(
       articles: articles == freezed
           ? _value.articles
           : articles // ignore: cast_nullable_to_non_nullable
-              as List<NewsArticle>,
-      fetching: fetching == freezed
-          ? _value.fetching
-          : fetching // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AsyncValue<List<NewsArticle>>,
     ));
   }
 }
@@ -83,7 +77,7 @@ abstract class _$NewsHeadlineStateCopyWith<$Res>
           _NewsHeadlineState value, $Res Function(_NewsHeadlineState) then) =
       __$NewsHeadlineStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<NewsArticle> articles, bool fetching});
+  $Res call({AsyncValue<List<NewsArticle>> articles});
 }
 
 /// @nodoc
@@ -100,17 +94,12 @@ class __$NewsHeadlineStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? articles = freezed,
-    Object? fetching = freezed,
   }) {
     return _then(_NewsHeadlineState(
       articles: articles == freezed
           ? _value.articles
           : articles // ignore: cast_nullable_to_non_nullable
-              as List<NewsArticle>,
-      fetching: fetching == freezed
-          ? _value.fetching
-          : fetching // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AsyncValue<List<NewsArticle>>,
     ));
   }
 }
@@ -118,20 +107,16 @@ class __$NewsHeadlineStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_NewsHeadlineState extends _NewsHeadlineState {
-  _$_NewsHeadlineState(
-      {this.articles = const <NewsArticle>[], this.fetching = false})
+  _$_NewsHeadlineState({this.articles = const AsyncValue.data(<NewsArticle>[])})
       : super._();
 
   @JsonKey()
   @override
-  final List<NewsArticle> articles;
-  @JsonKey()
-  @override
-  final bool fetching;
+  final AsyncValue<List<NewsArticle>> articles;
 
   @override
   String toString() {
-    return 'NewsHeadlineState(articles: $articles, fetching: $fetching)';
+    return 'NewsHeadlineState(articles: $articles)';
   }
 
   @override
@@ -139,15 +124,12 @@ class _$_NewsHeadlineState extends _NewsHeadlineState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NewsHeadlineState &&
-            const DeepCollectionEquality().equals(other.articles, articles) &&
-            const DeepCollectionEquality().equals(other.fetching, fetching));
+            const DeepCollectionEquality().equals(other.articles, articles));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(articles),
-      const DeepCollectionEquality().hash(fetching));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(articles));
 
   @JsonKey(ignore: true)
   @override
@@ -156,14 +138,12 @@ class _$_NewsHeadlineState extends _NewsHeadlineState {
 }
 
 abstract class _NewsHeadlineState extends NewsHeadlineState {
-  factory _NewsHeadlineState({List<NewsArticle> articles, bool fetching}) =
+  factory _NewsHeadlineState({AsyncValue<List<NewsArticle>> articles}) =
       _$_NewsHeadlineState;
   _NewsHeadlineState._() : super._();
 
   @override
-  List<NewsArticle> get articles;
-  @override
-  bool get fetching;
+  AsyncValue<List<NewsArticle>> get articles;
   @override
   @JsonKey(ignore: true)
   _$NewsHeadlineStateCopyWith<_NewsHeadlineState> get copyWith =>

@@ -12,6 +12,7 @@ dependencies:
   auto_route: ^3.2.4
   breakpoint: ^1.2.0
   cupertino_icons: ^1.0.2
+  dio: ^4.0.4
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.2+1

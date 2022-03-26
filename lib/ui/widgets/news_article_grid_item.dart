@@ -27,7 +27,7 @@ class NewsArticleGridItem extends HookConsumerWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 6),
-                  child: _NewsArticleImage(url: newsArticle.imageUrl),
+                  child: _NewsArticleImage(url: newsArticle.urlToImage),
                 ),
               ),
             ],
