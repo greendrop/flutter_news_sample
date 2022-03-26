@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
 import 'package:flutter_news_sample/config/routes/app_router.dart';
+import 'package:flutter_news_sample/exceptions/app_exception.dart';
 import 'package:flutter_news_sample/providers/news_search_state_notifier_provider.dart';
 import 'package:flutter_news_sample/ui/widgets/news_article_grid_item.dart';
 
@@ -24,32 +25,40 @@ class NewsSearchContent extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final newsSearchState = ref.watch(newsSearchStateNotifierProvider);
-    final gridChildren = newsSearchState.articles.map<Widget>((article) {
-      return NewsArticleGridItem(
-        newsArticle: article,
-        onTap: () {
-          if (article.url == null) {
-            return;
-          }
 
-          if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
-            final uriBuilder = UriBuilder()
-              ..path = const NewsDetailRoute().path
-              ..queryParameters['title'] = article.title.toString()
-              ..queryParameters['url'] = article.url.toString();
-            AutoRouter.of(context).pushNamed(uriBuilder.build().toString());
-          } else {
-            launch(article.url.toString());
-          }
-        },
-      );
-    }).toList();
+    return newsSearchState.articles.when(
+      loading: () {
+        return const Center(child: CircularProgressIndicator());
+      },
+      error: (error, stackTrace) {
+        return Center(child: Text((error as AppException).message));
+      },
+      data: (articles) {
+        final gridChildren = articles.map<Widget>((article) {
+          return NewsArticleGridItem(
+            newsArticle: article,
+            onTap: () {
+              if (article.url == null) {
+                return;
+              }
 
-    return newsSearchState.fetching
-        ? const Center(child: CircularProgressIndicator())
-        : GridView.count(
-            crossAxisCount: gridCrossAxisCount,
-            children: gridChildren,
+              if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
+                final uriBuilder = UriBuilder()
+                  ..path = const NewsDetailRoute().path
+                  ..queryParameters['title'] = article.title.toString()
+                  ..queryParameters['url'] = article.url.toString();
+                AutoRouter.of(context).pushNamed(uriBuilder.build().toString());
+              } else {
+                launch(article.url.toString());
+              }
+            },
           );
+        }).toList();
+        return GridView.count(
+          crossAxisCount: gridCrossAxisCount,
+          children: gridChildren,
+        );
+      },
+    );
   }
 }

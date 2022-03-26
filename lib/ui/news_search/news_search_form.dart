@@ -20,6 +20,7 @@ class NewsSearchForm extends HookConsumerWidget {
     final l10n = L10n.of(context)!;
     final keyword = useState('');
     final newsSearchState = ref.watch(newsSearchStateNotifierProvider);
+    final loading = newsSearchState.articles is AsyncLoading<void>;
 
     return Form(
       key: formKey,
@@ -42,7 +43,7 @@ class NewsSearchForm extends HookConsumerWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: keyword.value.isEmpty || newsSearchState.fetching
+                onPressed: keyword.value.isEmpty || loading
                     ? null
                     : () {
                         if (formKey.currentState!.validate()) {

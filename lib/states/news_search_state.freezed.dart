@@ -19,11 +19,12 @@ class _$NewsSearchStateTearOff {
   const _$NewsSearchStateTearOff();
 
   _NewsSearchState call(
-      {List<NewsArticle> articles = const <NewsArticle>[],
-      bool fetching = false}) {
+      {String keyword = '',
+      AsyncValue<List<NewsArticle>> articles =
+          const AsyncValue.data(<NewsArticle>[])}) {
     return _NewsSearchState(
+      keyword: keyword,
       articles: articles,
-      fetching: fetching,
     );
   }
 }
@@ -33,8 +34,9 @@ const $NewsSearchState = _$NewsSearchStateTearOff();
 
 /// @nodoc
 mixin _$NewsSearchState {
-  List<NewsArticle> get articles => throw _privateConstructorUsedError;
-  bool get fetching => throw _privateConstructorUsedError;
+  String get keyword => throw _privateConstructorUsedError;
+  AsyncValue<List<NewsArticle>> get articles =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewsSearchStateCopyWith<NewsSearchState> get copyWith =>
@@ -46,7 +48,7 @@ abstract class $NewsSearchStateCopyWith<$Res> {
   factory $NewsSearchStateCopyWith(
           NewsSearchState value, $Res Function(NewsSearchState) then) =
       _$NewsSearchStateCopyWithImpl<$Res>;
-  $Res call({List<NewsArticle> articles, bool fetching});
+  $Res call({String keyword, AsyncValue<List<NewsArticle>> articles});
 }
 
 /// @nodoc
@@ -60,18 +62,18 @@ class _$NewsSearchStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? keyword = freezed,
     Object? articles = freezed,
-    Object? fetching = freezed,
   }) {
     return _then(_value.copyWith(
+      keyword: keyword == freezed
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String,
       articles: articles == freezed
           ? _value.articles
           : articles // ignore: cast_nullable_to_non_nullable
-              as List<NewsArticle>,
-      fetching: fetching == freezed
-          ? _value.fetching
-          : fetching // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AsyncValue<List<NewsArticle>>,
     ));
   }
 }
@@ -83,7 +85,7 @@ abstract class _$NewsSearchStateCopyWith<$Res>
           _NewsSearchState value, $Res Function(_NewsSearchState) then) =
       __$NewsSearchStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<NewsArticle> articles, bool fetching});
+  $Res call({String keyword, AsyncValue<List<NewsArticle>> articles});
 }
 
 /// @nodoc
@@ -99,18 +101,18 @@ class __$NewsSearchStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? keyword = freezed,
     Object? articles = freezed,
-    Object? fetching = freezed,
   }) {
     return _then(_NewsSearchState(
+      keyword: keyword == freezed
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String,
       articles: articles == freezed
           ? _value.articles
           : articles // ignore: cast_nullable_to_non_nullable
-              as List<NewsArticle>,
-      fetching: fetching == freezed
-          ? _value.fetching
-          : fetching // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AsyncValue<List<NewsArticle>>,
     ));
   }
 }
@@ -119,19 +121,20 @@ class __$NewsSearchStateCopyWithImpl<$Res>
 
 class _$_NewsSearchState extends _NewsSearchState {
   _$_NewsSearchState(
-      {this.articles = const <NewsArticle>[], this.fetching = false})
+      {this.keyword = '',
+      this.articles = const AsyncValue.data(<NewsArticle>[])})
       : super._();
 
   @JsonKey()
   @override
-  final List<NewsArticle> articles;
+  final String keyword;
   @JsonKey()
   @override
-  final bool fetching;
+  final AsyncValue<List<NewsArticle>> articles;
 
   @override
   String toString() {
-    return 'NewsSearchState(articles: $articles, fetching: $fetching)';
+    return 'NewsSearchState(keyword: $keyword, articles: $articles)';
   }
 
   @override
@@ -139,15 +142,15 @@ class _$_NewsSearchState extends _NewsSearchState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NewsSearchState &&
-            const DeepCollectionEquality().equals(other.articles, articles) &&
-            const DeepCollectionEquality().equals(other.fetching, fetching));
+            const DeepCollectionEquality().equals(other.keyword, keyword) &&
+            const DeepCollectionEquality().equals(other.articles, articles));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(articles),
-      const DeepCollectionEquality().hash(fetching));
+      const DeepCollectionEquality().hash(keyword),
+      const DeepCollectionEquality().hash(articles));
 
   @JsonKey(ignore: true)
   @override
@@ -156,14 +159,15 @@ class _$_NewsSearchState extends _NewsSearchState {
 }
 
 abstract class _NewsSearchState extends NewsSearchState {
-  factory _NewsSearchState({List<NewsArticle> articles, bool fetching}) =
-      _$_NewsSearchState;
+  factory _NewsSearchState(
+      {String keyword,
+      AsyncValue<List<NewsArticle>> articles}) = _$_NewsSearchState;
   _NewsSearchState._() : super._();
 
   @override
-  List<NewsArticle> get articles;
+  String get keyword;
   @override
-  bool get fetching;
+  AsyncValue<List<NewsArticle>> get articles;
   @override
   @JsonKey(ignore: true)
   _$NewsSearchStateCopyWith<_NewsSearchState> get copyWith =>

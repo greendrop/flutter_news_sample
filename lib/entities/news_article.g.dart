@@ -8,6 +8,9 @@ part of 'news_article.dart';
 
 _$_NewsArticle _$$_NewsArticleFromJson(Map<String, dynamic> json) =>
     _$_NewsArticle(
+      source: json['source'] == null
+          ? null
+          : NewsArticleSource.fromJson(json['source'] as Map<String, dynamic>),
       author: json['author'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -21,6 +24,7 @@ _$_NewsArticle _$$_NewsArticleFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_NewsArticleToJson(_$_NewsArticle instance) =>
     <String, dynamic>{
+      'source': instance.source,
       'author': instance.author,
       'title': instance.title,
       'description': instance.description,

@@ -1,11 +1,8 @@
-// Dart imports:
-import 'dart:convert';
-
 // Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'package:flutter_news_sample/entities/news_article.dart';
+import 'package:flutter_news_sample/exceptions/app_exception.dart';
 import 'package:flutter_news_sample/repositories/news_search_repository.dart';
 import 'package:flutter_news_sample/states/news_search_state.dart';
 
@@ -21,24 +18,24 @@ class NewsSearchStateNotifier extends StateNotifier<NewsSearchState> {
   late final NewsSearchRepository newsSearchRepository;
 
   Future<void> fetch({required String keyword}) async {
-    state = state.copyWith(articles: [], fetching: true);
-
-    final response = await newsSearchRepository.fetch(keyword: keyword);
-
-    final articles = <NewsArticle>[];
-    final decoded = json.decode(response.body) as Map<String, dynamic>;
-    if (decoded.containsKey('articles')) {
-      for (final Map<String, dynamic> item in decoded['articles']) {
-        final newsArticle = NewsArticle.fromJson(<String, dynamic>{
-          'title': item['title'],
-          'url': item['url'],
-          'urlToImage': item['urlToImage'],
-        });
-        articles.add(newsArticle);
-      }
+    if (state.articles is AsyncLoading<void>) {
+      return Future.value();
     }
 
-    state = state.copyWith(articles: articles, fetching: false);
-    return Future.value();
+    state =
+        state.copyWith(keyword: keyword, articles: const AsyncValue.loading());
+
+    try {
+      final response = await newsSearchRepository.fetch(keyword: keyword);
+      state = state.copyWith(
+        articles: AsyncValue.data(response.articles ?? []),
+      );
+      return Future.value();
+    } on Exception catch (error) {
+      final appException =
+          error is AppException ? error : AppException(parentException: error);
+      state = state.copyWith(articles: AsyncValue.error(appException));
+      return Future.error(appException);
+    }
   }
 }
