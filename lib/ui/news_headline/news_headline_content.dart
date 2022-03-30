@@ -29,12 +29,36 @@ class NewsHeadlineContent extends HookConsumerWidget {
     final newsHeadlineState =
         ref.watch(newsHeadlineStateNotifierProvider(category));
 
+    Future<void> refresh() async {
+      await ref
+          .read(newsHeadlineStateNotifierProvider(category).notifier)
+          .fetch()
+          .onError((error, stackTrace) {
+        if (error != null && error is AppException) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(error.message)),
+          );
+        }
+      });
+    }
+
     return newsHeadlineState.articles.when(
       loading: () {
         return const Center(child: CircularProgressIndicator());
       },
       error: (error, stackTrace) {
-        return Center(child: Text((error as AppException).message));
+        return RefreshIndicator(
+          onRefresh: refresh,
+          child: LayoutBuilder(
+            builder: (context, constraints) => SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: Center(child: Text((error as AppException).message)),
+              ),
+            ),
+          ),
+        );
       },
       data: (articles) {
         final gridChildren = articles.map<Widget>((article) {
@@ -59,13 +83,10 @@ class NewsHeadlineContent extends HookConsumerWidget {
         }).toList();
 
         return RefreshIndicator(
-          onRefresh: () async {
-            await ref
-                .read(newsHeadlineStateNotifierProvider(category).notifier)
-                .fetch();
-          },
+          onRefresh: refresh,
           child: GridView.count(
             crossAxisCount: gridCrossAxisCount,
+            physics: const AlwaysScrollableScrollPhysics(),
             children: gridChildren,
           ),
         );

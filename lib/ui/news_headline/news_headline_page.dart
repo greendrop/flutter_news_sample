@@ -1,3 +1,6 @@
+// Dart imports:
+import 'dart:async';
+
 // Flutter imports:
 import 'package:flutter/material.dart';
 
@@ -22,11 +25,13 @@ class NewsHeadlinePage extends HookConsumerWidget {
 
     useEffect(
       () {
-        for (final caetgory in appConfig.newsHeadlineCategories) {
-          ref
-              .read(newsHeadlineStateNotifierProvider(caetgory).notifier)
-              .fetch();
-        }
+        final futures = appConfig.newsHeadlineCategories.map((category) {
+          return ref
+              .read(newsHeadlineStateNotifierProvider(category).notifier)
+              .fetch()
+              .onError((error, stackTrace) => null);
+        });
+        Future.wait(futures);
 
         return () {};
       },
