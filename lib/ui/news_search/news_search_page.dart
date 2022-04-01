@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:breakpoint/breakpoint.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_news_sample/exceptions/app_exception.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
@@ -25,10 +26,21 @@ class NewsSearchPage extends HookConsumerWidget {
       if (keyword.isNotEmpty) {
         return ref
             .read(newsSearchStateNotifierProvider.notifier)
-            .fetch(keyword: keyword);
+            .fetch(keyword: keyword)
+            .onError((error, stackTrace) {
+          if (error != null && error is AppException) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(error.message)),
+            );
+          }
+        });
       }
 
       return Future.value();
+    }
+
+    Future<void> refresh() async {
+      return fetchNewsSearch(keyword.value);
     }
 
     return LayoutBuilder(
@@ -36,9 +48,7 @@ class NewsSearchPage extends HookConsumerWidget {
         final breakpoint = Breakpoint.fromConstraints(constraints);
         final appBar = AppBar(title: Text(l10n.newsSearchTitle));
         final body = RefreshIndicator(
-          onRefresh: () {
-            return fetchNewsSearch(keyword.value);
-          },
+          onRefresh: refresh,
           child: Column(
             children: [
               Padding(

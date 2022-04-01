@@ -31,7 +31,15 @@ class NewsSearchContent extends HookConsumerWidget {
         return const Center(child: CircularProgressIndicator());
       },
       error: (error, stackTrace) {
-        return Center(child: Text((error as AppException).message));
+        return LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Center(child: Text((error as AppException).message)),
+            ),
+          ),
+        );
       },
       data: (articles) {
         final gridChildren = articles.map<Widget>((article) {
@@ -56,6 +64,7 @@ class NewsSearchContent extends HookConsumerWidget {
         }).toList();
         return GridView.count(
           crossAxisCount: gridCrossAxisCount,
+          physics: const AlwaysScrollableScrollPhysics(),
           children: gridChildren,
         );
       },
