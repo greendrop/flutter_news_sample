@@ -44,3 +44,9 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+
+# dart_define
+/dart_define
+
+# iOS
+ **/ios/Flutter/Dart-Defines.xcconfig
