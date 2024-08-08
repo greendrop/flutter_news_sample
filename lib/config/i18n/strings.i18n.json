@@ -1,0 +1,40 @@
+{
+  "general": {
+    "appTitle": "News",
+    "ok": "OK",
+    "ng": "NG",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close",
+    "add": "Add",
+    "create": "Create",
+    "edit": "Edit",
+    "update": "Update",
+    "search": "Search",
+    "noDataAvailable": "No data available."
+  },
+  "aboutApp": {
+    "title": "About App"
+  },
+  "appLogList": {
+    "title": "App Log"
+  },
+  "devTools": {
+    "title": "Development Tools"
+  },
+  "localeSetting": {
+    "title": "Language",
+    "system": "System",
+    "english": "English",
+    "japanese": "日本語"
+  },
+  "setting": {
+    "title": "Setting"
+  },
+  "themeSetting": {
+    "title": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  }
+}
