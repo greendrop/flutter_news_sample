@@ -23,6 +23,19 @@ if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
 
+// Extract dart-defines properties.
+// dart-define を入れる変数を宣言しています。
+def dartDefines = [:];
+if (project.hasProperty('dart-defines')) {
+    // カンマ区切りかつBase64でエンコードされている dart-defines をデコードして変数に格納します。
+    dartDefines = dartDefines + project.property('dart-defines')
+        .split(',')
+        .collectEntries { entry ->
+            def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
+            pair.length == 2 ? [(pair.first()): pair.last()] : [:]
+        }
+}
+
 android {
     namespace = "com.example.flutternewssample.flutter_news_sample"
     compileSdk = flutter.compileSdkVersion
@@ -35,13 +48,14 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.flutternewssample.flutter_news_sample"
+        applicationId "${dartDefines.appId}"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
+        resValue "string", "app_name", "${dartDefines.appName}"
     }
 
     buildTypes {

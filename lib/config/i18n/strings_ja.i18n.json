@@ -1,0 +1,40 @@
+{
+  "general": {
+    "appTitle": "News",
+    "ok": "OK",
+    "ng": "NG",
+    "yes": "はい",
+    "no": "いいえ",
+    "close": "閉じる",
+    "add": "追加",
+    "create": "登録",
+    "edit": "編集",
+    "update": "更新",
+    "search": "検索",
+    "noDataAvailable": "データがありません。"
+  },
+  "aboutApp": {
+    "title": "このアプリについて"
+  },
+  "appLogList": {
+    "title": "アプリログ"
+  },
+  "devTools": {
+    "title": "開発ツール"
+  },
+  "localeSetting": {
+    "title": "言語",
+    "system": "システム",
+    "english": "English",
+    "japanese": "日本語"
+  },
+  "setting": {
+    "title": "設定"
+  },
+  "themeSetting": {
+    "title": "テーマ",
+    "system": "システム",
+    "light": "ライト",
+    "dark": "ダーク"
+  }
+}

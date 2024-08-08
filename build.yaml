@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      slang_build_runner:
+        options:
+          input_directory: lib/config/i18n
+          output_directory: lib/config/i18n
+          timestamp: false
