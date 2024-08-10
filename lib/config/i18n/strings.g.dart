@@ -4,7 +4,7 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 48 (24 per locale)
+/// Strings: 148 (74 per locale)
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -147,10 +147,14 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 
 	// Translations
 	late final _StringsGeneralEn general = _StringsGeneralEn._(_root);
+	late final _StringsAppExceptionEn appException = _StringsAppExceptionEn._(_root);
+	late final _StringsAppHttpExceptionEn appHttpException = _StringsAppHttpExceptionEn._(_root);
 	late final _StringsAboutAppEn aboutApp = _StringsAboutAppEn._(_root);
 	late final _StringsAppLogListEn appLogList = _StringsAppLogListEn._(_root);
 	late final _StringsDevToolsEn devTools = _StringsDevToolsEn._(_root);
 	late final _StringsLocaleSettingEn localeSetting = _StringsLocaleSettingEn._(_root);
+	late final _StringsNewsArticleListEn newsArticleList = _StringsNewsArticleListEn._(_root);
+	late final _StringsNewsHeadlineCategoryEn newsHeadlineCategory = _StringsNewsHeadlineCategoryEn._(_root);
 	late final _StringsSettingEn setting = _StringsSettingEn._(_root);
 	late final _StringsThemeSettingEn themeSetting = _StringsThemeSettingEn._(_root);
 }
@@ -174,6 +178,66 @@ class _StringsGeneralEn {
 	String get update => 'Update';
 	String get search => 'Search';
 	String get noDataAvailable => 'No data available.';
+}
+
+// Path: appException
+class _StringsAppExceptionEn {
+	_StringsAppExceptionEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get message => 'An error has occurred.';
+}
+
+// Path: appHttpException
+class _StringsAppHttpExceptionEn {
+	_StringsAppHttpExceptionEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get badRequestMessage => 'Bad Request';
+	String get unauthorizedMessage => 'Unauthorized';
+	String get paymentRequiredMessage => 'Payment Required';
+	String get forbiddenMessage => 'Forbidden';
+	String get notFoundMessage => 'Not Found';
+	String get methodNotAllowedMessage => 'Method Not Allowed';
+	String get notAcceptableMessage => 'Not Acceptable';
+	String get proxyAuthenticationRequiredMessage => 'Proxy Authentication Required';
+	String get requestTimeoutMessage => 'Request Timeout';
+	String get conflictMessage => 'Conflict';
+	String get goneMessage => 'Gone';
+	String get lengthRequiredMessage => 'Length Required';
+	String get preconditionFailedMessage => 'Precondition Failed';
+	String get payloadTooLargeMessage => 'Payload Too Large';
+	String get uriTooLongMessage => 'URI Too Long';
+	String get unsupportedMediaTypeMessage => 'Unsupported Media Type';
+	String get rangeNotSatisfiableMessage => 'Range Not Satisfiable';
+	String get expectationFailedMessage => 'Expectation Failed';
+	String get iAmATeapotMessage => 'I\'m a teapot';
+	String get misdirectedRequestMessage => 'Misdirected Request';
+	String get unprocessableEntityMessage => 'Unprocessable Entity';
+	String get lockedMessage => 'Locked';
+	String get failedDependencyMessage => 'Failed Dependency';
+	String get tooEarlyMessage => 'Too Early';
+	String get upgradeRequiredMessage => 'Upgrade Required';
+	String get preconditionRequiredMessage => 'Precondition Required';
+	String get tooManyRequestsMessage => 'Too Many Requests';
+	String get requestHeaderFieldsTooLargeMessage => 'Request Header Fields Too Large';
+	String get unavailableForLegalReasonsMessage => 'Unavailable For Legal Reasons';
+	String get internalServerErrorMessage => 'Internal Server Error';
+	String get notImplementedMessage => 'Not Implemented';
+	String get badGatewayMessage => 'Bad Gateway';
+	String get serviceUnavailableMessage => 'Service Unavailable';
+	String get gatewayTimeoutMessage => 'Gateway Timeout';
+	String get httpVersionNotSupportedMessage => 'HTTP Version Not Supported';
+	String get variantAlsoNegotiatesMessage => 'Variant Also Negotiates';
+	String get insufficientStorageMessage => 'Insufficient Storage';
+	String get loopDetectedMessage => 'Loop Detected';
+	String get notExtendedMessage => 'Not Extended';
+	String get networkAuthenticationRequiredMessage => 'Network Authentication Required';
+	String defaultMessage({required Object statusCode}) => 'Unknown (${statusCode})';
 }
 
 // Path: aboutApp
@@ -217,6 +281,32 @@ class _StringsLocaleSettingEn {
 	String get system => 'System';
 	String get english => 'English';
 	String get japanese => '日本語';
+}
+
+// Path: newsArticleList
+class _StringsNewsArticleListEn {
+	_StringsNewsArticleListEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'News Article List';
+}
+
+// Path: newsHeadlineCategory
+class _StringsNewsHeadlineCategoryEn {
+	_StringsNewsHeadlineCategoryEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get general => 'General';
+	String get business => 'Business';
+	String get entertainment => 'Entertainment';
+	String get health => 'Health';
+	String get science => 'Science';
+	String get sports => 'Sports';
+	String get technology => 'Technology';
 }
 
 // Path: setting
@@ -267,10 +357,14 @@ class _StringsJa implements Translations {
 
 	// Translations
 	@override late final _StringsGeneralJa general = _StringsGeneralJa._(_root);
+	@override late final _StringsAppExceptionJa appException = _StringsAppExceptionJa._(_root);
+	@override late final _StringsAppHttpExceptionJa appHttpException = _StringsAppHttpExceptionJa._(_root);
 	@override late final _StringsAboutAppJa aboutApp = _StringsAboutAppJa._(_root);
 	@override late final _StringsAppLogListJa appLogList = _StringsAppLogListJa._(_root);
 	@override late final _StringsDevToolsJa devTools = _StringsDevToolsJa._(_root);
 	@override late final _StringsLocaleSettingJa localeSetting = _StringsLocaleSettingJa._(_root);
+	@override late final _StringsNewsArticleListJa newsArticleList = _StringsNewsArticleListJa._(_root);
+	@override late final _StringsNewsHeadlineCategoryJa newsHeadlineCategory = _StringsNewsHeadlineCategoryJa._(_root);
 	@override late final _StringsSettingJa setting = _StringsSettingJa._(_root);
 	@override late final _StringsThemeSettingJa themeSetting = _StringsThemeSettingJa._(_root);
 }
@@ -294,6 +388,66 @@ class _StringsGeneralJa implements _StringsGeneralEn {
 	@override String get update => '更新';
 	@override String get search => '検索';
 	@override String get noDataAvailable => 'データがありません。';
+}
+
+// Path: appException
+class _StringsAppExceptionJa implements _StringsAppExceptionEn {
+	_StringsAppExceptionJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get message => 'エラーが発生しました。';
+}
+
+// Path: appHttpException
+class _StringsAppHttpExceptionJa implements _StringsAppHttpExceptionEn {
+	_StringsAppHttpExceptionJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get badRequestMessage => 'リクエストが不正です。';
+	@override String get unauthorizedMessage => '認証が必要です。';
+	@override String get paymentRequiredMessage => '支払いが必要です。';
+	@override String get forbiddenMessage => 'アクセスが禁止されています。';
+	@override String get notFoundMessage => 'リソースが見つかりません。';
+	@override String get methodNotAllowedMessage => 'メソッドが許可されていません。';
+	@override String get notAcceptableMessage => '受理できません。';
+	@override String get proxyAuthenticationRequiredMessage => 'プロキシ認証が必要です。';
+	@override String get requestTimeoutMessage => 'リクエストがタイムアウトしました。';
+	@override String get conflictMessage => '競合が発生しました。';
+	@override String get goneMessage => 'リソースが存在しません。';
+	@override String get lengthRequiredMessage => '長さが必要です。';
+	@override String get preconditionFailedMessage => '前提条件が失敗しました。';
+	@override String get payloadTooLargeMessage => 'ペイロードが大きすぎます。';
+	@override String get uriTooLongMessage => 'URIが長すぎます。';
+	@override String get unsupportedMediaTypeMessage => 'サポートされていないメディアタイプです。';
+	@override String get rangeNotSatisfiableMessage => '範囲が満たされていません。';
+	@override String get expectationFailedMessage => '期待が失敗しました。';
+	@override String get iAmATeapotMessage => '私はティーポットです。';
+	@override String get misdirectedRequestMessage => '誤ったリクエストです。';
+	@override String get unprocessableEntityMessage => '処理できません。';
+	@override String get lockedMessage => 'ロックされています。';
+	@override String get failedDependencyMessage => '依存関係が失敗しました。';
+	@override String get tooEarlyMessage => '早すぎます。';
+	@override String get upgradeRequiredMessage => 'アップグレードが必要です。';
+	@override String get preconditionRequiredMessage => '前提条件が必要です。';
+	@override String get tooManyRequestsMessage => 'リクエストが多すぎます。';
+	@override String get requestHeaderFieldsTooLargeMessage => 'リクエストヘッダーフィールドが大きすぎます。';
+	@override String get unavailableForLegalReasonsMessage => '法的な理由で利用できません。';
+	@override String get internalServerErrorMessage => 'サーバーエラー';
+	@override String get notImplementedMessage => '実装されていません。';
+	@override String get badGatewayMessage => '不正なゲートウェイ';
+	@override String get serviceUnavailableMessage => 'サービス利用不可';
+	@override String get gatewayTimeoutMessage => 'ゲートウェイタイムアウト';
+	@override String get httpVersionNotSupportedMessage => 'HTTPバージョンがサポートされていません。';
+	@override String get variantAlsoNegotiatesMessage => 'Variant Also Negotiates';
+	@override String get insufficientStorageMessage => '容量不足です。';
+	@override String get loopDetectedMessage => 'ループが検出されました。';
+	@override String get notExtendedMessage => 'Not Extended';
+	@override String get networkAuthenticationRequiredMessage => 'ネットワーク認証が必要です。';
+	@override String defaultMessage({required Object statusCode}) => '未知のエラー (${statusCode})';
 }
 
 // Path: aboutApp
@@ -339,6 +493,32 @@ class _StringsLocaleSettingJa implements _StringsLocaleSettingEn {
 	@override String get japanese => '日本語';
 }
 
+// Path: newsArticleList
+class _StringsNewsArticleListJa implements _StringsNewsArticleListEn {
+	_StringsNewsArticleListJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'ニュース記事一覧';
+}
+
+// Path: newsHeadlineCategory
+class _StringsNewsHeadlineCategoryJa implements _StringsNewsHeadlineCategoryEn {
+	_StringsNewsHeadlineCategoryJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get general => '一般';
+	@override String get business => 'ビジネス';
+	@override String get entertainment => 'エンタメ';
+	@override String get health => '健康';
+	@override String get science => '科学';
+	@override String get sports => 'スポーツ';
+	@override String get technology => 'テクノロジー';
+}
+
 // Path: setting
 class _StringsSettingJa implements _StringsSettingEn {
 	_StringsSettingJa._(this._root);
@@ -380,6 +560,48 @@ extension on Translations {
 			case 'general.update': return 'Update';
 			case 'general.search': return 'Search';
 			case 'general.noDataAvailable': return 'No data available.';
+			case 'appException.message': return 'An error has occurred.';
+			case 'appHttpException.badRequestMessage': return 'Bad Request';
+			case 'appHttpException.unauthorizedMessage': return 'Unauthorized';
+			case 'appHttpException.paymentRequiredMessage': return 'Payment Required';
+			case 'appHttpException.forbiddenMessage': return 'Forbidden';
+			case 'appHttpException.notFoundMessage': return 'Not Found';
+			case 'appHttpException.methodNotAllowedMessage': return 'Method Not Allowed';
+			case 'appHttpException.notAcceptableMessage': return 'Not Acceptable';
+			case 'appHttpException.proxyAuthenticationRequiredMessage': return 'Proxy Authentication Required';
+			case 'appHttpException.requestTimeoutMessage': return 'Request Timeout';
+			case 'appHttpException.conflictMessage': return 'Conflict';
+			case 'appHttpException.goneMessage': return 'Gone';
+			case 'appHttpException.lengthRequiredMessage': return 'Length Required';
+			case 'appHttpException.preconditionFailedMessage': return 'Precondition Failed';
+			case 'appHttpException.payloadTooLargeMessage': return 'Payload Too Large';
+			case 'appHttpException.uriTooLongMessage': return 'URI Too Long';
+			case 'appHttpException.unsupportedMediaTypeMessage': return 'Unsupported Media Type';
+			case 'appHttpException.rangeNotSatisfiableMessage': return 'Range Not Satisfiable';
+			case 'appHttpException.expectationFailedMessage': return 'Expectation Failed';
+			case 'appHttpException.iAmATeapotMessage': return 'I\'m a teapot';
+			case 'appHttpException.misdirectedRequestMessage': return 'Misdirected Request';
+			case 'appHttpException.unprocessableEntityMessage': return 'Unprocessable Entity';
+			case 'appHttpException.lockedMessage': return 'Locked';
+			case 'appHttpException.failedDependencyMessage': return 'Failed Dependency';
+			case 'appHttpException.tooEarlyMessage': return 'Too Early';
+			case 'appHttpException.upgradeRequiredMessage': return 'Upgrade Required';
+			case 'appHttpException.preconditionRequiredMessage': return 'Precondition Required';
+			case 'appHttpException.tooManyRequestsMessage': return 'Too Many Requests';
+			case 'appHttpException.requestHeaderFieldsTooLargeMessage': return 'Request Header Fields Too Large';
+			case 'appHttpException.unavailableForLegalReasonsMessage': return 'Unavailable For Legal Reasons';
+			case 'appHttpException.internalServerErrorMessage': return 'Internal Server Error';
+			case 'appHttpException.notImplementedMessage': return 'Not Implemented';
+			case 'appHttpException.badGatewayMessage': return 'Bad Gateway';
+			case 'appHttpException.serviceUnavailableMessage': return 'Service Unavailable';
+			case 'appHttpException.gatewayTimeoutMessage': return 'Gateway Timeout';
+			case 'appHttpException.httpVersionNotSupportedMessage': return 'HTTP Version Not Supported';
+			case 'appHttpException.variantAlsoNegotiatesMessage': return 'Variant Also Negotiates';
+			case 'appHttpException.insufficientStorageMessage': return 'Insufficient Storage';
+			case 'appHttpException.loopDetectedMessage': return 'Loop Detected';
+			case 'appHttpException.notExtendedMessage': return 'Not Extended';
+			case 'appHttpException.networkAuthenticationRequiredMessage': return 'Network Authentication Required';
+			case 'appHttpException.defaultMessage': return ({required Object statusCode}) => 'Unknown (${statusCode})';
 			case 'aboutApp.title': return 'About App';
 			case 'appLogList.title': return 'App Log';
 			case 'devTools.title': return 'Development Tools';
@@ -387,6 +609,14 @@ extension on Translations {
 			case 'localeSetting.system': return 'System';
 			case 'localeSetting.english': return 'English';
 			case 'localeSetting.japanese': return '日本語';
+			case 'newsArticleList.title': return 'News Article List';
+			case 'newsHeadlineCategory.general': return 'General';
+			case 'newsHeadlineCategory.business': return 'Business';
+			case 'newsHeadlineCategory.entertainment': return 'Entertainment';
+			case 'newsHeadlineCategory.health': return 'Health';
+			case 'newsHeadlineCategory.science': return 'Science';
+			case 'newsHeadlineCategory.sports': return 'Sports';
+			case 'newsHeadlineCategory.technology': return 'Technology';
 			case 'setting.title': return 'Setting';
 			case 'themeSetting.title': return 'Theme';
 			case 'themeSetting.system': return 'System';
@@ -412,6 +642,48 @@ extension on _StringsJa {
 			case 'general.update': return '更新';
 			case 'general.search': return '検索';
 			case 'general.noDataAvailable': return 'データがありません。';
+			case 'appException.message': return 'エラーが発生しました。';
+			case 'appHttpException.badRequestMessage': return 'リクエストが不正です。';
+			case 'appHttpException.unauthorizedMessage': return '認証が必要です。';
+			case 'appHttpException.paymentRequiredMessage': return '支払いが必要です。';
+			case 'appHttpException.forbiddenMessage': return 'アクセスが禁止されています。';
+			case 'appHttpException.notFoundMessage': return 'リソースが見つかりません。';
+			case 'appHttpException.methodNotAllowedMessage': return 'メソッドが許可されていません。';
+			case 'appHttpException.notAcceptableMessage': return '受理できません。';
+			case 'appHttpException.proxyAuthenticationRequiredMessage': return 'プロキシ認証が必要です。';
+			case 'appHttpException.requestTimeoutMessage': return 'リクエストがタイムアウトしました。';
+			case 'appHttpException.conflictMessage': return '競合が発生しました。';
+			case 'appHttpException.goneMessage': return 'リソースが存在しません。';
+			case 'appHttpException.lengthRequiredMessage': return '長さが必要です。';
+			case 'appHttpException.preconditionFailedMessage': return '前提条件が失敗しました。';
+			case 'appHttpException.payloadTooLargeMessage': return 'ペイロードが大きすぎます。';
+			case 'appHttpException.uriTooLongMessage': return 'URIが長すぎます。';
+			case 'appHttpException.unsupportedMediaTypeMessage': return 'サポートされていないメディアタイプです。';
+			case 'appHttpException.rangeNotSatisfiableMessage': return '範囲が満たされていません。';
+			case 'appHttpException.expectationFailedMessage': return '期待が失敗しました。';
+			case 'appHttpException.iAmATeapotMessage': return '私はティーポットです。';
+			case 'appHttpException.misdirectedRequestMessage': return '誤ったリクエストです。';
+			case 'appHttpException.unprocessableEntityMessage': return '処理できません。';
+			case 'appHttpException.lockedMessage': return 'ロックされています。';
+			case 'appHttpException.failedDependencyMessage': return '依存関係が失敗しました。';
+			case 'appHttpException.tooEarlyMessage': return '早すぎます。';
+			case 'appHttpException.upgradeRequiredMessage': return 'アップグレードが必要です。';
+			case 'appHttpException.preconditionRequiredMessage': return '前提条件が必要です。';
+			case 'appHttpException.tooManyRequestsMessage': return 'リクエストが多すぎます。';
+			case 'appHttpException.requestHeaderFieldsTooLargeMessage': return 'リクエストヘッダーフィールドが大きすぎます。';
+			case 'appHttpException.unavailableForLegalReasonsMessage': return '法的な理由で利用できません。';
+			case 'appHttpException.internalServerErrorMessage': return 'サーバーエラー';
+			case 'appHttpException.notImplementedMessage': return '実装されていません。';
+			case 'appHttpException.badGatewayMessage': return '不正なゲートウェイ';
+			case 'appHttpException.serviceUnavailableMessage': return 'サービス利用不可';
+			case 'appHttpException.gatewayTimeoutMessage': return 'ゲートウェイタイムアウト';
+			case 'appHttpException.httpVersionNotSupportedMessage': return 'HTTPバージョンがサポートされていません。';
+			case 'appHttpException.variantAlsoNegotiatesMessage': return 'Variant Also Negotiates';
+			case 'appHttpException.insufficientStorageMessage': return '容量不足です。';
+			case 'appHttpException.loopDetectedMessage': return 'ループが検出されました。';
+			case 'appHttpException.notExtendedMessage': return 'Not Extended';
+			case 'appHttpException.networkAuthenticationRequiredMessage': return 'ネットワーク認証が必要です。';
+			case 'appHttpException.defaultMessage': return ({required Object statusCode}) => '未知のエラー (${statusCode})';
 			case 'aboutApp.title': return 'このアプリについて';
 			case 'appLogList.title': return 'アプリログ';
 			case 'devTools.title': return '開発ツール';
@@ -419,6 +691,14 @@ extension on _StringsJa {
 			case 'localeSetting.system': return 'システム';
 			case 'localeSetting.english': return 'English';
 			case 'localeSetting.japanese': return '日本語';
+			case 'newsArticleList.title': return 'ニュース記事一覧';
+			case 'newsHeadlineCategory.general': return '一般';
+			case 'newsHeadlineCategory.business': return 'ビジネス';
+			case 'newsHeadlineCategory.entertainment': return 'エンタメ';
+			case 'newsHeadlineCategory.health': return '健康';
+			case 'newsHeadlineCategory.science': return '科学';
+			case 'newsHeadlineCategory.sports': return 'スポーツ';
+			case 'newsHeadlineCategory.technology': return 'テクノロジー';
 			case 'setting.title': return '設定';
 			case 'themeSetting.title': return 'テーマ';
 			case 'themeSetting.system': return 'システム';

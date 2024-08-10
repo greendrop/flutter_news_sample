@@ -6,6 +6,7 @@ import 'package:flutter_news_sample/feature/app_log_list/widget/app_log_list_pag
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
 import 'package:flutter_news_sample/feature/dev_tool/widget/dev_tool_page.dart';
 import 'package:flutter_news_sample/feature/locale_setting/widget/locale_setting_page.dart';
+import 'package:flutter_news_sample/feature/news_article_list/widget/news_article_list_page.dart';
 import 'package:flutter_news_sample/feature/not_found/widget/not_found_page.dart';
 import 'package:flutter_news_sample/feature/setting/widget/setting_page.dart';
 import 'package:flutter_news_sample/feature/theme_setting/widget/theme_setting_page.dart';
@@ -16,8 +17,16 @@ import 'package:logger/logger.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
-GoRouter useAppRouter({String initialLocation = '/setting'}) {
+GoRouter useAppRouter({String initialLocation = '/news_articles'}) {
   final appLogger = useAppLogger();
+
+  final newsGoRoute = GoRoute(
+    path: '/news_articles',
+    name: NewsArticleListPage.routeName,
+    builder: (context, state) {
+      return const NewsArticleListPage();
+    },
+  );
 
   final settingGoRoute = GoRoute(
     path: '/setting',
@@ -91,6 +100,7 @@ GoRouter useAppRouter({String initialLocation = '/setting'}) {
           return ScaffoldWithNavBar(child: child);
         },
         routes: [
+          newsGoRoute,
           settingGoRoute,
         ],
       ),
