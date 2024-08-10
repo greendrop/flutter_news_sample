@@ -52,4 +52,4 @@ app.*.map.json
 /coverage
 
 # iOS
- **/ios/Flutter/Dart-Defines.xcconfig
+/ios/Flutter/Dart-Defines.xcconfig
