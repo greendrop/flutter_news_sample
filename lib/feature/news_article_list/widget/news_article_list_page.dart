@@ -1,8 +1,10 @@
 import 'package:breakpoint/breakpoint.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
+import 'package:flutter_news_sample/feature/news_article_detail/hook/use_go_news_article_detail_page.dart';
 import 'package:flutter_news_sample/feature/news_article_list/enum/news_headline_category.dart';
 import 'package:flutter_news_sample/feature/news_article_list/hook/use_news_articles.dart';
 import 'package:flutter_news_sample/feature/theme_data/hook/use_theme_data.dart';
@@ -22,6 +24,7 @@ class NewsArticleListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final translations = useTranslations();
     final themeData = useThemeData();
+    final goNewsArticleDetailPage = useGoNewsArticleDetailPage();
     final urlLauncherWrapper = useUrlLauncherWrapper();
     final newsArticlesByCategories = NewsHeadlineCategory.values
         .fold(<NewsHeadlineCategory, UseNewsArticlesReturn>{}, (acc, category) {
@@ -35,7 +38,7 @@ class NewsArticleListPage extends HookConsumerWidget {
       () {
         Future.delayed(Duration.zero, () {
           newsArticlesByCategories.forEach((category, newsArticles) {
-            newsArticles.fetch();
+            newsArticles.fetch().onError((error, stackTrace) {});
           });
         });
         return () {};
@@ -75,6 +78,7 @@ class NewsArticleListPage extends HookConsumerWidget {
                     gridCrossAxisCount: breakpoint.columns ~/ 2,
                     urlLauncherWrapper: urlLauncherWrapper,
                     translations: translations,
+                    goNewsArticleDetailPage: goNewsArticleDetailPage,
                   ),
                 ),
               ),
@@ -135,6 +139,7 @@ Widget _body(
   required int gridCrossAxisCount,
   required UseUrlLauncherWrapperReturn urlLauncherWrapper,
   required Translations translations,
+  required UseGoNewsArticleDetailPageReturn goNewsArticleDetailPage,
 }) {
   return TabBarView(
     controller: tabController,
@@ -142,7 +147,9 @@ Widget _body(
       final newsArticles = newsArticlesByCategories[category]!;
 
       return RefreshIndicator(
-        onRefresh: newsArticles.fetch,
+        onRefresh: () {
+          return newsArticles.fetch().onError((error, stackTrace) {});
+        },
         child: newsArticles.state.when(
           loading: () {
             return const Center(
@@ -165,7 +172,10 @@ Widget _body(
               itemCount: data.items.length,
               itemBuilder: (BuildContext context, int index) {
                 if (index == data.items.length - 1 && data.hasNextPage) {
-                  Future.delayed(Duration.zero, newsArticles.fetchMore);
+                  // NOTE: API上限にならないように、追加ページを取得しない
+                  // Future.delayed(Duration.zero, () {
+                  //   newsArticles.fetchMore().onError((error, stackTrace) {});
+                  // });
                 }
                 return NewsArticleGridItem(
                   newsArticle: data.items[index],
@@ -174,16 +184,24 @@ Widget _body(
                       return;
                     }
 
-                    final url = Uri.parse(data.items[index].url!);
+                    if (defaultTargetPlatform == TargetPlatform.android ||
+                        defaultTargetPlatform == TargetPlatform.iOS) {
+                      goNewsArticleDetailPage.run(
+                        title: data.items[index].title ?? '',
+                        url: data.items[index].url ?? '',
+                      );
+                    } else {
+                      final url = Uri.parse(data.items[index].url!);
 
-                    urlLauncherWrapper.canLaunchUrl(url).then((value) {
-                      if (value) {
-                        urlLauncherWrapper.launchUrl(
-                          url,
-                          mode: LaunchMode.externalApplication,
-                        );
-                      }
-                    });
+                      urlLauncherWrapper.canLaunchUrl(url).then((value) {
+                        if (value) {
+                          urlLauncherWrapper.launchUrl(
+                            url,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        }
+                      });
+                    }
                   },
                 );
               },

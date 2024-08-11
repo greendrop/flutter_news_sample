@@ -2,7 +2,7 @@
   "flavor": "prod",
   "showDevTool": "false",
   "appName": "News Sample",
-  "appId": "com.example.flutter-news-sample",
+  "appId": "com.example.flutternewssample",
   "newsApiKey": "NEWS_API_KEY"
 }
 

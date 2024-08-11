@@ -11,6 +11,8 @@
     "edit": "Edit",
     "update": "Update",
     "search": "Search",
+    "back": "Back",
+    "share": "Share",
     "noDataAvailable": "No data available."
   },
   "appException": {

@@ -15,6 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.5
+  flutter_inappwebview: ^6.0.0
   flutter_localizations:
     sdk: flutter
   flutter_timezone: ^2.1.0
@@ -31,6 +32,7 @@ dependencies:
   reactive_forms: ^17.0.1
   retrofit: ^4.1.0
   riverpod_annotation: ^2.3.5
+  share_plus: ^10.0.1
   shared_preferences: ^2.3.1
   slang: ^3.31.1
   slang_flutter: ^3.31.0

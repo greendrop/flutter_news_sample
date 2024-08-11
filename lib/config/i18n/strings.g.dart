@@ -4,7 +4,7 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 148 (74 per locale)
+/// Strings: 152 (76 per locale)
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -177,6 +177,8 @@ class _StringsGeneralEn {
 	String get edit => 'Edit';
 	String get update => 'Update';
 	String get search => 'Search';
+	String get back => 'Back';
+	String get share => 'Share';
 	String get noDataAvailable => 'No data available.';
 }
 
@@ -387,6 +389,8 @@ class _StringsGeneralJa implements _StringsGeneralEn {
 	@override String get edit => '編集';
 	@override String get update => '更新';
 	@override String get search => '検索';
+	@override String get back => '戻る';
+	@override String get share => '共有';
 	@override String get noDataAvailable => 'データがありません。';
 }
 
@@ -559,6 +563,8 @@ extension on Translations {
 			case 'general.edit': return 'Edit';
 			case 'general.update': return 'Update';
 			case 'general.search': return 'Search';
+			case 'general.back': return 'Back';
+			case 'general.share': return 'Share';
 			case 'general.noDataAvailable': return 'No data available.';
 			case 'appException.message': return 'An error has occurred.';
 			case 'appHttpException.badRequestMessage': return 'Bad Request';
@@ -641,6 +647,8 @@ extension on _StringsJa {
 			case 'general.edit': return '編集';
 			case 'general.update': return '更新';
 			case 'general.search': return '検索';
+			case 'general.back': return '戻る';
+			case 'general.share': return '共有';
 			case 'general.noDataAvailable': return 'データがありません。';
 			case 'appException.message': return 'エラーが発生しました。';
 			case 'appHttpException.badRequestMessage': return 'リクエストが不正です。';
