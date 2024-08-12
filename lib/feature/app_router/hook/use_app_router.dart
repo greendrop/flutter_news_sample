@@ -6,6 +6,7 @@ import 'package:flutter_news_sample/feature/app_log_list/widget/app_log_list_pag
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
 import 'package:flutter_news_sample/feature/dev_tool/widget/dev_tool_page.dart';
 import 'package:flutter_news_sample/feature/locale_setting/widget/locale_setting_page.dart';
+import 'package:flutter_news_sample/feature/news_article_detail/widget/news_article_detail_page.dart';
 import 'package:flutter_news_sample/feature/news_article_list/widget/news_article_list_page.dart';
 import 'package:flutter_news_sample/feature/not_found/widget/not_found_page.dart';
 import 'package:flutter_news_sample/feature/setting/widget/setting_page.dart';
@@ -26,6 +27,18 @@ GoRouter useAppRouter({String initialLocation = '/news_articles'}) {
     builder: (context, state) {
       return const NewsArticleListPage();
     },
+    routes: [
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: 'detail',
+        name: NewsArticleDetailPage.routeName,
+        builder: (context, state) {
+          final title = state.uri.queryParameters['title'] ?? 'about:blank';
+          final url = state.uri.queryParameters['url'] ?? 'about:blank';
+          return NewsArticleDetailPage(title: title, url: url);
+        },
+      ),
+    ],
   );
 
   final settingGoRoute = GoRoute(

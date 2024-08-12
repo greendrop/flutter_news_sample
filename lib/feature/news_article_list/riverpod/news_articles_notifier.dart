@@ -28,8 +28,8 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
       final responseArticles = (response.articles ?? []).map((responseArticle) {
         return NewsArticle.fromJson(responseArticle.toJson());
       }).toList();
-      final hasNextPage = responseArticles.isNotEmpty;
 
+      final hasNextPage = responseArticles.isNotEmpty;
       final newsArticles =
           NewsArticles(items: responseArticles, hasNextPage: hasNextPage);
 

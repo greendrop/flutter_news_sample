@@ -11,6 +11,8 @@
     "edit": "編集",
     "update": "更新",
     "search": "検索",
+    "back": "戻る",
+    "share": "共有",
     "noDataAvailable": "データがありません。"
   },
   "appException": {

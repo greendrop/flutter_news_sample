@@ -22,7 +22,7 @@ class NewsTopHeadlinesRepository {
         apiKey: AppConfig.instance.newsApiKey,
         country: 'jp',
         category: category,
-        pageSize: 20,
+        pageSize: 100,
         page: page,
       );
 
