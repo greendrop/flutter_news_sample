@@ -21,11 +21,11 @@ class _NewsEverythingClient implements NewsEverythingClient {
   String? baseUrl;
 
   @override
-  Future<NewsTopHeadlinesResponse> get({
+  Future<NewsEverythingResponse> get({
     required String apiKey,
     required String query,
-    required int pageSize,
-    required int page,
+    int? pageSize,
+    int? page,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -34,10 +34,11 @@ class _NewsEverythingClient implements NewsEverythingClient {
       r'pageSize': pageSize,
       r'page': page,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<NewsTopHeadlinesResponse>(Options(
+        _setStreamType<NewsEverythingResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -53,7 +54,7 @@ class _NewsEverythingClient implements NewsEverythingClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final _value = NewsTopHeadlinesResponse.fromJson(_result.data!);
+    final _value = NewsEverythingResponse.fromJson(_result.data!);
     return _value;
   }
 

@@ -77,7 +77,7 @@
     "japanese": "日本語"
   },
   "newsArticleList": {
-    "title": "ニュース記事一覧"
+    "title": "ニュース記事"
   },
   "newsHeadlineCategory": {
     "general": "一般",
@@ -87,6 +87,15 @@
     "science": "科学",
     "sports": "スポーツ",
     "technology": "テクノロジー"
+  },
+  "newsArticleSearch": {
+    "title": "ニュース記事検索"
+  },
+  "newsArticleSearchForm": {
+    "keywordLabel": "キーワード",
+    "keywordHint": "キーワードを入力してください。",
+    "keywordValidateBlank": "キーワードを入力してください。",
+    "keywordValidateTooLong": "キーワードは${count}文字以内で入力してください。"
   },
   "setting": {
     "title": "設定"

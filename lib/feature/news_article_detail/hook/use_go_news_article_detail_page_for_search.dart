@@ -3,16 +3,17 @@ import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart'
 import 'package:flutter_news_sample/feature/news_article_detail/widget/news_article_detail_page.dart';
 import 'package:go_router/go_router.dart';
 
-typedef UseGoNewsArticleDetailPageReturn = ({
+typedef UseGoNewsArticleDetailPageForSearchReturn = ({
   void Function({required String title, required String url}) run,
 });
 
-typedef UseGoNewsArticleDetailPage = UseGoNewsArticleDetailPageReturn
-    Function();
+typedef UseGoNewsArticleDetailPageForSearch
+    = UseGoNewsArticleDetailPageForSearchReturn Function();
 
-const String _hookName = 'useGoNewsArticleDetailPage';
+const String _hookName = 'useGoNewsArticleDetailPageForSearch';
 
-UseGoNewsArticleDetailPageReturn useGoNewsArticleDetailPage() {
+UseGoNewsArticleDetailPageForSearchReturn
+    useGoNewsArticleDetailPageForSearch() {
   final context = useContext();
   final appLogger = useAppLogger();
 
@@ -23,7 +24,7 @@ UseGoNewsArticleDetailPageReturn useGoNewsArticleDetailPage() {
         {'title': title, 'url': url},
       ]);
       return context.goNamed(
-        NewsArticleDetailPage.routeName,
+        NewsArticleDetailPage.routeNameForSearch,
         queryParameters: {
           'title': title,
           'url': url,

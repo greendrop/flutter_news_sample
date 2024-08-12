@@ -17,7 +17,7 @@ UseGoNewsArticleListPageReturn useGoNewsArticleListPage() {
 
   final run = useCallback(
     () {
-      appLogger.i(['$_hookName#call']);
+      appLogger.i(['$_hookName#run']);
       return context.goNamed(NewsArticleListPage.routeName);
     },
     [],

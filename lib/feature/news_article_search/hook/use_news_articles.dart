@@ -1,12 +1,12 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
-import 'package:flutter_news_sample/feature/news_article_list/entity/news_articles.dart';
-import 'package:flutter_news_sample/feature/news_article_list/riverpod/news_articles_notifier.dart';
+import 'package:flutter_news_sample/feature/news_article_search/entity/news_articles.dart';
+import 'package:flutter_news_sample/feature/news_article_search/riverpod/news_articles_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 typedef UseNewsArticlesReturn = ({
   AsyncValue<NewsArticles> state,
-  Future<void> Function() fetch,
+  Future<void> Function({required String keyword}) fetch,
   Future<void> Function() fetchMore,
 });
 
@@ -16,29 +16,27 @@ typedef UseNewsArticles = UseNewsArticlesReturn Function({
 
 const String _hookName = 'UseNewsArticles';
 
-UseNewsArticlesReturn useNewsArticles({
-  required String category,
-}) {
+UseNewsArticlesReturn useNewsArticles() {
   final context = useContext();
   final ref = context as WidgetRef;
 
-  final state = ref.watch(newsArticlesNotifierProvider(category: category));
+  final state = ref.watch(newsArticlesNotifierProvider);
 
   final fetch = useCallback(
-    () {
+    ({required String keyword}) {
       ref.read(appLoggerProvider).i(
         [
           '$_hookName#fetch',
-          {'category': category},
+          {'keyword': keyword},
         ],
       );
       return ref
           .read(
-            newsArticlesNotifierProvider(category: category).notifier,
+            newsArticlesNotifierProvider.notifier,
           )
-          .fetch();
+          .fetch(keyword: keyword);
     },
-    [category],
+    [],
   );
 
   final fetchMore = useCallback(
@@ -46,16 +44,15 @@ UseNewsArticlesReturn useNewsArticles({
       ref.read(appLoggerProvider).i(
         [
           '$_hookName#fetchMore',
-          {'category': category},
         ],
       );
       return ref
           .read(
-            newsArticlesNotifierProvider(category: category).notifier,
+            newsArticlesNotifierProvider.notifier,
           )
           .fetchMore();
     },
-    [category],
+    [],
   );
 
   return (

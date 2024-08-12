@@ -165,6 +165,12 @@ Widget _body(
             );
           },
           data: (data) {
+            if (data.items.isEmpty) {
+              return Center(
+                child: Text(translations.general.noDataAvailable),
+              );
+            }
+
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: gridCrossAxisCount,

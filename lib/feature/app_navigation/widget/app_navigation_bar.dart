@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/news_article_list/hook/use_go_news_article_list_page.dart';
+import 'package:flutter_news_sample/feature/news_article_search/hook/use_go_news_article_search_page.dart';
 import 'package:flutter_news_sample/feature/setting/hook/use_go_setting_page.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,6 +15,7 @@ class AppNavigationBar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final goNewsArticleListPage = useGoNewsArticleListPage();
+    final goNewsArticleSearchPage = useGoNewsArticleSearchPage();
     final goSettingPage = useGoSettingPage();
 
     return NavigationBar(
@@ -24,6 +26,7 @@ class AppNavigationBar extends HookConsumerWidget {
         ref,
         index: index,
         goNewsArticleListPage: goNewsArticleListPage,
+        goNewsArticleSearchPage: goNewsArticleSearchPage,
         goSettingPage: goSettingPage,
       ),
     );
@@ -37,6 +40,10 @@ class AppNavigationBar extends HookConsumerWidget {
         label: translations.newsArticleList.title,
       ),
       NavigationDestination(
+        icon: const Icon(FontAwesomeIcons.magnifyingGlass),
+        label: translations.newsArticleSearch.title,
+      ),
+      NavigationDestination(
         icon: const Icon(FontAwesomeIcons.gear),
         label: translations.setting.title,
       ),
@@ -46,11 +53,14 @@ class AppNavigationBar extends HookConsumerWidget {
   int _selectedIndex(BuildContext context, WidgetRef ref) {
     final location = GoRouterState.of(context).uri.toString();
 
-    if (location.startsWith('/news')) {
+    if (location.startsWith('/news_articles_search')) {
+      return 1;
+    }
+    if (location.startsWith('/news_articles')) {
       return 0;
     }
     if (location.startsWith('/setting')) {
-      return 1;
+      return 2;
     }
 
     return 0;
@@ -61,12 +71,15 @@ class AppNavigationBar extends HookConsumerWidget {
     WidgetRef ref, {
     required int index,
     required UseGoNewsArticleListPageReturn goNewsArticleListPage,
+    required UseGoNewsArticleSearchPageReturn goNewsArticleSearchPage,
     required UseGoSettingPageReturn goSettingPage,
   }) {
     switch (index) {
       case 0:
         goNewsArticleListPage.run();
       case 1:
+        goNewsArticleSearchPage.run();
+      case 2:
         goSettingPage.run();
     }
   }

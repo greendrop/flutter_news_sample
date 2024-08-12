@@ -5,14 +5,14 @@ part 'news_everything_response.freezed.dart';
 part 'news_everything_response.g.dart';
 
 @freezed
-class NewsEvrythingResponse with _$NewsEvrythingResponse {
-  factory NewsEvrythingResponse({
+class NewsEverythingResponse with _$NewsEverythingResponse {
+  factory NewsEverythingResponse({
     String? status,
     int? totalResults,
     List<NewsArticle>? articles,
-  }) = _NewsEvrythingResponse;
-  const NewsEvrythingResponse._();
+  }) = _NewsEverythingResponse;
+  const NewsEverythingResponse._();
 
-  factory NewsEvrythingResponse.fromJson(Map<String, dynamic> json) =>
-      _$NewsEvrythingResponseFromJson(json);
+  factory NewsEverythingResponse.fromJson(Map<String, dynamic> json) =>
+      _$NewsEverythingResponseFromJson(json);
 }
