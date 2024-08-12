@@ -4,7 +4,7 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 152 (76 per locale)
+/// Strings: 162 (81 per locale)
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -155,6 +155,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final _StringsLocaleSettingEn localeSetting = _StringsLocaleSettingEn._(_root);
 	late final _StringsNewsArticleListEn newsArticleList = _StringsNewsArticleListEn._(_root);
 	late final _StringsNewsHeadlineCategoryEn newsHeadlineCategory = _StringsNewsHeadlineCategoryEn._(_root);
+	late final _StringsNewsArticleSearchEn newsArticleSearch = _StringsNewsArticleSearchEn._(_root);
+	late final _StringsNewsArticleSearchFormEn newsArticleSearchForm = _StringsNewsArticleSearchFormEn._(_root);
 	late final _StringsSettingEn setting = _StringsSettingEn._(_root);
 	late final _StringsThemeSettingEn themeSetting = _StringsThemeSettingEn._(_root);
 }
@@ -292,7 +294,7 @@ class _StringsNewsArticleListEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get title => 'News Article List';
+	String get title => 'News Articles';
 }
 
 // Path: newsHeadlineCategory
@@ -309,6 +311,29 @@ class _StringsNewsHeadlineCategoryEn {
 	String get science => 'Science';
 	String get sports => 'Sports';
 	String get technology => 'Technology';
+}
+
+// Path: newsArticleSearch
+class _StringsNewsArticleSearchEn {
+	_StringsNewsArticleSearchEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'News Articles Search';
+}
+
+// Path: newsArticleSearchForm
+class _StringsNewsArticleSearchFormEn {
+	_StringsNewsArticleSearchFormEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get keywordLabel => 'Keyword';
+	String get keywordHint => 'Enter a keyword.';
+	String get keywordValidateBlank => 'Keyword can\'t be blank.';
+	String keywordValidateTooLong({required Object count}) => 'Keyword is too long. (maximum is ${count} characters)';
 }
 
 // Path: setting
@@ -367,6 +392,8 @@ class _StringsJa implements Translations {
 	@override late final _StringsLocaleSettingJa localeSetting = _StringsLocaleSettingJa._(_root);
 	@override late final _StringsNewsArticleListJa newsArticleList = _StringsNewsArticleListJa._(_root);
 	@override late final _StringsNewsHeadlineCategoryJa newsHeadlineCategory = _StringsNewsHeadlineCategoryJa._(_root);
+	@override late final _StringsNewsArticleSearchJa newsArticleSearch = _StringsNewsArticleSearchJa._(_root);
+	@override late final _StringsNewsArticleSearchFormJa newsArticleSearchForm = _StringsNewsArticleSearchFormJa._(_root);
 	@override late final _StringsSettingJa setting = _StringsSettingJa._(_root);
 	@override late final _StringsThemeSettingJa themeSetting = _StringsThemeSettingJa._(_root);
 }
@@ -504,7 +531,7 @@ class _StringsNewsArticleListJa implements _StringsNewsArticleListEn {
 	@override final _StringsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'ニュース記事一覧';
+	@override String get title => 'ニュース記事';
 }
 
 // Path: newsHeadlineCategory
@@ -521,6 +548,29 @@ class _StringsNewsHeadlineCategoryJa implements _StringsNewsHeadlineCategoryEn {
 	@override String get science => '科学';
 	@override String get sports => 'スポーツ';
 	@override String get technology => 'テクノロジー';
+}
+
+// Path: newsArticleSearch
+class _StringsNewsArticleSearchJa implements _StringsNewsArticleSearchEn {
+	_StringsNewsArticleSearchJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'ニュース記事検索';
+}
+
+// Path: newsArticleSearchForm
+class _StringsNewsArticleSearchFormJa implements _StringsNewsArticleSearchFormEn {
+	_StringsNewsArticleSearchFormJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get keywordLabel => 'キーワード';
+	@override String get keywordHint => 'キーワードを入力してください。';
+	@override String get keywordValidateBlank => 'キーワードを入力してください。';
+	@override String keywordValidateTooLong({required Object count}) => 'キーワードは${count}文字以内で入力してください。';
 }
 
 // Path: setting
@@ -615,7 +665,7 @@ extension on Translations {
 			case 'localeSetting.system': return 'System';
 			case 'localeSetting.english': return 'English';
 			case 'localeSetting.japanese': return '日本語';
-			case 'newsArticleList.title': return 'News Article List';
+			case 'newsArticleList.title': return 'News Articles';
 			case 'newsHeadlineCategory.general': return 'General';
 			case 'newsHeadlineCategory.business': return 'Business';
 			case 'newsHeadlineCategory.entertainment': return 'Entertainment';
@@ -623,6 +673,11 @@ extension on Translations {
 			case 'newsHeadlineCategory.science': return 'Science';
 			case 'newsHeadlineCategory.sports': return 'Sports';
 			case 'newsHeadlineCategory.technology': return 'Technology';
+			case 'newsArticleSearch.title': return 'News Articles Search';
+			case 'newsArticleSearchForm.keywordLabel': return 'Keyword';
+			case 'newsArticleSearchForm.keywordHint': return 'Enter a keyword.';
+			case 'newsArticleSearchForm.keywordValidateBlank': return 'Keyword can\'t be blank.';
+			case 'newsArticleSearchForm.keywordValidateTooLong': return ({required Object count}) => 'Keyword is too long. (maximum is ${count} characters)';
 			case 'setting.title': return 'Setting';
 			case 'themeSetting.title': return 'Theme';
 			case 'themeSetting.system': return 'System';
@@ -699,7 +754,7 @@ extension on _StringsJa {
 			case 'localeSetting.system': return 'システム';
 			case 'localeSetting.english': return 'English';
 			case 'localeSetting.japanese': return '日本語';
-			case 'newsArticleList.title': return 'ニュース記事一覧';
+			case 'newsArticleList.title': return 'ニュース記事';
 			case 'newsHeadlineCategory.general': return '一般';
 			case 'newsHeadlineCategory.business': return 'ビジネス';
 			case 'newsHeadlineCategory.entertainment': return 'エンタメ';
@@ -707,6 +762,11 @@ extension on _StringsJa {
 			case 'newsHeadlineCategory.science': return '科学';
 			case 'newsHeadlineCategory.sports': return 'スポーツ';
 			case 'newsHeadlineCategory.technology': return 'テクノロジー';
+			case 'newsArticleSearch.title': return 'ニュース記事検索';
+			case 'newsArticleSearchForm.keywordLabel': return 'キーワード';
+			case 'newsArticleSearchForm.keywordHint': return 'キーワードを入力してください。';
+			case 'newsArticleSearchForm.keywordValidateBlank': return 'キーワードを入力してください。';
+			case 'newsArticleSearchForm.keywordValidateTooLong': return ({required Object count}) => 'キーワードは${count}文字以内で入力してください。';
 			case 'setting.title': return '設定';
 			case 'themeSetting.title': return 'テーマ';
 			case 'themeSetting.system': return 'システム';

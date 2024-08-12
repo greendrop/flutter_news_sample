@@ -8,6 +8,7 @@ import 'package:flutter_news_sample/feature/dev_tool/widget/dev_tool_page.dart';
 import 'package:flutter_news_sample/feature/locale_setting/widget/locale_setting_page.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/widget/news_article_detail_page.dart';
 import 'package:flutter_news_sample/feature/news_article_list/widget/news_article_list_page.dart';
+import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_page.dart';
 import 'package:flutter_news_sample/feature/not_found/widget/not_found_page.dart';
 import 'package:flutter_news_sample/feature/setting/widget/setting_page.dart';
 import 'package:flutter_news_sample/feature/theme_setting/widget/theme_setting_page.dart';
@@ -21,7 +22,27 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 GoRouter useAppRouter({String initialLocation = '/news_articles'}) {
   final appLogger = useAppLogger();
 
-  final newsGoRoute = GoRoute(
+  final newsArticlesSearchGoRoute = GoRoute(
+    path: '/news_articles_search',
+    name: NewsArticleSearchPage.routeName,
+    builder: (context, state) {
+      return const NewsArticleSearchPage();
+    },
+    routes: [
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: 'detail',
+        name: NewsArticleDetailPage.routeNameForSearch,
+        builder: (context, state) {
+          final title = state.uri.queryParameters['title'] ?? 'about:blank';
+          final url = state.uri.queryParameters['url'] ?? 'about:blank';
+          return NewsArticleDetailPage(title: title, url: url);
+        },
+      ),
+    ],
+  );
+
+  final newsArticlesGoRoute = GoRoute(
     path: '/news_articles',
     name: NewsArticleListPage.routeName,
     builder: (context, state) {
@@ -113,7 +134,8 @@ GoRouter useAppRouter({String initialLocation = '/news_articles'}) {
           return ScaffoldWithNavBar(child: child);
         },
         routes: [
-          newsGoRoute,
+          newsArticlesGoRoute,
+          newsArticlesSearchGoRoute,
           settingGoRoute,
         ],
       ),

@@ -28,6 +28,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
   });
 
   static String routeName = 'NewsArticleDetailPage';
+  static String routeNameForSearch = 'NewsArticleSearchDetailPage';
 
   final String title;
   final String url;
