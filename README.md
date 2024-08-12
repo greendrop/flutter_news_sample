@@ -1,16 +1,26 @@
-# flutter_news_sample
+# Flutter News Sample
 
-A new Flutter project.
+[News](https://newsapi.org/) を利用した Flutter の サンプルです。
 
-## Getting Started
+## 要件
 
-This project is a starting point for a Flutter application.
+- [要件](doc/requirements.md)
 
-A few resources to get you started if this is your first Flutter project:
+## 使用技術
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<!--
+アイコンはこちらから
+- https://shields.io/
+--->
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&style=plastic)
+![iOS](https://img.shields.io/badge/iOS-000000?logo=ios&style=plastic)
+![Android](https://img.shields.io/badge/Android-A4C639?logo=android&style=plastic)
+
+## アーキテクチャ
+
+- [アプリケーション](doc/architecture/application.md)
+
+## ローカル開発環境
+
+- [ローカル開発環境構築](doc/local_development_setup.md)
