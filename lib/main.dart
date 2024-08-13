@@ -1,17 +1,22 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-// Project imports:
 import 'package:flutter_news_sample/app_root.dart';
-import 'package:flutter_news_sample/config/app_config.dart';
+import 'package:flutter_news_sample/config/i18n/strings.g.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
-void main() {
-  AppConfig().load();
-
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const ProviderScope(child: AppRoot()));
+  await _prepareTimeZone();
+
+  runApp(ProviderScope(child: TranslationProvider(child: const AppRoot())));
+}
+
+Future<void> _prepareTimeZone() async {
+  tz.initializeTimeZones();
+  tz.setLocalLocation(
+    tz.getLocation(await FlutterTimezone.getLocalTimezone()),
+  );
 }

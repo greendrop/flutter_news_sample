@@ -1,0 +1,7 @@
+{
+  "flavor": "stg",
+  "showDevTool": "true",
+  "appName": "News Sample(stg)",
+  "appId": "com.example.flutternewssamplestg",
+  "newsApiKey": "NEWS_API_KEY"
+}

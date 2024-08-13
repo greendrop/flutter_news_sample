@@ -1,0 +1,11 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          explicit_to_json: true
+      slang_build_runner:
+        options:
+          input_directory: lib/config/i18n
+          output_directory: lib/config/i18n
+          timestamp: false

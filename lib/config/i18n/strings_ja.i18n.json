@@ -1,0 +1,109 @@
+{
+  "general": {
+    "appTitle": "News",
+    "ok": "OK",
+    "ng": "NG",
+    "yes": "はい",
+    "no": "いいえ",
+    "close": "閉じる",
+    "add": "追加",
+    "create": "登録",
+    "edit": "編集",
+    "update": "更新",
+    "search": "検索",
+    "back": "戻る",
+    "share": "共有",
+    "noDataAvailable": "データがありません。"
+  },
+  "appException": {
+    "message": "エラーが発生しました。"
+  },
+  "appHttpException": {
+    "badRequestMessage": "リクエストが不正です。",
+    "unauthorizedMessage": "認証が必要です。",
+    "paymentRequiredMessage": "支払いが必要です。",
+    "forbiddenMessage": "アクセスが禁止されています。",
+    "notFoundMessage": "リソースが見つかりません。",
+    "methodNotAllowedMessage": "メソッドが許可されていません。",
+    "notAcceptableMessage": "受理できません。",
+    "proxyAuthenticationRequiredMessage": "プロキシ認証が必要です。",
+    "requestTimeoutMessage": "リクエストがタイムアウトしました。",
+    "conflictMessage": "競合が発生しました。",
+    "goneMessage": "リソースが存在しません。",
+    "lengthRequiredMessage": "長さが必要です。",
+    "preconditionFailedMessage": "前提条件が失敗しました。",
+    "payloadTooLargeMessage": "ペイロードが大きすぎます。",
+    "uriTooLongMessage": "URIが長すぎます。",
+    "unsupportedMediaTypeMessage": "サポートされていないメディアタイプです。",
+    "rangeNotSatisfiableMessage": "範囲が満たされていません。",
+    "expectationFailedMessage": "期待が失敗しました。",
+    "iAmATeapotMessage": "私はティーポットです。",
+    "misdirectedRequestMessage": "誤ったリクエストです。",
+    "unprocessableEntityMessage": "処理できません。",
+    "lockedMessage": "ロックされています。",
+    "failedDependencyMessage": "依存関係が失敗しました。",
+    "tooEarlyMessage": "早すぎます。",
+    "upgradeRequiredMessage": "アップグレードが必要です。",
+    "preconditionRequiredMessage": "前提条件が必要です。",
+    "tooManyRequestsMessage": "リクエストが多すぎます。",
+    "requestHeaderFieldsTooLargeMessage": "リクエストヘッダーフィールドが大きすぎます。",
+    "unavailableForLegalReasonsMessage": "法的な理由で利用できません。",
+    "internalServerErrorMessage": "サーバーエラー",
+    "notImplementedMessage": "実装されていません。",
+    "badGatewayMessage": "不正なゲートウェイ",
+    "serviceUnavailableMessage": "サービス利用不可",
+    "gatewayTimeoutMessage": "ゲートウェイタイムアウト",
+    "httpVersionNotSupportedMessage": "HTTPバージョンがサポートされていません。",
+    "variantAlsoNegotiatesMessage": "Variant Also Negotiates",
+    "insufficientStorageMessage": "容量不足です。",
+    "loopDetectedMessage": "ループが検出されました。",
+    "notExtendedMessage": "Not Extended",
+    "networkAuthenticationRequiredMessage": "ネットワーク認証が必要です。",
+    "defaultMessage": "未知のエラー ($statusCode)"
+  },
+  "aboutApp": {
+    "title": "このアプリについて"
+  },
+  "appLogList": {
+    "title": "アプリログ"
+  },
+  "devTools": {
+    "title": "開発ツール"
+  },
+  "localeSetting": {
+    "title": "言語",
+    "system": "システム",
+    "english": "English",
+    "japanese": "日本語"
+  },
+  "newsArticleList": {
+    "title": "ニュース記事"
+  },
+  "newsHeadlineCategory": {
+    "general": "一般",
+    "business": "ビジネス",
+    "entertainment": "エンタメ",
+    "health": "健康",
+    "science": "科学",
+    "sports": "スポーツ",
+    "technology": "テクノロジー"
+  },
+  "newsArticleSearch": {
+    "title": "ニュース記事検索"
+  },
+  "newsArticleSearchForm": {
+    "keywordLabel": "キーワード",
+    "keywordHint": "キーワードを入力してください。",
+    "keywordValidateBlank": "キーワードを入力してください。",
+    "keywordValidateTooLong": "キーワードは${count}文字以内で入力してください。"
+  },
+  "setting": {
+    "title": "設定"
+  },
+  "themeSetting": {
+    "title": "テーマ",
+    "system": "システム",
+    "light": "ライト",
+    "dark": "ダーク"
+  }
+}

@@ -1,21 +1,23 @@
+import 'dart:io';
+
 class AppConfig {
-  factory AppConfig() => _instance;
-  AppConfig._internal();
+  factory AppConfig() => instance;
+  AppConfig._internal() {
+    flavor = const String.fromEnvironment('flavor');
+    showDevTool = Platform.environment['SHOW_DEV_TOOL'] == 'true' ||
+        const bool.fromEnvironment('showDevTool');
+    newsApiKey = const String.fromEnvironment('newsApiKey');
 
-  static final AppConfig _instance = AppConfig._internal();
-
-  String newsApiKey = '';
-  List<String> newsHeadlineCategories = [
-    'general',
-    'business',
-    'entertainment',
-    'health',
-    'science',
-    'sports',
-    'technology',
-  ];
-
-  Future<void> load() async {
-    newsApiKey = const String.fromEnvironment('NEWS_API_KEY');
+    switch (flavor) {
+      case 'prod':
+        break;
+    }
   }
+
+  static final AppConfig instance = AppConfig._internal();
+
+  String flavor = '';
+  bool showDevTool = false;
+  String appLogPathSuffix = 'app_log';
+  String newsApiKey = '';
 }

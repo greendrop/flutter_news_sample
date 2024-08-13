@@ -1,0 +1,8 @@
+{
+  "flavor": "prod",
+  "showDevTool": "false",
+  "appName": "News Sample",
+  "appId": "com.example.flutternewssample",
+  "newsApiKey": "NEWS_API_KEY"
+}
+

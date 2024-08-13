@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+migrate_working_dir/
 
 # IntelliJ related
 *.iml
@@ -26,13 +27,9 @@
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-.packages
 .pub-cache/
 .pub/
 /build/
-
-# Web related
-lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
@@ -45,8 +42,14 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# fvm
-.fvm
+# FVM Version Cache
+.fvm/
 
-# vscode
-.vscode
+# dart_define
+/dart_define
+
+# coverage
+/coverage
+
+# iOS
+/ios/Flutter/Dart-Defines.xcconfig

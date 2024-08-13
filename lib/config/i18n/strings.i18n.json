@@ -1,0 +1,109 @@
+{
+  "general": {
+    "appTitle": "News",
+    "ok": "OK",
+    "ng": "NG",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close",
+    "add": "Add",
+    "create": "Create",
+    "edit": "Edit",
+    "update": "Update",
+    "search": "Search",
+    "back": "Back",
+    "share": "Share",
+    "noDataAvailable": "No data available."
+  },
+  "appException": {
+    "message": "An error has occurred."
+  },
+  "appHttpException": {
+    "badRequestMessage": "Bad Request",
+    "unauthorizedMessage": "Unauthorized",
+    "paymentRequiredMessage": "Payment Required",
+    "forbiddenMessage": "Forbidden",
+    "notFoundMessage": "Not Found",
+    "methodNotAllowedMessage": "Method Not Allowed",
+    "notAcceptableMessage": "Not Acceptable",
+    "proxyAuthenticationRequiredMessage": "Proxy Authentication Required",
+    "requestTimeoutMessage": "Request Timeout",
+    "conflictMessage": "Conflict",
+    "goneMessage": "Gone",
+    "lengthRequiredMessage": "Length Required",
+    "preconditionFailedMessage": "Precondition Failed",
+    "payloadTooLargeMessage": "Payload Too Large",
+    "uriTooLongMessage": "URI Too Long",
+    "unsupportedMediaTypeMessage": "Unsupported Media Type",
+    "rangeNotSatisfiableMessage": "Range Not Satisfiable",
+    "expectationFailedMessage": "Expectation Failed",
+    "iAmATeapotMessage": "I'm a teapot",
+    "misdirectedRequestMessage": "Misdirected Request",
+    "unprocessableEntityMessage": "Unprocessable Entity",
+    "lockedMessage": "Locked",
+    "failedDependencyMessage": "Failed Dependency",
+    "tooEarlyMessage": "Too Early",
+    "upgradeRequiredMessage": "Upgrade Required",
+    "preconditionRequiredMessage": "Precondition Required",
+    "tooManyRequestsMessage": "Too Many Requests",
+    "requestHeaderFieldsTooLargeMessage": "Request Header Fields Too Large",
+    "unavailableForLegalReasonsMessage": "Unavailable For Legal Reasons",
+    "internalServerErrorMessage": "Internal Server Error",
+    "notImplementedMessage": "Not Implemented",
+    "badGatewayMessage": "Bad Gateway",
+    "serviceUnavailableMessage": "Service Unavailable",
+    "gatewayTimeoutMessage": "Gateway Timeout",
+    "httpVersionNotSupportedMessage": "HTTP Version Not Supported",
+    "variantAlsoNegotiatesMessage": "Variant Also Negotiates",
+    "insufficientStorageMessage": "Insufficient Storage",
+    "loopDetectedMessage": "Loop Detected",
+    "notExtendedMessage": "Not Extended",
+    "networkAuthenticationRequiredMessage": "Network Authentication Required",
+    "defaultMessage": "Unknown ($statusCode)"
+  },
+  "aboutApp": {
+    "title": "About App"
+  },
+  "appLogList": {
+    "title": "App Log"
+  },
+  "devTools": {
+    "title": "Development Tools"
+  },
+  "localeSetting": {
+    "title": "Language",
+    "system": "System",
+    "english": "English",
+    "japanese": "日本語"
+  },
+  "newsArticleList": {
+    "title": "News Articles"
+  },
+  "newsHeadlineCategory": {
+    "general": "General",
+    "business": "Business",
+    "entertainment": "Entertainment",
+    "health": "Health",
+    "science": "Science",
+    "sports": "Sports",
+    "technology": "Technology"
+  },
+  "newsArticleSearch": {
+    "title": "News Articles Search"
+  },
+  "newsArticleSearchForm": {
+    "keywordLabel": "Keyword",
+    "keywordHint": "Enter a keyword.",
+    "keywordValidateBlank": "Keyword can't be blank.",
+    "keywordValidateTooLong": "Keyword is too long. (maximum is $count characters)"
+  },
+  "setting": {
+    "title": "Setting"
+  },
+  "themeSetting": {
+    "title": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  }
+}

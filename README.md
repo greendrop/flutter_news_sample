@@ -1,27 +1,30 @@
 # Flutter News Sample
 
-## Getting Started
+[News](https://newsapi.org/) を利用した Flutter の サンプルです。
 
-### Prerequisites
+## 要件
 
-1. [Flutter SDK (2.10.3)](https://flutter.dev/docs/development/tools/sdk/releases)
-2. [Android Studio](https://developer.android.com/studio/install)
-3. [Xcode](https://apps.apple.com/us/app/xcode/id497799835)
-4. [pre-commit](https://pre-commit.com/)
+- [要件](doc/requirements.md)
 
-### Setup
+## 使用技術
 
-- Run `flutter doctor`
-- Run `flutter pub get`
-- Run `pre-commit install`
+<!--
+アイコンはこちらから
+- https://shields.io/
+--->
 
-#### For Visual Studio Code
+![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&style=plastic)
+![iOS](https://img.shields.io/badge/iOS-000000?logo=ios&style=plastic)
+![Android](https://img.shields.io/badge/Android-A4C639?logo=android&style=plastic)
 
-- Create .vscode/launch.json
-  ```
-  cp .vscode/launch.json.sample .vscode/launch.json
-  ```
+## アーキテクチャ
 
-- Edit .vscode/launch.json
-  - NEWS_API_KEY
-    - https://newsapi.org/
+- [アプリケーション](doc/architecture/application.md)
+
+## ローカル開発環境
+
+- [ローカル開発環境構築](doc/local_development_setup.md)
+
+## トピック
+
+- [非スマホエンジニア向けのトピック](doc/topics/topics_for_non_smartphone_engineers.md)
