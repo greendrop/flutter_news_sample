@@ -1,10 +1,13 @@
 import 'package:flutter_news_sample/exception/app_exception.dart';
+import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/news_api/riverpod/news_top_headlines_repository.dart';
 import 'package:flutter_news_sample/feature/news_article/entity/news_article.dart';
 import 'package:flutter_news_sample/feature/news_article_list/entity/news_articles.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'news_articles_notifier.g.dart';
+
+const String _notifierName = 'NewsArticlesNotifier';
 
 @riverpod
 class NewsArticlesNotifier extends _$NewsArticlesNotifier {
@@ -18,6 +21,7 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
       return Future.value();
     }
 
+    final appLogger = ref.read(appLoggerProvider);
     state = const AsyncValue<NewsArticles>.loading().copyWithPrevious(state);
 
     try {
@@ -37,6 +41,12 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
           AsyncValue<NewsArticles>.data(newsArticles).copyWithPrevious(state);
       return Future.value();
     } on Exception catch (e) {
+      appLogger.e(
+        [
+          '$_notifierName#fetch',
+          {'category': category, 'Exception': e},
+        ],
+      );
       final appException =
           e is AppException ? e : AppException(parentException: e);
       state = AsyncValue<NewsArticles>.error(e, StackTrace.current)
@@ -50,6 +60,7 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
       return Future.value();
     }
 
+    final appLogger = ref.read(appLoggerProvider);
     state = const AsyncValue<NewsArticles>.loading().copyWithPrevious(state);
 
     try {
@@ -82,6 +93,12 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
           AsyncValue<NewsArticles>.data(newsArticles).copyWithPrevious(state);
       return Future.value();
     } on Exception catch (e) {
+      appLogger.e(
+        [
+          '$_notifierName#fetchMore',
+          {'category': category, 'Exception': e},
+        ],
+      );
       final appException =
           e is AppException ? e : AppException(parentException: e);
       state = AsyncValue<NewsArticles>.error(e, StackTrace.current)
