@@ -36,28 +36,40 @@ class NewsArticleSearchPage extends HookConsumerWidget {
         return Scaffold(
           body: SafeArea(
             child: BodyContainer(
-              child: CustomScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                slivers: [
-                  _appBar(
-                    context,
-                    ref,
-                    translations: translations,
-                    currentKeyword: currentKeyword,
-                    newsArticles: newsArticles,
-                  ),
-                  _body(
-                    context,
-                    ref,
-                    translations: translations,
-                    currentKeyword: currentKeyword,
-                    newsArticles: newsArticles,
-                    gridCrossAxisCount: breakpoint.columns ~/ 2,
-                    goNewsArticleDetailPageForSearch:
-                        goNewsArticleDetailPageForSearch,
-                    urlLauncherWrapper: urlLauncherWrapper,
-                  ),
-                ],
+              child: RefreshIndicator(
+                onRefresh: () {
+                  if (currentKeyword.value.isEmpty) {
+                    return Future.value();
+                  }
+
+                  return newsArticles
+                      .fetch(keyword: currentKeyword.value, isRefresh: true)
+                      .onError((error, stackTrace) {});
+                },
+                edgeOffset: kToolbarHeight * 2,
+                child: CustomScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  slivers: [
+                    _appBar(
+                      context,
+                      ref,
+                      translations: translations,
+                      currentKeyword: currentKeyword,
+                      newsArticles: newsArticles,
+                    ),
+                    _body(
+                      context,
+                      ref,
+                      translations: translations,
+                      currentKeyword: currentKeyword,
+                      newsArticles: newsArticles,
+                      gridCrossAxisCount: breakpoint.columns ~/ 2,
+                      goNewsArticleDetailPageForSearch:
+                          goNewsArticleDetailPageForSearch,
+                      urlLauncherWrapper: urlLauncherWrapper,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -110,78 +122,74 @@ class NewsArticleSearchPage extends HookConsumerWidget {
         goNewsArticleDetailPageForSearch,
     required UseUrlLauncherWrapperReturn urlLauncherWrapper,
   }) {
-    return SliverFillRemaining(
-      child: RefreshIndicator(
-        onRefresh: () {
-          return newsArticles
-              .fetch(keyword: currentKeyword.value, isRefresh: true)
-              .onError((error, stackTrace) {});
-        },
-        child: newsArticles.state.when(
-          loading: () {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-          error: (error, stackTrace) {
-            final appException = error is AppException
-                ? error
-                : AppException(parentException: error as Exception);
-            return Center(
-              child: Text(appException.messageByTranslations(translations)),
-            );
-          },
-          data: (data) {
-            if (data.items.isEmpty) {
-              return Center(
-                child: Text(translations.general.noDataAvailable),
-              );
+    return newsArticles.state.when(
+      loading: () {
+        return const SliverFillRemaining(
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+      error: (error, stackTrace) {
+        final appException = error is AppException
+            ? error
+            : AppException(parentException: error as Exception);
+        return SliverFillRemaining(
+          child: Center(
+            child: Text(appException.messageByTranslations(translations)),
+          ),
+        );
+      },
+      data: (data) {
+        if (data.items.isEmpty) {
+          return SliverFillRemaining(
+            child: Center(
+              child: Text(translations.general.noDataAvailable),
+            ),
+          );
+        }
+        return SliverGrid.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: gridCrossAxisCount,
+          ),
+          itemCount: data.items.length,
+          itemBuilder: (BuildContext context, int index) {
+            if (index == data.items.length - 1 && data.hasNextPage) {
+              // NOTE: API上限にならないように、追加ページを取得しない
+              // Future.delayed(Duration.zero, () {
+              //   newsArticles.fetchMore().onError((error, stackTrace) {});
+              // });
             }
-
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: gridCrossAxisCount,
-              ),
-              itemCount: data.items.length,
-              itemBuilder: (BuildContext context, int index) {
-                if (index == data.items.length - 1 && data.hasNextPage) {
-                  // NOTE: API上限にならないように、追加ページを取得しない
-                  // Future.delayed(Duration.zero, () {
-                  //   newsArticles.fetchMore().onError((error, stackTrace) {});
-                  // });
+            return NewsArticleGridItem(
+              newsArticle: data.items[index],
+              onTap: () {
+                if (data.items[index].url == null) {
+                  return;
                 }
-                return NewsArticleGridItem(
-                  newsArticle: data.items[index],
-                  onTap: () {
-                    if (data.items[index].url == null) {
-                      return;
-                    }
 
-                    if (defaultTargetPlatform == TargetPlatform.android ||
-                        defaultTargetPlatform == TargetPlatform.iOS) {
-                      goNewsArticleDetailPageForSearch.run(
-                        title: data.items[index].title ?? '',
-                        url: data.items[index].url ?? '',
+                if (defaultTargetPlatform == TargetPlatform.android ||
+                    defaultTargetPlatform == TargetPlatform.iOS) {
+                  goNewsArticleDetailPageForSearch.run(
+                    title: data.items[index].title ?? '',
+                    url: data.items[index].url ?? '',
+                  );
+                } else {
+                  final url = Uri.parse(data.items[index].url!);
+
+                  urlLauncherWrapper.canLaunchUrl(url).then((value) {
+                    if (value) {
+                      urlLauncherWrapper.launchUrl(
+                        url,
+                        mode: LaunchMode.externalApplication,
                       );
-                    } else {
-                      final url = Uri.parse(data.items[index].url!);
-
-                      urlLauncherWrapper.canLaunchUrl(url).then((value) {
-                        if (value) {
-                          urlLauncherWrapper.launchUrl(
-                            url,
-                            mode: LaunchMode.externalApplication,
-                          );
-                        }
-                      });
                     }
-                  },
-                );
+                  });
+                }
               },
             );
           },
-        ),
-      ),
+        );
+      },
     );
   }
 }
