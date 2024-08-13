@@ -5,17 +5,22 @@ import 'package:flutter_news_sample/exception/app_http_exception.dart';
 import 'package:flutter_news_sample/feature/news_api/client/news_top_headlines_client.dart';
 import 'package:flutter_news_sample/feature/news_api/dto/news_top_headlines_response.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logger/logger.dart';
+
+const String _repositoryName = 'NewsTopHeadlinesRepository';
 
 class NewsTopHeadlinesRepository {
-  NewsTopHeadlinesRepository({required this.ref});
+  NewsTopHeadlinesRepository({required this.ref, required this.logger});
 
   final Ref ref;
+  final Logger logger;
 
   Future<NewsTopHeadlinesResponse> get({
     required String category,
     int page = 1,
   }) async {
     final dio = Dio();
+    dio.interceptors.add(LogInterceptor(logPrint: logger.d));
     final client = NewsTopHeadlinesClient(dio);
     try {
       final response = client.get(
@@ -28,6 +33,10 @@ class NewsTopHeadlinesRepository {
 
       return Future.value(response);
     } on DioException catch (error) {
+      logger.e([
+        '$_repositoryName#get',
+        {'DioException', error},
+      ]);
       return Future.error(
         AppHttpException(
           statusCode: error.response?.statusCode,
@@ -36,6 +45,10 @@ class NewsTopHeadlinesRepository {
         ),
       );
     } on Exception catch (error) {
+      logger.e([
+        '$_repositoryName#get',
+        {'Exception', error},
+      ]);
       return Future.error(AppException(parentException: error));
     }
   }
