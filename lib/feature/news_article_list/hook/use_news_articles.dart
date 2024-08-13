@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 typedef UseNewsArticlesReturn = ({
   AsyncValue<NewsArticles> state,
-  Future<void> Function() fetch,
+  Future<void> Function({bool isRefresh}) fetch,
   Future<void> Function() fetchMore,
 });
 
@@ -25,7 +25,7 @@ UseNewsArticlesReturn useNewsArticles({
   final state = ref.watch(newsArticlesNotifierProvider(category: category));
 
   final fetch = useCallback(
-    () {
+    ({bool isRefresh = false}) {
       ref.read(appLoggerProvider).i(
         [
           '$_hookName#fetch',
@@ -36,7 +36,7 @@ UseNewsArticlesReturn useNewsArticles({
           .read(
             newsArticlesNotifierProvider(category: category).notifier,
           )
-          .fetch();
+          .fetch(isRefresh: isRefresh);
     },
     [category],
   );

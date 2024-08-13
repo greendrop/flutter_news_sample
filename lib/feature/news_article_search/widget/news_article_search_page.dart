@@ -114,7 +114,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
       child: RefreshIndicator(
         onRefresh: () {
           return newsArticles
-              .fetch(keyword: currentKeyword.value)
+              .fetch(keyword: currentKeyword.value, isRefresh: true)
               .onError((error, stackTrace) {});
         },
         child: newsArticles.state.when(

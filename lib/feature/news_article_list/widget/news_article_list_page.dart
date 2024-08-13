@@ -148,7 +148,9 @@ Widget _body(
 
       return RefreshIndicator(
         onRefresh: () {
-          return newsArticles.fetch().onError((error, stackTrace) {});
+          return newsArticles
+              .fetch(isRefresh: true)
+              .onError((error, stackTrace) {});
         },
         child: newsArticles.state.when(
           loading: () {

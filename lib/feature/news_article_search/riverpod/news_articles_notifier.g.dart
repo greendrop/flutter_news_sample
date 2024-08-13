@@ -7,7 +7,7 @@ part of 'news_articles_notifier.dart';
 // **************************************************************************
 
 String _$newsArticlesNotifierHash() =>
-    r'34556a8db8bdcfd7cb059241843dbdc37213944c';
+    r'0ae5b58897f0d0e3e2861e8d32629eca3300c7c5';
 
 /// See also [NewsArticlesNotifier].
 @ProviderFor(NewsArticlesNotifier)

@@ -16,13 +16,17 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
     return NewsArticles();
   }
 
-  Future<void> fetch({required String keyword}) async {
+  Future<void> fetch({required String keyword, bool isRefresh = false}) async {
     if (state.isLoading) {
       return Future.value();
     }
 
     final appLogger = ref.read(appLoggerProvider);
-    state = const AsyncValue<NewsArticles>.loading().copyWithPrevious(state);
+    if (isRefresh) {
+      state = const AsyncValue<NewsArticles>.loading().copyWithPrevious(state);
+    } else {
+      state = const AsyncValue<NewsArticles>.loading();
+    }
 
     try {
       final response =
@@ -39,8 +43,7 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
         hasNextPage: hasNextPage,
       );
 
-      state =
-          AsyncValue<NewsArticles>.data(newsArticles).copyWithPrevious(state);
+      state = AsyncValue<NewsArticles>.data(newsArticles);
       return Future.value();
     } on Exception catch (e) {
       appLogger.e(
@@ -51,8 +54,12 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
       );
       final appException =
           e is AppException ? e : AppException(parentException: e);
-      state = AsyncValue<NewsArticles>.error(e, StackTrace.current)
-          .copyWithPrevious(state);
+      if (isRefresh) {
+        state = AsyncValue<NewsArticles>.error(e, StackTrace.current)
+            .copyWithPrevious(state);
+      } else {
+        state = AsyncValue<NewsArticles>.error(e, StackTrace.current);
+      }
       return Future.error(appException);
     }
   }

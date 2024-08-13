@@ -7,7 +7,7 @@ part of 'news_everything_repository.dart';
 // **************************************************************************
 
 String _$newsEverythingRepositoryHash() =>
-    r'48e4f18569f2b3b14f9bda63a87ab3754cd880ae';
+    r'bbcd0d1b610748a61424c878cb1cf7b6eab8b54c';
 
 /// See also [newsEverythingRepository].
 @ProviderFor(newsEverythingRepository)
