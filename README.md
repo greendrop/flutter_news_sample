@@ -1,6 +1,6 @@
 # Flutter News Sample
 
-[News](https://newsapi.org/) を利用した Flutter の サンプルです。
+[News API](https://newsapi.org/) を利用した Flutter の サンプルです。
 
 ## 要件
 
