@@ -14,11 +14,12 @@ import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SettingPage extends HookConsumerWidget {
-  const SettingPage({
-    super.key,
-  });
+  SettingPage({super.key, bool? showDevTool})
+      : showDevTool = showDevTool ?? AppConfig.instance.showDevTool;
 
   static String routeName = 'SettingPage';
+
+  final bool showDevTool;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -86,7 +87,7 @@ class SettingPage extends HookConsumerWidget {
               ),
             ),
           ),
-          AppConfig.instance.showDevTool
+          showDevTool
               ? Padding(
                   padding: const EdgeInsets.all(AppConstant.spacing1),
                   child: Card(
