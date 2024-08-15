@@ -22,6 +22,9 @@ updates:
       freezed:
         patterns:
           - 'freezed*'
+      retrofit:
+        patterns:
+          - 'retrofit*'
       riverpod:
         patterns:
           - 'flutter_hooks'
