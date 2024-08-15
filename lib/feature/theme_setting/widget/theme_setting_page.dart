@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
+import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_theme_mode.dart'
     as hook;
 import 'package:flutter_news_sample/feature/theme_setting/widget/theme_setting_form.dart';
@@ -21,16 +22,24 @@ class ThemeSettingPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final translations = useTranslations();
     final themeMode = useThemeMode();
+    final navigatorState = useNavigatorState();
 
     return Scaffold(
       body: SafeArea(
         child: BodyContainer(
-          child: CustomScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            slivers: <Widget>[
-              _appBar(context, ref, translations: translations),
-              _body(context, ref, themeMode: themeMode),
-            ],
+          child: GestureDetector(
+            onHorizontalDragEnd: (details) {
+              if (details.primaryVelocity! > AppConstant.swipePopThreshold) {
+                navigatorState.pop();
+              }
+            },
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: <Widget>[
+                _appBar(context, ref, translations: translations),
+                _body(context, ref, themeMode: themeMode),
+              ],
+            ),
           ),
         ),
       ),

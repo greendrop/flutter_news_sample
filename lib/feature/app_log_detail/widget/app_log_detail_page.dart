@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/feature/app_log_detail/hook/use_app_logger_file_content.dart';
+import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,6 +19,7 @@ class AppLogDetailPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final navigatorState = useNavigatorState();
     final appLoggerFileContent = useAppLoggerFileContent(filename: filename);
 
     useEffect(
@@ -30,15 +33,26 @@ class AppLogDetailPage extends HookConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: BodyContainer(
-          child: RefreshIndicator(
-            onRefresh: appLoggerFileContent.fetch,
-            edgeOffset: kToolbarHeight,
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                _appBar(context, ref),
-                _body(context, ref, appLoggerFileContent: appLoggerFileContent),
-              ],
+          child: GestureDetector(
+            onHorizontalDragEnd: (details) {
+              if (details.primaryVelocity! > AppConstant.swipePopThreshold) {
+                navigatorState.pop();
+              }
+            },
+            child: RefreshIndicator(
+              onRefresh: appLoggerFileContent.fetch,
+              edgeOffset: kToolbarHeight,
+              child: CustomScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
+                  _appBar(context, ref),
+                  _body(
+                    context,
+                    ref,
+                    appLoggerFileContent: appLoggerFileContent,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

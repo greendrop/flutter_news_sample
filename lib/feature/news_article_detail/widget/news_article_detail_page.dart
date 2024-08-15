@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
+import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_pull_to_refresh_controller.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_can_go_back.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_can_go_back_effect.dart';
@@ -37,6 +38,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appLogger = useAppLogger();
     final translations = useTranslations();
+    final navigatorState = useNavigatorState();
     final animationController = useAnimationController(
       duration: const Duration(milliseconds: 300),
     );
@@ -87,8 +89,8 @@ class NewsArticleDetailPage extends HookConsumerWidget {
 
         if (canGoBack.state) {
           webViewController.value?.goBack();
-        } else if (context.canPop()) {
-          context.pop();
+        } else if (navigatorState.canPop()) {
+          navigatorState.pop();
         } else {
           SystemNavigator.pop();
         }
@@ -114,6 +116,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
                           child: _appBar(
                             context,
                             ref,
+                            navigatorState: navigatorState,
                             translations: translations,
                             webViewController: webViewController,
                             currentUrl: currentUrl,
@@ -150,6 +153,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
   AppBar _appBar(
     BuildContext context,
     WidgetRef ref, {
+    required NavigatorState navigatorState,
     required Translations translations,
     required ObjectRef<InAppWebViewController?> webViewController,
     required UseShareWrapperReturn shareWrapper,
@@ -170,7 +174,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
                 await webViewController.value?.goBack();
               } else {
                 if (context.mounted) {
-                  context.pop();
+                  navigatorState.pop();
                 }
               }
             },
@@ -186,7 +190,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
               tooltip: translations.general.back,
               onPressed: () {
                 if (context.mounted) {
-                  context.pop();
+                  navigatorState.pop();
                 }
               },
             );

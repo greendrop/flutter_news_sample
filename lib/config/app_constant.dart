@@ -17,4 +17,6 @@ class AppConstant {
   static const backgroundColorInfo = Color.fromARGB(255, 209, 236, 241);
   static const textColorDanger = Color.fromARGB(255, 114, 28, 36);
   static const backgroundColorDanger = Color.fromARGB(255, 248, 215, 218);
+
+  static const swipePopThreshold = 8;
 }
