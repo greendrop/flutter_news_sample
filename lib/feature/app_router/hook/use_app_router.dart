@@ -66,7 +66,7 @@ GoRouter useAppRouter({String initialLocation = '/news_articles'}) {
     path: '/setting',
     name: SettingPage.routeName,
     builder: (context, state) {
-      return const SettingPage();
+      return SettingPage();
     },
     routes: [
       GoRoute(
