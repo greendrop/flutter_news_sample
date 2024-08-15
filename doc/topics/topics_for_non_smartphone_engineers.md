@@ -100,11 +100,11 @@
   - 実行可能時間は 30 秒
   - ユーザーによって明示的に停止（Kill）されてなければ実行可能
 
-# URL によるスマホアプリ起動について
+## URL によるスマホアプリ起動について
 
 Web ページ内やメール文章内のリンクからスマホアプリを起動することができる。
 
-## カスタムスキーマ
+### カスタムスキーマ
 
 - `myapp:://` のようにスマホアプリ独自のカスタムスキーマ設定することができる
 - そのカスタムスキーマを指定したリンクを作成しそれをクリックすると、スマホアプリが起動する
@@ -112,17 +112,17 @@ Web ページ内やメール文章内のリンクからスマホアプリを起�
 - カスタムスキーマは自由に設定できるため、乗っ取り攻撃のセキュリティーリスクがある
   - 例: https://developers.line.biz/ja/news/2020/03/25/line-url-scheme-deprecation/
 
-## Universal Links (iOS)
+### Universal Links (iOS)
 
 - `https://myapp.example.com` のような特定の URL でスマホアプリが起動できる
 - `https://myapp.example.com/.well-known/apple-app-site-association` に設定を記載したファイルを配置しなければならない
 
-## App Links (Android)
+### App Links (Android)
 
 - `https://myapp.example.com` のような特定の URL でスマホアプリが起動できる
 - `https://myapp.example.com/.well-known/assetlinks.json` に設定を記載したファイルを配置しなければならない
 
-## サードパーティのサービス
+### サードパーティのサービス
 
 サードパーティのサービスを利用することで、スマホアプリ起動の URL が用意でき、スマホアプリがインストールされていない場合は App Store, Play Store を開くことができる。
 
@@ -130,12 +130,12 @@ Web ページ内やメール文章内のリンクからスマホアプリを起�
 - [Adjust](https://www.adjust.com/ja/)
 - [AppsFlyer](https://www.appsflyer.com/ja/)
 
-# URL によるスマホアプリ起動時に特定の画面に遷移したい
+## URL によるスマホアプリ起動時に特定の画面に遷移したい
 
 `myapp:///page_a` や `mypage:///page_a/page_b` のように URL のパスを利用して遷移したい画面の情報を受け取ることができる。
 そのパスを受け取り画面を遷移する処理は、スマホアプリ側で実装しなければならない。
 
-## 参考
+### 参考
 
 - https://docs.flutter.dev/ui/navigation/deep-linking
 
@@ -173,7 +173,7 @@ https://developer.apple.com/jp/distribute/app-review/
 
 https://support.google.com/googleplay/android-developer/answer/9859654?hl=ja
 
-## 参考
+### 参考
 
 - https://developer.apple.com/jp/distribute/app-review/
 - https://play.google/developer-content-policy/
