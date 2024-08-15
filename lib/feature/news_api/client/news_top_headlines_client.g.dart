@@ -12,6 +12,7 @@ class _NewsTopHeadlinesClient implements NewsTopHeadlinesClient {
   _NewsTopHeadlinesClient(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   }) {
     baseUrl ??= 'https://newsapi.org/v2/top-headlines';
   }
@@ -19,6 +20,8 @@ class _NewsTopHeadlinesClient implements NewsTopHeadlinesClient {
   final Dio _dio;
 
   String? baseUrl;
+
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<NewsTopHeadlinesResponse> get({
@@ -39,24 +42,30 @@ class _NewsTopHeadlinesClient implements NewsTopHeadlinesClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<NewsTopHeadlinesResponse>(Options(
+    final _options = _setStreamType<NewsTopHeadlinesResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final _value = NewsTopHeadlinesResponse.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late NewsTopHeadlinesResponse _value;
+    try {
+      _value = NewsTopHeadlinesResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
     return _value;
   }
 
