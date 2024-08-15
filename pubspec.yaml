@@ -11,7 +11,7 @@ dependencies:
   breakpoint: ^1.2.0
   collection: ^1.18.0
   cupertino_icons: ^1.0.6
-  dio: ^5.5.0+1
+  dio: ^5.6.0
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.5
