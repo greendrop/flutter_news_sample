@@ -31,7 +31,7 @@ void main() {
     });
   });
 
-  group('#initialize', () {
+  group('#update', () {
     test('themeModeRepository.updateが呼ばれること', () async {
       final themeModeRepository = MockThemeModeRepository();
       final container = ProviderContainer(
