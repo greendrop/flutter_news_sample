@@ -59,7 +59,66 @@
 
 スマホアプリで次の画面へ遷移したり、前の画面に戻るような内容はスタックで管理されている。
 
-参考: https://codezine.jp/article/detail/14271
+### 例
+
+#### 1. 画面 A を表示
+
+##### スマホ画面
+
+- 「画面 A」が表示されている
+- 戻るボタンなし
+
+##### スタック
+
+- 画面 A
+
+#### 2. 画面 A から画面 B に遷移
+
+##### スマホ画面
+
+- 「画面 B」が表示されている
+- 戻るボタンあり
+
+##### スタック
+
+- 画面 B
+- 画面 A
+
+#### 3. 画面 A から画面 B に遷移し、画面 C に遷移
+
+##### スマホ画面
+
+- 「画面 C」が表示されている
+- 戻るボタンあり
+
+##### スタック
+
+- 画面 C
+- 画面 B
+- 画面 A
+
+#### 4. 画面 A から画面 B に遷移し、画面 C に遷移した後、1 つ戻る
+
+##### スマホ画面
+
+- 「画面 B」が表示されている
+- 戻るボタンあり
+
+##### スタック
+
+- 画面 B
+- 画面 A
+
+#### 4. 画面 A から画面 B に遷移し、画面 C に遷移した後、前画面に戻らない状態の画面 D に遷移
+
+##### スマホ画面
+
+- 「画面 D」が表示されている
+- 戻るボタンなし
+
+##### スタック
+
+- 画面 D
 
 ## 通知について
 
@@ -81,7 +140,7 @@
   - サードパーティのサービスもある
     - [Amazon Simple Notification Service](https://aws.amazon.com/jp/sns/)
     - [OneSignal](https://onesignal.com/)
-    - [Repro](https://repro.io/
+    - [Repro](https://repro.io/)
     - など
 - プッシュ通知の中でも、通知を表示する「通知メッセージ」とデータのみの「データメッセージ」に分かれる。
 
@@ -139,15 +198,15 @@ Web ページ内やメール文章内のリンクからスマホアプリを起�
 
 - https://docs.flutter.dev/ui/navigation/deep-linking
 
-# スマホアプリの審査について
+## スマホアプリの審査について
 
 App Store (iOS), Play Store (Android) にスマホアプリを公開する場合、審査がある。
 審査には一定時間かかるため、すぐに公開することはできない。
 また、審査で拒否された場合、拒否内容を修正し再度審査しなければならない。
 
-## 審査期間
+### 審査期間
 
-### App Store (iOS)
+#### App Store (iOS)
 
 - 1〜2 日程度
 - 審査期間が長引くこともある
@@ -160,7 +219,7 @@ App Store (iOS), Play Store (Android) にスマホアプリを公開する場合
 
 https://developer.apple.com/jp/distribute/app-review/
 
-### Play Store (Android)
+#### Play Store (Android)
 
 - 1〜2 日程度
 - 審査期間が長引くこともある
@@ -173,7 +232,7 @@ https://developer.apple.com/jp/distribute/app-review/
 
 https://support.google.com/googleplay/android-developer/answer/9859654?hl=ja
 
-### 参考
+#### 参考
 
 - https://developer.apple.com/jp/distribute/app-review/
 - https://play.google/developer-content-policy/
