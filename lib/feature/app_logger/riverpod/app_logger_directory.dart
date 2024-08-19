@@ -1,7 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_news_sample/config/app_config.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger_directory_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_logger_directory.g.dart';
@@ -12,12 +11,6 @@ class AppLoggerDirectory extends _$AppLoggerDirectory {
   Directory? build() => null;
 
   Future<void> initialize() async {
-    final appDocumentsDir = await getApplicationDocumentsDirectory();
-    state = Directory(
-      appDocumentsDir.path +
-          Directory.systemTemp.path +
-          Platform.pathSeparator +
-          AppConfig.instance.appLogPathSuffix,
-    );
+    state = await ref.read(appLoggerDirectoryRepositoryProvider).fetch();
   }
 }

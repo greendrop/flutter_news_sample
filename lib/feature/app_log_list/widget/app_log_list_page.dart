@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
-import 'package:flutter_news_sample/feature/app_log_detail/hook/use_push_app_log_detail_page.dart';
-import 'package:flutter_news_sample/feature/app_log_list/hook/use_app_logger_files.dart';
+import 'package:flutter_news_sample/exception/app_exception.dart';
+import 'package:flutter_news_sample/feature/app_log_detail/hook/use_push_app_log_detail_page.dart'
+    as hook;
+import 'package:flutter_news_sample/feature/app_log_list/hook/use_app_log_files.dart'
+    as hook;
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
@@ -13,19 +16,25 @@ import 'package:path/path.dart';
 class AppLogListPage extends HookConsumerWidget {
   const AppLogListPage({
     super.key,
+    this.useAppLogFiles = hook.useAppLogFiles,
+    this.usePushAppLogDetailPage = hook.usePushAppLogDetailPage,
   });
 
   static String routeName = 'AppLogListPage';
+
+  final hook.UseAppLogFiles useAppLogFiles;
+  final hook.UsePushAppLogDetailPage usePushAppLogDetailPage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translations = useTranslations();
     final navigatorState = useNavigatorState();
-    final appLoggerFiles = useAppLoggerFiles();
+    final appLogFiles = useAppLogFiles();
+    final pushAppLogDetailPage = usePushAppLogDetailPage();
 
     useEffect(
       () {
-        Future.delayed(Duration.zero, appLoggerFiles.fetch);
+        Future.delayed(Duration.zero, appLogFiles.fetch);
         return () {};
       },
       [],
@@ -41,7 +50,7 @@ class AppLogListPage extends HookConsumerWidget {
               }
             },
             child: RefreshIndicator(
-              onRefresh: appLoggerFiles.fetch,
+              onRefresh: () => appLogFiles.fetch(isRefresh: true),
               edgeOffset: kToolbarHeight,
               child: CustomScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -51,7 +60,8 @@ class AppLogListPage extends HookConsumerWidget {
                     context,
                     ref,
                     translations: translations,
-                    appLoggerFiles: appLoggerFiles,
+                    appLogFiles: appLogFiles,
+                    pushAppLogDetailPage: pushAppLogDetailPage,
                   ),
                 ],
               ),
@@ -77,19 +87,25 @@ class AppLogListPage extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref, {
     required Translations translations,
-    required UseAppLoggerFilesReturn appLoggerFiles,
+    required hook.UseAppLogFilesReturn appLogFiles,
+    required hook.UsePushAppLogDetailPageReturn pushAppLogDetailPage,
   }) {
-    final pushAppLogDetailPage = usePushAppLogDetailPage();
-
-    return appLoggerFiles.state.when(
+    return appLogFiles.state.when(
       loading: () => const SliverFillRemaining(
         hasScrollBody: false,
         child: Center(child: CircularProgressIndicator()),
       ),
-      error: (error, stackTrace) => SliverFillRemaining(
-        hasScrollBody: false,
-        child: Center(child: Text('Error: $error')),
-      ),
+      error: (error, stackTrace) {
+        final appException = error is AppException
+            ? error
+            : AppException(parentException: error as Exception);
+        return SliverFillRemaining(
+          hasScrollBody: false,
+          child: Center(
+            child: Text(appException.messageByTranslations(translations)),
+          ),
+        );
+      },
       data: (files) {
         if (files.isEmpty) {
           return SliverFillRemaining(
@@ -102,6 +118,7 @@ class AppLogListPage extends HookConsumerWidget {
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               return ListTile(
+                key: ValueKey('ListTile-${files[index].path}'),
                 leading: const Icon(FontAwesomeIcons.file),
                 title: Text(
                   basename(files[index].path),
