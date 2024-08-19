@@ -114,7 +114,7 @@
 ##### スマホ画面
 
 - 「画面 D」が表示されている
-- 戻るボタンあり
+- 戻るボタンなし
 
 ##### スタック
 
@@ -198,15 +198,15 @@ Web ページ内やメール文章内のリンクからスマホアプリを起�
 
 - https://docs.flutter.dev/ui/navigation/deep-linking
 
-# スマホアプリの審査について
+## スマホアプリの審査について
 
 App Store (iOS), Play Store (Android) にスマホアプリを公開する場合、審査がある。
 審査には一定時間かかるため、すぐに公開することはできない。
 また、審査で拒否された場合、拒否内容を修正し再度審査しなければならない。
 
-## 審査期間
+### 審査期間
 
-### App Store (iOS)
+#### App Store (iOS)
 
 - 1〜2 日程度
 - 審査期間が長引くこともある
@@ -219,7 +219,7 @@ App Store (iOS), Play Store (Android) にスマホアプリを公開する場合
 
 https://developer.apple.com/jp/distribute/app-review/
 
-### Play Store (Android)
+#### Play Store (Android)
 
 - 1〜2 日程度
 - 審査期間が長引くこともある
@@ -232,7 +232,7 @@ https://developer.apple.com/jp/distribute/app-review/
 
 https://support.google.com/googleplay/android-developer/answer/9859654?hl=ja
 
-### 参考
+#### 参考
 
 - https://developer.apple.com/jp/distribute/app-review/
 - https://play.google/developer-content-policy/
