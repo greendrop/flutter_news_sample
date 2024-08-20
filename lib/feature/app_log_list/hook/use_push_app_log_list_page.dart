@@ -1,7 +1,6 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_news_sample/feature/app_log_list/widget/app_log_list_page.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_news_sample/feature/app_router/route_data/app_route_data.dart';
 
 typedef UsePushAppLogListPageReturn = ({
   Future<void> Function() run,
@@ -17,9 +16,7 @@ UsePushAppLogListPageReturn usePushAppLogListPage() {
 
   final run = useCallback(() {
     appLogger.i(['$_hookName#run']);
-    return context.pushNamed<void>(
-      AppLogListPage.routeName,
-    );
+    return AppLogListRouteData().push<void>(context);
   });
 
   return (run: run,);

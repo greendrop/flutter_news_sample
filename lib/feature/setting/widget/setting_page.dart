@@ -17,7 +17,7 @@ class SettingPage extends HookConsumerWidget {
   SettingPage({super.key, bool? showDevTool})
       : showDevTool = showDevTool ?? AppConfig.instance.showDevTool;
 
-  static String routeName = 'SettingPage';
+  static const routeName = 'SettingPage';
 
   final bool showDevTool;
 

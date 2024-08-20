@@ -1,7 +1,6 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_news_sample/feature/app_log_detail/widget/app_log_detail_page.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_news_sample/feature/app_router/route_data/app_route_data.dart';
 
 typedef UsePushAppLogDetailPageReturn = ({
   Future<void> Function({required String filename}) run,
@@ -20,10 +19,7 @@ UsePushAppLogDetailPageReturn usePushAppLogDetailPage() {
       '$_hookName#run',
       {'filename': filename},
     ]);
-    return context.pushNamed<void>(
-      AppLogDetailPage.routeName,
-      pathParameters: {'filename': filename},
-    );
+    return AppLogDetailRouteData(filename: filename).push<void>(context);
   });
 
   return (run: run,);

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
-import 'package:flutter_news_sample/feature/news_article_detail/hook/use_go_news_article_detail_page.dart';
+import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page.dart';
 import 'package:flutter_news_sample/feature/news_article_list/enum/news_headline_category.dart';
 import 'package:flutter_news_sample/feature/news_article_list/hook/use_news_articles.dart';
 import 'package:flutter_news_sample/feature/theme_data/hook/use_theme_data.dart';
@@ -18,13 +18,13 @@ class NewsArticleListPage extends HookConsumerWidget {
     super.key,
   });
 
-  static String routeName = 'NewsArticleListPage';
+  static const routeName = 'NewsArticleListPage';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translations = useTranslations();
     final themeData = useThemeData();
-    final goNewsArticleDetailPage = useGoNewsArticleDetailPage();
+    final pushNewsArticleDetailPage = usePushNewsArticleDetailPage();
     final urlLauncherWrapper = useUrlLauncherWrapper();
     final newsArticlesByCategories = NewsHeadlineCategory.values
         .fold(<NewsHeadlineCategory, UseNewsArticlesReturn>{}, (acc, category) {
@@ -78,7 +78,7 @@ class NewsArticleListPage extends HookConsumerWidget {
                     gridCrossAxisCount: breakpoint.columns ~/ 2,
                     urlLauncherWrapper: urlLauncherWrapper,
                     translations: translations,
-                    goNewsArticleDetailPage: goNewsArticleDetailPage,
+                    pushNewsArticleDetailPage: pushNewsArticleDetailPage,
                   ),
                 ),
               ),
@@ -139,7 +139,7 @@ Widget _body(
   required int gridCrossAxisCount,
   required UseUrlLauncherWrapperReturn urlLauncherWrapper,
   required Translations translations,
-  required UseGoNewsArticleDetailPageReturn goNewsArticleDetailPage,
+  required UsePushNewsArticleDetailPageReturn pushNewsArticleDetailPage,
 }) {
   return TabBarView(
     controller: tabController,
@@ -194,7 +194,7 @@ Widget _body(
 
                     if (defaultTargetPlatform == TargetPlatform.android ||
                         defaultTargetPlatform == TargetPlatform.iOS) {
-                      goNewsArticleDetailPage.run(
+                      pushNewsArticleDetailPage.run(
                         title: data.items[index].title ?? '',
                         url: data.items[index].url ?? '',
                       );

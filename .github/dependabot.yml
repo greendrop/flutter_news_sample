@@ -22,6 +22,9 @@ updates:
       freezed:
         patterns:
           - 'freezed*'
+      go_router:
+        patterns:
+          - 'go_router*'
       retrofit:
         patterns:
           - 'retrofit*'

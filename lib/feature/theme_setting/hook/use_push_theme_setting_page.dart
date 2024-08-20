@@ -1,7 +1,6 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
-import 'package:flutter_news_sample/feature/theme_setting/widget/theme_setting_page.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_news_sample/feature/app_router/route_data/app_route_data.dart';
 
 typedef UsePushThemeSettingPageReturn = ({
   Future<void> Function() run,
@@ -17,9 +16,7 @@ UsePushThemeSettingPageReturn usePushThemeSettingPage() {
 
   final run = useCallback(() {
     appLogger.i(['$_hookName#run']);
-    return context.pushNamed<void>(
-      ThemeSettingPage.routeName,
-    );
+    return ThemeSettingRouteData().push<void>(context);
   });
 
   return (run: run,);
