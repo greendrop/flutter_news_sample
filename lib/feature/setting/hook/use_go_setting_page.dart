@@ -1,7 +1,6 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
-import 'package:flutter_news_sample/feature/setting/widget/setting_page.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_news_sample/feature/app_router/route_data/app_route_data.dart';
 
 typedef UseGoSettingPageReturn = ({
   void Function() run,
@@ -18,7 +17,7 @@ UseGoSettingPageReturn useGoSettingPage() {
   final run = useCallback(
     () {
       appLogger.i(['$_hookName#run']);
-      return context.goNamed(SettingPage.routeName);
+      return SettingRouteData().go(context);
     },
     [],
   );

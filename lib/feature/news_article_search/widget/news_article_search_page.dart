@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
-import 'package:flutter_news_sample/feature/news_article_detail/hook/use_go_news_article_detail_page_for_search.dart';
+import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page_for_search.dart';
 import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_articles.dart';
 import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_form.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
@@ -18,15 +18,15 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     super.key,
   });
 
-  static String routeName = 'NewsArticleSearchPage';
+  static const routeName = 'NewsArticleSearchPage';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translations = useTranslations();
     final currentKeyword = useState('');
     final newsArticles = useNewsArticles();
-    final goNewsArticleDetailPageForSearch =
-        useGoNewsArticleDetailPageForSearch();
+    final pushNewsArticleDetailPageForSearch =
+        usePushNewsArticleDetailPageForSearch();
     final urlLauncherWrapper = useUrlLauncherWrapper();
 
     return LayoutBuilder(
@@ -64,8 +64,8 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                       currentKeyword: currentKeyword,
                       newsArticles: newsArticles,
                       gridCrossAxisCount: breakpoint.columns ~/ 2,
-                      goNewsArticleDetailPageForSearch:
-                          goNewsArticleDetailPageForSearch,
+                      pushNewsArticleDetailPageForSearch:
+                          pushNewsArticleDetailPageForSearch,
                       urlLauncherWrapper: urlLauncherWrapper,
                     ),
                   ],
@@ -118,8 +118,8 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     required ValueNotifier<String> currentKeyword,
     required UseNewsArticlesReturn newsArticles,
     required int gridCrossAxisCount,
-    required UseGoNewsArticleDetailPageForSearchReturn
-        goNewsArticleDetailPageForSearch,
+    required UsePushNewsArticleDetailPageForSearchReturn
+        pushNewsArticleDetailPageForSearch,
     required UseUrlLauncherWrapperReturn urlLauncherWrapper,
   }) {
     return newsArticles.state.when(
@@ -169,7 +169,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
 
                 if (defaultTargetPlatform == TargetPlatform.android ||
                     defaultTargetPlatform == TargetPlatform.iOS) {
-                  goNewsArticleDetailPageForSearch.run(
+                  pushNewsArticleDetailPageForSearch.run(
                     title: data.items[index].title ?? '',
                     url: data.items[index].url ?? '',
                   );

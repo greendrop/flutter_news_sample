@@ -13,7 +13,7 @@ class AppLogDetailPage extends HookConsumerWidget {
     required this.filename,
   });
 
-  static String routeName = 'AppLogDetailPage';
+  static const routeName = 'AppLogDetailPage';
 
   final String filename;
 
