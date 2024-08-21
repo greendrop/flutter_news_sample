@@ -32,7 +32,7 @@ class AppLogFilesNotifier extends _$AppLogFilesNotifier {
       state = const AsyncValue<List<AppLogFile>>.loading();
     }
 
-    final directory = ref.watch(appLoggerDirectoryProvider);
+    final directory = ref.read(appLoggerDirectoryProvider);
     if (directory == null) {
       state = const AsyncValue.data([]);
       return Future.value();

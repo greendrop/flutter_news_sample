@@ -5,15 +5,12 @@ import 'package:flutter_news_sample/feature/locale_setting/riverpod/locale_notif
 import 'package:flutter_news_sample/feature/locale_setting/riverpod/locale_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../support/logger.dart';
-import './locale_notifier_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<LocaleRepository>(),
-])
+class MockLocaleRepository extends Mock implements LocaleRepository {}
+
 void main() {
   group('LocaleNotifier', () {
     group('#initialize', () {
@@ -26,10 +23,13 @@ void main() {
           ],
         );
 
+        when(localeRepository.fetch)
+            .thenAnswer((_) async => const Locale('ja'));
+
         final notifier = container.read(localeNotifierProvider.notifier);
         await notifier.initialize();
 
-        verify(localeRepository.fetch());
+        verify(localeRepository.fetch).called(1);
       });
     });
   });
@@ -44,10 +44,13 @@ void main() {
         ],
       );
 
+      when(() => localeRepository.update(const Locale('ja')))
+          .thenAnswer((_) async {});
+
       final notifier = container.read(localeNotifierProvider.notifier);
       await notifier.setLocale(const Locale('ja'));
 
-      verify(localeRepository.update(const Locale('ja')));
+      verify(() => localeRepository.update(const Locale('ja'))).called(1);
     });
   });
 }

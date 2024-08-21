@@ -5,16 +5,13 @@ import 'package:flutter_news_sample/feature/theme_setting/repository/theme_mode_
 import 'package:flutter_news_sample/feature/theme_setting/riverpod/theme_mode_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
-import './use_theme_mode_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<ThemeModeRepository>(),
-])
+class MockThemeModeRepository extends Mock implements ThemeModeRepository {}
+
 void main() {
   group('useThemeMode', () {
     group('#initialize', () {
@@ -40,13 +37,14 @@ void main() {
             ),
           ),
         );
+        await tester.pumpAndSettle();
 
-        when(themeModeRepository.fetch())
+        when(themeModeRepository.fetch)
             .thenAnswer((_) async => ThemeMode.system);
 
         await themeMode.initialize();
 
-        verify(themeModeRepository.fetch());
+        verify(themeModeRepository.fetch).called(1);
       });
     });
 
@@ -74,12 +72,12 @@ void main() {
           ),
         );
 
-        when(themeModeRepository.update(ThemeMode.system))
+        when(() => themeModeRepository.update(ThemeMode.system))
             .thenAnswer((_) async {});
 
         await themeMode.update(ThemeMode.system);
 
-        verify(themeModeRepository.update(ThemeMode.system));
+        verify(() => themeModeRepository.update(ThemeMode.system)).called(1);
       });
     });
   });
