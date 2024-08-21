@@ -7,7 +7,7 @@ part of 'app_log_files_notifier.dart';
 // **************************************************************************
 
 String _$appLogFilesNotifierHash() =>
-    r'b2d6371f1f81dba3529c52c294132feed28a0c63';
+    r'61251ddea139ad4314e306f3917c4d8dea61f1c3';
 
 /// See also [AppLogFilesNotifier].
 @ProviderFor(AppLogFilesNotifier)

@@ -12,17 +12,16 @@ import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger_direc
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger_directory_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
-import './use_app_log_files_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<AppLoggerDirectoryRepository>(),
-  MockSpec<AppLogFilesRepository>(),
-])
+class MockAppLoggerDirectoryRepository extends Mock
+    implements AppLoggerDirectoryRepository {}
+
+class MockAppLogFilesRepository extends Mock implements AppLogFilesRepository {}
+
 void main() {
   group('useAppLogFiles', () {
     group('#fetch', () {
@@ -37,16 +36,8 @@ void main() {
         final appLogFilesRepository = MockAppLogFilesRepository();
 
         final directory = Directory('test');
-
-        when(appLoggerDirectoryRepository.fetch())
+        when(appLoggerDirectoryRepository.fetch)
             .thenAnswer((_) async => directory);
-        when(appLogFilesRepository.fetch(directory: directory)).thenAnswer(
-          (_) async => [
-            File('test1.log'),
-            File('test2.txt'),
-            File('test3.log'),
-          ],
-        );
 
         await tester.pumpWidget(
           ProviderScope(
@@ -65,7 +56,7 @@ void main() {
                       ref
                           .read(appLoggerDirectoryProvider.notifier)
                           .initialize();
-                      return null;
+                      return () {};
                     },
                     [],
                   );
@@ -79,10 +70,20 @@ void main() {
         );
         await tester.pumpAndSettle();
 
+        when(() => appLogFilesRepository.fetch(directory: directory))
+            .thenAnswer(
+          (_) async => [
+            File('test1.log'),
+            File('test2.txt'),
+            File('test3.log'),
+          ],
+        );
+
         await appLogFiles.fetch();
         await tester.pumpAndSettle();
 
-        verify(appLogFilesRepository.fetch(directory: directory));
+        verify(() => appLogFilesRepository.fetch(directory: directory))
+            .called(1);
         expect(appLogFiles.state.hasValue, isTrue);
         expect(appLogFiles.state.hasError, isFalse);
         expect(appLogFiles.state.isLoading, isFalse);
@@ -105,16 +106,8 @@ void main() {
         final appLogFilesRepository = MockAppLogFilesRepository();
 
         final directory = Directory('test');
-
-        when(appLoggerDirectoryRepository.fetch())
+        when(appLoggerDirectoryRepository.fetch)
             .thenAnswer((_) async => directory);
-        when(appLogFilesRepository.fetch(directory: directory)).thenAnswer(
-          (_) async => [
-            File('test1.log'),
-            File('test2.txt'),
-            File('test3.log'),
-          ],
-        );
 
         await tester.pumpWidget(
           ProviderScope(
@@ -133,7 +126,7 @@ void main() {
                       ref
                           .read(appLoggerDirectoryProvider.notifier)
                           .initialize();
-                      return null;
+                      return () {};
                     },
                     [],
                   );
@@ -147,10 +140,20 @@ void main() {
         );
         await tester.pumpAndSettle();
 
+        when(() => appLogFilesRepository.fetch(directory: directory))
+            .thenAnswer(
+          (_) async => [
+            File('test1.log'),
+            File('test2.txt'),
+            File('test3.log'),
+          ],
+        );
+
         await appLogFiles.fetch(isRefresh: true);
         await tester.pumpAndSettle();
 
-        verify(appLogFilesRepository.fetch(directory: directory));
+        verify(() => appLogFilesRepository.fetch(directory: directory))
+            .called(1);
         expect(appLogFiles.state.hasValue, isTrue);
         expect(appLogFiles.state.hasError, isFalse);
         expect(appLogFiles.state.isLoading, isFalse);
