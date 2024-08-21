@@ -52,6 +52,7 @@ dev_dependencies:
   go_router_builder: ^2.7.1
   json_serializable: ^6.8.0
   mockito: ^5.4.4
+  mocktail: ^1.0.4
   retrofit_generator: ^8.2.0
   riverpod_generator: ^2.4.0
   riverpod_lint: ^2.3.10
