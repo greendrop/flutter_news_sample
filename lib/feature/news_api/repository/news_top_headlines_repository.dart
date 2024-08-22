@@ -23,7 +23,7 @@ class NewsTopHeadlinesRepository {
     dio.interceptors.add(LogInterceptor(logPrint: logger.d));
     final client = NewsTopHeadlinesClient(dio);
     try {
-      final response = client.get(
+      final response = await client.get(
         apiKey: AppConfig.instance.newsApiKey,
         country: 'jp',
         category: category,

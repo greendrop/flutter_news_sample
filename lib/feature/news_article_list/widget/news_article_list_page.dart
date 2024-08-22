@@ -162,14 +162,42 @@ Widget _body(
             final appException = error is AppException
                 ? error
                 : AppException(parentException: error as Exception);
-            return Center(
-              child: Text(appException.messageByTranslations(translations)),
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: Center(
+                      child: Text(
+                        appException.messageByTranslations(translations),
+                      ),
+                    ),
+                  ),
+                );
+              },
             );
           },
           data: (data) {
             if (data.items.isEmpty) {
-              return Center(
-                child: Text(translations.general.noDataAvailable),
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: Center(
+                        child: Text(
+                          translations.general.noDataAvailable,
+                        ),
+                      ),
+                    ),
+                  );
+                },
               );
             }
 
