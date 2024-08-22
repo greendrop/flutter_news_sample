@@ -7,7 +7,7 @@ part of 'news_articles_notifier.dart';
 // **************************************************************************
 
 String _$newsArticlesNotifierHash() =>
-    r'f6c6ffe07a13df2e82cf89b0f1648eed6f99c6eb';
+    r'ec5b742790065f8b7f11f8c1288915db3da1fd86';
 
 /// Copied from Dart SDK
 class _SystemHash {
