@@ -23,7 +23,7 @@ class NewsEverythingRepository {
     dio.interceptors.add(LogInterceptor(logPrint: logger.d));
     final client = NewsEverythingClient(dio);
     try {
-      final response = client.get(
+      final response = await client.get(
         apiKey: AppConfig.instance.newsApiKey,
         query: query,
         pageSize: 100,
