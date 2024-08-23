@@ -5,6 +5,7 @@ import 'package:retrofit/retrofit.dart';
 part 'news_top_headlines_client.g.dart';
 
 @RestApi(baseUrl: 'https://newsapi.org/v2/top-headlines')
+// ignore: one_member_abstracts
 abstract class NewsTopHeadlinesClient {
   factory NewsTopHeadlinesClient(Dio dio, {String baseUrl}) =
       _NewsTopHeadlinesClient;

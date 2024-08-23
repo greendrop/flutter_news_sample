@@ -5,6 +5,7 @@ import 'package:retrofit/retrofit.dart';
 part 'news_everything_client.g.dart';
 
 @RestApi(baseUrl: 'https://newsapi.org/v2/everything')
+// ignore: one_member_abstracts
 abstract class NewsEverythingClient {
   factory NewsEverythingClient(Dio dio, {String baseUrl}) =
       _NewsEverythingClient;
