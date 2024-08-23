@@ -8,6 +8,7 @@ import 'package:flutter_news_sample/feature/news_article/widget/news_article_gri
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page_for_search.dart';
 import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_articles.dart';
 import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_form.dart';
+import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher_wrapper.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
@@ -25,6 +26,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     final translations = useTranslations();
     final currentKeyword = useState('');
     final newsArticles = useNewsArticles();
+    final showDangerTextSnackBar = useShowDangerTextSnackBar();
     final pushNewsArticleDetailPageForSearch =
         usePushNewsArticleDetailPageForSearch();
     final urlLauncherWrapper = useUrlLauncherWrapper();
@@ -44,7 +46,12 @@ class NewsArticleSearchPage extends HookConsumerWidget {
 
                   return newsArticles
                       .fetch(keyword: currentKeyword.value, isRefresh: true)
-                      .onError((error, stackTrace) {});
+                      .onError((error, stackTrace) {
+                    showDangerTextSnackBar.run(
+                      text: AppException.fromException(error as Exception?)
+                          .messageByTranslations(translations),
+                    );
+                  });
                 },
                 edgeOffset: kToolbarHeight * 2,
                 child: CustomScrollView(
