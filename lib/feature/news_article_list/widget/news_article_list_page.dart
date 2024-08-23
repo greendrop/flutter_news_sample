@@ -7,6 +7,7 @@ import 'package:flutter_news_sample/feature/news_article/widget/news_article_gri
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page.dart';
 import 'package:flutter_news_sample/feature/news_article_list/enum/news_headline_category.dart';
 import 'package:flutter_news_sample/feature/news_article_list/hook/use_news_articles.dart';
+import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
 import 'package:flutter_news_sample/feature/theme_data/hook/use_theme_data.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher_wrapper.dart';
@@ -26,6 +27,8 @@ class NewsArticleListPage extends HookConsumerWidget {
     final themeData = useThemeData();
     final pushNewsArticleDetailPage = usePushNewsArticleDetailPage();
     final urlLauncherWrapper = useUrlLauncherWrapper();
+    final showDangerTextSnackBar = useShowDangerTextSnackBar();
+
     final newsArticlesByCategories = NewsHeadlineCategory.values
         .fold(<NewsHeadlineCategory, UseNewsArticlesReturn>{}, (acc, category) {
       acc[category] = useNewsArticles(category: category.value);
@@ -79,6 +82,7 @@ class NewsArticleListPage extends HookConsumerWidget {
                     urlLauncherWrapper: urlLauncherWrapper,
                     translations: translations,
                     pushNewsArticleDetailPage: pushNewsArticleDetailPage,
+                    showDangerTextSnackBar: showDangerTextSnackBar,
                   ),
                 ),
               ),
@@ -140,6 +144,7 @@ Widget _body(
   required UseUrlLauncherWrapperReturn urlLauncherWrapper,
   required Translations translations,
   required UsePushNewsArticleDetailPageReturn pushNewsArticleDetailPage,
+  required UseShowDangerTextSnackBarReturn showDangerTextSnackBar,
 }) {
   return TabBarView(
     controller: tabController,
@@ -150,7 +155,12 @@ Widget _body(
         onRefresh: () {
           return newsArticles
               .fetch(isRefresh: true)
-              .onError((error, stackTrace) {});
+              .onError((error, stackTrace) {
+            showDangerTextSnackBar.run(
+              text: AppException.fromException(error as Exception?)
+                  .messageByTranslations(translations),
+            );
+          });
         },
         child: newsArticles.state.when(
           loading: () {
