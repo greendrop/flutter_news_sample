@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_logger_file.dart';
+part of 'app_log_detail_route_data_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appLoggerFileHash() => r'bd9320275afa2722ba306b956c7098a453e11c42';
+String _$appLogDetailRouteDataHash() =>
+    r'b716c2d07e585a5b45bfc75e58b2586fa31f10d8';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,27 +30,27 @@ class _SystemHash {
   }
 }
 
-/// See also [appLoggerFile].
-@ProviderFor(appLoggerFile)
-const appLoggerFileProvider = AppLoggerFileFamily();
+/// See also [appLogDetailRouteData].
+@ProviderFor(appLogDetailRouteData)
+const appLogDetailRouteDataProvider = AppLogDetailRouteDataFamily();
 
-/// See also [appLoggerFile].
-class AppLoggerFileFamily extends Family<File?> {
-  /// See also [appLoggerFile].
-  const AppLoggerFileFamily();
+/// See also [appLogDetailRouteData].
+class AppLogDetailRouteDataFamily extends Family<AppLogDetailRouteData> {
+  /// See also [appLogDetailRouteData].
+  const AppLogDetailRouteDataFamily();
 
-  /// See also [appLoggerFile].
-  AppLoggerFileProvider call({
+  /// See also [appLogDetailRouteData].
+  AppLogDetailRouteDataProvider call({
     required String filename,
   }) {
-    return AppLoggerFileProvider(
+    return AppLogDetailRouteDataProvider(
       filename: filename,
     );
   }
 
   @override
-  AppLoggerFileProvider getProviderOverride(
-    covariant AppLoggerFileProvider provider,
+  AppLogDetailRouteDataProvider getProviderOverride(
+    covariant AppLogDetailRouteDataProvider provider,
   ) {
     return call(
       filename: provider.filename,
@@ -68,32 +69,33 @@ class AppLoggerFileFamily extends Family<File?> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'appLoggerFileProvider';
+  String? get name => r'appLogDetailRouteDataProvider';
 }
 
-/// See also [appLoggerFile].
-class AppLoggerFileProvider extends AutoDisposeProvider<File?> {
-  /// See also [appLoggerFile].
-  AppLoggerFileProvider({
+/// See also [appLogDetailRouteData].
+class AppLogDetailRouteDataProvider
+    extends AutoDisposeProvider<AppLogDetailRouteData> {
+  /// See also [appLogDetailRouteData].
+  AppLogDetailRouteDataProvider({
     required String filename,
   }) : this._internal(
-          (ref) => appLoggerFile(
-            ref as AppLoggerFileRef,
+          (ref) => appLogDetailRouteData(
+            ref as AppLogDetailRouteDataRef,
             filename: filename,
           ),
-          from: appLoggerFileProvider,
-          name: r'appLoggerFileProvider',
+          from: appLogDetailRouteDataProvider,
+          name: r'appLogDetailRouteDataProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$appLoggerFileHash,
-          dependencies: AppLoggerFileFamily._dependencies,
+                  : _$appLogDetailRouteDataHash,
+          dependencies: AppLogDetailRouteDataFamily._dependencies,
           allTransitiveDependencies:
-              AppLoggerFileFamily._allTransitiveDependencies,
+              AppLogDetailRouteDataFamily._allTransitiveDependencies,
           filename: filename,
         );
 
-  AppLoggerFileProvider._internal(
+  AppLogDetailRouteDataProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -107,12 +109,12 @@ class AppLoggerFileProvider extends AutoDisposeProvider<File?> {
 
   @override
   Override overrideWith(
-    File? Function(AppLoggerFileRef provider) create,
+    AppLogDetailRouteData Function(AppLogDetailRouteDataRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: AppLoggerFileProvider._internal(
-        (ref) => create(ref as AppLoggerFileRef),
+      override: AppLogDetailRouteDataProvider._internal(
+        (ref) => create(ref as AppLogDetailRouteDataRef),
         from: from,
         name: null,
         dependencies: null,
@@ -124,13 +126,13 @@ class AppLoggerFileProvider extends AutoDisposeProvider<File?> {
   }
 
   @override
-  AutoDisposeProviderElement<File?> createElement() {
-    return _AppLoggerFileProviderElement(this);
+  AutoDisposeProviderElement<AppLogDetailRouteData> createElement() {
+    return _AppLogDetailRouteDataProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is AppLoggerFileProvider && other.filename == filename;
+    return other is AppLogDetailRouteDataProvider && other.filename == filename;
   }
 
   @override
@@ -142,17 +144,19 @@ class AppLoggerFileProvider extends AutoDisposeProvider<File?> {
   }
 }
 
-mixin AppLoggerFileRef on AutoDisposeProviderRef<File?> {
+mixin AppLogDetailRouteDataRef
+    on AutoDisposeProviderRef<AppLogDetailRouteData> {
   /// The parameter `filename` of this provider.
   String get filename;
 }
 
-class _AppLoggerFileProviderElement extends AutoDisposeProviderElement<File?>
-    with AppLoggerFileRef {
-  _AppLoggerFileProviderElement(super.provider);
+class _AppLogDetailRouteDataProviderElement
+    extends AutoDisposeProviderElement<AppLogDetailRouteData>
+    with AppLogDetailRouteDataRef {
+  _AppLogDetailRouteDataProviderElement(super.provider);
 
   @override
-  String get filename => (origin as AppLoggerFileProvider).filename;
+  String get filename => (origin as AppLogDetailRouteDataProvider).filename;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

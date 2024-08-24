@@ -28,7 +28,7 @@ void main() {
       testWidgets(
           [
             'appLogFilesRepository.fetchが呼ばれること',
-            'AppLogFileがstateに設定されること',
+            'AppLogFilesのstateに設定されること',
           ].join(', '), (tester) async {
         late UseAppLogFilesReturn appLogFiles;
 

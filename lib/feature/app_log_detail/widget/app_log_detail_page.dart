@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
-import 'package:flutter_news_sample/feature/app_log_detail/hook/use_app_logger_file_content.dart';
+import 'package:flutter_news_sample/exception/app_exception.dart';
+import 'package:flutter_news_sample/feature/app_log_detail/hook/use_app_log_file_content.dart'
+    as hook;
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
@@ -11,20 +13,22 @@ class AppLogDetailPage extends HookConsumerWidget {
   const AppLogDetailPage({
     super.key,
     required this.filename,
+    this.useAppLogFileContent = hook.useAppLogFileContent,
   });
 
   static const routeName = 'AppLogDetailPage';
 
   final String filename;
+  final hook.UseAppLogFileContent useAppLogFileContent;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final navigatorState = useNavigatorState();
-    final appLoggerFileContent = useAppLoggerFileContent(filename: filename);
+    final appLogFileContent = useAppLogFileContent(filename: filename);
 
     useEffect(
       () {
-        Future.delayed(Duration.zero, appLoggerFileContent.fetch);
+        Future.delayed(Duration.zero, appLogFileContent.fetch);
         return () {};
       },
       [],
@@ -40,7 +44,7 @@ class AppLogDetailPage extends HookConsumerWidget {
               }
             },
             child: RefreshIndicator(
-              onRefresh: appLoggerFileContent.fetch,
+              onRefresh: appLogFileContent.fetch,
               edgeOffset: kToolbarHeight,
               child: CustomScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -49,7 +53,7 @@ class AppLogDetailPage extends HookConsumerWidget {
                   _body(
                     context,
                     ref,
-                    appLoggerFileContent: appLoggerFileContent,
+                    appLogFileContent: appLogFileContent,
                   ),
                 ],
               ),
@@ -67,18 +71,23 @@ class AppLogDetailPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required UseAppLoggerFileContentReturn appLoggerFileContent,
+    required hook.UseAppLogFileContentReturn appLogFileContent,
   }) {
     final translations = useTranslations();
 
-    return appLoggerFileContent.state.when(
+    return appLogFileContent.state.when(
       loading: () => const SliverFillRemaining(
         hasScrollBody: false,
         child: Center(child: CircularProgressIndicator()),
       ),
       error: (error, stackTrace) => SliverFillRemaining(
         hasScrollBody: false,
-        child: Center(child: Text('Error: $error')),
+        child: Center(
+          child: Text(
+            AppException.fromException(error as Exception)
+                .messageByTranslations(translations),
+          ),
+        ),
       ),
       data: (data) {
         final lines = data.split('\n');
