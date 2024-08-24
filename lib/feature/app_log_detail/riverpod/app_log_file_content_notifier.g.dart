@@ -7,7 +7,7 @@ part of 'app_log_file_content_notifier.dart';
 // **************************************************************************
 
 String _$appLogFileContentNotifierHash() =>
-    r'017e997a1c1767d122fbc252c8951514af06c642';
+    r'fc7e9a1fc388d4fbe817b721c38da6244d462248';
 
 /// Copied from Dart SDK
 class _SystemHash {
