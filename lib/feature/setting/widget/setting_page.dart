@@ -2,28 +2,42 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_config.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
-import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page.dart';
-import 'package:flutter_news_sample/feature/locale_setting/hook/use_push_locale_setting_page.dart';
+import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page.dart'
+    as hook;
+import 'package:flutter_news_sample/feature/locale_setting/hook/use_push_locale_setting_page.dart'
+    as hook;
 import 'package:flutter_news_sample/feature/setting/widget/dev_tool_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/locale_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/setting_about_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/theme_list_tile.dart';
-import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_setting_page.dart';
+import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_setting_page.dart'
+    as hook;
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SettingPage extends HookConsumerWidget {
-  SettingPage({super.key, bool? showDevTool})
-      : showDevTool = showDevTool ?? AppConfig.instance.showDevTool;
+  SettingPage({
+    super.key,
+    this.usePushLocaleSettingPage = hook.usePushLocaleSettingPage,
+    this.usePushThemeSettingPage = hook.usePushThemeSettingPage,
+    this.usePushDevToolPage = hook.usePushDevToolPage,
+    bool? showDevTool,
+  }) : showDevTool = showDevTool ?? AppConfig.instance.showDevTool;
 
   static const routeName = 'SettingPage';
 
+  final hook.UsePushLocaleSettingPage usePushLocaleSettingPage;
+  final hook.UsePushThemeSettingPage usePushThemeSettingPage;
+  final hook.UsePushDevToolPage usePushDevToolPage;
   final bool showDevTool;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translations = useTranslations();
+    final pushLocaleSettingPage = usePushLocaleSettingPage();
+    final pushThemeSettingPage = usePushThemeSettingPage();
+    final pushDevToolPage = usePushDevToolPage();
 
     return Scaffold(
       body: SafeArea(
@@ -32,7 +46,13 @@ class SettingPage extends HookConsumerWidget {
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
               _appBar(context, ref, translations: translations),
-              _body(context, ref),
+              _body(
+                context,
+                ref,
+                pushLocaleSettingPage: pushLocaleSettingPage,
+                pushThemeSettingPage: pushThemeSettingPage,
+                pushDevToolPage: pushDevToolPage,
+              ),
             ],
           ),
         ),
@@ -51,11 +71,13 @@ class SettingPage extends HookConsumerWidget {
     );
   }
 
-  Widget _body(BuildContext context, WidgetRef ref) {
-    final pushLocaleSettingPage = usePushLocaleSettingPage();
-    final pushThemeSettingPage = usePushThemeSettingPage();
-    final pushDevToolPage = usePushDevToolPage();
-
+  Widget _body(
+    BuildContext context,
+    WidgetRef ref, {
+    required hook.UsePushLocaleSettingPageReturn pushLocaleSettingPage,
+    required hook.UsePushThemeSettingPageReturn pushThemeSettingPage,
+    required hook.UsePushDevToolPageReturn pushDevToolPage,
+  }) {
     return SliverFillRemaining(
       hasScrollBody: false,
       child: Column(
