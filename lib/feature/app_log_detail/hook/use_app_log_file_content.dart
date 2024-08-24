@@ -1,25 +1,27 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_news_sample/feature/app_log_detail/riverpod/app_logger_file_content_notifier.dart';
+import 'package:flutter_news_sample/feature/app_log_detail/riverpod/app_log_file_content_notifier.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UseAppLoggerFileContentReturn = ({
+typedef UseAppLogFileContentReturn = ({
   AsyncValue<String> state,
   Future<void> Function() fetch,
 });
 
-typedef UseAppLoggerFileContent = UseAppLoggerFileContentReturn Function();
+typedef UseAppLogFileContent = UseAppLogFileContentReturn Function({
+  required String filename,
+});
 
-const String _hookName = 'useAppLoggerFileContent';
+const String _hookName = 'useAppLogFileContent';
 
-UseAppLoggerFileContentReturn useAppLoggerFileContent({
+UseAppLogFileContentReturn useAppLogFileContent({
   required String filename,
 }) {
   final context = useContext();
   final ref = context as WidgetRef;
 
   final state =
-      ref.watch(appLoggerFileContentNotifierProvider(filename: filename));
+      ref.watch(appLogFileContentNotifierProvider(filename: filename));
 
   final fetch = useCallback(
     () {
@@ -31,7 +33,7 @@ UseAppLoggerFileContentReturn useAppLoggerFileContent({
       );
       return ref
           .read(
-            appLoggerFileContentNotifierProvider(filename: filename).notifier,
+            appLogFileContentNotifierProvider(filename: filename).notifier,
           )
           .fetch();
     },

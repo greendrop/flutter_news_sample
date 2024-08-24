@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_logger_file_content_notifier.dart';
+part of 'app_log_file_content_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appLoggerFileContentNotifierHash() =>
-    r'c771c6e7d28ede39948c0c01b311537419de4a56';
+String _$appLogFileContentNotifierHash() =>
+    r'017e997a1c1767d122fbc252c8951514af06c642';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,7 +30,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$AppLoggerFileContentNotifier
+abstract class _$AppLogFileContentNotifier
     extends BuildlessAutoDisposeAsyncNotifier<String> {
   late final String filename;
 
@@ -39,28 +39,27 @@ abstract class _$AppLoggerFileContentNotifier
   });
 }
 
-/// See also [AppLoggerFileContentNotifier].
-@ProviderFor(AppLoggerFileContentNotifier)
-const appLoggerFileContentNotifierProvider =
-    AppLoggerFileContentNotifierFamily();
+/// See also [AppLogFileContentNotifier].
+@ProviderFor(AppLogFileContentNotifier)
+const appLogFileContentNotifierProvider = AppLogFileContentNotifierFamily();
 
-/// See also [AppLoggerFileContentNotifier].
-class AppLoggerFileContentNotifierFamily extends Family<AsyncValue<String>> {
-  /// See also [AppLoggerFileContentNotifier].
-  const AppLoggerFileContentNotifierFamily();
+/// See also [AppLogFileContentNotifier].
+class AppLogFileContentNotifierFamily extends Family<AsyncValue<String>> {
+  /// See also [AppLogFileContentNotifier].
+  const AppLogFileContentNotifierFamily();
 
-  /// See also [AppLoggerFileContentNotifier].
-  AppLoggerFileContentNotifierProvider call({
+  /// See also [AppLogFileContentNotifier].
+  AppLogFileContentNotifierProvider call({
     required String filename,
   }) {
-    return AppLoggerFileContentNotifierProvider(
+    return AppLogFileContentNotifierProvider(
       filename: filename,
     );
   }
 
   @override
-  AppLoggerFileContentNotifierProvider getProviderOverride(
-    covariant AppLoggerFileContentNotifierProvider provider,
+  AppLogFileContentNotifierProvider getProviderOverride(
+    covariant AppLogFileContentNotifierProvider provider,
   ) {
     return call(
       filename: provider.filename,
@@ -79,31 +78,31 @@ class AppLoggerFileContentNotifierFamily extends Family<AsyncValue<String>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'appLoggerFileContentNotifierProvider';
+  String? get name => r'appLogFileContentNotifierProvider';
 }
 
-/// See also [AppLoggerFileContentNotifier].
-class AppLoggerFileContentNotifierProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<AppLoggerFileContentNotifier,
+/// See also [AppLogFileContentNotifier].
+class AppLogFileContentNotifierProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<AppLogFileContentNotifier,
         String> {
-  /// See also [AppLoggerFileContentNotifier].
-  AppLoggerFileContentNotifierProvider({
+  /// See also [AppLogFileContentNotifier].
+  AppLogFileContentNotifierProvider({
     required String filename,
   }) : this._internal(
-          () => AppLoggerFileContentNotifier()..filename = filename,
-          from: appLoggerFileContentNotifierProvider,
-          name: r'appLoggerFileContentNotifierProvider',
+          () => AppLogFileContentNotifier()..filename = filename,
+          from: appLogFileContentNotifierProvider,
+          name: r'appLogFileContentNotifierProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$appLoggerFileContentNotifierHash,
-          dependencies: AppLoggerFileContentNotifierFamily._dependencies,
+                  : _$appLogFileContentNotifierHash,
+          dependencies: AppLogFileContentNotifierFamily._dependencies,
           allTransitiveDependencies:
-              AppLoggerFileContentNotifierFamily._allTransitiveDependencies,
+              AppLogFileContentNotifierFamily._allTransitiveDependencies,
           filename: filename,
         );
 
-  AppLoggerFileContentNotifierProvider._internal(
+  AppLogFileContentNotifierProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -117,7 +116,7 @@ class AppLoggerFileContentNotifierProvider
 
   @override
   FutureOr<String> runNotifierBuild(
-    covariant AppLoggerFileContentNotifier notifier,
+    covariant AppLogFileContentNotifier notifier,
   ) {
     return notifier.build(
       filename: filename,
@@ -125,10 +124,10 @@ class AppLoggerFileContentNotifierProvider
   }
 
   @override
-  Override overrideWith(AppLoggerFileContentNotifier Function() create) {
+  Override overrideWith(AppLogFileContentNotifier Function() create) {
     return ProviderOverride(
       origin: this,
-      override: AppLoggerFileContentNotifierProvider._internal(
+      override: AppLogFileContentNotifierProvider._internal(
         () => create()..filename = filename,
         from: from,
         name: null,
@@ -141,14 +140,14 @@ class AppLoggerFileContentNotifierProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<AppLoggerFileContentNotifier, String>
+  AutoDisposeAsyncNotifierProviderElement<AppLogFileContentNotifier, String>
       createElement() {
-    return _AppLoggerFileContentNotifierProviderElement(this);
+    return _AppLogFileContentNotifierProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is AppLoggerFileContentNotifierProvider &&
+    return other is AppLogFileContentNotifierProvider &&
         other.filename == filename;
   }
 
@@ -161,21 +160,19 @@ class AppLoggerFileContentNotifierProvider
   }
 }
 
-mixin AppLoggerFileContentNotifierRef
+mixin AppLogFileContentNotifierRef
     on AutoDisposeAsyncNotifierProviderRef<String> {
   /// The parameter `filename` of this provider.
   String get filename;
 }
 
-class _AppLoggerFileContentNotifierProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<
-        AppLoggerFileContentNotifier,
-        String> with AppLoggerFileContentNotifierRef {
-  _AppLoggerFileContentNotifierProviderElement(super.provider);
+class _AppLogFileContentNotifierProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<AppLogFileContentNotifier,
+        String> with AppLogFileContentNotifierRef {
+  _AppLogFileContentNotifierProviderElement(super.provider);
 
   @override
-  String get filename =>
-      (origin as AppLoggerFileContentNotifierProvider).filename;
+  String get filename => (origin as AppLogFileContentNotifierProvider).filename;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
