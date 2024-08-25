@@ -56,7 +56,6 @@ UseUrlLauncherReturn useUrlLauncher() {
           },
         ],
       );
-
       return url_launcher.launchUrl(
         url,
         mode: mode,
