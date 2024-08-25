@@ -10,7 +10,7 @@ import 'package:flutter_news_sample/feature/news_article_list/hook/use_news_arti
 import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
 import 'package:flutter_news_sample/feature/theme_data/hook/use_theme_data.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
-import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher_wrapper.dart';
+import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -26,7 +26,7 @@ class NewsArticleListPage extends HookConsumerWidget {
     final translations = useTranslations();
     final themeData = useThemeData();
     final pushNewsArticleDetailPage = usePushNewsArticleDetailPage();
-    final urlLauncherWrapper = useUrlLauncherWrapper();
+    final urlLauncher = useUrlLauncher();
     final showDangerTextSnackBar = useShowDangerTextSnackBar();
 
     final newsArticlesByCategories = NewsHeadlineCategory.values
@@ -79,7 +79,7 @@ class NewsArticleListPage extends HookConsumerWidget {
                     tabController: tabController,
                     newsArticlesByCategories: newsArticlesByCategories,
                     gridCrossAxisCount: breakpoint.columns ~/ 2,
-                    urlLauncherWrapper: urlLauncherWrapper,
+                    urlLauncher: urlLauncher,
                     translations: translations,
                     pushNewsArticleDetailPage: pushNewsArticleDetailPage,
                     showDangerTextSnackBar: showDangerTextSnackBar,
@@ -141,7 +141,7 @@ Widget _body(
   required Map<NewsHeadlineCategory, UseNewsArticlesReturn>
       newsArticlesByCategories,
   required int gridCrossAxisCount,
-  required UseUrlLauncherWrapperReturn urlLauncherWrapper,
+  required UseUrlLauncherReturn urlLauncher,
   required Translations translations,
   required UsePushNewsArticleDetailPageReturn pushNewsArticleDetailPage,
   required UseShowDangerTextSnackBarReturn showDangerTextSnackBar,
@@ -239,9 +239,9 @@ Widget _body(
                     } else {
                       final url = Uri.parse(data.items[index].url!);
 
-                      urlLauncherWrapper.canLaunchUrl(url).then((value) {
+                      urlLauncher.canLaunchUrl(url).then((value) {
                         if (value) {
-                          urlLauncherWrapper.launchUrl(
+                          urlLauncher.launchUrl(
                             url,
                             mode: LaunchMode.externalApplication,
                           );

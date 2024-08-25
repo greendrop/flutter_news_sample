@@ -1,12 +1,11 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
-import 'package:flutter_news_sample/feature/url_launcher/riverpod/url_launcher_wrapper.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 export 'package:url_launcher/url_launcher.dart' show LaunchMode;
 
-typedef UseUrlLauncherWrapperReturn = ({
+typedef UseUrlLauncherReturn = ({
   Future<bool> Function(Uri url) canLaunchUrl,
   Future<bool> Function(
     Uri url, {
@@ -16,11 +15,11 @@ typedef UseUrlLauncherWrapperReturn = ({
   }) launchUrl,
 });
 
-typedef UseUrlLauncherWrapper = UseUrlLauncherWrapperReturn Function();
+typedef UseUrlLauncher = UseUrlLauncherReturn Function();
 
-const String _hookName = 'UseUrlLauncherWrapper';
+const String _hookName = 'UseUrlLauncher';
 
-UseUrlLauncherWrapperReturn useUrlLauncherWrapper() {
+UseUrlLauncherReturn useUrlLauncher() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -28,12 +27,12 @@ UseUrlLauncherWrapperReturn useUrlLauncherWrapper() {
     (Uri url) {
       ref.read(appLoggerProvider).i(
         [
-          '$_hookName#fetch',
+          '$_hookName#canLaunchUrl',
           {'url': url},
         ],
       );
 
-      return ref.read(urlLauncherWrapperProvider).canLaunchUrl(url);
+      return url_launcher.canLaunchUrl(url);
     },
     [],
   );
@@ -57,13 +56,12 @@ UseUrlLauncherWrapperReturn useUrlLauncherWrapper() {
           },
         ],
       );
-
-      return ref.read(urlLauncherWrapperProvider).launchUrl(
-            url,
-            mode: mode,
-            webViewConfiguration: webViewConfiguration,
-            webOnlyWindowName: webOnlyWindowName,
-          );
+      return url_launcher.launchUrl(
+        url,
+        mode: mode,
+        webViewConfiguration: webViewConfiguration,
+        webOnlyWindowName: webOnlyWindowName,
+      );
     },
     [],
   );
