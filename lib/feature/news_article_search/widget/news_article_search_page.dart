@@ -10,7 +10,7 @@ import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_ar
 import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_form.dart';
 import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
-import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher_wrapper.dart';
+import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,7 +29,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     final showDangerTextSnackBar = useShowDangerTextSnackBar();
     final pushNewsArticleDetailPageForSearch =
         usePushNewsArticleDetailPageForSearch();
-    final urlLauncherWrapper = useUrlLauncherWrapper();
+    final urlLauncher = useUrlLauncher();
 
     return LayoutBuilder(
       builder: (_, constraints) {
@@ -73,7 +73,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                       gridCrossAxisCount: breakpoint.columns ~/ 2,
                       pushNewsArticleDetailPageForSearch:
                           pushNewsArticleDetailPageForSearch,
-                      urlLauncherWrapper: urlLauncherWrapper,
+                      urlLauncher: urlLauncher,
                     ),
                   ],
                 ),
@@ -127,7 +127,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     required int gridCrossAxisCount,
     required UsePushNewsArticleDetailPageForSearchReturn
         pushNewsArticleDetailPageForSearch,
-    required UseUrlLauncherWrapperReturn urlLauncherWrapper,
+    required UseUrlLauncherReturn urlLauncher,
   }) {
     return newsArticles.state.when(
       loading: () {
@@ -183,9 +183,9 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                 } else {
                   final url = Uri.parse(data.items[index].url!);
 
-                  urlLauncherWrapper.canLaunchUrl(url).then((value) {
+                  urlLauncher.canLaunchUrl(url).then((value) {
                     if (value) {
-                      urlLauncherWrapper.launchUrl(
+                      urlLauncher.launchUrl(
                         url,
                         mode: LaunchMode.externalApplication,
                       );

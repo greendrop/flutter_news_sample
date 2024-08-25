@@ -15,7 +15,7 @@ import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_vertical_scroll_effect.dart';
 import 'package:flutter_news_sample/feature/share/hook/use_share_wrapper.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
-import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher_wrapper.dart';
+import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -50,7 +50,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
       () => usePullToRefreshController(webViewController: webViewController),
     );
     final canGoBack = useWebViewCanGoBack();
-    final urlLauncherWrapper = useUrlLauncherWrapper();
+    final urlLauncher = useUrlLauncher();
     final shareWrapper = useShareWrapper();
     final currentUrl = useState(url);
     final currentProgress = useState(0);
@@ -137,7 +137,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
                         pullToRefreshController: pullToRefreshController,
                         currentUrl: currentUrl,
                         currentProgress: currentProgress,
-                        urlLauncherWrapper: urlLauncherWrapper,
+                        urlLauncher: urlLauncher,
                       ),
                     ),
                   ],
@@ -227,7 +227,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
     required InAppWebViewSettings webViewSettings,
     required ValueNotifier<String> currentUrl,
     required ValueNotifier<int> currentProgress,
-    required UseUrlLauncherWrapperReturn urlLauncherWrapper,
+    required UseUrlLauncherReturn urlLauncher,
   }) {
     return Stack(
       children: [
@@ -268,9 +268,9 @@ class NewsArticleDetailPage extends HookConsumerWidget {
               'javascript',
               'about',
             ].contains(uri.scheme)) {
-              if (await urlLauncherWrapper.canLaunchUrl(uri)) {
+              if (await urlLauncher.canLaunchUrl(uri)) {
                 // Launch the App
-                await urlLauncherWrapper.launchUrl(
+                await urlLauncher.launchUrl(
                   uri,
                 );
                 // and cancel the request
