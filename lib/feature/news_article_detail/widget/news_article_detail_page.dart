@@ -13,7 +13,7 @@ import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_request_go_back_effect.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_vertical_scroll.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_vertical_scroll_effect.dart';
-import 'package:flutter_news_sample/feature/share/hook/use_share_wrapper.dart';
+import 'package:flutter_news_sample/feature/share/hook/use_share.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
@@ -51,7 +51,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
     );
     final canGoBack = useWebViewCanGoBack();
     final urlLauncher = useUrlLauncher();
-    final shareWrapper = useShareWrapper();
+    final share = useShare();
     final currentUrl = useState(url);
     final currentProgress = useState(0);
 
@@ -120,7 +120,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
                             translations: translations,
                             webViewController: webViewController,
                             currentUrl: currentUrl,
-                            shareWrapper: shareWrapper,
+                            share: share,
                           ),
                         ),
                       ),
@@ -156,7 +156,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
     required NavigatorState navigatorState,
     required Translations translations,
     required ObjectRef<InAppWebViewController?> webViewController,
-    required UseShareWrapperReturn shareWrapper,
+    required UseShareReturn share,
     required ValueNotifier<String> currentUrl,
   }) {
     final leading = FutureBuilder(
@@ -209,7 +209,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
           icon: const Icon(Icons.share),
           tooltip: translations.general.share,
           onPressed: () async {
-            await shareWrapper.share(currentUrl.value);
+            await share.run(currentUrl.value);
           },
         ),
       ],
