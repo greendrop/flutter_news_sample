@@ -987,7 +987,7 @@ packages:
     source: hosted
     version: "10.0.2"
   share_plus_platform_interface:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: share_plus_platform_interface
       sha256: "6ababf341050edff57da8b6990f11f4e99eaba837865e2e6defe16d039619db5"
