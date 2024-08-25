@@ -13,8 +13,8 @@ import 'package:flutter_news_sample/feature/translation/hook/use_translations.da
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AppNavigationBar extends HookConsumerWidget {
-  const AppNavigationBar({
+class AppNavigationRail extends HookConsumerWidget {
+  const AppNavigationRail({
     super.key,
     this.useAppRouterCurrentUri = hook.useAppRouterCurrentUri,
     this.useGoNewsArticleListPage = hook.useGoNewsArticleListPage,
@@ -29,13 +29,16 @@ class AppNavigationBar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final translations = useTranslations();
     final currentUri = useAppRouterCurrentUri();
     final goNewsArticleListPage = useGoNewsArticleListPage();
     final goNewsArticleSearchPage = useGoNewsArticleSearchPage();
     final goSettingPage = useGoSettingPage();
 
-    return NavigationBar(
-      destinations: _navigationDestinations(context, ref),
+    return NavigationRail(
+      labelType: NavigationRailLabelType.all,
+      destinations:
+          _navigationDestinations(context, ref, translations: translations),
       selectedIndex: useAppNavigationSelectedIndex(currentUri: currentUri),
       onDestinationSelected: (index) => useAppNavigatorOnDestinationSelected(
         index: index,
@@ -46,32 +49,38 @@ class AppNavigationBar extends HookConsumerWidget {
     );
   }
 
-  List<Widget> _navigationDestinations(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+  List<NavigationRailDestination> _navigationDestinations(
+    BuildContext context,
+    WidgetRef ref, {
+    required Translations translations,
+  }) {
     return [
-      NavigationDestination(
-        key: const ValueKey('NewsArticlesNavigationDestination'),
+      NavigationRailDestination(
         icon: const Icon(
           FontAwesomeIcons.list,
-          key: ValueKey('NewsArticlesNavigationDestinationIcon'),
+          key: ValueKey(
+            'NewsArticlesNavigationRailDestinationIcon',
+          ),
         ),
-        label: translations.newsArticleList.title,
+        label: Text(translations.newsArticleList.title),
       ),
-      NavigationDestination(
-        key: const ValueKey('NewsArticlesSearchNavigationDestination'),
+      NavigationRailDestination(
         icon: const Icon(
           FontAwesomeIcons.magnifyingGlass,
-          key: ValueKey('NewsArticlesSearchNavigationDestinationIcon'),
+          key: ValueKey(
+            'NewsArticlesSearchNavigationRailDestinationIcon',
+          ),
         ),
-        label: translations.newsArticleSearch.title,
+        label: Text(translations.newsArticleSearch.title),
       ),
-      NavigationDestination(
-        key: const ValueKey('SettingNavigationDestination'),
+      NavigationRailDestination(
         icon: const Icon(
           FontAwesomeIcons.gear,
-          key: ValueKey('SettingNavigationDestinationIcon'),
+          key: ValueKey(
+            'SettingNavigationRailDestinationIcon',
+          ),
         ),
-        label: translations.setting.title,
+        label: Text(translations.setting.title),
       ),
     ];
   }
