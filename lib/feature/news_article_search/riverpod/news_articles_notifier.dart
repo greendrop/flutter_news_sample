@@ -45,20 +45,20 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
 
       state = AsyncValue<NewsArticles>.data(newsArticles);
       return Future.value();
-    } on Exception catch (error) {
+    } on Exception catch (e) {
       appLogger.e(
         [
           '$_notifierName#fetch',
-          {'Exception': error},
+          {'Exception': e},
         ],
       );
-      final appException =
-          error is AppException ? error : AppException(parentException: error);
+      final appException = AppException.fromException(e);
       if (isRefresh) {
-        state = AsyncValue<NewsArticles>.error(error, StackTrace.current)
+        state = AsyncValue<NewsArticles>.error(appException, StackTrace.current)
             .copyWithPrevious(state);
       } else {
-        state = AsyncValue<NewsArticles>.error(error, StackTrace.current);
+        state =
+            AsyncValue<NewsArticles>.error(appException, StackTrace.current);
       }
       return Future.error(appException);
     }
@@ -109,9 +109,8 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
           {'Exception': e},
         ],
       );
-      final appException =
-          e is AppException ? e : AppException(parentException: e);
-      state = AsyncValue<NewsArticles>.error(e, StackTrace.current)
+      final appException = AppException.fromException(e);
+      state = AsyncValue<NewsArticles>.error(appException, StackTrace.current)
           .copyWithPrevious(state);
       return Future.error(appException);
     }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/app_log_detail/hook/use_push_app_log_detail_page.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
-import 'package:flutter_news_sample/feature/app_router/riverpod/app_log_detail_route_data_provider.dart';
+import 'package:flutter_news_sample/feature/app_router/riverpod/app_log_detail_route_data.dart';
 import 'package:flutter_news_sample/feature/app_router/route_data/app_route_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -28,7 +28,7 @@ void main() {
         late BuildContext builderContext;
 
         final goRouter = MockGoRouter();
-        final applogDetailRouteData =
+        final appLogDetailRouteData =
             MockAppLogDetailRouteData(filename: 'dummy');
 
         await tester.pumpWidget(
@@ -36,7 +36,7 @@ void main() {
             overrides: [
               appLoggerProvider.overrideWithValue(buildAppTestLogger()),
               appLogDetailRouteDataProvider(filename: 'dummy')
-                  .overrideWithValue(applogDetailRouteData),
+                  .overrideWithValue(appLogDetailRouteData),
             ],
             child: TestMaterialApp(
               child: MockGoRouterProvider(
@@ -54,13 +54,13 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(() => applogDetailRouteData.push<void>(builderContext))
+        when(() => appLogDetailRouteData.push<void>(builderContext))
             .thenAnswer((_) async {});
 
         await pushAppLogDetailPage.run(filename: 'dummy');
         await tester.pumpAndSettle();
 
-        verify(() => applogDetailRouteData.push<void>(builderContext))
+        verify(() => appLogDetailRouteData.push<void>(builderContext))
             .called(1);
       });
     });

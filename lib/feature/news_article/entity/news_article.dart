@@ -1,4 +1,4 @@
-import 'package:flutter_news_sample/feature/news_api/dto/news_article_source.dart';
+import 'package:flutter_news_sample/feature/news_article/entity/news_article_source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'news_article.freezed.dart';
