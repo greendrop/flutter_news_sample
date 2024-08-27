@@ -76,6 +76,7 @@ class NewsArticleSearchFormState extends ConsumerState<NewsArticleSearchForm> {
     final translations = useTranslations();
 
     return ReactiveTextField<String>(
+      key: const ValueKey('NewsArticleSearchFormKeywordTextField'),
       formControlName: 'keyword',
       validationMessages: {
         ValidationMessage.required: (error) =>
@@ -98,6 +99,7 @@ class NewsArticleSearchFormState extends ConsumerState<NewsArticleSearchForm> {
             (widget.onSubmit != null && _formGroup.valid) ? submit : null;
 
         return FilledButton(
+          key: const ValueKey('NewsArticleSearchFormSubmitButton'),
           onPressed: onPressed,
           child: Text(translations.general.search),
         );
