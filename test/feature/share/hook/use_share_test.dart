@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/share/hook/use_share.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,7 +7,6 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:share_plus_platform_interface/method_channel/method_channel_share.dart';
 import 'package:share_plus_platform_interface/share_plus_platform_interface.dart';
 
-import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
 
 class MockMethodChannelShare extends Mock
@@ -29,17 +27,12 @@ void main() {
         late UseShareReturn share;
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
-            ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  share = useShare();
-                  return Container();
-                },
-              ),
+          TestMaterialApp(
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                share = useShare();
+                return Container();
+              },
             ),
           ),
         );

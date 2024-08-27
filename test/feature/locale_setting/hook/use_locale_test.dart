@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_locale.dart';
 import 'package:flutter_news_sample/feature/locale_setting/repository/locale_repository.dart';
 import 'package:flutter_news_sample/feature/locale_setting/riverpod/locale_repository.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
 
 class MockLocaleRepository extends Mock implements LocaleRepository {}
@@ -21,18 +19,15 @@ void main() {
         final localeRepository = MockLocaleRepository();
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+          TestMaterialApp(
+            providerScopeOverrides: [
               localeRepositoryProvider.overrideWithValue(localeRepository),
             ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  locale = useLocale();
-                  return Container();
-                },
-              ),
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                locale = useLocale();
+                return Container();
+              },
             ),
           ),
         );
@@ -53,18 +48,15 @@ void main() {
         final localeRepository = MockLocaleRepository();
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+          TestMaterialApp(
+            providerScopeOverrides: [
               localeRepositoryProvider.overrideWithValue(localeRepository),
             ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  locale = useLocale();
-                  return Container();
-                },
-              ),
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                locale = useLocale();
+                return Container();
+              },
             ),
           ),
         );

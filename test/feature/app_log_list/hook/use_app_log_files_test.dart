@@ -7,14 +7,12 @@ import 'package:flutter_news_sample/feature/app_log_list/hook/use_app_log_files.
 import 'package:flutter_news_sample/feature/app_log_list/ripository/app_log_files_repository.dart';
 import 'package:flutter_news_sample/feature/app_log_list/riverpod/app_log_files_repository.dart';
 import 'package:flutter_news_sample/feature/app_logger/repository/app_logger_repository.dart';
-import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger_directory.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger_directory_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
 
 class MockAppLoggerDirectoryRepository extends Mock
@@ -40,31 +38,26 @@ void main() {
             .thenAnswer((_) async => directory);
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+          TestMaterialApp(
+            providerScopeOverrides: [
               appLoggerDirectoryRepositoryProvider
                   .overrideWithValue(appLoggerDirectoryRepository),
               appLogFilesRepositoryProvider
                   .overrideWithValue(appLogFilesRepository),
             ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  useEffect(
-                    () {
-                      ref
-                          .read(appLoggerDirectoryProvider.notifier)
-                          .initialize();
-                      return () {};
-                    },
-                    [],
-                  );
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                useEffect(
+                  () {
+                    ref.read(appLoggerDirectoryProvider.notifier).initialize();
+                    return () {};
+                  },
+                  [],
+                );
 
-                  appLogFiles = useAppLogFiles();
-                  return Container();
-                },
-              ),
+                appLogFiles = useAppLogFiles();
+                return Container();
+              },
             ),
           ),
         );
@@ -110,31 +103,26 @@ void main() {
             .thenAnswer((_) async => directory);
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+          TestMaterialApp(
+            providerScopeOverrides: [
               appLoggerDirectoryRepositoryProvider
                   .overrideWithValue(appLoggerDirectoryRepository),
               appLogFilesRepositoryProvider
                   .overrideWithValue(appLogFilesRepository),
             ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  useEffect(
-                    () {
-                      ref
-                          .read(appLoggerDirectoryProvider.notifier)
-                          .initialize();
-                      return () {};
-                    },
-                    [],
-                  );
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                useEffect(
+                  () {
+                    ref.read(appLoggerDirectoryProvider.notifier).initialize();
+                    return () {};
+                  },
+                  [],
+                );
 
-                  appLogFiles = useAppLogFiles();
-                  return Container();
-                },
-              ),
+                appLogFiles = useAppLogFiles();
+                return Container();
+              },
             ),
           ),
         );

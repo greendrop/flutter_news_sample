@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_theme_mode.dart';
 import 'package:flutter_news_sample/feature/theme_setting/repository/theme_mode_repository.dart';
 import 'package:flutter_news_sample/feature/theme_setting/riverpod/theme_mode_repository.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
 
 class MockThemeModeRepository extends Mock implements ThemeModeRepository {}
@@ -21,19 +19,16 @@ void main() {
         final themeModeRepository = MockThemeModeRepository();
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+          TestMaterialApp(
+            providerScopeOverrides: [
               themeModeRepositoryProvider
                   .overrideWithValue(themeModeRepository),
             ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  themeMode = useThemeMode();
-                  return Container();
-                },
-              ),
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                themeMode = useThemeMode();
+                return Container();
+              },
             ),
           ),
         );
@@ -55,19 +50,16 @@ void main() {
         final themeModeRepository = MockThemeModeRepository();
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+          TestMaterialApp(
+            providerScopeOverrides: [
               themeModeRepositoryProvider
                   .overrideWithValue(themeModeRepository),
             ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  themeMode = useThemeMode();
-                  return Container();
-                },
-              ),
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                themeMode = useThemeMode();
+                return Container();
+              },
             ),
           ),
         );
