@@ -1,4 +1,3 @@
-import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page.dart';
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_push_locale_setting_page.dart';
 import 'package:flutter_news_sample/feature/setting/widget/dev_tool_list_tile.dart';
@@ -8,9 +7,7 @@ import 'package:flutter_news_sample/feature/setting/widget/setting_page.dart';
 import 'package:flutter_news_sample/feature/setting/widget/theme_list_tile.dart';
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_setting_page.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
 
 void main() {
@@ -53,17 +50,12 @@ void main() {
 
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            ProviderScope(
-              overrides: [
-                appLoggerProvider.overrideWithValue(buildAppTestLogger()),
-              ],
-              child: TestMaterialApp(
-                child: SettingPage(
-                  usePushLocaleSettingPage: usePushLocaleSettingPage,
-                  usePushThemeSettingPage: usePushThemeSettingPage,
-                  usePushDevToolPage: usePushDevToolPage,
-                  showDevTool: true,
-                ),
+            TestMaterialApp(
+              child: SettingPage(
+                usePushLocaleSettingPage: usePushLocaleSettingPage,
+                usePushThemeSettingPage: usePushThemeSettingPage,
+                usePushDevToolPage: usePushDevToolPage,
+                showDevTool: true,
               ),
             ),
           );
@@ -93,13 +85,8 @@ void main() {
       testWidgets('DevToolListTileが表示されないこと', (tester) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            ProviderScope(
-              overrides: [
-                appLoggerProvider.overrideWithValue(buildAppTestLogger()),
-              ],
-              child: TestMaterialApp(
-                child: SettingPage(showDevTool: false),
-              ),
+            TestMaterialApp(
+              child: SettingPage(showDevTool: false),
             ),
           );
         });
