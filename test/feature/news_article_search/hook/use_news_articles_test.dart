@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/news_api/dto/news_article.dart'
     as dto;
 import 'package:flutter_news_sample/feature/news_api/dto/news_article_source.dart'
@@ -18,7 +17,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
 
 class MockNewsEverythingRepository extends Mock
@@ -38,19 +36,16 @@ void main() {
           final newsEverythingRepository = MockNewsEverythingRepository();
 
           await tester.pumpWidget(
-            ProviderScope(
-              overrides: [
-                appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+            TestMaterialApp(
+              providerScopeOverrides: [
                 newsEverythingRepositoryProvider
                     .overrideWithValue(newsEverythingRepository),
               ],
-              child: TestMaterialApp(
-                child: HookConsumer(
-                  builder: (context, ref, child) {
-                    newsArticles = useNewsArticles();
-                    return Container();
-                  },
-                ),
+              child: HookConsumer(
+                builder: (context, ref, child) {
+                  newsArticles = useNewsArticles();
+                  return Container();
+                },
               ),
             ),
           );
@@ -132,19 +127,16 @@ void main() {
           final newsEverythingRepository = MockNewsEverythingRepository();
 
           await tester.pumpWidget(
-            ProviderScope(
-              overrides: [
-                appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+            TestMaterialApp(
+              providerScopeOverrides: [
                 newsEverythingRepositoryProvider
                     .overrideWithValue(newsEverythingRepository),
               ],
-              child: TestMaterialApp(
-                child: HookConsumer(
-                  builder: (context, ref, child) {
-                    newsArticles = useNewsArticles();
-                    return Container();
-                  },
-                ),
+              child: HookConsumer(
+                builder: (context, ref, child) {
+                  newsArticles = useNewsArticles();
+                  return Container();
+                },
               ),
             ),
           );

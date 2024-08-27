@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,7 +6,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:url_launcher_platform_interface/url_launcher_platform_interface.dart';
 
-import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
 
 class MockUrlLauncherPlatform extends Mock
@@ -31,17 +29,12 @@ void main() {
         late UseUrlLauncherReturn urlLauncher;
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
-            ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  urlLauncher = useUrlLauncher();
-                  return Container();
-                },
-              ),
+          TestMaterialApp(
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                urlLauncher = useUrlLauncher();
+                return Container();
+              },
             ),
           ),
         );
@@ -63,17 +56,12 @@ void main() {
         late UseUrlLauncherReturn urlLauncher;
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
-            ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  urlLauncher = useUrlLauncher();
-                  return Container();
-                },
-              ),
+          TestMaterialApp(
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                urlLauncher = useUrlLauncher();
+                return Container();
+              },
             ),
           ),
         );

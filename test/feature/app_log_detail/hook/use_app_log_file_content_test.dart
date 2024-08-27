@@ -6,14 +6,12 @@ import 'package:flutter_news_sample/feature/app_log_detail/hook/use_app_log_file
 import 'package:flutter_news_sample/feature/app_log_detail/repository/app_log_file_repository.dart';
 import 'package:flutter_news_sample/feature/app_log_detail/riverpod/app_log_file_repository.dart';
 import 'package:flutter_news_sample/feature/app_logger/repository/app_logger_repository.dart';
-import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger_directory.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger_directory_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../support/logger.dart';
 import '../../../support/widget/test_material_app.dart';
 
 class MockFile extends Mock implements File {}
@@ -43,31 +41,26 @@ void main() {
             .thenAnswer((_) async => directory);
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+          TestMaterialApp(
+            providerScopeOverrides: [
               appLoggerDirectoryRepositoryProvider
                   .overrideWithValue(appLoggerDirectoryRepository),
               appLogFileRepositoryProvider
                   .overrideWithValue(appLogFileRepository),
             ],
-            child: TestMaterialApp(
-              child: HookConsumer(
-                builder: (context, ref, child) {
-                  useEffect(
-                    () {
-                      ref
-                          .read(appLoggerDirectoryProvider.notifier)
-                          .initialize();
-                      return () {};
-                    },
-                    [],
-                  );
+            child: HookConsumer(
+              builder: (context, ref, child) {
+                useEffect(
+                  () {
+                    ref.read(appLoggerDirectoryProvider.notifier).initialize();
+                    return () {};
+                  },
+                  [],
+                );
 
-                  appLogFileContent = useAppLogFileContent(filename: filename);
-                  return Container();
-                },
-              ),
+                appLogFileContent = useAppLogFileContent(filename: filename);
+                return Container();
+              },
             ),
           ),
         );

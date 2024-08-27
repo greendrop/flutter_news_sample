@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/app_log_detail/hook/use_push_app_log_detail_page.dart';
-import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_news_sample/feature/app_router/riverpod/app_log_detail_route_data.dart';
 import 'package:flutter_news_sample/feature/app_router/route_data/app_route_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../support/logger.dart';
 import '../../../support/widget/mock_go_router_provider.dart';
 import '../../../support/widget/test_material_app.dart';
 
@@ -32,22 +30,19 @@ void main() {
             MockAppLogDetailRouteData(filename: 'dummy');
 
         await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              appLoggerProvider.overrideWithValue(buildAppTestLogger()),
+          TestMaterialApp(
+            providerScopeOverrides: [
               appLogDetailRouteDataProvider(filename: 'dummy')
                   .overrideWithValue(appLogDetailRouteData),
             ],
-            child: TestMaterialApp(
-              child: MockGoRouterProvider(
-                goRouter: goRouter,
-                child: HookConsumer(
-                  builder: (context, ref, child) {
-                    pushAppLogDetailPage = usePushAppLogDetailPage();
-                    builderContext = context;
-                    return Container();
-                  },
-                ),
+            child: MockGoRouterProvider(
+              goRouter: goRouter,
+              child: HookConsumer(
+                builder: (context, ref, child) {
+                  pushAppLogDetailPage = usePushAppLogDetailPage();
+                  builderContext = context;
+                  return Container();
+                },
               ),
             ),
           ),
