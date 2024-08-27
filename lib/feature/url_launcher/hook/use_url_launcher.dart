@@ -3,7 +3,8 @@ import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger.dart'
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
-export 'package:url_launcher/url_launcher.dart' show LaunchMode;
+export 'package:url_launcher/url_launcher.dart'
+    show LaunchMode, WebViewConfiguration;
 
 typedef UseUrlLauncherReturn = ({
   Future<bool> Function(Uri url) canLaunchUrl,

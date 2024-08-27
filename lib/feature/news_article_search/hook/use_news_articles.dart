@@ -10,9 +10,7 @@ typedef UseNewsArticlesReturn = ({
   Future<void> Function() fetchMore,
 });
 
-typedef UseNewsArticles = UseNewsArticlesReturn Function({
-  required String category,
-});
+typedef UseNewsArticles = UseNewsArticlesReturn Function();
 
 const String _hookName = 'UseNewsArticles';
 

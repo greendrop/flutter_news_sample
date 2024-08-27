@@ -5,21 +5,39 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
-import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page_for_search.dart';
-import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_articles.dart';
+import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page_for_search.dart'
+    as hook;
+import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_articles.dart'
+    as hook;
 import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_form.dart';
-import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
-import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart';
+import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart'
+    as hook;
+import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart'
+    as hook;
+import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart'
+    as hook;
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NewsArticleSearchPage extends HookConsumerWidget {
   const NewsArticleSearchPage({
     super.key,
+    this.useTranslations = hook.useTranslations,
+    this.useNewsArticles = hook.useNewsArticles,
+    this.useShowDangerTextSnackBar = hook.useShowDangerTextSnackBar,
+    this.usePushNewsArticleDetailPageForSearch =
+        hook.usePushNewsArticleDetailPageForSearch,
+    this.useUrlLauncher = hook.useUrlLauncher,
   });
 
   static const routeName = 'NewsArticleSearchPage';
+
+  final hook.UseTranslations useTranslations;
+  final hook.UseNewsArticles useNewsArticles;
+  final hook.UseShowDangerTextSnackBar useShowDangerTextSnackBar;
+  final hook.UsePushNewsArticleDetailPageForSearch
+      usePushNewsArticleDetailPageForSearch;
+  final hook.UseUrlLauncher useUrlLauncher;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -88,9 +106,9 @@ class NewsArticleSearchPage extends HookConsumerWidget {
   SliverAppBar _appBar(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
+    required hook.Translations translations,
+    required hook.UseNewsArticlesReturn newsArticles,
     required ValueNotifier<String> currentKeyword,
-    required UseNewsArticlesReturn newsArticles,
   }) {
     return SliverAppBar(
       title: Text(translations.newsArticleSearch.title),
@@ -121,13 +139,13 @@ class NewsArticleSearchPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
-    required ValueNotifier<String> currentKeyword,
-    required UseNewsArticlesReturn newsArticles,
-    required int gridCrossAxisCount,
-    required UsePushNewsArticleDetailPageForSearchReturn
+    required hook.Translations translations,
+    required hook.UseNewsArticlesReturn newsArticles,
+    required hook.UsePushNewsArticleDetailPageForSearchReturn
         pushNewsArticleDetailPageForSearch,
-    required UseUrlLauncherReturn urlLauncher,
+    required hook.UseUrlLauncherReturn urlLauncher,
+    required ValueNotifier<String> currentKeyword,
+    required int gridCrossAxisCount,
   }) {
     return newsArticles.state.when(
       loading: () {
@@ -138,12 +156,12 @@ class NewsArticleSearchPage extends HookConsumerWidget {
         );
       },
       error: (error, stackTrace) {
-        final appException = error is AppException
-            ? error
-            : AppException(parentException: error as Exception);
         return SliverFillRemaining(
           child: Center(
-            child: Text(appException.messageByTranslations(translations)),
+            child: Text(
+              AppException.fromException(error as Exception)
+                  .messageByTranslations(translations),
+            ),
           ),
         );
       },
@@ -187,7 +205,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                     if (value) {
                       urlLauncher.launchUrl(
                         url,
-                        mode: LaunchMode.externalApplication,
+                        mode: hook.LaunchMode.externalApplication,
                       );
                     }
                   });
