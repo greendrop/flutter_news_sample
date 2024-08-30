@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
-import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page_for_search.dart'
+import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_search_detail_page.dart'
     as hook;
 import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_articles.dart'
     as hook;
@@ -25,16 +25,16 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     this.useTranslations = hook.useTranslations,
     this.useNewsArticles = hook.useNewsArticles,
     this.useShowDangerTextSnackBar = hook.useShowDangerTextSnackBar,
-    this.usePushNewsArticleDetailPageForSearch =
-        hook.usePushNewsArticleDetailPageForSearch,
+    this.usePushNewsArticleSearchDetailPage =
+        hook.usePushNewsArticleSearchDetailPage,
     this.useUrlLauncher = hook.useUrlLauncher,
   });
 
   final hook.UseTranslations useTranslations;
   final hook.UseNewsArticles useNewsArticles;
   final hook.UseShowDangerTextSnackBar useShowDangerTextSnackBar;
-  final hook.UsePushNewsArticleDetailPageForSearch
-      usePushNewsArticleDetailPageForSearch;
+  final hook.UsePushNewsArticleSearchDetailPage
+      usePushNewsArticleSearchDetailPage;
   final hook.UseUrlLauncher useUrlLauncher;
 
   @override
@@ -43,8 +43,8 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     final currentKeyword = useState('');
     final newsArticles = useNewsArticles();
     final showDangerTextSnackBar = useShowDangerTextSnackBar();
-    final pushNewsArticleDetailPageForSearch =
-        usePushNewsArticleDetailPageForSearch();
+    final pushNewsArticleSearchDetailPage =
+        usePushNewsArticleSearchDetailPage();
     final urlLauncher = useUrlLauncher();
 
     return LayoutBuilder(
@@ -87,8 +87,8 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                       currentKeyword: currentKeyword,
                       newsArticles: newsArticles,
                       gridCrossAxisCount: breakpoint.columns ~/ 2,
-                      pushNewsArticleDetailPageForSearch:
-                          pushNewsArticleDetailPageForSearch,
+                      pushNewsArticleSearchDetailPage:
+                          pushNewsArticleSearchDetailPage,
                       urlLauncher: urlLauncher,
                     ),
                   ],
@@ -139,8 +139,8 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     WidgetRef ref, {
     required hook.Translations translations,
     required hook.UseNewsArticlesReturn newsArticles,
-    required hook.UsePushNewsArticleDetailPageForSearchReturn
-        pushNewsArticleDetailPageForSearch,
+    required hook.UsePushNewsArticleSearchDetailPageReturn
+        pushNewsArticleSearchDetailPage,
     required hook.UseUrlLauncherReturn urlLauncher,
     required ValueNotifier<String> currentKeyword,
     required int gridCrossAxisCount,
@@ -192,7 +192,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
 
                 if (defaultTargetPlatform == TargetPlatform.android ||
                     defaultTargetPlatform == TargetPlatform.iOS) {
-                  pushNewsArticleDetailPageForSearch.run(
+                  pushNewsArticleSearchDetailPage.run(
                     title: data.items[index].title ?? '',
                     url: data.items[index].url ?? '',
                   );

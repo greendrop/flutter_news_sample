@@ -2,17 +2,16 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
 import 'package:flutter_news_sample/feature/app_router/route_data/app_route_data.dart';
 
-typedef UsePushNewsArticleDetailPageForSearchReturn = ({
+typedef UsePushNewsArticleSearchDetailPageReturn = ({
   void Function({required String title, required String url}) run,
 });
 
-typedef UsePushNewsArticleDetailPageForSearch
-    = UsePushNewsArticleDetailPageForSearchReturn Function();
+typedef UsePushNewsArticleSearchDetailPage
+    = UsePushNewsArticleSearchDetailPageReturn Function();
 
-const String _hookName = 'usePushNewsArticleDetailPageForSearch';
+const String _hookName = 'usePushNewsArticleSearchDetailPage';
 
-UsePushNewsArticleDetailPageForSearchReturn
-    usePushNewsArticleDetailPageForSearch() {
+UsePushNewsArticleSearchDetailPageReturn usePushNewsArticleSearchDetailPage() {
   final context = useContext();
   final appLogger = useAppLogger();
 
