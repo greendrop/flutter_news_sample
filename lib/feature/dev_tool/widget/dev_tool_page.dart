@@ -12,8 +12,6 @@ class DevToolPage extends HookConsumerWidget {
     super.key,
   });
 
-  static const routeName = 'DevToolPage';
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translations = useTranslations();

@@ -25,8 +25,6 @@ class SettingPage extends HookConsumerWidget {
     bool? showDevTool,
   }) : showDevTool = showDevTool ?? AppConfig.instance.showDevTool;
 
-  static const routeName = 'SettingPage';
-
   final hook.UsePushLocaleSettingPage usePushLocaleSettingPage;
   final hook.UsePushThemeSettingPage usePushThemeSettingPage;
   final hook.UsePushDevToolPage usePushDevToolPage;

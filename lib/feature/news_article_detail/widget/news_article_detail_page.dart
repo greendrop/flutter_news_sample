@@ -28,9 +28,6 @@ class NewsArticleDetailPage extends HookConsumerWidget {
     required this.url,
   });
 
-  static const routeName = 'NewsArticleDetailPage';
-  static const routeNameForSearch = 'NewsArticleSearchDetailPage';
-
   final String title;
   final String url;
 

@@ -19,12 +19,10 @@ RouteBase get $appShellRouteData => StatefulShellRouteData.$route(
           routes: [
             GoRouteData.$route(
               path: '/news_articles',
-              name: 'NewsArticleListPage',
               factory: $NewsArticleListRouteDataExtension._fromState,
               routes: [
                 GoRouteData.$route(
                   path: 'detail',
-                  name: 'NewsArticleDetailPage',
                   parentNavigatorKey:
                       NewsArticleDetailRouteData.$parentNavigatorKey,
                   factory: $NewsArticleDetailRouteDataExtension._fromState,
@@ -38,12 +36,10 @@ RouteBase get $appShellRouteData => StatefulShellRouteData.$route(
           routes: [
             GoRouteData.$route(
               path: '/news_articles_search',
-              name: 'NewsArticleSearchPage',
               factory: $NewsArticleSearchRouteDataExtension._fromState,
               routes: [
                 GoRouteData.$route(
                   path: 'detail',
-                  name: 'NewsArticleSearchDetailPage',
                   parentNavigatorKey:
                       NewsArticleSearchDetailRouteData.$parentNavigatorKey,
                   factory:
@@ -58,38 +54,32 @@ RouteBase get $appShellRouteData => StatefulShellRouteData.$route(
           routes: [
             GoRouteData.$route(
               path: '/setting',
-              name: 'SettingPage',
               factory: $SettingRouteDataExtension._fromState,
               routes: [
                 GoRouteData.$route(
                   path: 'theme',
-                  name: 'ThemeSettingPage',
                   parentNavigatorKey: ThemeSettingRouteData.$parentNavigatorKey,
                   factory: $ThemeSettingRouteDataExtension._fromState,
                 ),
                 GoRouteData.$route(
                   path: 'locale',
-                  name: 'LocaleSettingPage',
                   parentNavigatorKey:
                       LocaleSettingRouteData.$parentNavigatorKey,
                   factory: $LocaleSettingRouteDataExtension._fromState,
                 ),
                 GoRouteData.$route(
                   path: 'dev_tool',
-                  name: 'DevToolPage',
                   parentNavigatorKey: DevToolRouteData.$parentNavigatorKey,
                   factory: $DevToolRouteDataExtension._fromState,
                   routes: [
                     GoRouteData.$route(
                       path: 'app_logs',
-                      name: 'AppLogListPage',
                       parentNavigatorKey:
                           AppLogListRouteData.$parentNavigatorKey,
                       factory: $AppLogListRouteDataExtension._fromState,
                       routes: [
                         GoRouteData.$route(
                           path: ':filename',
-                          name: 'AppLogDetailPage',
                           parentNavigatorKey:
                               AppLogDetailRouteData.$parentNavigatorKey,
                           factory: $AppLogDetailRouteDataExtension._fromState,
@@ -307,7 +297,6 @@ extension $AppLogDetailRouteDataExtension on AppLogDetailRouteData {
 
 RouteBase get $notFoundRouteData => GoRouteData.$route(
       path: '/:path(.*)',
-      name: 'NotFoundPage',
       parentNavigatorKey: NotFoundRouteData.$parentNavigatorKey,
       factory: $NotFoundRouteDataExtension._fromState,
     );
