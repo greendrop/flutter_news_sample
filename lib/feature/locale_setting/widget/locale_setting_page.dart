@@ -14,8 +14,6 @@ class LocaleSettingPage extends HookConsumerWidget {
     this.useLocale = hook.useLocale,
   });
 
-  static const routeName = 'LocaleSettingPage';
-
   final hook.UseLocale useLocale;
 
   @override

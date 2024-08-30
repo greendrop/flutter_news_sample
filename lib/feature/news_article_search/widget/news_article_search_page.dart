@@ -30,8 +30,6 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     this.useUrlLauncher = hook.useUrlLauncher,
   });
 
-  static const routeName = 'NewsArticleSearchPage';
-
   final hook.UseTranslations useTranslations;
   final hook.UseNewsArticles useNewsArticles;
   final hook.UseShowDangerTextSnackBar useShowDangerTextSnackBar;

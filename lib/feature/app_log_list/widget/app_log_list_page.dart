@@ -20,8 +20,6 @@ class AppLogListPage extends HookConsumerWidget {
     this.usePushAppLogDetailPage = hook.usePushAppLogDetailPage,
   });
 
-  static const routeName = 'AppLogListPage';
-
   final hook.UseAppLogFiles useAppLogFiles;
   final hook.UsePushAppLogDetailPage usePushAppLogDetailPage;
 

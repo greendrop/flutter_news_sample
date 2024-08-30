@@ -14,8 +14,6 @@ class ThemeSettingPage extends HookConsumerWidget {
     this.useThemeMode = hook.useThemeMode,
   });
 
-  static const routeName = 'ThemeSettingPage';
-
   final hook.UseThemeMode useThemeMode;
 
   @override

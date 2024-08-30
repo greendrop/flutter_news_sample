@@ -19,8 +19,6 @@ class NewsArticleListPage extends HookConsumerWidget {
     super.key,
   });
 
-  static const routeName = 'NewsArticleListPage';
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translations = useTranslations();

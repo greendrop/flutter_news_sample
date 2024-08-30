@@ -16,8 +16,6 @@ class AppLogDetailPage extends HookConsumerWidget {
     this.useAppLogFileContent = hook.useAppLogFileContent,
   });
 
-  static const routeName = 'AppLogDetailPage';
-
   final String filename;
   final hook.UseAppLogFileContent useAppLogFileContent;
 

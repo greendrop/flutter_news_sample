@@ -5,8 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class NotFoundPage extends HookConsumerWidget {
   const NotFoundPage({super.key});
 
-  static const routeName = 'NotFoundPage';
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const Scaffold(

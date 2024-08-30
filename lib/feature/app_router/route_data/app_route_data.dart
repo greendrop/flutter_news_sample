@@ -43,11 +43,9 @@ final settingBranchNavigatorKey =
       routes: [
         TypedGoRoute<NewsArticleListRouteData>(
           path: '/news_articles',
-          name: NewsArticleListPage.routeName,
           routes: [
             TypedGoRoute<NewsArticleDetailRouteData>(
               path: 'detail',
-              name: NewsArticleDetailPage.routeName,
             ),
           ],
         ),
@@ -57,11 +55,9 @@ final settingBranchNavigatorKey =
       routes: [
         TypedGoRoute<NewsArticleSearchRouteData>(
           path: '/news_articles_search',
-          name: NewsArticleSearchPage.routeName,
           routes: [
             TypedGoRoute<NewsArticleSearchDetailRouteData>(
               path: 'detail',
-              name: NewsArticleDetailPage.routeNameForSearch,
             ),
           ],
         ),
@@ -71,27 +67,21 @@ final settingBranchNavigatorKey =
       routes: [
         TypedGoRoute<SettingRouteData>(
           path: '/setting',
-          name: SettingPage.routeName,
           routes: [
             TypedGoRoute<ThemeSettingRouteData>(
               path: 'theme',
-              name: ThemeSettingPage.routeName,
             ),
             TypedGoRoute<LocaleSettingRouteData>(
               path: 'locale',
-              name: LocaleSettingPage.routeName,
             ),
             TypedGoRoute<DevToolRouteData>(
               path: 'dev_tool',
-              name: DevToolPage.routeName,
               routes: [
                 TypedGoRoute<AppLogListRouteData>(
                   path: 'app_logs',
-                  name: AppLogListPage.routeName,
                   routes: [
                     TypedGoRoute<AppLogDetailRouteData>(
                       path: ':filename',
-                      name: AppLogDetailPage.routeName,
                     ),
                   ],
                 ),
@@ -129,7 +119,6 @@ class AppShellRouteData extends StatefulShellRouteData {
 
 @TypedGoRoute<NotFoundRouteData>(
   path: '/:path(.*)',
-  name: NotFoundPage.routeName,
 )
 class NotFoundRouteData extends GoRouteData {
   const NotFoundRouteData({
