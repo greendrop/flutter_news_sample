@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/news_article/entity/news_article.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
-import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page_for_search.dart';
+import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_search_detail_page.dart';
 import 'package:flutter_news_sample/feature/news_article_search/entity/news_articles.dart';
 import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_articles.dart';
 import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_page.dart';
@@ -29,7 +29,7 @@ void main() {
       [
         'useNewsArticles#stateが存在する場合、NewsArticleGridItemが表示されること',
         // ignore: lines_longer_than_80_chars
-        'NewsArticleGridItemをタップした場合、usePushNewsArticleDetailPageForSearch#runが呼ばれること',
+        'NewsArticleGridItemをタップした場合、usePushNewsArticleSearchDetailPage#runが呼ばれること',
       ].join(', '),
       (tester) async {
         UseNewsArticlesReturn useNewsArticles() {
@@ -71,8 +71,8 @@ void main() {
         }
 
         var isCalled = false;
-        UsePushNewsArticleDetailPageForSearchReturn
-            usePushNewsArticleDetailPageForSearch() {
+        UsePushNewsArticleSearchDetailPageReturn
+            usePushNewsArticleSearchDetailPage() {
           void run({required String title, required String url}) {
             isCalled = true;
           }
@@ -85,8 +85,8 @@ void main() {
             child: Scaffold(
               body: NewsArticleSearchPage(
                 useNewsArticles: useNewsArticles,
-                usePushNewsArticleDetailPageForSearch:
-                    usePushNewsArticleDetailPageForSearch,
+                usePushNewsArticleSearchDetailPage:
+                    usePushNewsArticleSearchDetailPage,
               ),
             ),
           ),
