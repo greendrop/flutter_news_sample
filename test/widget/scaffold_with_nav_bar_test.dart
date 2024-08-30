@@ -10,15 +10,14 @@ void main() {
   group('ScaffoldWithNavBar', () {
     group('縦向きの場合', () {
       testWidgets('AppNavigationBarが表示されること', (tester) async {
-        Uri useAppRouterCurrentUri() => Uri(path: '/');
-
         await tester.runAsync(() async {
           await tester.pumpWidget(
             MediaQuery(
               data: const MediaQueryData(size: Size(320, 640)),
               child: TestMaterialApp(
                 child: ScaffoldWithNavBar(
-                  useAppRouterCurrentUri: useAppRouterCurrentUri,
+                  currentIndex: 0,
+                  onDestinationSelected: (index) {},
                   child: Container(),
                 ),
               ),
@@ -33,15 +32,14 @@ void main() {
 
     group('横向きの場合', () {
       testWidgets('AppNavigationRailが表示されること', (tester) async {
-        Uri useAppRouterCurrentUri() => Uri(path: '/');
-
         await tester.runAsync(() async {
           await tester.pumpWidget(
             MediaQuery(
               data: const MediaQueryData(size: Size(640, 320)),
               child: TestMaterialApp(
                 child: ScaffoldWithNavBar(
-                  useAppRouterCurrentUri: useAppRouterCurrentUri,
+                  currentIndex: 0,
+                  onDestinationSelected: (index) {},
                   child: Container(),
                 ),
               ),
