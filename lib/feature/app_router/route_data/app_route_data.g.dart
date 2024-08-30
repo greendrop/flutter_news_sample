@@ -11,76 +11,90 @@ List<RouteBase> get $appRoutes => [
       $notFoundRouteData,
     ];
 
-RouteBase get $appShellRouteData => ShellRouteData.$route(
-      navigatorKey: AppShellRouteData.$navigatorKey,
+RouteBase get $appShellRouteData => StatefulShellRouteData.$route(
       factory: $AppShellRouteDataExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: '/news_articles',
-          name: 'NewsArticleListPage',
-          parentNavigatorKey: NewsArticleListRouteData.$parentNavigatorKey,
-          factory: $NewsArticleListRouteDataExtension._fromState,
+      branches: [
+        StatefulShellBranchData.$branch(
+          navigatorKey: NewsArticleBranchData.$navigatorKey,
           routes: [
             GoRouteData.$route(
-              path: 'detail',
-              name: 'NewsArticleDetailPage',
-              parentNavigatorKey:
-                  NewsArticleDetailRouteData.$parentNavigatorKey,
-              factory: $NewsArticleDetailRouteDataExtension._fromState,
-            ),
-          ],
-        ),
-        GoRouteData.$route(
-          path: '/news_articles_search',
-          name: 'NewsArticleSearchPage',
-          parentNavigatorKey: NewsArticleSearchRouteData.$parentNavigatorKey,
-          factory: $NewsArticleSearchRouteDataExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: 'detail',
-              name: 'NewsArticleSearchDetailPage',
-              parentNavigatorKey:
-                  NewsArticleSearchDetailRouteData.$parentNavigatorKey,
-              factory: $NewsArticleSearchDetailRouteDataExtension._fromState,
-            ),
-          ],
-        ),
-        GoRouteData.$route(
-          path: '/setting',
-          name: 'SettingPage',
-          parentNavigatorKey: SettingRouteData.$parentNavigatorKey,
-          factory: $SettingRouteDataExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: 'theme',
-              name: 'ThemeSettingPage',
-              parentNavigatorKey: ThemeSettingRouteData.$parentNavigatorKey,
-              factory: $ThemeSettingRouteDataExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'locale',
-              name: 'LocaleSettingPage',
-              parentNavigatorKey: LocaleSettingRouteData.$parentNavigatorKey,
-              factory: $LocaleSettingRouteDataExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'dev_tool',
-              name: 'DevToolPage',
-              parentNavigatorKey: DevToolRouteData.$parentNavigatorKey,
-              factory: $DevToolRouteDataExtension._fromState,
+              path: '/news_articles',
+              name: 'NewsArticleListPage',
+              factory: $NewsArticleListRouteDataExtension._fromState,
               routes: [
                 GoRouteData.$route(
-                  path: 'app_logs',
-                  name: 'AppLogListPage',
-                  parentNavigatorKey: AppLogListRouteData.$parentNavigatorKey,
-                  factory: $AppLogListRouteDataExtension._fromState,
+                  path: 'detail',
+                  name: 'NewsArticleDetailPage',
+                  parentNavigatorKey:
+                      NewsArticleDetailRouteData.$parentNavigatorKey,
+                  factory: $NewsArticleDetailRouteDataExtension._fromState,
+                ),
+              ],
+            ),
+          ],
+        ),
+        StatefulShellBranchData.$branch(
+          navigatorKey: NewsArticleSearchBranchData.$navigatorKey,
+          routes: [
+            GoRouteData.$route(
+              path: '/news_articles_search',
+              name: 'NewsArticleSearchPage',
+              factory: $NewsArticleSearchRouteDataExtension._fromState,
+              routes: [
+                GoRouteData.$route(
+                  path: 'detail',
+                  name: 'NewsArticleSearchDetailPage',
+                  parentNavigatorKey:
+                      NewsArticleSearchDetailRouteData.$parentNavigatorKey,
+                  factory:
+                      $NewsArticleSearchDetailRouteDataExtension._fromState,
+                ),
+              ],
+            ),
+          ],
+        ),
+        StatefulShellBranchData.$branch(
+          navigatorKey: SettingBranchData.$navigatorKey,
+          routes: [
+            GoRouteData.$route(
+              path: '/setting',
+              name: 'SettingPage',
+              factory: $SettingRouteDataExtension._fromState,
+              routes: [
+                GoRouteData.$route(
+                  path: 'theme',
+                  name: 'ThemeSettingPage',
+                  parentNavigatorKey: ThemeSettingRouteData.$parentNavigatorKey,
+                  factory: $ThemeSettingRouteDataExtension._fromState,
+                ),
+                GoRouteData.$route(
+                  path: 'locale',
+                  name: 'LocaleSettingPage',
+                  parentNavigatorKey:
+                      LocaleSettingRouteData.$parentNavigatorKey,
+                  factory: $LocaleSettingRouteDataExtension._fromState,
+                ),
+                GoRouteData.$route(
+                  path: 'dev_tool',
+                  name: 'DevToolPage',
+                  parentNavigatorKey: DevToolRouteData.$parentNavigatorKey,
+                  factory: $DevToolRouteDataExtension._fromState,
                   routes: [
                     GoRouteData.$route(
-                      path: ':filename',
-                      name: 'AppLogDetailPage',
+                      path: 'app_logs',
+                      name: 'AppLogListPage',
                       parentNavigatorKey:
-                          AppLogDetailRouteData.$parentNavigatorKey,
-                      factory: $AppLogDetailRouteDataExtension._fromState,
+                          AppLogListRouteData.$parentNavigatorKey,
+                      factory: $AppLogListRouteDataExtension._fromState,
+                      routes: [
+                        GoRouteData.$route(
+                          path: ':filename',
+                          name: 'AppLogDetailPage',
+                          parentNavigatorKey:
+                              AppLogDetailRouteData.$parentNavigatorKey,
+                          factory: $AppLogDetailRouteDataExtension._fromState,
+                        ),
+                      ],
                     ),
                   ],
                 ),
