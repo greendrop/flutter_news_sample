@@ -17,7 +17,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class NewsArticleListPage extends HookConsumerWidget {
   const NewsArticleListPage({
     super.key,
+    this.initialCategory = defaultCategory,
   });
+
+  final NewsHeadlineCategory initialCategory;
+
+  static const defaultCategory = NewsHeadlineCategory.general;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,8 +37,12 @@ class NewsArticleListPage extends HookConsumerWidget {
       acc[category] = useNewsArticles(category: category.value);
       return acc;
     });
-    final tabController =
-        useTabController(initialLength: newsArticlesByCategories.length);
+    final tabController = useTabController(
+      initialLength: newsArticlesByCategories.length,
+      initialIndex: newsArticlesByCategories.keys
+          .toList()
+          .indexWhere((category) => category == initialCategory),
+    );
 
     useEffect(
       () {

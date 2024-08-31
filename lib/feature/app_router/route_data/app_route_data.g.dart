@@ -102,10 +102,15 @@ extension $AppShellRouteDataExtension on AppShellRouteData {
 
 extension $NewsArticleListRouteDataExtension on NewsArticleListRouteData {
   static NewsArticleListRouteData _fromState(GoRouterState state) =>
-      NewsArticleListRouteData();
+      NewsArticleListRouteData(
+        category: state.uri.queryParameters['category'],
+      );
 
   String get location => GoRouteData.$location(
         '/news_articles',
+        queryParams: {
+          if (category != null) 'category': category,
+        },
       );
 
   void go(BuildContext context) => context.go(location);

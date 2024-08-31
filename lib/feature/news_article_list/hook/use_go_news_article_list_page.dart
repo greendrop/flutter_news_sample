@@ -1,9 +1,12 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
 import 'package:flutter_news_sample/feature/app_router/route_data/app_route_data.dart';
+import 'package:flutter_news_sample/feature/news_article_list/enum/news_headline_category.dart';
 
 typedef UseGoNewsArticleListPageReturn = ({
-  void Function() run,
+  void Function({
+    NewsHeadlineCategory category,
+  }) run,
 });
 
 typedef UseGoNewsArticleListPage = UseGoNewsArticleListPageReturn Function();
@@ -15,9 +18,12 @@ UseGoNewsArticleListPageReturn useGoNewsArticleListPage() {
   final appLogger = useAppLogger();
 
   final run = useCallback(
-    () {
-      appLogger.i(['$_hookName#run']);
-      return NewsArticleListRouteData().go(context);
+    ({NewsHeadlineCategory? category}) {
+      appLogger.i([
+        '$_hookName#run',
+        {'category': category},
+      ]);
+      return NewsArticleListRouteData(category: category?.value).go(context);
     },
     [],
   );

@@ -4,6 +4,7 @@ import 'package:flutter_news_sample/feature/app_log_list/widget/app_log_list_pag
 import 'package:flutter_news_sample/feature/dev_tool/widget/dev_tool_page.dart';
 import 'package:flutter_news_sample/feature/locale_setting/widget/locale_setting_page.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/widget/news_article_detail_page.dart';
+import 'package:flutter_news_sample/feature/news_article_list/enum/news_headline_category.dart';
 import 'package:flutter_news_sample/feature/news_article_list/widget/news_article_list_page.dart';
 import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_page.dart';
 import 'package:flutter_news_sample/feature/not_found/widget/not_found_page.dart';
