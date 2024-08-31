@@ -12,6 +12,27 @@ enum NewsHeadlineCategory {
 
   const NewsHeadlineCategory({required this.value});
 
+  factory NewsHeadlineCategory.fromValue(String value) {
+    switch (value) {
+      case 'general':
+        return NewsHeadlineCategory.general;
+      case 'business':
+        return NewsHeadlineCategory.business;
+      case 'entertainment':
+        return NewsHeadlineCategory.entertainment;
+      case 'health':
+        return NewsHeadlineCategory.health;
+      case 'science':
+        return NewsHeadlineCategory.science;
+      case 'sports':
+        return NewsHeadlineCategory.sports;
+      case 'technology':
+        return NewsHeadlineCategory.technology;
+      default:
+        throw Exception('Unknown value: $value');
+    }
+  }
+
   final String value;
 
   String nameByTranslations(Translations translations) {
