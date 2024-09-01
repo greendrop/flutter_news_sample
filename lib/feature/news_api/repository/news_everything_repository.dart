@@ -10,16 +10,20 @@ import 'package:logger/logger.dart';
 const String _repositoryName = 'NewsEverythingRepository';
 
 class NewsEverythingRepository {
-  NewsEverythingRepository({required this.ref, required this.logger});
+  NewsEverythingRepository({
+    required this.ref,
+    required this.logger,
+    required this.dio,
+  });
 
   final Ref ref;
   final Logger logger;
+  final Dio dio;
 
   Future<NewsEverythingResponse> get({
     required String query,
     int page = 1,
   }) async {
-    final dio = Dio();
     dio.interceptors.add(LogInterceptor(logPrint: logger.d));
     final client = NewsEverythingClient(dio);
     try {
