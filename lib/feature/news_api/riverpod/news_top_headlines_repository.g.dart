@@ -7,7 +7,7 @@ part of 'news_top_headlines_repository.dart';
 // **************************************************************************
 
 String _$newsTopHeadlinesRepositoryHash() =>
-    r'8b4f666eb57e686e8252e10ac8dd73c6e9702d37';
+    r'65c52f5ab4c2156dcd8ab5158008697029b4a591';
 
 /// See also [newsTopHeadlinesRepository].
 @ProviderFor(newsTopHeadlinesRepository)
