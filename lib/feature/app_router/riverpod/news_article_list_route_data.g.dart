@@ -7,7 +7,7 @@ part of 'news_article_list_route_data.dart';
 // **************************************************************************
 
 String _$newsArticleListRouteDataHash() =>
-    r'da31ac590d029118a556e182de681fe19ad197aa';
+    r'68430f1fb5f47a84579831f1972721868f5ec120';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -41,7 +41,7 @@ class NewsArticleListRouteDataFamily extends Family<NewsArticleListRouteData> {
 
   /// See also [newsArticleListRouteData].
   NewsArticleListRouteDataProvider call({
-    required String category,
+    required String? category,
   }) {
     return NewsArticleListRouteDataProvider(
       category: category,
@@ -77,7 +77,7 @@ class NewsArticleListRouteDataProvider
     extends AutoDisposeProvider<NewsArticleListRouteData> {
   /// See also [newsArticleListRouteData].
   NewsArticleListRouteDataProvider({
-    required String category,
+    required String? category,
   }) : this._internal(
           (ref) => newsArticleListRouteData(
             ref as NewsArticleListRouteDataRef,
@@ -105,7 +105,7 @@ class NewsArticleListRouteDataProvider
     required this.category,
   }) : super.internal();
 
-  final String category;
+  final String? category;
 
   @override
   Override overrideWith(
@@ -149,7 +149,7 @@ class NewsArticleListRouteDataProvider
 mixin NewsArticleListRouteDataRef
     on AutoDisposeProviderRef<NewsArticleListRouteData> {
   /// The parameter `category` of this provider.
-  String get category;
+  String? get category;
 }
 
 class _NewsArticleListRouteDataProviderElement
@@ -158,7 +158,7 @@ class _NewsArticleListRouteDataProviderElement
   _NewsArticleListRouteDataProviderElement(super.provider);
 
   @override
-  String get category => (origin as NewsArticleListRouteDataProvider).category;
+  String? get category => (origin as NewsArticleListRouteDataProvider).category;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

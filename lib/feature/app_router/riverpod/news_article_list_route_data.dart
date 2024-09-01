@@ -6,7 +6,7 @@ part 'news_article_list_route_data.g.dart';
 @riverpod
 NewsArticleListRouteData newsArticleListRouteData(
   NewsArticleListRouteDataRef ref, {
-  required String category,
+  required String? category,
 }) {
   return NewsArticleListRouteData(category: category);
 }
