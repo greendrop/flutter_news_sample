@@ -85,6 +85,9 @@ jobs:
       pages: write
       id-token: write
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Download code coverage from artifact
         uses: actions/download-artifact@v2
         with:
