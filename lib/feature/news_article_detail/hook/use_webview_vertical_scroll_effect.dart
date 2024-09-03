@@ -5,7 +5,7 @@ import 'package:flutter_news_sample/feature/news_article_detail/riverpod/webview
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void useWebviewVerticalScrollEffect({
-  required AnimationController animationController,
+  required AnimationController appBarAnimationController,
 }) {
   final context = useContext();
   final ref = context as WidgetRef;
@@ -15,9 +15,9 @@ void useWebviewVerticalScrollEffect({
     () {
       Future.delayed(Duration.zero, () {
         if (state.direction == WebviewVerticalScrollDirection.up) {
-          animationController.reverse();
+          appBarAnimationController.reverse();
         } else {
-          animationController.forward();
+          appBarAnimationController.forward();
         }
       });
       return () {};
