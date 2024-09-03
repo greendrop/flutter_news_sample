@@ -73,8 +73,9 @@ void main() {
         var isCalled = false;
         UsePushNewsArticleSearchDetailPageReturn
             usePushNewsArticleSearchDetailPage() {
-          void run({required String title, required String url}) {
+          Future<void> run({required String title, required String url}) {
             isCalled = true;
+            return Future.value();
           }
 
           return (run: run);
