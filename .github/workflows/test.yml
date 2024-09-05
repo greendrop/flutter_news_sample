@@ -98,7 +98,7 @@ jobs:
 
       - name: Remove coverage directory from .gitignore
         run: |
-          sed -i '' '/coverage/d' .gitignore
+          sed -i '/coverage/d' .gitignore
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
