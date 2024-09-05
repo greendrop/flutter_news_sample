@@ -96,6 +96,10 @@ jobs:
         run: |
           genhtml coverage/lcov.info --output-directory coverage/html
 
+      - name: Remove coverage directory from .gitignore
+        run: |
+          sed -i '' '/coverage/d' .gitignore
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
