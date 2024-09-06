@@ -60,20 +60,24 @@ jobs:
         run: |
           flutter test --coverage
 
+      - name: Setup LCOV
+        uses: hrishikesh-kadam/setup-lcov@v1
+
+      - name: Generate code coverage html
+        run: |
+          genhtml coverage/lcov.info --output-directory coverage/html
+
+      - name: Report code coverage to console
+        run: |
+          lcov --list coverage/lcov.info --list-full-path --rc lcov_branch_coverage=1
+
       - name: Upload coverage/lcov.info to artifact
         uses: actions/upload-artifact@v2
         with:
           name: coverage
           path: coverage/lcov.info
 
-      - name: Setup LCOV
-        uses: hrishikesh-kadam/setup-lcov@v1
-
-      - name: Report code coverage
-        run: |
-          lcov --list coverage/lcov.info --list-full-path --rc lcov_branch_coverage=1
-
-  deploy_code_coverage:
+  deploy_to_github_pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -87,26 +91,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download code coverage from artifact
+      - name: Download coverage from artifact
         uses: actions/download-artifact@v2
         with:
           name: coverage
           path: coverage
 
-      - name: Setup LCOV
-        uses: hrishikesh-kadam/setup-lcov@v1
-
-      - name: Generate code coverage html
-        run: |
-          genhtml coverage/lcov.info --output-directory coverage/html
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Copy github pages files
+        run: |
+          mkdir -p github-pages
+          cp README.md github-pages
+          cp -r doc github-pages
+          cp -r coverage github-pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "coverage/html"
+          artifact-name: github-pages
 
       - name: Deploy to GitHub Pages
         id: deployment
