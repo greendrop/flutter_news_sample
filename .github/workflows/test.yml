@@ -75,12 +75,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: coverage
-          path: coverage/lcov.info
+          path: coverage
 
-  deploy_to_github_pages:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build_github_pages:
     runs-on: ubuntu-latest
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -95,23 +92,30 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: coverage
-          path: coverage
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Copy github pages files
-        run: |
-          mkdir -p github-pages
-          cp README.md github-pages
-          cp -r doc github-pages
-          cp -r coverage github-pages
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: github-pages
 
+  deploy_github_pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build_github_pages
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
