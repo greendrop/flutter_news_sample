@@ -1,4 +1,4 @@
-name: Test
+name: Test, Deploy GitHub Pages
 
 env:
   FLUTTER_VERSION: 3.24.1
@@ -92,6 +92,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: coverage
+          path: coverage
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
