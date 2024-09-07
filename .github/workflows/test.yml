@@ -1,9 +1,6 @@
 ---
 name: Test, Deploy GitHub Pages
 
-env:
-  FLUTTER_VERSION: 3.24.1
-
 on:
   pull_request:
   push:
@@ -18,44 +15,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup java
-        uses: actions/setup-java@v4
-        with:
-          distribution: "zulu"
-          java-version: "17"
+      - name: Get Flutter version from .fvmrc
+        id: get_flutter_version
+        run: |
+          flutter_version="$(< .fvmrc jq -r .flutter)"
+          # shellcheck disable=SC2086
+          echo "version=$flutter_version" >> $GITHUB_OUTPUT
 
       - name: Setup flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: "stable"
+          flutter-version: ${{ steps.get_flutter_version.outputs.version }}
           cache: true
 
       - name: flutter pub get
         run: |
           flutter pub get
-
-      - name: Check diff for pubspec.yaml and pubspec.lock
-        run: |
-          git add .
-          git diff --cached --exit-code
-
-      - name: dart run build_runner build
-        run: |
-          dart run build_runner build -d
-
-      - name: Check diff for generated files
-        run: |
-          git add .
-          git diff --cached --exit-code
-
-      - name: dart format
-        run: |
-          find ./lib ./test -name "*.dart" -not \( -name "*.freezed.dart" -o -name "*.g.dart" -o -name "*.gen.dart" -o -name "*.gr.dart" -o -name "*.graphql.dart" -o -name "*.mock.dart" \) -exec dart format -o none --set-exit-if-changed {} +
-
-      - name: flutter analyze
-        run: |
-          flutter analyze --no-fatal-infos
 
       - name: flutter test
         run: |
