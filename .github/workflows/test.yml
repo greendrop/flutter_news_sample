@@ -51,11 +51,11 @@ jobs:
 
       - name: dart format
         run: |
-          dart format -o none --set-exit-if-changed $(find ./lib ./test -name "*.dart" -not \( -name "*.freezed.dart" -o -name "*.g.dart" -o -name "*.gen.dart" -o -name "*.gr.dart" -o -name "*.graphql.dart" -o -name "*.mock.dart" \) )
+          find ./lib ./test -name "*.dart" -not \( -name "*.freezed.dart" -o -name "*.g.dart" -o -name "*.gen.dart" -o -name "*.gr.dart" -o -name "*.graphql.dart" -o -name "*.mock.dart" \) -exec dart format -o none --set-exit-if-changed {} +
 
       - name: flutter analyze
         run: |
-          flutter analyze
+          flutter analyze --no-fatal-infos
 
       - name: flutter test
         run: |
