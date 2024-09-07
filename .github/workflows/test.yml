@@ -1,9 +1,6 @@
 ---
 name: Test, Deploy GitHub Pages
 
-env:
-  FLUTTER_VERSION: 3.24.1
-
 on:
   pull_request:
   push:
@@ -21,8 +18,8 @@ jobs:
       - name: Setup flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: "stable"
+          flutter-version-file: pubspec.yaml
           cache: true
 
       - name: flutter pub get
