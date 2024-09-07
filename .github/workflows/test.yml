@@ -89,7 +89,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download coverage from artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: coverage
           path: coverage
