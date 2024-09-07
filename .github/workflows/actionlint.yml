@@ -1,0 +1,35 @@
+---
+# Ref: https://github.com/rhysd/actionlint
+name: actionlint
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/*.yaml
+      - .github/workflows/*.yml
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/*.yaml
+      - .github/workflows/*.yml
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download actionlint
+        id: get_actionlint
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+
+      - name: Lint workflow files
+        run: ${{ steps.get_actionlint.outputs.executable }} -color
