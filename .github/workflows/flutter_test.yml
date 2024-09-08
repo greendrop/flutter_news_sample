@@ -1,5 +1,5 @@
 ---
-name: Test
+name: Flutter test
 
 on:
   pull_request:
@@ -48,8 +48,11 @@ jobs:
         run: |
           lcov --list coverage/lcov.info --list-full-path --rc lcov_branch_coverage=1
 
-      - name: Upload coverage/lcov.info to artifact
+      - name: Upload coverage to artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage
+
+      - name: Report coverage to GitHub
+        uses: k1LoW/octocov-action@v1
