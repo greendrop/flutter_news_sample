@@ -25,10 +25,6 @@
 
 - [ローカル開発環境構築](doc/local_development_setup.md)
 
-## テスト
-
-- [カバレッジ](https://greendrop.github.io/flutter_news_sample/coverage/html)
-
 ## トピック
 
 - [非スマホエンジニア向けのトピック](doc/topics/topics_for_non_smartphone_engineers.md)
