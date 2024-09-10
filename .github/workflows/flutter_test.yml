@@ -21,7 +21,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Get Flutter version from .fvmrc
         id: get_flutter_version
@@ -30,7 +30,7 @@ jobs:
           echo "version=$flutter_version" >> "$GITHUB_OUTPUT"
 
       - name: Setup flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@3d804929922b667a63a229bc59037807f969e885 # v2.15.0
         with:
           channel: "stable"
           flutter-version: ${{ steps.get_flutter_version.outputs.version }}
@@ -44,22 +44,24 @@ jobs:
         run: |
           flutter test --coverage
 
-      - name: Setup LCOV
-        uses: hrishikesh-kadam/setup-lcov@v1
-
-      - name: Generate code coverage html
+      - name: Install LCOV
         run: |
-          genhtml coverage/lcov.info --output-directory coverage/html
+          sudo apt-get -y install lcov
+          lcov --version
 
       - name: Report code coverage to console
         run: |
           lcov --list coverage/lcov.info --list-full-path --rc lcov_branch_coverage=1
 
+      - name: Generate code coverage html
+        run: |
+          genhtml coverage/lcov.info --output-directory coverage/html
+
       - name: Upload coverage to artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
         with:
           name: coverage
           path: coverage
 
       - name: Report coverage to GitHub
-        uses: k1LoW/octocov-action@v1
+        uses: k1LoW/octocov-action@1ad702b3118b6a055c00b01db68ca0d9f6641dbc # v1.4.0

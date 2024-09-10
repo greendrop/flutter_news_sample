@@ -19,7 +19,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Get Flutter version from .fvmrc
         id: get_flutter_version
@@ -28,7 +28,7 @@ jobs:
           echo "version=$flutter_version" >> "$GITHUB_OUTPUT"
 
       - name: Setup flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@3d804929922b667a63a229bc59037807f969e885 # v2.15.0
         with:
           channel: "stable"
           flutter-version: ${{ steps.get_flutter_version.outputs.version }}
