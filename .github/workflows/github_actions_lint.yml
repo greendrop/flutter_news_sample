@@ -1,0 +1,60 @@
+# actionlint　と ghalint を使って GitHub Actions の構文をチェックする
+#
+# - actionlint: https://github.com/rhysd/actionlint
+# - ghalint: https://github.com/suzuki-shunsuke/ghalint
+---
+name: GitHub Actions Lint
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/*.yaml
+      - .github/workflows/*.yml
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/*.yaml
+      - .github/workflows/*.yml
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+
+      - name: Download actionlint
+        id: get_actionlint
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+
+      - name: Run actionlint
+        run: ${{ steps.get_actionlint.outputs.executable }} -color
+
+      - name: Download ghalint
+        # NOTE: アップデートする場合は、GHALINT_VERSION, GHALINT_CHECKSUM を更新してください
+        env:
+          GHALINT_VERSION: 0.2.12
+          GHALINT_OS: linux
+          GHALINT_ARCH: amd64
+          GHALINT_CHECKSUM: 722d3420fff4f9a0d7b38b3654dfcddb4f1f6e2adbb3bba013f2d9eed406d9d5
+        run: |
+          curl -L -o ghalint.tar.gz "https://github.com/suzuki-shunsuke/ghalint/releases/download/v${GHALINT_VERSION}/ghalint_${GHALINT_VERSION}_${GHALINT_OS}_${GHALINT_ARCH}.tar.gz"
+          if [ "$(shasum -a 256 ghalint.tar.gz)" != "${GHALINT_CHECKSUM}  ghalint.tar.gz" ]; then
+            echo "checksum mismatch"
+            echo "expected: ${GHALINT_CHECKSUM}  ghalint.tar.gz"
+            echo "actual: $(shasum -a 256 ghalint.tar.gz)"
+            exit 1
+          fi
+          tar xzf ghalint.tar.gz
+          ./ghalint version
+
+      - name: Run ghalint
+        run: ./ghalint run
