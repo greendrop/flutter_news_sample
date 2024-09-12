@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Download actionlint
-        # NOTE: アップデートする場合は、GHALINT_VERSION, GHALINT_CHECKSUM を更新してください
+        # NOTE: アップデートする場合は、ACTIONLINT_VERSION, ACTIONLINT_CHECKSUM を更新してください
         env:
           ACTIONLINT_VERSION: 1.7.1
           ACTIONLINT_OS: linux
@@ -42,7 +42,7 @@ jobs:
           curl -L -o actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_${ACTIONLINT_OS}_${ACTIONLINT_ARCH}.tar.gz"
           if [ "$(shasum -a 256 actionlint.tar.gz)" != "${ACTIONLINT_CHECKSUM}  actionlint.tar.gz" ]; then
             echo "checksum mismatch"
-            echo "expected: ${ACTIONLINT_CHECKSUM}  ghalint.tar.gz"
+            echo "expected: ${ACTIONLINT_CHECKSUM}  actionlint.tar.gz"
             echo "actual: $(shasum -a 256 actionlint.tar.gz)"
             exit 1
           fi
