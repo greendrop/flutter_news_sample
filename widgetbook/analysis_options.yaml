@@ -1,16 +1,8 @@
 ---
 include: package:flutter_lints/flutter.yaml
 analyzer:
-  plugins:
-    - custom_lint
   exclude:
-    - "**/*.freezed.dart"
-    - "**/*.g.dart"
-    - "**/*.gen.dart"
-    - "**/*.gr.dart"
-    - "**/*.mocks.dart"
-    - "lib/generated_plugin_registrant.dart"
-    - "widgetbook/**/*.dart"
+    - /**/*.g.dart
   errors:
     missing_required_param: warning
     missing_return: warning
