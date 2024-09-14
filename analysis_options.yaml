@@ -4,12 +4,13 @@ analyzer:
   plugins:
     - custom_lint
   exclude:
-    - lib/generated_plugin_registrant.dart
-    - /**/*.freezed.dart
-    - /**/*.g.dart
-    - /**/*.gen.dart
-    - /**/*.gr.dart
-    - /**/*.mocks.dart
+    - "**/*.freezed.dart"
+    - "**/*.g.dart"
+    - "**/*.gen.dart"
+    - "**/*.gr.dart"
+    - "**/*.mocks.dart"
+    - "lib/generated_plugin_registrant.dart"
+    - "widgetbook/**/*.dart"
   errors:
     missing_required_param: warning
     missing_return: warning

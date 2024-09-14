@@ -1,0 +1,67 @@
+---
+name: Flutter Widgetbook lint
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Get Flutter version from .fvmrc
+        id: get_flutter_version
+        run: |
+          flutter_version="$(< .fvmrc jq -r .flutter)"
+          echo "version=$flutter_version" >> "$GITHUB_OUTPUT"
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2.16.0
+        with:
+          channel: "stable"
+          flutter-version: ${{ steps.get_flutter_version.outputs.version }}
+          cache: true
+
+      - name: flutter pub get
+        working-directory: widgetbook
+        run: |
+          flutter pub get
+
+      - name: Check diff for pubspec.yaml and pubspec.lock
+        working-directory: widgetbook
+        run: |
+          git add .
+          git diff --cached --exit-code
+
+      - name: dart run build_runner build
+        working-directory: widgetbook
+        run: |
+          dart run build_runner build -d
+
+      - name: Check diff for generated files
+        working-directory: widgetbook
+        run: |
+          git add .
+          git diff --cached --exit-code
+
+      - name: dart format
+        working-directory: widgetbook
+        run: |
+          find ./lib -name "*.dart" -not \( -name "*.freezed.dart" -o -name "*.g.dart" -o -name "*.gen.dart" -o -name "*.gr.dart" -o -name "*.graphql.dart" -o -name "*.mock.dart" \) -exec dart format -o none --set-exit-if-changed {} +
+
+      - name: flutter analyze
+        working-directory: widgetbook
+        run: |
+          flutter analyze --no-fatal-infos

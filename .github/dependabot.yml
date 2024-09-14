@@ -42,3 +42,12 @@ updates:
       url_launcher:
         patterns:
           - 'url_launcher*'
+  - package-ecosystem: 'pub'
+    directory: '/widgetbook'
+    rebase-strategy: 'disabled'
+    schedule:
+      interval: 'daily'
+    groups:
+      widgetbook:
+        patterns:
+          - 'widgetbook*'
