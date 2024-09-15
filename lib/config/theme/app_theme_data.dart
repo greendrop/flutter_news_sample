@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/design_token/color.dart';
+import 'package:flutter_news_sample/config/fonts.gen.dart';
 
 class AppThemeData {
   factory AppThemeData() => instance;
@@ -21,6 +22,8 @@ class AppThemeData {
         surface: DesignTokenColor.light.surface,
         onSurface: DesignTokenColor.light.onSurface,
       ),
+      fontFamily: FontFamily.inter,
+      fontFamilyFallback: const [FontFamily.notoSansJP, 'Roboto'],
     );
   }
 
@@ -38,6 +41,8 @@ class AppThemeData {
         surface: DesignTokenColor.dark.surface,
         onSurface: DesignTokenColor.dark.onSurface,
       ),
+      fontFamily: FontFamily.inter,
+      fontFamilyFallback: const [FontFamily.notoSansJP, 'Roboto'],
     );
   }
 }
