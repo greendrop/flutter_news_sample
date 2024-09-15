@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/assets.gen.dart';
+import 'package:flutter_news_sample/config/design_token/radius.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AboutAppIcon extends HookConsumerWidget {
@@ -14,7 +15,7 @@ class AboutAppIcon extends HookConsumerWidget {
       width: _size,
       height: _size,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(DesignTokenRadius.sm),
         image: DecorationImage(
           image: AssetImage(Assets.icons.appIcon.path),
           fit: BoxFit.cover,

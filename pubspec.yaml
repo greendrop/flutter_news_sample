@@ -68,6 +68,76 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/fonts/
+
+  fonts:
+    - family: "Inter"
+      fonts:
+        - asset: assets/fonts/Inter/static/Inter_28pt-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Inter/static/Inter_28pt-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/Inter/static/Inter_28pt-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Inter/static/Inter_28pt-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Inter/static/Inter_28pt-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Inter/static/Inter_28pt-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Inter/static/Inter_28pt-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter/static/Inter_28pt-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Inter/static/Inter_28pt-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter/static/Inter_28pt-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Inter/static/Inter_28pt-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter/static/Inter_28pt-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Inter/static/Inter_28pt-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Inter/static/Inter_28pt-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Inter/static/Inter_28pt-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Inter/static/Inter_28pt-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Inter/static/Inter_28pt-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Inter/static/Inter_28pt-BlackItalic.ttf
+          weight: 900
+          style: italic
+    - family: "Noto Sans JP"
+      fonts:
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Black.ttf
+          weight: 900
 
 flutter_gen:
   output: lib/config
