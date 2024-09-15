@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_news_sample/config/app_constant.dart';
+import 'package:flutter_news_sample/config/design_token/color.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger.dart';
 import 'package:flutter_news_sample/feature/theme_data/hook/use_theme_data.dart';
 
@@ -26,9 +26,12 @@ UseShowInfoTextSnackBarReturn useShowInfoTextSnackBar() {
       content: Text(
         text,
         style: (themeData.snackBarTheme.contentTextStyle ?? const TextStyle())
-            .copyWith(color: AppConstant.textColorInfo),
+            .copyWith(
+          color: DesignTokenColor.fromBrightness(themeData.brightness).infoText,
+        ),
       ),
-      backgroundColor: AppConstant.backgroundColorInfo,
+      backgroundColor:
+          DesignTokenColor.fromBrightness(themeData.brightness).infoBackground,
     );
     return ScaffoldMessenger.of(context).showSnackBar(snackBar);
   });

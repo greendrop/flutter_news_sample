@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
+import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/feature/app_log_list/hook/use_push_app_log_list_page.dart';
 import 'package:flutter_news_sample/feature/dev_tool/widget/app_log_list_tile.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
@@ -58,10 +59,10 @@ class DevToolPage extends HookConsumerWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(AppConstant.spacing1),
+            padding: const EdgeInsets.all(DesignTokenSpacing.sm),
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.all(AppConstant.spacing1),
+                padding: const EdgeInsets.all(DesignTokenSpacing.sm),
                 child: Column(
                   children: [
                     AppLogListTile(onTap: pushAppLogListPage.run),

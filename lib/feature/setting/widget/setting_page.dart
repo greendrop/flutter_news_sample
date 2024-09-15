@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_config.dart';
-import 'package:flutter_news_sample/config/app_constant.dart';
+import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page.dart'
     as hook;
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_push_locale_setting_page.dart'
@@ -81,10 +81,10 @@ class SettingPage extends HookConsumerWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(AppConstant.spacing1),
+            padding: const EdgeInsets.all(DesignTokenSpacing.sm),
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.all(AppConstant.spacing1),
+                padding: const EdgeInsets.all(DesignTokenSpacing.sm),
                 child: Column(
                   children: [
                     LocaleListTile(onTap: pushLocaleSettingPage.run),
@@ -95,10 +95,10 @@ class SettingPage extends HookConsumerWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(AppConstant.spacing1),
+            padding: EdgeInsets.all(DesignTokenSpacing.sm),
             child: Card(
               child: Padding(
-                padding: EdgeInsets.all(AppConstant.spacing1),
+                padding: EdgeInsets.all(DesignTokenSpacing.sm),
                 child: Column(
                   children: [
                     SettingAboutListTile(),
@@ -109,10 +109,10 @@ class SettingPage extends HookConsumerWidget {
           ),
           showDevTool
               ? Padding(
-                  padding: const EdgeInsets.all(AppConstant.spacing1),
+                  padding: const EdgeInsets.all(DesignTokenSpacing.sm),
                   child: Card(
                     child: Padding(
-                      padding: const EdgeInsets.all(AppConstant.spacing1),
+                      padding: const EdgeInsets.all(DesignTokenSpacing.sm),
                       child: Column(
                         children: [
                           DevToolListTile(onTap: pushDevToolPage.run),

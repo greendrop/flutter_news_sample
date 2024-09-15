@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
+import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_locale.dart'
     as hook;
 import 'package:flutter_news_sample/feature/locale_setting/widget/locale_setting_form.dart';
@@ -65,10 +66,10 @@ class LocaleSettingPage extends HookConsumerWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(AppConstant.spacing1),
+            padding: const EdgeInsets.all(DesignTokenSpacing.sm),
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.all(AppConstant.spacing1),
+                padding: const EdgeInsets.all(DesignTokenSpacing.sm),
                 child: LocaleSettingForm(
                   initialLocale: locale.state,
                   onSubmit: (value) {
