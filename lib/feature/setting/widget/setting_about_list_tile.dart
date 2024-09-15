@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/config/app_constant.dart';
+import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/feature/package_info/hook/use_package_info.dart'
     as hook;
 import 'package:flutter_news_sample/feature/setting/widget/about_app_icon.dart';
@@ -27,7 +27,7 @@ class SettingAboutListTile extends HookConsumerWidget {
           applicationName: packageInfo.appName,
           applicationIcon: const Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: AppConstant.spacing1),
+              padding: EdgeInsets.symmetric(vertical: DesignTokenSpacing.sm),
               child: AboutAppIcon(),
             ),
           ),

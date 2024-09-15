@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/config/app_constant.dart';
+import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/feature/news_article/entity/news_article.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_image.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,7 +16,7 @@ class NewsArticleGridItem extends HookConsumerWidget {
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.all(AppConstant.spacing1),
+          padding: const EdgeInsets.all(DesignTokenSpacing.sm),
           child: Column(
             children: [
               Expanded(
@@ -27,7 +27,7 @@ class NewsArticleGridItem extends HookConsumerWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: AppConstant.spacing1),
+                  padding: const EdgeInsets.only(top: DesignTokenSpacing.sm),
                   child: NewsArticleImage(url: newsArticle.urlToImage),
                 ),
               ),

@@ -2,7 +2,7 @@ import 'package:breakpoint/breakpoint.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_news_sample/config/app_constant.dart';
+import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_search_detail_page.dart'
@@ -114,10 +114,10 @@ class NewsArticleSearchPage extends HookConsumerWidget {
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(
-            AppConstant.spacing2,
+            DesignTokenSpacing.md,
             0,
-            AppConstant.spacing2,
-            AppConstant.spacing1,
+            DesignTokenSpacing.md,
+            DesignTokenSpacing.sm,
           ),
           child: NewsArticleSearchForm(
             initialKeyword: currentKeyword.value,
