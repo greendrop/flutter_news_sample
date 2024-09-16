@@ -35,28 +35,28 @@ final directories = <_i1.WidgetbookNode>[
             name: 'Color',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i2.buildDesignSystemColorUseCase,
+              builder: _i2.buildColorDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Radius',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i3.buildDesignSystemColorUseCase,
+              builder: _i3.buildRadiusDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Spacing',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i4.buildDesignSystemColorUseCase,
+              builder: _i4.buildSpacingDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Typography',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i5.buildDesignSystemTextStylesUseCase,
+              builder: _i5.buildTypographyDefaultUseCase,
             ),
           ),
         ],
@@ -71,35 +71,35 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'ElevatedButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i6.buildDesignSystemColorUseCase,
+                  builder: _i6.buildElevatedButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'FilledButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i7.buildDesignSystemColorUseCase,
+                  builder: _i7.buildFilledButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'FloatingActionButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i8.buildDesignSystemColorUseCase,
+                  builder: _i8.buildFloatingActionButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'OutlinedButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i9.buildDesignSystemColorUseCase,
+                  builder: _i9.buildOutlinedButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'TextButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i10.buildDesignSystemColorUseCase,
+                  builder: _i10.buildTextButtonDefaultUseCase,
                 ),
               ),
             ],

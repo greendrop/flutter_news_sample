@@ -130,6 +130,6 @@ class Color extends StatelessWidget {
   name: 'Default',
   type: Color,
 )
-Widget buildDesignSystemColorUseCase(BuildContext context) {
+Widget buildColorDefaultUseCase(BuildContext context) {
   return const Padding(padding: EdgeInsets.all(8), child: Color());
 }

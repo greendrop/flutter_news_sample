@@ -26,7 +26,7 @@ class OutlinedButton extends StatelessWidget {
   name: 'Default',
   type: OutlinedButton,
 )
-Widget buildDesignSystemColorUseCase(BuildContext context) {
+Widget buildOutlinedButtonDefaultUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
     child: OutlinedButton(

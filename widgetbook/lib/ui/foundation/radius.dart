@@ -73,6 +73,6 @@ class Radius extends StatelessWidget {
   name: 'Default',
   type: Radius,
 )
-Widget buildDesignSystemColorUseCase(BuildContext context) {
+Widget buildRadiusDefaultUseCase(BuildContext context) {
   return const Padding(padding: EdgeInsets.all(8), child: Radius());
 }

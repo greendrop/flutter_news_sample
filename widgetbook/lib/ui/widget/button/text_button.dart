@@ -26,7 +26,7 @@ class TextButton extends StatelessWidget {
   name: 'Default',
   type: TextButton,
 )
-Widget buildDesignSystemColorUseCase(BuildContext context) {
+Widget buildTextButtonDefaultUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
     child: TextButton(

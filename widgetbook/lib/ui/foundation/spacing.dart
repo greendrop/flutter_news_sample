@@ -66,6 +66,6 @@ class Spacing extends StatelessWidget {
   name: 'Default',
   type: Spacing,
 )
-Widget buildDesignSystemColorUseCase(BuildContext context) {
+Widget buildSpacingDefaultUseCase(BuildContext context) {
   return const Padding(padding: EdgeInsets.all(8), child: Spacing());
 }
