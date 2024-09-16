@@ -14,6 +14,15 @@ import 'package:widgetbook_workspace/ui/foundation/color.dart' as _i2;
 import 'package:widgetbook_workspace/ui/foundation/radius.dart' as _i3;
 import 'package:widgetbook_workspace/ui/foundation/spacing.dart' as _i4;
 import 'package:widgetbook_workspace/ui/foundation/typography.dart' as _i5;
+import 'package:widgetbook_workspace/ui/widget/button/elevated_button.dart'
+    as _i6;
+import 'package:widgetbook_workspace/ui/widget/button/filled_button.dart'
+    as _i7;
+import 'package:widgetbook_workspace/ui/widget/button/floating_action_button.dart'
+    as _i8;
+import 'package:widgetbook_workspace/ui/widget/button/outlined_button.dart'
+    as _i9;
+import 'package:widgetbook_workspace/ui/widget/button/text_button.dart' as _i10;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -51,7 +60,52 @@ final directories = <_i1.WidgetbookNode>[
             ),
           ),
         ],
-      )
+      ),
+      _i1.WidgetbookFolder(
+        name: 'widget',
+        children: [
+          _i1.WidgetbookFolder(
+            name: 'button',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'ElevatedButton',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i6.buildDesignSystemColorUseCase,
+                ),
+              ),
+              _i1.WidgetbookLeafComponent(
+                name: 'FilledButton',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i7.buildDesignSystemColorUseCase,
+                ),
+              ),
+              _i1.WidgetbookLeafComponent(
+                name: 'FloatingActionButton',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i8.buildDesignSystemColorUseCase,
+                ),
+              ),
+              _i1.WidgetbookLeafComponent(
+                name: 'OutlinedButton',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i9.buildDesignSystemColorUseCase,
+                ),
+              ),
+              _i1.WidgetbookLeafComponent(
+                name: 'TextButton',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i10.buildDesignSystemColorUseCase,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
     ],
   )
 ];
