@@ -35,7 +35,7 @@ class FilledButton extends StatelessWidget {
   name: 'Default',
   type: FilledButton,
 )
-Widget buildDesignSystemColorUseCase(BuildContext context) {
+Widget buildFilledButtonDefaultUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
     child: FilledButton(

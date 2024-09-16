@@ -26,7 +26,7 @@ class ElevatedButton extends StatelessWidget {
   name: 'Default',
   type: ElevatedButton,
 )
-Widget buildDesignSystemColorUseCase(BuildContext context) {
+Widget buildElevatedButtonDefaultUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
     child: ElevatedButton(

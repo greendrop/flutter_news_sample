@@ -26,7 +26,7 @@ class FloatingActionButton extends StatelessWidget {
   name: 'Default',
   type: FloatingActionButton,
 )
-Widget buildDesignSystemColorUseCase(BuildContext context) {
+Widget buildFloatingActionButtonDefaultUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
     child: FloatingActionButton(

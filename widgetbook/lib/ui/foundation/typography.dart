@@ -59,6 +59,6 @@ class Typography extends StatelessWidget {
   name: 'Default',
   type: Typography,
 )
-Widget buildDesignSystemTextStylesUseCase(BuildContext context) {
+Widget buildTypographyDefaultUseCase(BuildContext context) {
   return const Padding(padding: EdgeInsets.all(8), child: Typography());
 }
