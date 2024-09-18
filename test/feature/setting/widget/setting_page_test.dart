@@ -1,8 +1,9 @@
 import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page.dart';
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_push_locale_setting_page.dart';
+import 'package:flutter_news_sample/feature/setting/hook/use_show_app_about_dialog.dart';
+import 'package:flutter_news_sample/feature/setting/widget/app_about_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/dev_tool_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/locale_list_tile.dart';
-import 'package:flutter_news_sample/feature/setting/widget/setting_about_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/setting_page.dart';
 import 'package:flutter_news_sample/feature/setting/widget/theme_list_tile.dart';
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_setting_page.dart';
@@ -20,6 +21,7 @@ void main() {
           ].join(', '), (tester) async {
         var isTappedLocaleSettingPage = false;
         var isTappedThemeSettingPage = false;
+        var isTappedShowAppAboutDialog = false;
         var isTappedDevToolPage = false;
         UsePushLocaleSettingPageReturn usePushLocaleSettingPage() {
           Future<void> run() {
@@ -33,6 +35,15 @@ void main() {
         UsePushThemeSettingPageReturn usePushThemeSettingPage() {
           Future<void> run() {
             isTappedThemeSettingPage = true;
+            return Future.value();
+          }
+
+          return (run: run);
+        }
+
+        UseShowAppAboutDialogReturn useShowAppAboutDialoge() {
+          Future<void> run() {
+            isTappedShowAppAboutDialog = true;
             return Future.value();
           }
 
@@ -54,6 +65,7 @@ void main() {
               child: SettingPage(
                 usePushLocaleSettingPage: usePushLocaleSettingPage,
                 usePushThemeSettingPage: usePushThemeSettingPage,
+                useShowAppAboutDialog: useShowAppAboutDialoge,
                 usePushDevToolPage: usePushDevToolPage,
                 showDevTool: true,
               ),
@@ -64,7 +76,7 @@ void main() {
 
         expect(find.byType(LocaleListTile), findsOneWidget);
         expect(find.byType(ThemeListTile), findsOneWidget);
-        expect(find.byType(SettingAboutListTile), findsOneWidget);
+        expect(find.byType(AppAboutListTile), findsOneWidget);
         expect(find.byType(DevToolListTile), findsOneWidget);
 
         await tester.tap(find.byType(LocaleListTile));
@@ -74,6 +86,10 @@ void main() {
         await tester.tap(find.byType(ThemeListTile));
         await tester.pumpAndSettle();
         expect(isTappedThemeSettingPage, isTrue);
+
+        await tester.tap(find.byType(AppAboutListTile));
+        await tester.pumpAndSettle();
+        expect(isTappedShowAppAboutDialog, isTrue);
 
         await tester.tap(find.byType(DevToolListTile));
         await tester.pumpAndSettle();
@@ -94,7 +110,7 @@ void main() {
 
         expect(find.byType(LocaleListTile), findsOneWidget);
         expect(find.byType(ThemeListTile), findsOneWidget);
-        expect(find.byType(SettingAboutListTile), findsOneWidget);
+        expect(find.byType(AppAboutListTile), findsOneWidget);
         expect(find.byType(DevToolListTile), findsNothing);
       });
     });

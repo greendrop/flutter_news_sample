@@ -5,8 +5,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 typedef UsePackageInfoReturn = ({
-  AsyncValue<PackageInfo> state,
-  AsyncValue<PackageInfo> Function() refresh,
+  PackageInfo? state,
+  Future<void> Function() initialize,
+  Future<void> Function() refresh,
 });
 
 typedef UsePackageInfo = UsePackageInfoReturn Function();
@@ -18,18 +19,27 @@ UsePackageInfoReturn usePackageInfo() {
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
 
-  final state = ref.watch(packageInfoProvider);
+  final state = ref.watch(packageInfoNotifierProvider);
+
+  final initialize = useCallback(
+    () {
+      appLogger.i(['$_hookName#initialize']);
+      return ref.refresh(packageInfoNotifierProvider.notifier).initialize();
+    },
+    [],
+  );
 
   final refresh = useCallback(
     () {
       appLogger.i(['$_hookName#refresh']);
-      return ref.refresh(packageInfoProvider);
+      return ref.read(packageInfoNotifierProvider.notifier).refresh();
     },
-    [state],
+    [],
   );
 
   return (
     state: state,
+    initialize: initialize,
     refresh: refresh,
   );
 }

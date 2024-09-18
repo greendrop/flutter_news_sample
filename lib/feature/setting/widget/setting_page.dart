@@ -6,9 +6,11 @@ import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page
     as hook;
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_push_locale_setting_page.dart'
     as hook;
+import 'package:flutter_news_sample/feature/setting/hook/use_show_app_about_dialog.dart'
+    as hook;
+import 'package:flutter_news_sample/feature/setting/widget/app_about_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/dev_tool_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/locale_list_tile.dart';
-import 'package:flutter_news_sample/feature/setting/widget/setting_about_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/theme_list_tile.dart';
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_setting_page.dart'
     as hook;
@@ -21,12 +23,14 @@ class SettingPage extends HookConsumerWidget {
     super.key,
     this.usePushLocaleSettingPage = hook.usePushLocaleSettingPage,
     this.usePushThemeSettingPage = hook.usePushThemeSettingPage,
+    this.useShowAppAboutDialog = hook.useShowAppAboutDialog,
     this.usePushDevToolPage = hook.usePushDevToolPage,
     bool? showDevTool,
   }) : showDevTool = showDevTool ?? AppConfig.instance.showDevTool;
 
   final hook.UsePushLocaleSettingPage usePushLocaleSettingPage;
   final hook.UsePushThemeSettingPage usePushThemeSettingPage;
+  final hook.UseShowAppAboutDialog useShowAppAboutDialog;
   final hook.UsePushDevToolPage usePushDevToolPage;
   final bool showDevTool;
 
@@ -35,6 +39,7 @@ class SettingPage extends HookConsumerWidget {
     final translations = useTranslations();
     final pushLocaleSettingPage = usePushLocaleSettingPage();
     final pushThemeSettingPage = usePushThemeSettingPage();
+    final showAppAboutDialog = useShowAppAboutDialog();
     final pushDevToolPage = usePushDevToolPage();
 
     return Scaffold(
@@ -49,6 +54,7 @@ class SettingPage extends HookConsumerWidget {
                 ref,
                 pushLocaleSettingPage: pushLocaleSettingPage,
                 pushThemeSettingPage: pushThemeSettingPage,
+                showAppAboutDialog: showAppAboutDialog,
                 pushDevToolPage: pushDevToolPage,
               ),
             ],
@@ -74,6 +80,7 @@ class SettingPage extends HookConsumerWidget {
     WidgetRef ref, {
     required hook.UsePushLocaleSettingPageReturn pushLocaleSettingPage,
     required hook.UsePushThemeSettingPageReturn pushThemeSettingPage,
+    required hook.UseShowAppAboutDialogReturn showAppAboutDialog,
     required hook.UsePushDevToolPageReturn pushDevToolPage,
   }) {
     return SliverFillRemaining(
@@ -94,14 +101,14 @@ class SettingPage extends HookConsumerWidget {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(DesignTokenSpacing.sm),
+          Padding(
+            padding: const EdgeInsets.all(DesignTokenSpacing.sm),
             child: Card(
               child: Padding(
-                padding: EdgeInsets.all(DesignTokenSpacing.sm),
+                padding: const EdgeInsets.all(DesignTokenSpacing.sm),
                 child: Column(
                   children: [
-                    SettingAboutListTile(),
+                    AppAboutListTile(onTap: showAppAboutDialog.run),
                   ],
                 ),
               ),
