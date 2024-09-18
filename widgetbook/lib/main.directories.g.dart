@@ -25,20 +25,24 @@ import 'package:widgetbook_workspace/feature/setting/locale_list_tile.dart'
 import 'package:widgetbook_workspace/feature/setting/setting_page.dart' as _i8;
 import 'package:widgetbook_workspace/feature/setting/theme_list_tile.dart'
     as _i9;
-import 'package:widgetbook_workspace/ui/foundation/color.dart' as _i10;
-import 'package:widgetbook_workspace/ui/foundation/radius.dart' as _i11;
-import 'package:widgetbook_workspace/ui/foundation/spacing.dart' as _i12;
-import 'package:widgetbook_workspace/ui/foundation/typography.dart' as _i13;
-import 'package:widgetbook_workspace/ui/widget/app_bar.dart' as _i14;
+import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_form.dart'
+    as _i10;
+import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_page.dart'
+    as _i11;
+import 'package:widgetbook_workspace/ui/foundation/color.dart' as _i12;
+import 'package:widgetbook_workspace/ui/foundation/radius.dart' as _i13;
+import 'package:widgetbook_workspace/ui/foundation/spacing.dart' as _i14;
+import 'package:widgetbook_workspace/ui/foundation/typography.dart' as _i15;
+import 'package:widgetbook_workspace/ui/widget/app_bar.dart' as _i16;
 import 'package:widgetbook_workspace/ui/widget/button/elevated_button.dart'
-    as _i15;
-import 'package:widgetbook_workspace/ui/widget/button/filled_button.dart'
-    as _i16;
-import 'package:widgetbook_workspace/ui/widget/button/floating_action_button.dart'
     as _i17;
-import 'package:widgetbook_workspace/ui/widget/button/outlined_button.dart'
+import 'package:widgetbook_workspace/ui/widget/button/filled_button.dart'
     as _i18;
-import 'package:widgetbook_workspace/ui/widget/button/text_button.dart' as _i19;
+import 'package:widgetbook_workspace/ui/widget/button/floating_action_button.dart'
+    as _i19;
+import 'package:widgetbook_workspace/ui/widget/button/outlined_button.dart'
+    as _i20;
+import 'package:widgetbook_workspace/ui/widget/button/text_button.dart' as _i21;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -116,6 +120,25 @@ final directories = <_i1.WidgetbookNode>[
           ),
         ],
       ),
+      _i1.WidgetbookFolder(
+        name: 'theme_setting',
+        children: [
+          _i1.WidgetbookLeafComponent(
+            name: 'ThemeSettingForm',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Default',
+              builder: _i10.buildThemeSettingFormDefaultUseCase,
+            ),
+          ),
+          _i1.WidgetbookLeafComponent(
+            name: 'ThemeSettingPage',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Default',
+              builder: _i11.buildThemeSettingPageDefaultUseCase,
+            ),
+          ),
+        ],
+      ),
     ],
   ),
   _i1.WidgetbookFolder(
@@ -128,28 +151,28 @@ final directories = <_i1.WidgetbookNode>[
             name: 'Color',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i10.buildColorDefaultUseCase,
+              builder: _i12.buildColorDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Radius',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i11.buildRadiusDefaultUseCase,
+              builder: _i13.buildRadiusDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Spacing',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i12.buildSpacingDefaultUseCase,
+              builder: _i14.buildSpacingDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Typography',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i13.buildTypographyDefaultUseCase,
+              builder: _i15.buildTypographyDefaultUseCase,
             ),
           ),
         ],
@@ -162,15 +185,15 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Default',
-                builder: _i14.buildAppBarDefaultUseCase,
+                builder: _i16.buildAppBarDefaultUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'With Actions',
-                builder: _i14.buildAppBarWithActionsUseCase,
+                builder: _i16.buildAppBarWithActionsUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'With Leading',
-                builder: _i14.buildAppBarWithLeadingUseCase,
+                builder: _i16.buildAppBarWithLeadingUseCase,
               ),
             ],
           ),
@@ -181,35 +204,35 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'ElevatedButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i15.buildElevatedButtonDefaultUseCase,
+                  builder: _i17.buildElevatedButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'FilledButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i16.buildFilledButtonDefaultUseCase,
+                  builder: _i18.buildFilledButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'FloatingActionButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i17.buildFloatingActionButtonDefaultUseCase,
+                  builder: _i19.buildFloatingActionButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'OutlinedButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i18.buildOutlinedButtonDefaultUseCase,
+                  builder: _i20.buildOutlinedButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'TextButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i19.buildTextButtonDefaultUseCase,
+                  builder: _i21.buildTextButtonDefaultUseCase,
                 ),
               ),
             ],
