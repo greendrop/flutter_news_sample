@@ -37,7 +37,7 @@ UseShowAppAboutDialogReturn useShowAppAboutDialog() {
         ),
       );
     },
-    [],
+    [packageInfo.state],
   );
 
   return (run: run,);
