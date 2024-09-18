@@ -4,6 +4,17 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'package_info.g.dart';
 
 @Riverpod(keepAlive: true)
-Future<PackageInfo> packageInfo(PackageInfoRef ref) {
-  return PackageInfo.fromPlatform();
+class PackageInfoNotifier extends _$PackageInfoNotifier {
+  @override
+  PackageInfo? build() {
+    return null;
+  }
+
+  Future<void> initialize() async {
+    state = await PackageInfo.fromPlatform();
+  }
+
+  Future<void> refresh() async {
+    state = await PackageInfo.fromPlatform();
+  }
 }

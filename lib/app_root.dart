@@ -6,6 +6,7 @@ import 'package:flutter_news_sample/config/theme/app_theme_data.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger_directory.dart';
 import 'package:flutter_news_sample/feature/app_router/hook/use_app_router.dart';
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_locale.dart';
+import 'package:flutter_news_sample/feature/package_info/hook/use_package_info.dart';
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_theme_mode.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -63,12 +64,14 @@ class _AppRootTier2 extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isInitialized = useState(false);
+    final packageInfo = usePackageInfo();
     final themeMode = useThemeMode();
     final locale = useLocale();
 
     useEffect(
       () {
         Future.delayed(Duration.zero, () async {
+          await packageInfo.initialize();
           await themeMode.initialize();
           await locale.initialize();
 
