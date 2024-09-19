@@ -40,7 +40,7 @@ jobs:
           MERMAID_HTML_TAG="${MERMAID_HTML_TAG//$'\n'/}"
           grep -rl "language-mermaid" _site | while IFS= read -r file; do
             echo "Adding Mermaid to $file"
-            sed -i "s|</head>|$MERMAID_HTML_TAG\n</head>|" "$file"
+            sudo sed -i "s|</head>|$MERMAID_HTML_TAG\n</head>|" "$file"
           done
 
       - name: Get Flutter version from .fvmrc
