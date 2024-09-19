@@ -43,7 +43,7 @@ jobs:
       - name: flutter build web (for widgetbook)
         working-directory: widgetbook
         run: |
-          flutter build web --base-href "/$GITHUB_REPOSITORY/doc/widgetbook/"
+          flutter build web --base-href "/${GITHUB_REPOSITORY#"${GITHUB_REPOSITORY_OWNER}"/}/doc/widgetbook/"
 
       - name: Move widgetbook to doc
         run: |
