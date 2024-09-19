@@ -26,6 +26,23 @@ jobs:
           source: ./
           destination: ./_site
 
+      - name: Add Mermaid
+        env:
+          MERMAID_HTML_TAG: |
+            <script type='module'>
+              import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+              mermaid.initialize({ startOnLoad: false });
+              await mermaid.run({
+                querySelector: 'pre > code.language-mermaid',
+              });
+            </script>
+        run: |
+          MERMAID_HTML_TAG="${MERMAID_HTML_TAG//$'\n'/}"
+          grep -rl "language-mermaid" _site | while IFS= read -r file; do
+            echo "Adding Mermaid to $file"
+            sed -i "s|</head>|$MERMAID_HTML_TAG\n</head>|" "$file"
+          done
+
       - name: Get Flutter version from .fvmrc
         id: get_flutter_version
         run: |
