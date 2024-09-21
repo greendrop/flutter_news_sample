@@ -43,6 +43,8 @@ import 'package:widgetbook_workspace/ui/widget/button/floating_action_button.dar
 import 'package:widgetbook_workspace/ui/widget/button/outlined_button.dart'
     as _i20;
 import 'package:widgetbook_workspace/ui/widget/button/text_button.dart' as _i21;
+import 'package:widgetbook_workspace/ui/widget/navigation/navigation_bar.dart'
+    as _i22;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -235,6 +237,18 @@ final directories = <_i1.WidgetbookNode>[
                   builder: _i21.buildTextButtonDefaultUseCase,
                 ),
               ),
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'navigation',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'NavigationBar',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i22.buildNavigationBarDefaultUseCase,
+                ),
+              )
             ],
           ),
         ],
