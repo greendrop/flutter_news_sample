@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
-import 'package:flutter_news_sample/feature/app_log_list/hook/use_push_app_log_list_page.dart';
+import 'package:flutter_news_sample/feature/app_log_list/hook/use_push_app_log_list_page.dart'
+    as hook;
 import 'package:flutter_news_sample/feature/dev_tool/widget/app_log_list_tile.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
@@ -11,12 +12,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class DevToolPage extends HookConsumerWidget {
   const DevToolPage({
     super.key,
+    this.usePushAppLogListPage = hook.usePushAppLogListPage,
   });
+
+  final hook.UsePushAppLogListPage usePushAppLogListPage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translations = useTranslations();
     final navigatorState = useNavigatorState();
+    final pushAppLogListPage = usePushAppLogListPage();
 
     return Scaffold(
       body: SafeArea(
@@ -31,7 +36,11 @@ class DevToolPage extends HookConsumerWidget {
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
                 _appBar(context, ref, translations: translations),
-                _body(context, ref),
+                _body(
+                  context,
+                  ref,
+                  pushAppLogListPage: pushAppLogListPage,
+                ),
               ],
             ),
           ),
@@ -51,9 +60,11 @@ class DevToolPage extends HookConsumerWidget {
     );
   }
 
-  Widget _body(BuildContext context, WidgetRef ref) {
-    final pushAppLogListPage = usePushAppLogListPage();
-
+  Widget _body(
+    BuildContext context,
+    WidgetRef ref, {
+    required hook.UsePushAppLogListPageReturn pushAppLogListPage,
+  }) {
     return SliverFillRemaining(
       hasScrollBody: false,
       child: Column(
