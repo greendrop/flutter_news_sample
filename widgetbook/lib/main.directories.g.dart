@@ -45,6 +45,8 @@ import 'package:widgetbook_workspace/ui/widget/button/outlined_button.dart'
 import 'package:widgetbook_workspace/ui/widget/button/text_button.dart' as _i21;
 import 'package:widgetbook_workspace/ui/widget/navigation/navigation_bar.dart'
     as _i22;
+import 'package:widgetbook_workspace/ui/widget/navigation/navigation_rail.dart'
+    as _i23;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -248,7 +250,28 @@ final directories = <_i1.WidgetbookNode>[
                   name: 'Default',
                   builder: _i22.buildNavigationBarDefaultUseCase,
                 ),
-              )
+              ),
+              _i1.WidgetbookComponent(
+                name: 'NavigationRail',
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Default',
+                    builder: _i23.buildNavigationRailDefaultUseCase,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'LabelTypeAll',
+                    builder: _i23.buildNavigationRailLabelTypeAllUseCase,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'LabelTypeNone',
+                    builder: _i23.buildNavigationRailLabelTypeNoneUseCase,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'LabelTypeSelected',
+                    builder: _i23.buildNavigationRailLabelTypeSelectedUseCase,
+                  ),
+                ],
+              ),
             ],
           ),
         ],
