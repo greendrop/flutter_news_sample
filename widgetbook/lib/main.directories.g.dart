@@ -10,50 +10,74 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
-import 'package:widgetbook_workspace/feature/app_log_list/app_log_list_page.dart'
+import 'package:widgetbook_workspace/feature/app_log_detail/app_log_detail_page.dart'
     as _i2;
-import 'package:widgetbook_workspace/feature/locale_setting/locale_setting_form.dart'
+import 'package:widgetbook_workspace/feature/app_log_list/app_log_list_page.dart'
     as _i3;
-import 'package:widgetbook_workspace/feature/locale_setting/locale_setting_page.dart'
+import 'package:widgetbook_workspace/feature/locale_setting/locale_setting_form.dart'
     as _i4;
-import 'package:widgetbook_workspace/feature/setting/about_app_icon.dart'
+import 'package:widgetbook_workspace/feature/locale_setting/locale_setting_page.dart'
     as _i5;
-import 'package:widgetbook_workspace/feature/setting/app_about_list_tile.dart'
+import 'package:widgetbook_workspace/feature/setting/about_app_icon.dart'
     as _i6;
-import 'package:widgetbook_workspace/feature/setting/dev_tool_list_tile.dart'
+import 'package:widgetbook_workspace/feature/setting/app_about_list_tile.dart'
     as _i7;
-import 'package:widgetbook_workspace/feature/setting/locale_list_tile.dart'
+import 'package:widgetbook_workspace/feature/setting/dev_tool_list_tile.dart'
     as _i8;
-import 'package:widgetbook_workspace/feature/setting/setting_page.dart' as _i9;
+import 'package:widgetbook_workspace/feature/setting/locale_list_tile.dart'
+    as _i9;
+import 'package:widgetbook_workspace/feature/setting/setting_page.dart' as _i10;
 import 'package:widgetbook_workspace/feature/setting/theme_list_tile.dart'
-    as _i10;
-import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_form.dart'
     as _i11;
-import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_page.dart'
+import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_form.dart'
     as _i12;
-import 'package:widgetbook_workspace/ui/foundation/color.dart' as _i13;
-import 'package:widgetbook_workspace/ui/foundation/radius.dart' as _i14;
-import 'package:widgetbook_workspace/ui/foundation/spacing.dart' as _i15;
-import 'package:widgetbook_workspace/ui/foundation/typography.dart' as _i16;
-import 'package:widgetbook_workspace/ui/widget/app_bar.dart' as _i17;
+import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_page.dart'
+    as _i13;
+import 'package:widgetbook_workspace/ui/foundation/color.dart' as _i14;
+import 'package:widgetbook_workspace/ui/foundation/radius.dart' as _i15;
+import 'package:widgetbook_workspace/ui/foundation/spacing.dart' as _i16;
+import 'package:widgetbook_workspace/ui/foundation/typography.dart' as _i17;
+import 'package:widgetbook_workspace/ui/widget/app_bar.dart' as _i18;
 import 'package:widgetbook_workspace/ui/widget/button/elevated_button.dart'
-    as _i18;
-import 'package:widgetbook_workspace/ui/widget/button/filled_button.dart'
     as _i19;
-import 'package:widgetbook_workspace/ui/widget/button/floating_action_button.dart'
+import 'package:widgetbook_workspace/ui/widget/button/filled_button.dart'
     as _i20;
-import 'package:widgetbook_workspace/ui/widget/button/outlined_button.dart'
+import 'package:widgetbook_workspace/ui/widget/button/floating_action_button.dart'
     as _i21;
-import 'package:widgetbook_workspace/ui/widget/button/text_button.dart' as _i22;
+import 'package:widgetbook_workspace/ui/widget/button/outlined_button.dart'
+    as _i22;
+import 'package:widgetbook_workspace/ui/widget/button/text_button.dart' as _i23;
 import 'package:widgetbook_workspace/ui/widget/navigation/navigation_bar.dart'
-    as _i23;
-import 'package:widgetbook_workspace/ui/widget/navigation/navigation_rail.dart'
     as _i24;
+import 'package:widgetbook_workspace/ui/widget/navigation/navigation_rail.dart'
+    as _i25;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
     name: 'feature',
     children: [
+      _i1.WidgetbookFolder(
+        name: 'app_log_detail',
+        children: [
+          _i1.WidgetbookComponent(
+            name: 'AppLogDetailPage',
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'Default',
+                builder: _i2.buildAppLogDetailPageDefaultUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Empty',
+                builder: _i2.buildAppLogDetailPageEmptyUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Loading',
+                builder: _i2.buildAppLogDetailPageLoadingUseCase,
+              ),
+            ],
+          )
+        ],
+      ),
       _i1.WidgetbookFolder(
         name: 'app_log_list',
         children: [
@@ -62,15 +86,15 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Default',
-                builder: _i2.buildAppLogListPageDefaultUseCase,
+                builder: _i3.buildAppLogListPageDefaultUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Empty',
-                builder: _i2.buildAppLogListPageEmptyUseCase,
+                builder: _i3.buildAppLogListPageEmptyUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Loading',
-                builder: _i2.buildAppLogListPageLoadingUseCase,
+                builder: _i3.buildAppLogListPageLoadingUseCase,
               ),
             ],
           )
@@ -83,14 +107,14 @@ final directories = <_i1.WidgetbookNode>[
             name: 'LocaleSettingForm',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i3.buildLocaleSettingFormDefaultUseCase,
+              builder: _i4.buildLocaleSettingFormDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'LocaleSettingPage',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i4.buildLocaleSettingPageDefaultUseCase,
+              builder: _i5.buildLocaleSettingPageDefaultUseCase,
             ),
           ),
         ],
@@ -102,28 +126,28 @@ final directories = <_i1.WidgetbookNode>[
             name: 'AboutAppIcon',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i5.buildAboutAppIconDefaultUseCase,
+              builder: _i6.buildAboutAppIconDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'AppAboutListTile',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i6.buildAppAboutListTileDefaultUseCase,
+              builder: _i7.buildAppAboutListTileDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'DevToolListTile',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i7.buildDevToolListTileDefaultUseCase,
+              builder: _i8.buildDevToolListTileDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'LocaleListTile',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i8.buildLocaleListTileDefaultUseCase,
+              builder: _i9.buildLocaleListTileDefaultUseCase,
             ),
           ),
           _i1.WidgetbookComponent(
@@ -131,11 +155,11 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Default',
-                builder: _i9.buildSettingDefaultUseCase,
+                builder: _i10.buildSettingDefaultUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Show Dev Tool',
-                builder: _i9.buildSettingShowDevToolUseCase,
+                builder: _i10.buildSettingShowDevToolUseCase,
               ),
             ],
           ),
@@ -143,7 +167,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'ThemeListTile',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i10.buildThemeListTileDefaultUseCase,
+              builder: _i11.buildThemeListTileDefaultUseCase,
             ),
           ),
         ],
@@ -155,14 +179,14 @@ final directories = <_i1.WidgetbookNode>[
             name: 'ThemeSettingForm',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i11.buildThemeSettingFormDefaultUseCase,
+              builder: _i12.buildThemeSettingFormDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'ThemeSettingPage',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i12.buildThemeSettingPageDefaultUseCase,
+              builder: _i13.buildThemeSettingPageDefaultUseCase,
             ),
           ),
         ],
@@ -179,28 +203,28 @@ final directories = <_i1.WidgetbookNode>[
             name: 'Color',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i13.buildColorDefaultUseCase,
+              builder: _i14.buildColorDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Radius',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i14.buildRadiusDefaultUseCase,
+              builder: _i15.buildRadiusDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Spacing',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i15.buildSpacingDefaultUseCase,
+              builder: _i16.buildSpacingDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Typography',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i16.buildTypographyDefaultUseCase,
+              builder: _i17.buildTypographyDefaultUseCase,
             ),
           ),
         ],
@@ -213,15 +237,15 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Default',
-                builder: _i17.buildAppBarDefaultUseCase,
+                builder: _i18.buildAppBarDefaultUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'With Actions',
-                builder: _i17.buildAppBarWithActionsUseCase,
+                builder: _i18.buildAppBarWithActionsUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'With Leading',
-                builder: _i17.buildAppBarWithLeadingUseCase,
+                builder: _i18.buildAppBarWithLeadingUseCase,
               ),
             ],
           ),
@@ -232,35 +256,35 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'ElevatedButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i18.buildElevatedButtonDefaultUseCase,
+                  builder: _i19.buildElevatedButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'FilledButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i19.buildFilledButtonDefaultUseCase,
+                  builder: _i20.buildFilledButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'FloatingActionButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i20.buildFloatingActionButtonDefaultUseCase,
+                  builder: _i21.buildFloatingActionButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'OutlinedButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i21.buildOutlinedButtonDefaultUseCase,
+                  builder: _i22.buildOutlinedButtonDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookLeafComponent(
                 name: 'TextButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i22.buildTextButtonDefaultUseCase,
+                  builder: _i23.buildTextButtonDefaultUseCase,
                 ),
               ),
             ],
@@ -272,7 +296,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'NavigationBar',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i23.buildNavigationBarDefaultUseCase,
+                  builder: _i24.buildNavigationBarDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookComponent(
@@ -280,19 +304,19 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Default',
-                    builder: _i24.buildNavigationRailDefaultUseCase,
+                    builder: _i25.buildNavigationRailDefaultUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'LabelTypeAll',
-                    builder: _i24.buildNavigationRailLabelTypeAllUseCase,
+                    builder: _i25.buildNavigationRailLabelTypeAllUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'LabelTypeNone',
-                    builder: _i24.buildNavigationRailLabelTypeNoneUseCase,
+                    builder: _i25.buildNavigationRailLabelTypeNoneUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'LabelTypeSelected',
-                    builder: _i24.buildNavigationRailLabelTypeSelectedUseCase,
+                    builder: _i25.buildNavigationRailLabelTypeSelectedUseCase,
                   ),
                 ],
               ),
