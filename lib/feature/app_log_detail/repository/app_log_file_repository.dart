@@ -12,7 +12,7 @@ class AppLogFileRepository {
     required String filename,
   }) async {
     final file = File(directory.path + Platform.pathSeparator + filename);
-    if (file.existsSync()) {
+    if (!file.existsSync()) {
       return null;
     }
     return file;
