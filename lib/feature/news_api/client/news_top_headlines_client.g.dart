@@ -26,16 +26,16 @@ class _NewsTopHeadlinesClient implements NewsTopHeadlinesClient {
   @override
   Future<NewsTopHeadlinesResponse> get({
     required String apiKey,
-    required String country,
     required String category,
+    String? country,
     int? pageSize,
     int? page,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'apiKey': apiKey,
-      r'country': country,
       r'category': category,
+      r'country': country,
       r'pageSize': pageSize,
       r'page': page,
     };
