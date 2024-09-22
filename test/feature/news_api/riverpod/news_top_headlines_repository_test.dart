@@ -39,7 +39,6 @@ void main() {
               }),
               queryParameters: {
                 'apiKey': AppConfig.instance.newsApiKey,
-                'country': 'jp',
                 'category': 'general',
                 'pageSize': 100,
                 'page': 1,
@@ -80,7 +79,6 @@ void main() {
               (server) => server.reply(401, 'Unauthorized'),
               queryParameters: {
                 'apiKey': AppConfig.instance.newsApiKey,
-                'country': 'jp',
                 'category': 'general',
                 'pageSize': 100,
                 'page': 1,
@@ -135,7 +133,6 @@ void main() {
               }),
               queryParameters: {
                 'apiKey': AppConfig.instance.newsApiKey,
-                'country': 'jp',
                 'category': 'general',
                 'pageSize': 100,
                 'page': 2,

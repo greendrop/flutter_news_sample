@@ -29,7 +29,6 @@ class NewsTopHeadlinesRepository {
     try {
       final response = await client.get(
         apiKey: AppConfig.instance.newsApiKey,
-        country: 'jp',
         category: category,
         pageSize: 100,
         page: page,

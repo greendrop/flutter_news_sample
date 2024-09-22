@@ -13,8 +13,8 @@ abstract class NewsTopHeadlinesClient {
   @GET('')
   Future<NewsTopHeadlinesResponse> get({
     @Query('apiKey') required String apiKey,
-    @Query('country') required String country,
     @Query('category') required String category,
+    @Query('country') String? country,
     @Query('pageSize') int? pageSize,
     @Query('page') int? page,
   });
