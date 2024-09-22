@@ -12,7 +12,6 @@ import 'package:flutter_news_sample/feature/news_article_list/hook/use_news_arti
 import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
 import 'package:flutter_news_sample/feature/theme_data/hook/use_theme_data.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
-import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,7 +34,6 @@ class NewsArticleListPage extends HookConsumerWidget {
     final translations = useTranslations();
     final themeData = useThemeData();
     final pushNewsArticleDetailPage = usePushNewsArticleDetailPage();
-    final urlLauncher = useUrlLauncher();
     final showDangerTextSnackBar = useShowDangerTextSnackBar();
 
     final newsArticlesByCategories = NewsHeadlineCategory.values.fold(
@@ -92,7 +90,6 @@ class NewsArticleListPage extends HookConsumerWidget {
                     tabController: tabController,
                     newsArticlesByCategories: newsArticlesByCategories,
                     gridCrossAxisCount: breakpoint.columns ~/ 2,
-                    urlLauncher: urlLauncher,
                     translations: translations,
                     pushNewsArticleDetailPage: pushNewsArticleDetailPage,
                     showDangerTextSnackBar: showDangerTextSnackBar,
@@ -154,7 +151,6 @@ Widget _body(
   required Map<NewsHeadlineCategory, hook.UseNewsArticlesReturn>
       newsArticlesByCategories,
   required int gridCrossAxisCount,
-  required UseUrlLauncherReturn urlLauncher,
   required Translations translations,
   required hook.UsePushNewsArticleDetailPageReturn pushNewsArticleDetailPage,
   required UseShowDangerTextSnackBarReturn showDangerTextSnackBar,
@@ -249,17 +245,6 @@ Widget _body(
                         title: data.items[index].title ?? '',
                         url: data.items[index].url ?? '',
                       );
-                    } else {
-                      final url = Uri.parse(data.items[index].url!);
-
-                      urlLauncher.canLaunchUrl(url).then((value) {
-                        if (value) {
-                          urlLauncher.launchUrl(
-                            url,
-                            mode: LaunchMode.externalApplication,
-                          );
-                        }
-                      });
                     }
                   },
                 );

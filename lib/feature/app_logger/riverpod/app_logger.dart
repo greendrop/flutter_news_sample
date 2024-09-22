@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_news_sample/feature/app_logger/printer/json_fmt_printer.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger_directory.dart';
 import 'package:logger/logger.dart';
@@ -13,11 +14,13 @@ Logger appLogger(AppLoggerRef ref) {
     output: MultiOutput(
       [
         ConsoleOutput(),
-        AdvancedFileOutput(
-          path: logDirectory!.path,
-          maxRotatedFilesCount: 8,
-        ),
-      ],
+        logDirectory != null
+            ? AdvancedFileOutput(
+                path: logDirectory.path,
+                maxRotatedFilesCount: 8,
+              )
+            : null,
+      ].whereNotNull().toList(),
     ),
   );
 }
