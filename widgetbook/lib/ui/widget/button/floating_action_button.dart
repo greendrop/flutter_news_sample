@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material show FloatingActionButton;
-import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class FloatingActionButton extends StatelessWidget {
@@ -23,17 +22,29 @@ class FloatingActionButton extends StatelessWidget {
 }
 
 @UseCase(
-  name: 'Default',
+  name: 'Enabled',
   type: FloatingActionButton,
 )
-Widget buildFloatingActionButtonDefaultUseCase(BuildContext context) {
+Widget buildFloatingActionButtonEnabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
     child: FloatingActionButton(
-      onPressed: context.knobs.boolean(label: 'Enabled', initialValue: true)
-          ? () {}
-          : null,
-      child: Text(context.knobs.string(label: 'Text', initialValue: 'Text')),
+      onPressed: () {},
+      child: const Icon(Icons.add),
+    ),
+  );
+}
+
+@UseCase(
+  name: 'Disabled',
+  type: FloatingActionButton,
+)
+Widget buildFloatingActionButtonDisabledUseCase(BuildContext context) {
+  return const Padding(
+    padding: EdgeInsets.all(8),
+    child: FloatingActionButton(
+      onPressed: null,
+      child: Icon(Icons.add),
     ),
   );
 }

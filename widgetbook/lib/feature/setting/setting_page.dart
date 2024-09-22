@@ -5,6 +5,7 @@ import 'package:flutter_news_sample/feature/setting/hook/use_show_app_about_dial
 import 'package:flutter_news_sample/feature/setting/widget/setting_page.dart'
     as feature;
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_setting_page.dart';
+import 'package:flutter_news_sample/widget/scaffold_with_nav_bar.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class SettingPage extends StatelessWidget {
@@ -49,12 +50,16 @@ class SettingPage extends StatelessWidget {
       return (run: run);
     }
 
-    return feature.SettingPage(
-      usePushLocaleSettingPage: usePushLocaleSettingPage,
-      usePushThemeSettingPage: usePushThemeSettingPage,
-      useShowAppAboutDialog: useShowAppAboutDialog,
-      usePushDevToolPage: usePushDevToolPage,
-      showDevTool: showDevTool,
+    return ScaffoldWithNavBar(
+      currentIndex: 2,
+      onDestinationSelected: (index) {},
+      child: feature.SettingPage(
+        usePushLocaleSettingPage: usePushLocaleSettingPage,
+        usePushThemeSettingPage: usePushThemeSettingPage,
+        useShowAppAboutDialog: useShowAppAboutDialog,
+        usePushDevToolPage: usePushDevToolPage,
+        showDevTool: showDevTool,
+      ),
     );
   }
 }
@@ -68,9 +73,9 @@ Widget buildSettingDefaultUseCase(BuildContext context) {
 }
 
 @UseCase(
-  name: 'Show Dev Tool',
+  name: 'Default With Dev Tool',
   type: SettingPage,
 )
-Widget buildSettingShowDevToolUseCase(BuildContext context) {
+Widget buildSettingDefaultWithDevToolUseCase(BuildContext context) {
   return const SettingPage(showDevTool: true);
 }

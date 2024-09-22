@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/setting/widget/theme_list_tile.dart'
     as feature;
-import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class ThemeListTile extends StatelessWidget {
@@ -16,13 +15,17 @@ class ThemeListTile extends StatelessWidget {
 }
 
 @UseCase(
-  name: 'Default',
+  name: 'Enabled',
   type: ThemeListTile,
 )
-Widget buildThemeListTileDefaultUseCase(BuildContext context) {
-  return ThemeListTile(
-    onTap: context.knobs.boolean(label: 'Enabled', initialValue: true)
-        ? () {}
-        : null,
-  );
+Widget buildThemeListTileEnabledUseCase(BuildContext context) {
+  return ThemeListTile(onTap: () {});
+}
+
+@UseCase(
+  name: 'Disabled',
+  type: ThemeListTile,
+)
+Widget buildThemeListTileDisabledUseCase(BuildContext context) {
+  return const ThemeListTile();
 }

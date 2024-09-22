@@ -15,10 +15,10 @@ class AppLogListTile extends StatelessWidget {
 }
 
 @UseCase(
-  name: 'Default',
+  name: 'Enabled',
   type: AppLogListTile,
 )
-Widget buildAppLogListTileDefaultUseCase(BuildContext context) {
+Widget buildAppLogListTileEnabledUseCase(BuildContext context) {
   return AppLogListTile(onTap: () {});
 }
 
