@@ -22,39 +22,41 @@ import 'package:widgetbook_workspace/feature/locale_setting/locale_setting_form.
     as _i6;
 import 'package:widgetbook_workspace/feature/locale_setting/locale_setting_page.dart'
     as _i7;
-import 'package:widgetbook_workspace/feature/setting/about_app_icon.dart'
+import 'package:widgetbook_workspace/feature/not_found/not_found_page.dart'
     as _i8;
-import 'package:widgetbook_workspace/feature/setting/app_about_list_tile.dart'
+import 'package:widgetbook_workspace/feature/setting/about_app_icon.dart'
     as _i9;
-import 'package:widgetbook_workspace/feature/setting/dev_tool_list_tile.dart'
+import 'package:widgetbook_workspace/feature/setting/app_about_list_tile.dart'
     as _i10;
-import 'package:widgetbook_workspace/feature/setting/locale_list_tile.dart'
+import 'package:widgetbook_workspace/feature/setting/dev_tool_list_tile.dart'
     as _i11;
-import 'package:widgetbook_workspace/feature/setting/setting_page.dart' as _i12;
+import 'package:widgetbook_workspace/feature/setting/locale_list_tile.dart'
+    as _i12;
+import 'package:widgetbook_workspace/feature/setting/setting_page.dart' as _i13;
 import 'package:widgetbook_workspace/feature/setting/theme_list_tile.dart'
-    as _i13;
-import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_form.dart'
     as _i14;
-import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_page.dart'
+import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_form.dart'
     as _i15;
-import 'package:widgetbook_workspace/ui/foundation/color.dart' as _i16;
-import 'package:widgetbook_workspace/ui/foundation/radius.dart' as _i17;
-import 'package:widgetbook_workspace/ui/foundation/spacing.dart' as _i18;
-import 'package:widgetbook_workspace/ui/foundation/typography.dart' as _i19;
-import 'package:widgetbook_workspace/ui/widget/app_bar.dart' as _i20;
+import 'package:widgetbook_workspace/feature/theme_setting/theme_setting_page.dart'
+    as _i16;
+import 'package:widgetbook_workspace/ui/foundation/color.dart' as _i17;
+import 'package:widgetbook_workspace/ui/foundation/radius.dart' as _i18;
+import 'package:widgetbook_workspace/ui/foundation/spacing.dart' as _i19;
+import 'package:widgetbook_workspace/ui/foundation/typography.dart' as _i20;
+import 'package:widgetbook_workspace/ui/widget/app_bar.dart' as _i21;
 import 'package:widgetbook_workspace/ui/widget/button/elevated_button.dart'
-    as _i21;
-import 'package:widgetbook_workspace/ui/widget/button/filled_button.dart'
     as _i22;
-import 'package:widgetbook_workspace/ui/widget/button/floating_action_button.dart'
+import 'package:widgetbook_workspace/ui/widget/button/filled_button.dart'
     as _i23;
-import 'package:widgetbook_workspace/ui/widget/button/outlined_button.dart'
+import 'package:widgetbook_workspace/ui/widget/button/floating_action_button.dart'
     as _i24;
-import 'package:widgetbook_workspace/ui/widget/button/text_button.dart' as _i25;
+import 'package:widgetbook_workspace/ui/widget/button/outlined_button.dart'
+    as _i25;
+import 'package:widgetbook_workspace/ui/widget/button/text_button.dart' as _i26;
 import 'package:widgetbook_workspace/ui/widget/navigation/navigation_bar.dart'
-    as _i26;
-import 'package:widgetbook_workspace/ui/widget/navigation/navigation_rail.dart'
     as _i27;
+import 'package:widgetbook_workspace/ui/widget/navigation/navigation_rail.dart'
+    as _i28;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -149,13 +151,25 @@ final directories = <_i1.WidgetbookNode>[
         ],
       ),
       _i1.WidgetbookFolder(
+        name: 'not_found',
+        children: [
+          _i1.WidgetbookLeafComponent(
+            name: 'NotFoundPage',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Default',
+              builder: _i8.buildSettingDefaultUseCase,
+            ),
+          )
+        ],
+      ),
+      _i1.WidgetbookFolder(
         name: 'setting',
         children: [
           _i1.WidgetbookLeafComponent(
             name: 'AboutAppIcon',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i8.buildAboutAppIconDefaultUseCase,
+              builder: _i9.buildAboutAppIconDefaultUseCase,
             ),
           ),
           _i1.WidgetbookComponent(
@@ -163,11 +177,11 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Disabled',
-                builder: _i9.buildAppAboutListTileDisabledUseCase,
+                builder: _i10.buildAppAboutListTileDisabledUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Enabled',
-                builder: _i9.buildAppAboutListTileEnabledUseCase,
+                builder: _i10.buildAppAboutListTileEnabledUseCase,
               ),
             ],
           ),
@@ -176,11 +190,11 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Disabled',
-                builder: _i10.buildDevToolListTileDisabledUseCase,
+                builder: _i11.buildDevToolListTileDisabledUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Enabled',
-                builder: _i10.buildDevToolListTileEnabledUseCase,
+                builder: _i11.buildDevToolListTileEnabledUseCase,
               ),
             ],
           ),
@@ -189,11 +203,11 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Disabled',
-                builder: _i11.buildLocaleListTileDisabledUseCase,
+                builder: _i12.buildLocaleListTileDisabledUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Enabled',
-                builder: _i11.buildLocaleListTileEnabledUseCase,
+                builder: _i12.buildLocaleListTileEnabledUseCase,
               ),
             ],
           ),
@@ -202,11 +216,11 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Default',
-                builder: _i12.buildSettingDefaultUseCase,
+                builder: _i13.buildSettingDefaultUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Default With Dev Tool',
-                builder: _i12.buildSettingDefaultWithDevToolUseCase,
+                builder: _i13.buildSettingDefaultWithDevToolUseCase,
               ),
             ],
           ),
@@ -215,11 +229,11 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Disabled',
-                builder: _i13.buildThemeListTileDisabledUseCase,
+                builder: _i14.buildThemeListTileDisabledUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Enabled',
-                builder: _i13.buildThemeListTileEnabledUseCase,
+                builder: _i14.buildThemeListTileEnabledUseCase,
               ),
             ],
           ),
@@ -232,14 +246,14 @@ final directories = <_i1.WidgetbookNode>[
             name: 'ThemeSettingForm',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i14.buildThemeSettingFormDefaultUseCase,
+              builder: _i15.buildThemeSettingFormDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'ThemeSettingPage',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i15.buildThemeSettingPageDefaultUseCase,
+              builder: _i16.buildThemeSettingPageDefaultUseCase,
             ),
           ),
         ],
@@ -256,28 +270,28 @@ final directories = <_i1.WidgetbookNode>[
             name: 'Color',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i16.buildColorDefaultUseCase,
+              builder: _i17.buildColorDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Radius',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i17.buildRadiusDefaultUseCase,
+              builder: _i18.buildRadiusDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Spacing',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i18.buildSpacingDefaultUseCase,
+              builder: _i19.buildSpacingDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Typography',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i19.buildTypographyDefaultUseCase,
+              builder: _i20.buildTypographyDefaultUseCase,
             ),
           ),
         ],
@@ -290,15 +304,15 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Default',
-                builder: _i20.buildAppBarDefaultUseCase,
+                builder: _i21.buildAppBarDefaultUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'With Actions',
-                builder: _i20.buildAppBarWithActionsUseCase,
+                builder: _i21.buildAppBarWithActionsUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'With Leading',
-                builder: _i20.buildAppBarWithLeadingUseCase,
+                builder: _i21.buildAppBarWithLeadingUseCase,
               ),
             ],
           ),
@@ -310,19 +324,19 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Disabled',
-                    builder: _i21.buildElevatedButtonDisabledUseCase,
+                    builder: _i22.buildElevatedButtonDisabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Disabled With Icon',
-                    builder: _i21.buildElevatedButtonDisabledWithIconUseCase,
+                    builder: _i22.buildElevatedButtonDisabledWithIconUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Enabled',
-                    builder: _i21.buildElevatedButtonEnabledUseCase,
+                    builder: _i22.buildElevatedButtonEnabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Enabled With Icon',
-                    builder: _i21.buildElevatedButtonEnabledWithIconUseCase,
+                    builder: _i22.buildElevatedButtonEnabledWithIconUseCase,
                   ),
                 ],
               ),
@@ -331,35 +345,35 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Disabled',
-                    builder: _i22.buildFilledButtonDisabledUseCase,
+                    builder: _i23.buildFilledButtonDisabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Disabled With Icon',
-                    builder: _i22.buildFilledButtonDisabledWithIconUseCase,
+                    builder: _i23.buildFilledButtonDisabledWithIconUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Enabled',
-                    builder: _i22.buildFilledButtonEnabledUseCase,
+                    builder: _i23.buildFilledButtonEnabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Enabled With Icon',
-                    builder: _i22.buildFilledButtonEnabledWithIconUseCase,
+                    builder: _i23.buildFilledButtonEnabledWithIconUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Tonal Disabled',
-                    builder: _i22.buildFilledButtonTonalDisabledUseCase,
+                    builder: _i23.buildFilledButtonTonalDisabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Tonal Disabled With Icon',
-                    builder: _i22.buildFilledButtonTonalDisabledWithIconUseCase,
+                    builder: _i23.buildFilledButtonTonalDisabledWithIconUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Tonal Enabled',
-                    builder: _i22.buildFilledButtonTonalEnabledUseCase,
+                    builder: _i23.buildFilledButtonTonalEnabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Tonal Enabled With Icon',
-                    builder: _i22.buildFilledButtonTonalEnabledWithIconUseCase,
+                    builder: _i23.buildFilledButtonTonalEnabledWithIconUseCase,
                   ),
                 ],
               ),
@@ -368,11 +382,11 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Disabled',
-                    builder: _i23.buildFloatingActionButtonDisabledUseCase,
+                    builder: _i24.buildFloatingActionButtonDisabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Enabled',
-                    builder: _i23.buildFloatingActionButtonEnabledUseCase,
+                    builder: _i24.buildFloatingActionButtonEnabledUseCase,
                   ),
                 ],
               ),
@@ -381,11 +395,11 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Disabled',
-                    builder: _i24.buildOutlinedButtonDisabledUseCase,
+                    builder: _i25.buildOutlinedButtonDisabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Enabled',
-                    builder: _i24.buildOutlinedButtonEnabledUseCase,
+                    builder: _i25.buildOutlinedButtonEnabledUseCase,
                   ),
                 ],
               ),
@@ -394,19 +408,19 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Disabled',
-                    builder: _i25.buildTextButtonDisabledUseCase,
+                    builder: _i26.buildTextButtonDisabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Disabled With Icon',
-                    builder: _i25.buildTextButtonDisabledWithIconUseCase,
+                    builder: _i26.buildTextButtonDisabledWithIconUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Enabled',
-                    builder: _i25.buildTextButtonEnabledUseCase,
+                    builder: _i26.buildTextButtonEnabledUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Enabled With Icon',
-                    builder: _i25.buildTextButtonEnabledWithIconUseCase,
+                    builder: _i26.buildTextButtonEnabledWithIconUseCase,
                   ),
                 ],
               ),
@@ -419,7 +433,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'NavigationBar',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i26.buildNavigationBarDefaultUseCase,
+                  builder: _i27.buildNavigationBarDefaultUseCase,
                 ),
               ),
               _i1.WidgetbookComponent(
@@ -427,19 +441,19 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Default',
-                    builder: _i27.buildNavigationRailDefaultUseCase,
+                    builder: _i28.buildNavigationRailDefaultUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'LabelTypeAll',
-                    builder: _i27.buildNavigationRailLabelTypeAllUseCase,
+                    builder: _i28.buildNavigationRailLabelTypeAllUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'LabelTypeNone',
-                    builder: _i27.buildNavigationRailLabelTypeNoneUseCase,
+                    builder: _i28.buildNavigationRailLabelTypeNoneUseCase,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'LabelTypeSelected',
-                    builder: _i27.buildNavigationRailLabelTypeSelectedUseCase,
+                    builder: _i28.buildNavigationRailLabelTypeSelectedUseCase,
                   ),
                 ],
               ),
