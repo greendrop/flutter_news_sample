@@ -23,16 +23,28 @@ class OutlinedButton extends StatelessWidget {
 }
 
 @UseCase(
-  name: 'Default',
+  name: 'Enabled',
   type: OutlinedButton,
 )
-Widget buildOutlinedButtonDefaultUseCase(BuildContext context) {
+Widget buildOutlinedButtonEnabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
     child: OutlinedButton(
-      onPressed: context.knobs.boolean(label: 'Enabled', initialValue: true)
-          ? () {}
-          : null,
+      onPressed: () {},
+      child: Text(context.knobs.string(label: 'Text', initialValue: 'Text')),
+    ),
+  );
+}
+
+@UseCase(
+  name: 'Disabled',
+  type: OutlinedButton,
+)
+Widget buildOutlinedButtonDisabledUseCase(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(8),
+    child: OutlinedButton(
+      onPressed: null,
       child: Text(context.knobs.string(label: 'Text', initialValue: 'Text')),
     ),
   );
