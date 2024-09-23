@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.5
-  flutter_inappwebview: ^6.0.0
+  flutter_inappwebview: ^6.1.0+1
   flutter_localizations:
     sdk: flutter
   flutter_timezone: ^3.0.1
