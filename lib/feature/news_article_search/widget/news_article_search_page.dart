@@ -45,7 +45,6 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     final showDangerTextSnackBar = useShowDangerTextSnackBar();
     final pushNewsArticleSearchDetailPage =
         usePushNewsArticleSearchDetailPage();
-    final urlLauncher = useUrlLauncher();
 
     return LayoutBuilder(
       builder: (_, constraints) {
@@ -89,7 +88,6 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                       gridCrossAxisCount: breakpoint.columns ~/ 2,
                       pushNewsArticleSearchDetailPage:
                           pushNewsArticleSearchDetailPage,
-                      urlLauncher: urlLauncher,
                     ),
                   ],
                 ),
@@ -141,7 +139,6 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     required hook.UseNewsArticlesReturn newsArticles,
     required hook.UsePushNewsArticleSearchDetailPageReturn
         pushNewsArticleSearchDetailPage,
-    required hook.UseUrlLauncherReturn urlLauncher,
     required ValueNotifier<String> currentKeyword,
     required int gridCrossAxisCount,
   }) {
@@ -196,17 +193,6 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                     title: data.items[index].title ?? '',
                     url: data.items[index].url ?? '',
                   );
-                } else {
-                  final url = Uri.parse(data.items[index].url!);
-
-                  urlLauncher.canLaunchUrl(url).then((value) {
-                    if (value) {
-                      urlLauncher.launchUrl(
-                        url,
-                        mode: hook.LaunchMode.externalApplication,
-                      );
-                    }
-                  });
                 }
               },
             );
