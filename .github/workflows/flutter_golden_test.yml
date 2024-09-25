@@ -1,5 +1,5 @@
 ---
-name: Flutter test
+name: Flutter Golden Test
 
 on:
   pull_request:
@@ -42,26 +42,12 @@ jobs:
 
       - name: flutter test
         run: |
-          flutter test --coverage --exclude-tags golden
+          flutter test --tags golden
 
-      - name: Install LCOV
-        run: |
-          sudo apt-get -y install lcov
-          lcov --version
-
-      - name: Report code coverage to console
-        run: |
-          lcov --list coverage/lcov.info --list-full-path --rc lcov_branch_coverage=1
-
-      - name: Generate code coverage html
-        run: |
-          genhtml coverage/lcov.info --output-directory coverage/html
-
-      - name: Upload coverage to artifact
+      - name: Upload failures
+        if: failure()
         uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
         with:
-          name: coverage
-          path: coverage
-
-      - name: Report coverage to GitHub
-        uses: k1LoW/octocov-action@1ad702b3118b6a055c00b01db68ca0d9f6641dbc # v1.4.0
+          name: golden_failures
+          path: |
+            **/failures/**/*.png
