@@ -9,7 +9,7 @@ import '../../../support/widget/test_material_app.dart';
 
 void main() {
   group('LocaleListTile Golden Test', () {
-    prepareGoldenFileComparatorWithThreshold(threshold: 0.01);
+    prepareGoldenFileComparatorWithThreshold();
 
     Widget buildLocaleListTile({VoidCallback? onTap}) {
       return TestMaterialApp(

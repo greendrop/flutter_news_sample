@@ -13,7 +13,7 @@ import '../../../support/widget/test_material_app.dart';
 
 void main() {
   group('SettingPage Golden Test', () {
-    prepareGoldenFileComparatorWithThreshold(threshold: 0.01);
+    prepareGoldenFileComparatorWithThreshold();
 
     Widget buildSettingPage() {
       UsePushLocaleSettingPageReturn usePushLocaleSettingPage() {
