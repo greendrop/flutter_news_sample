@@ -61,7 +61,7 @@ void main() {
 
     for (final device in Device.all) {
       goldenTest(
-        'Default',
+        'Default ${device.name}',
         fileName: 'setting_page_default_${device.name}',
         builder: () {
           return GoldenTestDeviceScenario(

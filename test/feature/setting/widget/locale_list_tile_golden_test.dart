@@ -19,7 +19,7 @@ void main() {
 
     for (final brightness in Brightness.values) {
       goldenTest(
-        'Enabled',
+        'Enabled ${brightness.name}',
         fileName: 'locale_list_tile_enabled_${brightness.name}',
         builder: () {
           return GoldenTestWidgetScenario(
@@ -31,7 +31,7 @@ void main() {
       );
 
       goldenTest(
-        'Disabled',
+        'Disabled ${brightness.name}',
         fileName: 'locale_list_tile_disabled_${brightness.name}',
         builder: () {
           return GoldenTestWidgetScenario(

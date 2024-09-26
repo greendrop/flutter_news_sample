@@ -19,7 +19,7 @@ void main() {
 
     for (final brightness in Brightness.values) {
       goldenTest(
-        'Default',
+        'Default ${brightness.name}',
         fileName: 'about_app_icon_default_${brightness.name}',
         builder: () {
           return GoldenTestWidgetScenario(
