@@ -37,7 +37,7 @@ void main() {
             }
 
             return GoldenTestGroup(
-              columns: Brightness.values.length,
+              columns: 1,
               children: children,
             );
           },
