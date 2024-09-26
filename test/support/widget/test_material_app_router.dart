@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_news_sample/config/theme/app_theme_data.dart';
 import 'package:flutter_news_sample/feature/app_router/hook/use_app_router.dart';
@@ -20,7 +21,14 @@ class TestMaterialAppRouter extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appRouter = useAppRouter(initialLocation: initialLocation);
-    LocaleSettings.setLocaleRaw(locale.toString());
+
+    useEffect(
+      () {
+        LocaleSettings.setLocaleRaw(locale.toString());
+        return () {};
+      },
+      [],
+    );
 
     return TranslationProvider(
       child: Builder(

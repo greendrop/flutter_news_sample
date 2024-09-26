@@ -53,3 +53,8 @@ app.*.map.json
 
 # iOS
 /ios/Flutter/Dart-Defines.xcconfig
+
+# Ignore non-CI golden files and failures
+test/**/goldens/**/*.*
+test/**/failures/**/*.*
+!test/**/goldens/ci/*.*
