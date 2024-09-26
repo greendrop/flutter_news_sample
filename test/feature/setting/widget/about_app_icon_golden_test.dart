@@ -29,8 +29,8 @@ void main() {
             for (final brightness in Brightness.values) {
               children.add(
                 GoldenTestWidgetScenario(
+                  name: '',
                   brightness: brightness,
-                  name: 'AboutAppIcon Default',
                   builder: buildAboutAppIcon,
                 ),
               );

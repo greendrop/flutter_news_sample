@@ -29,8 +29,8 @@ void main() {
             for (final brightness in Brightness.values) {
               children.add(
                 GoldenTestWidgetScenario(
+                  name: '',
                   brightness: brightness,
-                  name: 'LocaleListTile Enabled',
                   builder: () => buildLocaleListTile(onTap: () {}),
                 ),
               );
@@ -55,8 +55,8 @@ void main() {
             for (final brightness in Brightness.values) {
               children.add(
                 GoldenTestWidgetScenario(
+                  name: '',
                   brightness: brightness,
-                  name: 'LocaleListTile Disabled',
                   builder: buildLocaleListTile,
                 ),
               );

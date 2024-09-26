@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'device.dart';
 export 'device.dart';
 
-/// Wrapper for testing widgets (primarily screens) with device constraints
 class GoldenTestDeviceScenario extends StatelessWidget {
   const GoldenTestDeviceScenario({
     super.key,
@@ -20,7 +19,7 @@ class GoldenTestDeviceScenario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GoldenTestScenario(
-      name: '$name (device: ${device.name})',
+      name: name,
       child: ClipRect(
         child: MediaQuery(
           data: MediaQuery.of(context).copyWith(

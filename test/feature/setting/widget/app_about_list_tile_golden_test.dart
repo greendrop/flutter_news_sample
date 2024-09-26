@@ -29,8 +29,8 @@ void main() {
             for (final brightness in Brightness.values) {
               children.add(
                 GoldenTestWidgetScenario(
+                  name: '',
                   brightness: brightness,
-                  name: 'AppAboutListTile Enabled',
                   builder: () => buildAppAboutListTile(onTap: () {}),
                 ),
               );
@@ -55,8 +55,8 @@ void main() {
             for (final brightness in Brightness.values) {
               children.add(
                 GoldenTestWidgetScenario(
+                  name: '',
                   brightness: brightness,
-                  name: 'AppAboutListTile Disabled',
                   builder: buildAppAboutListTile,
                 ),
               );

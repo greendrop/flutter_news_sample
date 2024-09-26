@@ -16,7 +16,7 @@ class GoldenTestWidgetScenario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GoldenTestScenario(
-      name: '$name (brightness: $brightness)',
+      name: name,
       child: ClipRect(
         child: MediaQuery(
           data: MediaQuery.of(context).copyWith(

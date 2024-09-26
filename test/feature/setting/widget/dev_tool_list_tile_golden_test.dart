@@ -29,8 +29,8 @@ void main() {
             for (final brightness in Brightness.values) {
               children.add(
                 GoldenTestWidgetScenario(
+                  name: '',
                   brightness: brightness,
-                  name: 'DevToolListTile Enabled',
                   builder: () => buildDevToolListTile(onTap: () {}),
                 ),
               );
@@ -55,8 +55,8 @@ void main() {
             for (final brightness in Brightness.values) {
               children.add(
                 GoldenTestWidgetScenario(
+                  name: '',
                   brightness: brightness,
-                  name: 'DevToolListTile Disabled',
                   builder: buildDevToolListTile,
                 ),
               );

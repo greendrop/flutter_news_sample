@@ -73,8 +73,8 @@ void main() {
             for (final device in allDevices) {
               children.add(
                 GoldenTestDeviceScenario(
+                  name: '',
                   device: device,
-                  name: 'SettingPage Default',
                   builder: buildSettingPage,
                 ),
               );
