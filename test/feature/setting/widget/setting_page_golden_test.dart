@@ -10,7 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../support/alchemist/golden_test_device_scenario.dart';
 import '../../../support/golden_test/prepare_golden_file_comparator_with_threshold.dart';
 import '../../../support/widget/test_material_app.dart';
-import '../../../support/widget/test_translation_provider.dart';
 
 void main() {
   group('SettingPage Golden Test', () {
@@ -50,7 +49,6 @@ void main() {
       }
 
       return TestMaterialApp(
-        withTranslationProvider: false,
         child: SettingPage(
           usePushLocaleSettingPage: usePushLocaleSettingPage,
           usePushThemeSettingPage: usePushThemeSettingPage,
@@ -61,32 +59,18 @@ void main() {
       );
     }
 
-    final allDevices = Device.all;
-
-    goldenTest(
-      'Default',
-      fileName: 'setting_page_default',
-      builder: () {
-        return TestTranslationProvider(
-          builder: (context) {
-            final children = <Widget>[];
-            for (final device in allDevices) {
-              children.add(
-                GoldenTestDeviceScenario(
-                  name: '',
-                  device: device,
-                  builder: buildSettingPage,
-                ),
-              );
-            }
-
-            return GoldenTestGroup(
-              columns: allDevices.length,
-              children: children,
-            );
-          },
-        );
-      },
-    );
+    for (final device in Device.all) {
+      goldenTest(
+        'Default',
+        fileName: 'setting_page_default_${device.name}',
+        builder: () {
+          return GoldenTestDeviceScenario(
+            name: '',
+            device: device,
+            builder: buildSettingPage,
+          );
+        },
+      );
+    }
   });
 }
