@@ -8,56 +8,59 @@ import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_se
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../support/alchemist/golden_test_device_scenario.dart';
+import '../../../support/golden_test/prepare_golden_file_comparator_with_threshold.dart';
 import '../../../support/widget/test_material_app.dart';
 import '../../../support/widget/test_translation_provider.dart';
 
 void main() {
-  Widget buildSettingPage() {
-    UsePushLocaleSettingPageReturn usePushLocaleSettingPage() {
-      Future<void> run() {
-        return Future.value();
-      }
-
-      return (run: run);
-    }
-
-    UsePushThemeSettingPageReturn usePushThemeSettingPage() {
-      Future<void> run() {
-        return Future.value();
-      }
-
-      return (run: run);
-    }
-
-    UseShowAppAboutDialogReturn useShowAppAboutDialoge() {
-      Future<void> run() {
-        return Future.value();
-      }
-
-      return (run: run);
-    }
-
-    UsePushDevToolPageReturn usePushDevToolPage() {
-      Future<void> run() {
-        return Future.value();
-      }
-
-      return (run: run);
-    }
-
-    return TestMaterialApp(
-      withTranslationProvider: false,
-      child: SettingPage(
-        usePushLocaleSettingPage: usePushLocaleSettingPage,
-        usePushThemeSettingPage: usePushThemeSettingPage,
-        useShowAppAboutDialog: useShowAppAboutDialoge,
-        usePushDevToolPage: usePushDevToolPage,
-        showDevTool: false,
-      ),
-    );
-  }
-
   group('SettingPage Golden Test', () {
+    prepareGoldenFileComparatorWithThreshold(threshold: 0.01);
+
+    Widget buildSettingPage() {
+      UsePushLocaleSettingPageReturn usePushLocaleSettingPage() {
+        Future<void> run() {
+          return Future.value();
+        }
+
+        return (run: run);
+      }
+
+      UsePushThemeSettingPageReturn usePushThemeSettingPage() {
+        Future<void> run() {
+          return Future.value();
+        }
+
+        return (run: run);
+      }
+
+      UseShowAppAboutDialogReturn useShowAppAboutDialoge() {
+        Future<void> run() {
+          return Future.value();
+        }
+
+        return (run: run);
+      }
+
+      UsePushDevToolPageReturn usePushDevToolPage() {
+        Future<void> run() {
+          return Future.value();
+        }
+
+        return (run: run);
+      }
+
+      return TestMaterialApp(
+        withTranslationProvider: false,
+        child: SettingPage(
+          usePushLocaleSettingPage: usePushLocaleSettingPage,
+          usePushThemeSettingPage: usePushThemeSettingPage,
+          useShowAppAboutDialog: useShowAppAboutDialoge,
+          usePushDevToolPage: usePushDevToolPage,
+          showDevTool: false,
+        ),
+      );
+    }
+
     final allDevices = Device.all;
 
     goldenTest(

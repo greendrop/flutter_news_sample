@@ -4,18 +4,21 @@ import 'package:flutter_news_sample/feature/setting/widget/app_about_list_tile.d
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../support/alchemist/golden_test_widget_scenario.dart';
+import '../../../support/golden_test/prepare_golden_file_comparator_with_threshold.dart';
 import '../../../support/widget/test_material_app.dart';
 import '../../../support/widget/test_translation_provider.dart';
 
 void main() {
-  Widget buildAppAboutListTile({VoidCallback? onTap}) {
-    return TestMaterialApp(
-      withTranslationProvider: false,
-      child: AppAboutListTile(onTap: onTap),
-    );
-  }
-
   group('AppAboutListTile Golden Test', () {
+    prepareGoldenFileComparatorWithThreshold(threshold: 0.01);
+
+    Widget buildAppAboutListTile({VoidCallback? onTap}) {
+      return TestMaterialApp(
+        withTranslationProvider: false,
+        child: AppAboutListTile(onTap: onTap),
+      );
+    }
+
     goldenTest(
       'Enabled',
       fileName: 'app_about_list_tile_enabled',

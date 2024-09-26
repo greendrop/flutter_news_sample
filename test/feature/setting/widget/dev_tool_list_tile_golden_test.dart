@@ -4,18 +4,21 @@ import 'package:flutter_news_sample/feature/setting/widget/dev_tool_list_tile.da
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../support/alchemist/golden_test_widget_scenario.dart';
+import '../../../support/golden_test/prepare_golden_file_comparator_with_threshold.dart';
 import '../../../support/widget/test_material_app.dart';
 import '../../../support/widget/test_translation_provider.dart';
 
 void main() {
-  Widget buildDevToolListTile({VoidCallback? onTap}) {
-    return TestMaterialApp(
-      withTranslationProvider: false,
-      child: DevToolListTile(onTap: onTap),
-    );
-  }
-
   group('DevToolListTile Golden Test', () {
+    prepareGoldenFileComparatorWithThreshold(threshold: 0.01);
+
+    Widget buildDevToolListTile({VoidCallback? onTap}) {
+      return TestMaterialApp(
+        withTranslationProvider: false,
+        child: DevToolListTile(onTap: onTap),
+      );
+    }
+
     goldenTest(
       'Enabled',
       fileName: 'dev_tool_list_tile_enabled',
