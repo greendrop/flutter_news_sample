@@ -12,7 +12,9 @@ updates:
     schedule:
       interval: 'daily'
   - package-ecosystem: 'pub'
-    directory: '/'
+    directories:
+      - '/'
+      - '/widgetbook'
     rebase-strategy: 'disabled'
     schedule:
       interval: 'daily'
@@ -42,12 +44,6 @@ updates:
       url_launcher:
         patterns:
           - 'url_launcher*'
-  - package-ecosystem: 'pub'
-    directory: '/widgetbook'
-    rebase-strategy: 'disabled'
-    schedule:
-      interval: 'daily'
-    groups:
       widgetbook:
         patterns:
           - 'widgetbook*'
