@@ -1,8 +1,8 @@
+---
 # actionlint　と ghalint を使って GitHub Actions の構文をチェックする
 #
 # - actionlint: https://github.com/rhysd/actionlint
 # - ghalint: https://github.com/suzuki-shunsuke/ghalint
----
 name: GitHub Actions Lint
 
 on:
@@ -10,12 +10,18 @@ on:
     paths:
       - .github/workflows/*.yaml
       - .github/workflows/*.yml
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/*.yaml
-      - .github/workflows/*.yml
+
+env:
+  # NOTE: actionlint をアップデートする場合は、 ACTIONLINT_VERSION, ACTIONLINT_CHECKSUM を更新してください
+  ACTIONLINT_OS: linux
+  ACTIONLINT_ARCH: amd64
+  ACTIONLINT_VERSION: 1.7.1
+  ACTIONLINT_CHECKSUM: f53c34493657dfea83b657e4b62cc68c25fbc383dff64c8d581613b037aacaa3
+  # NOTE: ghalint をアップデートする場合は、 GHALINT_VERSION, GHALINT_CHECKSUM を更新してください
+  GHALINT_OS: linux
+  GHALINT_ARCH: amd64
+  GHALINT_VERSION: 0.2.12
+  GHALINT_CHECKSUM: 722d3420fff4f9a0d7b38b3654dfcddb4f1f6e2adbb3bba013f2d9eed406d9d5
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -32,12 +38,6 @@ jobs:
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
       - name: Download actionlint
-        # NOTE: アップデートする場合は、ACTIONLINT_VERSION, ACTIONLINT_CHECKSUM を更新してください
-        env:
-          ACTIONLINT_VERSION: 1.7.1
-          ACTIONLINT_OS: linux
-          ACTIONLINT_ARCH: amd64
-          ACTIONLINT_CHECKSUM: f53c34493657dfea83b657e4b62cc68c25fbc383dff64c8d581613b037aacaa3
         run: |
           curl -L -o actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_${ACTIONLINT_OS}_${ACTIONLINT_ARCH}.tar.gz"
           if [ "$(shasum -a 256 actionlint.tar.gz)" != "${ACTIONLINT_CHECKSUM}  actionlint.tar.gz" ]; then
@@ -53,12 +53,6 @@ jobs:
         run: ./actionlint -color
 
       - name: Download ghalint
-        # NOTE: アップデートする場合は、GHALINT_VERSION, GHALINT_CHECKSUM を更新してください
-        env:
-          GHALINT_VERSION: 0.2.12
-          GHALINT_OS: linux
-          GHALINT_ARCH: amd64
-          GHALINT_CHECKSUM: 722d3420fff4f9a0d7b38b3654dfcddb4f1f6e2adbb3bba013f2d9eed406d9d5
         run: |
           curl -L -o ghalint.tar.gz "https://github.com/suzuki-shunsuke/ghalint/releases/download/v${GHALINT_VERSION}/ghalint_${GHALINT_VERSION}_${GHALINT_OS}_${GHALINT_ARCH}.tar.gz"
           if [ "$(shasum -a 256 ghalint.tar.gz)" != "${GHALINT_CHECKSUM}  ghalint.tar.gz" ]; then
@@ -72,3 +66,86 @@ jobs:
 
       - name: Run ghalint
         run: ./ghalint run
+
+  check-binary-version:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    strategy:
+      matrix:
+        binary:
+          - actionlint
+          - ghalint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+
+      - name: Get Binary Info
+        id: get-binary-info
+        run: |
+          case ${{ matrix.binary }} in
+            actionlint)
+              echo "name=${{ matrix.binary }}" >> "${GITHUB_OUTPUT}"
+              echo "version=${{ env.ACTIONLINT_VERSION }}" >> "${GITHUB_OUTPUT}"
+              echo "owner=rhysd" >> "${GITHUB_OUTPUT}"
+              echo "repo=actionlint" >> "${GITHUB_OUTPUT}"
+              echo "releases-url=https://github.com/rhysd/actionlint/releases" >> "${GITHUB_OUTPUT}"
+              ;;
+            ghalint)
+              echo "name=${{ matrix.binary }}" >> "${GITHUB_OUTPUT}"
+              echo "version=${{ env.GHALINT_VERSION }}" >> "${GITHUB_OUTPUT}"
+              echo "owner=suzuki-shunsuke" >> "${GITHUB_OUTPUT}"
+              echo "repo=ghalint" >> "${GITHUB_OUTPUT}"
+              echo "releases-url=https://github.com/suzuki-shunsuke/ghalint/releases" >> "${GITHUB_OUTPUT}"
+              ;;
+          esac
+
+      - name: Check Binary Version
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        id: check-binary-version
+        env:
+          BINARY_NAME: ${{ matrix.binary }}
+          BINARY_VERSION: ${{ steps.get-binary-info.outputs.version }}
+          BINARY_OWNER: ${{ steps.get-binary-info.outputs.owner }}
+          BINARY_REPO: ${{ steps.get-binary-info.outputs.repo }}
+          BINARY_RELEASES_URL: ${{ steps.get-binary-info.outputs.releases-url }}
+        with:
+          result-encoding: string
+          script: |
+            const currentVersion = process.env.BINARY_VERSION;
+
+            const latestVersion = await github.rest.repos.getLatestRelease({
+              owner: process.env.BINARY_OWNER,
+              repo: process.env.BINARY_REPO
+            }).then(({ data }) => {
+              return data.tag_name.replace(/^v/, '');
+            });
+
+            console.log('currentVersion:', currentVersion);
+            console.log('latestVersion:', latestVersion);
+
+            core.setOutput('currentVersion', currentVersion);
+            core.setOutput('latestVersion', latestVersion);
+            return currentVersion === latestVersion ? 'true' : 'false';
+
+      - name: Notify if actionlint version mismatch
+        if: steps.check-binary-version.outputs.result == 'false'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        env:
+          MESSAGE: |
+            > [!WARNING]
+            > ${{ matrix.binary }} の新しいバージョンがリリースされています。更新してください。
+            > ${{ steps.get-binary-info.outputs.releases-url }}
+            >
+            > - 現在のバージョン: ${{ steps.check-binary-version.outputs.currentVersion }}
+            > - 最新のバージョン: ${{ steps.check-binary-version.outputs.latestVersion }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: process.env.MESSAGE
+            });
