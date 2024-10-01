@@ -42,7 +42,7 @@ dependencies:
 
 dev_dependencies:
   alchemist: ^0.10.0
-  build_runner: ^2.4.12
+  build_runner: ^2.4.13
   custom_lint: ^0.6.4
   flutter_gen_runner: ^5.7.0
   flutter_launcher_icons: ^0.14.1
