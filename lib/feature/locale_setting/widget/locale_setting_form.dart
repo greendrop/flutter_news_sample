@@ -11,7 +11,7 @@ class LocaleSettingForm extends StatefulHookConsumerWidget {
   });
 
   final Locale? initialLocale;
-  final void Function(Locale?)? onSubmit;
+  final void Function(Locale? locale)? onSubmit;
 
   @override
   LocaleSettingFormState createState() => LocaleSettingFormState();
