@@ -20,7 +20,7 @@ typedef UseUrlLauncher = UseUrlLauncherReturn Function();
 
 const String _hookName = 'UseUrlLauncher';
 
-UseUrlLauncherReturn useUrlLauncher() {
+UseUrlLauncherReturn useUrlLauncherImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -72,3 +72,5 @@ UseUrlLauncherReturn useUrlLauncher() {
     launchUrl: launchUrl,
   );
 }
+
+final UseUrlLauncher useUrlLauncher = useUrlLauncherImpl;

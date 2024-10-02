@@ -13,7 +13,7 @@ typedef UseWebViewCurrentUrl = UseWebViewCurrentUrlReturn Function();
 
 const String _hookName = 'useWebViewCurrentUrl';
 
-UseWebViewCurrentUrlReturn useWebViewCurrentUrl() {
+UseWebViewCurrentUrlReturn useWebViewCurrentUrlImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -36,3 +36,5 @@ UseWebViewCurrentUrlReturn useWebViewCurrentUrl() {
     setState: setState,
   );
 }
+
+final UseWebViewCurrentUrl useWebViewCurrentUrl = useWebViewCurrentUrlImpl;

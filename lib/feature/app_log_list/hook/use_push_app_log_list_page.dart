@@ -10,7 +10,7 @@ typedef UsePushAppLogListPage = UsePushAppLogListPageReturn Function();
 
 const String _hookName = 'usePushAppLogListPage';
 
-UsePushAppLogListPageReturn usePushAppLogListPage() {
+UsePushAppLogListPageReturn usePushAppLogListPageImpl() {
   final context = useContext();
   final appLogger = useAppLogger();
 
@@ -21,3 +21,5 @@ UsePushAppLogListPageReturn usePushAppLogListPage() {
 
   return (run: run,);
 }
+
+final UsePushAppLogListPage usePushAppLogListPage = usePushAppLogListPageImpl;

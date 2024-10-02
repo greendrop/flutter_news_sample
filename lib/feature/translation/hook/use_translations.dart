@@ -5,6 +5,8 @@ export 'package:flutter_news_sample/config/i18n/strings.g.dart';
 
 typedef UseTranslations = Translations Function();
 
-Translations useTranslations() {
+Translations useTranslationsImpl() {
   return Translations.of(useContext());
 }
+
+final UseTranslations useTranslations = useTranslationsImpl;

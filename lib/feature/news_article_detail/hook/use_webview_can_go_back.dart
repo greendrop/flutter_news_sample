@@ -13,7 +13,7 @@ typedef UseWebViewCanGoBack = UseWebViewCanGoBackReturn Function();
 
 const String _hookName = 'useWebViewCanGoBack';
 
-UseWebViewCanGoBackReturn useWebViewCanGoBack() {
+UseWebViewCanGoBackReturn useWebViewCanGoBackImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -37,3 +37,5 @@ UseWebViewCanGoBackReturn useWebViewCanGoBack() {
     setState: setState,
   );
 }
+
+final UseWebViewCanGoBack useWebViewCanGoBack = useWebViewCanGoBackImpl;

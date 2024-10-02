@@ -1,7 +1,13 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-void useWebViewCanGoBackEffect({
+typedef UseWebViewCanGoBackEffect = void Function({
+  required ObjectRef<InAppWebViewController?> webViewController,
+  // ignore: avoid_positional_boolean_parameters
+  required void Function(bool) setWebviewCanGoBack,
+});
+
+void useWebViewCanGoBackEffectImpl({
   required ObjectRef<InAppWebViewController?> webViewController,
   // ignore: avoid_positional_boolean_parameters
   required void Function(bool) setWebviewCanGoBack,
@@ -17,3 +23,6 @@ void useWebViewCanGoBackEffect({
     [canGoBackSnapshot.data],
   );
 }
+
+final UseWebViewCanGoBackEffect useWebViewCanGoBackEffect =
+    useWebViewCanGoBackEffectImpl;

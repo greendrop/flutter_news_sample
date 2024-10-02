@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
-import 'package:flutter_news_sample/feature/app_log_detail/hook/use_push_app_log_detail_page.dart'
-    as hook;
-import 'package:flutter_news_sample/feature/app_log_list/hook/use_app_log_files.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/app_log_detail/hook/use_push_app_log_detail_page.dart';
+import 'package:flutter_news_sample/feature/app_log_list/hook/use_app_log_files.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
@@ -16,12 +14,12 @@ import 'package:path/path.dart';
 class AppLogListPage extends HookConsumerWidget {
   const AppLogListPage({
     super.key,
-    this.useAppLogFiles = hook.useAppLogFiles,
-    this.usePushAppLogDetailPage = hook.usePushAppLogDetailPage,
+    this.useAppLogFiles = useAppLogFilesImpl,
+    this.usePushAppLogDetailPage = usePushAppLogDetailPageImpl,
   });
 
-  final hook.UseAppLogFiles useAppLogFiles;
-  final hook.UsePushAppLogDetailPage usePushAppLogDetailPage;
+  final UseAppLogFiles useAppLogFiles;
+  final UsePushAppLogDetailPage usePushAppLogDetailPage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -85,8 +83,8 @@ class AppLogListPage extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref, {
     required Translations translations,
-    required hook.UseAppLogFilesReturn appLogFiles,
-    required hook.UsePushAppLogDetailPageReturn pushAppLogDetailPage,
+    required UseAppLogFilesReturn appLogFiles,
+    required UsePushAppLogDetailPageReturn pushAppLogDetailPage,
   }) {
     return appLogFiles.state.when(
       loading: () => const SliverFillRemaining(

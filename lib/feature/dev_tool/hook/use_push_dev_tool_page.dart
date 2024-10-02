@@ -10,7 +10,7 @@ typedef UsePushDevToolPage = UsePushDevToolPageReturn Function();
 
 const String _hookName = 'usePushDevToolPage';
 
-UsePushDevToolPageReturn usePushDevToolPage() {
+UsePushDevToolPageReturn usePushDevToolPageImpl() {
   final context = useContext();
   final appLogger = useAppLogger();
 
@@ -21,3 +21,5 @@ UsePushDevToolPageReturn usePushDevToolPage() {
 
   return (run: run,);
 }
+
+final UsePushDevToolPage usePushDevToolPage = usePushDevToolPageImpl;

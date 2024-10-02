@@ -14,7 +14,7 @@ typedef UseThemeMode = UseThemeModeReturn Function();
 
 const String _hookName = 'useThemeMode';
 
-UseThemeModeReturn useThemeMode() {
+UseThemeModeReturn useThemeModeImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
@@ -46,3 +46,5 @@ UseThemeModeReturn useThemeMode() {
     update: update,
   );
 }
+
+final UseThemeMode useThemeMode = useThemeModeImpl;

@@ -24,7 +24,7 @@ typedef UseShare = UseShareReturn Function();
 
 const String _hookName = 'UseShare';
 
-UseShareReturn useShare() {
+UseShareReturn useShareImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -86,3 +86,5 @@ UseShareReturn useShare() {
 
   return (run: run, runXFiles: runXFiles);
 }
+
+final UseShare useShare = useShareImpl;

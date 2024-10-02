@@ -46,7 +46,7 @@ class NewsArticleDetailWebView extends HookConsumerWidget {
     final webViewCurrentUrl = useWebViewCurrentUrl();
     final webViewCurrentProgress = useWebViewCurrentProgress();
     final webViewCanGoBack = useWebViewCanGoBack();
-    final urlLauncher = useUrlLauncher();
+    final urlLauncher = useUrlLauncherImpl();
 
     useWebViewCanGoBackEffect(
       webViewController: webViewController,

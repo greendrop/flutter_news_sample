@@ -12,7 +12,7 @@ typedef UsePushLocaleSettingPage = UsePushLocaleSettingPageReturn Function();
 
 const String _hookName = 'usePushLocaleSettingPage';
 
-UsePushLocaleSettingPageReturn usePushLocaleSettingPage() {
+UsePushLocaleSettingPageReturn usePushLocaleSettingPageImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
@@ -24,3 +24,6 @@ UsePushLocaleSettingPageReturn usePushLocaleSettingPage() {
 
   return (run: run,);
 }
+
+final UsePushLocaleSettingPage usePushLocaleSettingPage =
+    usePushLocaleSettingPageImpl;

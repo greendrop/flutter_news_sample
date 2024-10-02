@@ -13,7 +13,7 @@ typedef UseShowDefaultTextSnackBar = UseShowDefaultTextSnackBarReturn
 
 const String _hookName = 'useShowDefaultTextSnackBar';
 
-UseShowDefaultTextSnackBarReturn useShowDefaultTextSnackBar() {
+UseShowDefaultTextSnackBarReturn useShowDefaultTextSnackBarImpl() {
   final context = useContext();
   final appLogger = useAppLogger();
 
@@ -28,3 +28,6 @@ UseShowDefaultTextSnackBarReturn useShowDefaultTextSnackBar() {
 
   return (run: run,);
 }
+
+final UseShowDefaultTextSnackBar useShowDefaultTextSnackBar =
+    useShowDefaultTextSnackBarImpl;

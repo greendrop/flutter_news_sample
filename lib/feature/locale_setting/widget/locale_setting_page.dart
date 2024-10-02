@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
-import 'package:flutter_news_sample/feature/locale_setting/hook/use_locale.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/locale_setting/hook/use_locale.dart';
 import 'package:flutter_news_sample/feature/locale_setting/widget/locale_setting_form.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
@@ -12,10 +11,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class LocaleSettingPage extends HookConsumerWidget {
   const LocaleSettingPage({
     super.key,
-    this.useLocale = hook.useLocale,
+    this.useLocale = useLocaleImpl,
   });
 
-  final hook.UseLocale useLocale;
+  final UseLocale useLocale;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,7 +58,7 @@ class LocaleSettingPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required hook.UseLocaleReturn locale,
+    required UseLocaleReturn locale,
   }) {
     return SliverFillRemaining(
       hasScrollBody: false,

@@ -14,7 +14,7 @@ typedef UseShowDangerTextSnackBar = UseShowDangerTextSnackBarReturn Function();
 
 const String _hookName = 'useShowDangerTextSnackBar';
 
-UseShowDangerTextSnackBarReturn useShowDangerTextSnackBar() {
+UseShowDangerTextSnackBarReturn useShowDangerTextSnackBarImpl() {
   final context = useContext();
   final appLogger = useAppLogger();
   final themeData = useThemeData();
@@ -39,3 +39,6 @@ UseShowDangerTextSnackBarReturn useShowDangerTextSnackBar() {
 
   return (run: run,);
 }
+
+final UseShowDangerTextSnackBar useShowDangerTextSnackBar =
+    useShowDangerTextSnackBarImpl;

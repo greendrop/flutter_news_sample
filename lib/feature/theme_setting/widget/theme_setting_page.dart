@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
-import 'package:flutter_news_sample/feature/theme_setting/hook/use_theme_mode.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/theme_setting/hook/use_theme_mode.dart';
 import 'package:flutter_news_sample/feature/theme_setting/widget/theme_setting_form.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
@@ -12,10 +11,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ThemeSettingPage extends HookConsumerWidget {
   const ThemeSettingPage({
     super.key,
-    this.useThemeMode = hook.useThemeMode,
+    this.useThemeMode = useThemeModeImpl,
   });
 
-  final hook.UseThemeMode useThemeMode;
+  final UseThemeMode useThemeMode;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,7 +58,7 @@ class ThemeSettingPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required hook.UseThemeModeReturn themeMode,
+    required UseThemeModeReturn themeMode,
   }) {
     return SliverFillRemaining(
       hasScrollBody: false,

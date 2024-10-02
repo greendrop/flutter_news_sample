@@ -15,7 +15,7 @@ typedef UseWebviewVerticalScroll = UseWebviewVerticalScrollReturn Function();
 
 const String _hookName = 'useWebviewVerticalScroll';
 
-UseWebviewVerticalScrollReturn useWebviewVerticalScroll() {
+UseWebviewVerticalScrollReturn useWebviewVerticalScrollImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
@@ -35,3 +35,6 @@ UseWebviewVerticalScrollReturn useWebviewVerticalScroll() {
 
   return (state: state, updatePosition: updatePosition);
 }
+
+final UseWebviewVerticalScroll useWebviewVerticalScroll =
+    useWebviewVerticalScrollImpl;
