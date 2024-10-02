@@ -13,7 +13,7 @@ typedef UseAppLogFiles = UseAppLogFilesReturn Function();
 
 const String _hookName = 'useAppLogFiles';
 
-UseAppLogFilesReturn useAppLogFiles() {
+UseAppLogFilesReturn useAppLogFilesImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -37,3 +37,5 @@ UseAppLogFilesReturn useAppLogFiles() {
     fetch: fetch,
   );
 }
+
+final UseAppLogFiles useAppLogFiles = useAppLogFilesImpl;

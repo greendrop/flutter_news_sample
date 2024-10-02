@@ -2,18 +2,14 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_config.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
-import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page.dart'
-    as hook;
-import 'package:flutter_news_sample/feature/locale_setting/hook/use_push_locale_setting_page.dart'
-    as hook;
-import 'package:flutter_news_sample/feature/setting/hook/use_show_app_about_dialog.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page.dart';
+import 'package:flutter_news_sample/feature/locale_setting/hook/use_push_locale_setting_page.dart';
+import 'package:flutter_news_sample/feature/setting/hook/use_show_app_about_dialog.dart';
 import 'package:flutter_news_sample/feature/setting/widget/app_about_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/dev_tool_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/locale_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/theme_list_tile.dart';
-import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_setting_page.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_setting_page.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,17 +17,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class SettingPage extends HookConsumerWidget {
   SettingPage({
     super.key,
-    this.usePushLocaleSettingPage = hook.usePushLocaleSettingPage,
-    this.usePushThemeSettingPage = hook.usePushThemeSettingPage,
-    this.useShowAppAboutDialog = hook.useShowAppAboutDialog,
-    this.usePushDevToolPage = hook.usePushDevToolPage,
+    this.usePushLocaleSettingPage = usePushLocaleSettingPageImpl,
+    this.usePushThemeSettingPage = usePushThemeSettingPageImpl,
+    this.useShowAppAboutDialog = useShowAppAboutDialogImpl,
+    this.usePushDevToolPage = usePushDevToolPageImpl,
     bool? showDevTool,
   }) : showDevTool = showDevTool ?? AppConfig.instance.showDevTool;
 
-  final hook.UsePushLocaleSettingPage usePushLocaleSettingPage;
-  final hook.UsePushThemeSettingPage usePushThemeSettingPage;
-  final hook.UseShowAppAboutDialog useShowAppAboutDialog;
-  final hook.UsePushDevToolPage usePushDevToolPage;
+  final UsePushLocaleSettingPage usePushLocaleSettingPage;
+  final UsePushThemeSettingPage usePushThemeSettingPage;
+  final UseShowAppAboutDialog useShowAppAboutDialog;
+  final UsePushDevToolPage usePushDevToolPage;
   final bool showDevTool;
 
   @override
@@ -78,10 +74,10 @@ class SettingPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required hook.UsePushLocaleSettingPageReturn pushLocaleSettingPage,
-    required hook.UsePushThemeSettingPageReturn pushThemeSettingPage,
-    required hook.UseShowAppAboutDialogReturn showAppAboutDialog,
-    required hook.UsePushDevToolPageReturn pushDevToolPage,
+    required UsePushLocaleSettingPageReturn pushLocaleSettingPage,
+    required UsePushThemeSettingPageReturn pushThemeSettingPage,
+    required UseShowAppAboutDialogReturn showAppAboutDialog,
+    required UsePushDevToolPageReturn pushDevToolPage,
   }) {
     return SliverFillRemaining(
       hasScrollBody: false,

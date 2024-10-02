@@ -13,7 +13,8 @@ typedef UsePushNewsArticleSearchDetailPage
 
 const String _hookName = 'usePushNewsArticleSearchDetailPage';
 
-UsePushNewsArticleSearchDetailPageReturn usePushNewsArticleSearchDetailPage() {
+UsePushNewsArticleSearchDetailPageReturn
+    usePushNewsArticleSearchDetailPageImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
@@ -35,3 +36,6 @@ UsePushNewsArticleSearchDetailPageReturn usePushNewsArticleSearchDetailPage() {
 
   return (run: run,);
 }
+
+final UsePushNewsArticleSearchDetailPage usePushNewsArticleSearchDetailPage =
+    usePushNewsArticleSearchDetailPageImpl;

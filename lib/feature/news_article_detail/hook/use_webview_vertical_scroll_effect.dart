@@ -4,7 +4,11 @@ import 'package:flutter_news_sample/feature/news_article_detail/entity/webview_v
 import 'package:flutter_news_sample/feature/news_article_detail/riverpod/webview_vertical_scroll_state_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void useWebviewVerticalScrollEffect({
+typedef UseWebviewVerticalScrollEffect = void Function({
+  required AnimationController appBarAnimationController,
+});
+
+void useWebviewVerticalScrollEffectImpl({
   required AnimationController appBarAnimationController,
 }) {
   final context = useContext();
@@ -25,3 +29,6 @@ void useWebviewVerticalScrollEffect({
     [state.direction],
   );
 }
+
+final UseWebviewVerticalScrollEffect useWebviewVerticalScrollEffect =
+    useWebviewVerticalScrollEffectImpl;

@@ -12,7 +12,7 @@ typedef UseGoSettingPage = UseGoSettingPageReturn Function();
 
 const String _hookName = 'useGoSettingPage';
 
-UseGoSettingPageReturn useGoSettingPage() {
+UseGoSettingPageReturn useGoSettingPageImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
@@ -27,3 +27,5 @@ UseGoSettingPageReturn useGoSettingPage() {
 
   return (run: run,);
 }
+
+final UseGoSettingPage useGoSettingPage = useGoSettingPageImpl;

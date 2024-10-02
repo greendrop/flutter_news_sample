@@ -13,7 +13,7 @@ typedef UseShowAppAboutDialog = UseShowAppAboutDialogReturn Function();
 
 const String _hookName = 'useShowAppAboutDialog';
 
-UseShowAppAboutDialogReturn useShowAppAboutDialog() {
+UseShowAppAboutDialogReturn useShowAppAboutDialogImpl() {
   final context = useContext();
   final appLogger = useAppLogger();
   final packageInfo = usePackageInfo();
@@ -42,3 +42,5 @@ UseShowAppAboutDialogReturn useShowAppAboutDialog() {
 
   return (run: run,);
 }
+
+final UseShowAppAboutDialog useShowAppAboutDialog = useShowAppAboutDialogImpl;

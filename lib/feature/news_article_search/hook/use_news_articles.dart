@@ -14,7 +14,7 @@ typedef UseNewsArticles = UseNewsArticlesReturn Function();
 
 const String _hookName = 'UseNewsArticles';
 
-UseNewsArticlesReturn useNewsArticles() {
+UseNewsArticlesReturn useNewsArticlesImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -59,3 +59,5 @@ UseNewsArticlesReturn useNewsArticles() {
     fetchMore: fetchMore,
   );
 }
+
+final UseNewsArticles useNewsArticles = useNewsArticlesImpl;

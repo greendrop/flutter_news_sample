@@ -8,7 +8,7 @@ import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_request_go_back.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_vertical_scroll_effect.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/widget/news_article_detail_webview.dart';
-import 'package:flutter_news_sample/feature/share/hook/use_share.dart' as hook;
+import 'package:flutter_news_sample/feature/share/hook/use_share.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,13 +19,13 @@ class NewsArticleDetailPage extends HookConsumerWidget {
     required this.title,
     required this.url,
     this.isDummyWebView = false,
-    this.useShare = hook.useShare,
+    this.useShare = useShareImpl,
   });
 
   final String title;
   final String url;
   final bool isDummyWebView;
-  final hook.UseShare useShare;
+  final UseShare useShare;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -113,7 +113,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
     required UseWebViewCurrentUrlReturn webViewCurrentUrl,
     required UseWebViewCanGoBackReturn webViewCanGoBack,
     required UseWebViewRequestGoBackReturn webViewRequestGoBack,
-    required hook.UseShareReturn share,
+    required UseShareReturn share,
   }) {
     late Widget leading;
     if (webViewCanGoBack.state) {

@@ -2,7 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-PullToRefreshController? usePullToRefreshController({
+typedef UsePullToRefreshController = PullToRefreshController? Function({
+  required ObjectRef<InAppWebViewController?> webViewController,
+});
+
+PullToRefreshController? usePullToRefreshControllerImpl({
   required ObjectRef<InAppWebViewController?> webViewController,
 }) {
   if (kIsWeb) {
@@ -22,3 +26,6 @@ PullToRefreshController? usePullToRefreshController({
     },
   );
 }
+
+final UsePullToRefreshController usePullToRefreshController =
+    usePullToRefreshControllerImpl;

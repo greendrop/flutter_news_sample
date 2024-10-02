@@ -5,37 +5,29 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
-import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_search_detail_page.dart'
-    as hook;
-import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_articles.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_search_detail_page.dart';
+import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_articles.dart';
 import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_form.dart';
-import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart'
-    as hook;
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart'
-    as hook;
-import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
+import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
+import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NewsArticleSearchPage extends HookConsumerWidget {
   const NewsArticleSearchPage({
     super.key,
-    this.useTranslations = hook.useTranslations,
-    this.useNewsArticles = hook.useNewsArticles,
-    this.useShowDangerTextSnackBar = hook.useShowDangerTextSnackBar,
+    this.useNewsArticles = useNewsArticlesImpl,
+    this.useShowDangerTextSnackBar = useShowDangerTextSnackBarImpl,
     this.usePushNewsArticleSearchDetailPage =
-        hook.usePushNewsArticleSearchDetailPage,
-    this.useUrlLauncher = hook.useUrlLauncher,
+        usePushNewsArticleSearchDetailPageImpl,
+    this.useUrlLauncher = useUrlLauncherImpl,
   });
 
-  final hook.UseTranslations useTranslations;
-  final hook.UseNewsArticles useNewsArticles;
-  final hook.UseShowDangerTextSnackBar useShowDangerTextSnackBar;
-  final hook.UsePushNewsArticleSearchDetailPage
-      usePushNewsArticleSearchDetailPage;
-  final hook.UseUrlLauncher useUrlLauncher;
+  final UseNewsArticles useNewsArticles;
+  final UseShowDangerTextSnackBar useShowDangerTextSnackBar;
+  final UsePushNewsArticleSearchDetailPage usePushNewsArticleSearchDetailPage;
+  final UseUrlLauncher useUrlLauncher;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -102,8 +94,8 @@ class NewsArticleSearchPage extends HookConsumerWidget {
   SliverAppBar _appBar(
     BuildContext context,
     WidgetRef ref, {
-    required hook.Translations translations,
-    required hook.UseNewsArticlesReturn newsArticles,
+    required Translations translations,
+    required UseNewsArticlesReturn newsArticles,
     required ValueNotifier<String> currentKeyword,
   }) {
     return SliverAppBar(
@@ -135,9 +127,9 @@ class NewsArticleSearchPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required hook.Translations translations,
-    required hook.UseNewsArticlesReturn newsArticles,
-    required hook.UsePushNewsArticleSearchDetailPageReturn
+    required Translations translations,
+    required UseNewsArticlesReturn newsArticles,
+    required UsePushNewsArticleSearchDetailPageReturn
         pushNewsArticleSearchDetailPage,
     required ValueNotifier<String> currentKeyword,
     required int gridCrossAxisCount,

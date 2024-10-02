@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
-import 'package:flutter_news_sample/feature/app_log_list/hook/use_push_app_log_list_page.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/app_log_list/hook/use_push_app_log_list_page.dart';
 import 'package:flutter_news_sample/feature/dev_tool/widget/app_log_list_tile.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
@@ -12,10 +11,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class DevToolPage extends HookConsumerWidget {
   const DevToolPage({
     super.key,
-    this.usePushAppLogListPage = hook.usePushAppLogListPage,
+    this.usePushAppLogListPage = usePushAppLogListPageImpl,
   });
 
-  final hook.UsePushAppLogListPage usePushAppLogListPage;
+  final UsePushAppLogListPage usePushAppLogListPage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -63,7 +62,7 @@ class DevToolPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required hook.UsePushAppLogListPageReturn pushAppLogListPage,
+    required UsePushAppLogListPageReturn pushAppLogListPage,
   }) {
     return SliverFillRemaining(
       hasScrollBody: false,

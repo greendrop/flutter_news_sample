@@ -10,7 +10,7 @@ typedef UsePushThemeSettingPage = UsePushThemeSettingPageReturn Function();
 
 const String _hookName = 'usePushThemeSettingPage';
 
-UsePushThemeSettingPageReturn usePushThemeSettingPage() {
+UsePushThemeSettingPageReturn usePushThemeSettingPageImpl() {
   final context = useContext();
   final appLogger = useAppLogger();
 
@@ -21,3 +21,6 @@ UsePushThemeSettingPageReturn usePushThemeSettingPage() {
 
   return (run: run,);
 }
+
+final UsePushThemeSettingPage usePushThemeSettingPage =
+    usePushThemeSettingPageImpl;

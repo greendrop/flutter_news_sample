@@ -11,7 +11,7 @@ typedef UseAppLoggerDirectoryReturn = ({
 
 typedef UseAppLoggerDirectory = UseAppLoggerDirectoryReturn Function();
 
-UseAppLoggerDirectoryReturn useAppLoggerDirectory() {
+UseAppLoggerDirectoryReturn useAppLoggerDirectoryImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -29,3 +29,5 @@ UseAppLoggerDirectoryReturn useAppLoggerDirectory() {
     initialize: initialize,
   );
 }
+
+final UseAppLoggerDirectory useAppLoggerDirectory = useAppLoggerDirectoryImpl;

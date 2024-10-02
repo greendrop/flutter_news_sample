@@ -3,6 +3,9 @@ import 'package:go_router/go_router.dart';
 
 typedef UseAppRouterCurrentUri = Uri Function();
 
-Uri useAppRouterCurrentUri() {
+Uri useAppRouterCurrentUriImpl() {
   return GoRouterState.of(useContext()).uri;
 }
+
+final UseAppRouterCurrentUri useAppRouterCurrentUri =
+    useAppRouterCurrentUriImpl;

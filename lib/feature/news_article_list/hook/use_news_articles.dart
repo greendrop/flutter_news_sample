@@ -16,7 +16,7 @@ typedef UseNewsArticles = UseNewsArticlesReturn Function({
 
 const String _hookName = 'UseNewsArticles';
 
-UseNewsArticlesReturn useNewsArticles({
+UseNewsArticlesReturn useNewsArticlesImpl({
   required String category,
 }) {
   final context = useContext();
@@ -64,3 +64,5 @@ UseNewsArticlesReturn useNewsArticles({
     fetchMore: fetchMore,
   );
 }
+
+final UseNewsArticles useNewsArticles = useNewsArticlesImpl;

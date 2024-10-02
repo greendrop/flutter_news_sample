@@ -15,7 +15,7 @@ typedef UseGoNewsArticleListPage = UseGoNewsArticleListPageReturn Function();
 
 const String _hookName = 'useGoNewsArticleListPage';
 
-UseGoNewsArticleListPageReturn useGoNewsArticleListPage() {
+UseGoNewsArticleListPageReturn useGoNewsArticleListPageImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
@@ -35,3 +35,6 @@ UseGoNewsArticleListPageReturn useGoNewsArticleListPage() {
 
   return (run: run,);
 }
+
+final UseGoNewsArticleListPage useGoNewsArticleListPage =
+    useGoNewsArticleListPageImpl;

@@ -14,7 +14,7 @@ typedef UseShowInfoTextSnackBar = UseShowInfoTextSnackBarReturn Function();
 
 const String _hookName = 'useShowInfoTextSnackBar';
 
-UseShowInfoTextSnackBarReturn useShowInfoTextSnackBar() {
+UseShowInfoTextSnackBarReturn useShowInfoTextSnackBarImpl() {
   final context = useContext();
   final appLogger = useAppLogger();
   final themeData = useThemeData();
@@ -38,3 +38,6 @@ UseShowInfoTextSnackBarReturn useShowInfoTextSnackBar() {
 
   return (run: run,);
 }
+
+final UseShowInfoTextSnackBar useShowInfoTextSnackBar =
+    useShowInfoTextSnackBarImpl;

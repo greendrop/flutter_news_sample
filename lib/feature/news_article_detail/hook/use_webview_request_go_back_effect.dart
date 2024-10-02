@@ -3,7 +3,11 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/riverpod/webview_request_go_back_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void useWebViewRequestGoBackEffect({
+typedef UseWebViewRequestGoBackEffect = void Function({
+  required ObjectRef<InAppWebViewController?> webViewController,
+});
+
+void useWebViewRequestGoBackEffectImpl({
   required ObjectRef<InAppWebViewController?> webViewController,
 }) {
   final context = useContext();
@@ -27,3 +31,6 @@ void useWebViewRequestGoBackEffect({
     [requestGoBack],
   );
 }
+
+final UseWebViewRequestGoBackEffect useWebViewRequestGoBackEffect =
+    useWebViewRequestGoBackEffectImpl;

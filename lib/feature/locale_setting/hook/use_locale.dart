@@ -14,7 +14,7 @@ typedef UseLocale = UseLocaleReturn Function();
 
 const String _hookName = 'useLocale';
 
-UseLocaleReturn useLocale() {
+UseLocaleReturn useLocaleImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
@@ -46,3 +46,5 @@ UseLocaleReturn useLocale() {
     update: update,
   );
 }
+
+final UseLocale useLocale = useLocaleImpl;

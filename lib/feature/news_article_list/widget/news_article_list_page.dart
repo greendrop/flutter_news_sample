@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
-import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page.dart';
 import 'package:flutter_news_sample/feature/news_article_list/enum/news_headline_category.dart';
-import 'package:flutter_news_sample/feature/news_article_list/hook/use_news_articles.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/news_article_list/hook/use_news_articles.dart';
 import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
 import 'package:flutter_news_sample/feature/theme_data/hook/use_theme_data.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
@@ -19,13 +17,13 @@ class NewsArticleListPage extends HookConsumerWidget {
   const NewsArticleListPage({
     super.key,
     this.initialCategory = defaultCategory,
-    this.useNewsArticles = hook.useNewsArticles,
-    this.usePushNewsArticleDetailPage = hook.usePushNewsArticleDetailPage,
+    this.useNewsArticles = useNewsArticlesImpl,
+    this.usePushNewsArticleDetailPage = usePushNewsArticleDetailPageImpl,
   });
 
   final NewsHeadlineCategory initialCategory;
-  final hook.UseNewsArticles useNewsArticles;
-  final hook.UsePushNewsArticleDetailPage usePushNewsArticleDetailPage;
+  final UseNewsArticles useNewsArticles;
+  final UsePushNewsArticleDetailPage usePushNewsArticleDetailPage;
 
   static const defaultCategory = NewsHeadlineCategory.general;
 
@@ -34,10 +32,10 @@ class NewsArticleListPage extends HookConsumerWidget {
     final translations = useTranslations();
     final themeData = useThemeData();
     final pushNewsArticleDetailPage = usePushNewsArticleDetailPage();
-    final showDangerTextSnackBar = useShowDangerTextSnackBar();
+    final showDangerTextSnackBar = useShowDangerTextSnackBarImpl();
 
-    final newsArticlesByCategories = NewsHeadlineCategory.values.fold(
-        <NewsHeadlineCategory, hook.UseNewsArticlesReturn>{}, (acc, category) {
+    final newsArticlesByCategories = NewsHeadlineCategory.values
+        .fold(<NewsHeadlineCategory, UseNewsArticlesReturn>{}, (acc, category) {
       acc[category] = useNewsArticles(category: category.value);
       return acc;
     });
@@ -117,7 +115,7 @@ class NewsArticleListPage extends HookConsumerWidget {
   Widget _tabBar(
     BuildContext context,
     WidgetRef ref, {
-    required Map<NewsHeadlineCategory, hook.UseNewsArticlesReturn>
+    required Map<NewsHeadlineCategory, UseNewsArticlesReturn>
         newsArticlesByCategories,
     required TabController controller,
     required ThemeData themeData,
@@ -148,11 +146,11 @@ Widget _body(
   BuildContext context,
   WidgetRef ref, {
   required TabController tabController,
-  required Map<NewsHeadlineCategory, hook.UseNewsArticlesReturn>
+  required Map<NewsHeadlineCategory, UseNewsArticlesReturn>
       newsArticlesByCategories,
   required int gridCrossAxisCount,
   required Translations translations,
-  required hook.UsePushNewsArticleDetailPageReturn pushNewsArticleDetailPage,
+  required UsePushNewsArticleDetailPageReturn pushNewsArticleDetailPage,
   required UseShowDangerTextSnackBarReturn showDangerTextSnackBar,
 }) {
   return TabBarView(

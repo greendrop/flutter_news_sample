@@ -13,7 +13,7 @@ typedef UseGoNewsArticleSearchPage = UseGoNewsArticleSearchPageReturn
 
 const String _hookName = 'useGoNewshArticleSearchPage';
 
-UseGoNewsArticleSearchPageReturn useGoNewsArticleSearchPage() {
+UseGoNewsArticleSearchPageReturn useGoNewsArticleSearchPageImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
@@ -28,3 +28,6 @@ UseGoNewsArticleSearchPageReturn useGoNewsArticleSearchPage() {
 
   return (run: run,);
 }
+
+final UseGoNewsArticleSearchPage useGoNewsArticleSearchPage =
+    useGoNewsArticleSearchPageImpl;

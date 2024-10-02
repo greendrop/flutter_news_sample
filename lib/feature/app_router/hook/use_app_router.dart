@@ -3,7 +3,9 @@ import 'package:flutter_news_sample/feature/app_router/navigator_observer/logger
 import 'package:flutter_news_sample/feature/app_router/route_data/app_route_data.dart';
 import 'package:go_router/go_router.dart';
 
-GoRouter useAppRouter({String initialLocation = '/news_articles'}) {
+typedef UseAppRouter = GoRouter Function({String initialLocation});
+
+GoRouter useAppRouterImpl({String initialLocation = '/news_articles'}) {
   final appLogger = useAppLogger();
 
   return GoRouter(
@@ -20,3 +22,5 @@ GoRouter useAppRouter({String initialLocation = '/news_articles'}) {
     ],
   );
 }
+
+final UseAppRouter useAppRouter = useAppRouterImpl;

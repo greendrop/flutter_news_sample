@@ -13,7 +13,7 @@ typedef UseWebViewCurrentProgress = UseWebViewCurrentProgressReturn Function();
 
 const String _hookName = 'useWebViewCurrentProgress';
 
-UseWebViewCurrentProgressReturn useWebViewCurrentProgress() {
+UseWebViewCurrentProgressReturn useWebViewCurrentProgressImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -36,3 +36,6 @@ UseWebViewCurrentProgressReturn useWebViewCurrentProgress() {
     setState: setState,
   );
 }
+
+final UseWebViewCurrentProgress useWebViewCurrentProgress =
+    useWebViewCurrentProgressImpl;

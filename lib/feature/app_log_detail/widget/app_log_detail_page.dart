@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
-import 'package:flutter_news_sample/feature/app_log_detail/hook/use_app_log_file_content.dart'
-    as hook;
+import 'package:flutter_news_sample/feature/app_log_detail/hook/use_app_log_file_content.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
@@ -13,11 +12,11 @@ class AppLogDetailPage extends HookConsumerWidget {
   const AppLogDetailPage({
     super.key,
     required this.filename,
-    this.useAppLogFileContent = hook.useAppLogFileContent,
+    this.useAppLogFileContent = useAppLogFileContentImpl,
   });
 
   final String filename;
-  final hook.UseAppLogFileContent useAppLogFileContent;
+  final UseAppLogFileContent useAppLogFileContent;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -69,7 +68,7 @@ class AppLogDetailPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required hook.UseAppLogFileContentReturn appLogFileContent,
+    required UseAppLogFileContentReturn appLogFileContent,
   }) {
     final translations = useTranslations();
 

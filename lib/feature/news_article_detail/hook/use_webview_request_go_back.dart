@@ -13,7 +13,7 @@ typedef UseWebViewRequestGoBack = UseWebViewRequestGoBackReturn Function();
 
 const String _hookName = 'useWebViewRequestGoBack';
 
-UseWebViewRequestGoBackReturn useWebViewRequestGoBack() {
+UseWebViewRequestGoBackReturn useWebViewRequestGoBackImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
@@ -37,3 +37,6 @@ UseWebViewRequestGoBackReturn useWebViewRequestGoBack() {
     setState: setState,
   );
 }
+
+final UseWebViewRequestGoBack useWebViewRequestGoBack =
+    useWebViewRequestGoBackImpl;

@@ -14,7 +14,7 @@ typedef UseAppLogFileContent = UseAppLogFileContentReturn Function({
 
 const String _hookName = 'useAppLogFileContent';
 
-UseAppLogFileContentReturn useAppLogFileContent({
+UseAppLogFileContentReturn useAppLogFileContentImpl({
   required String filename,
 }) {
   final context = useContext();
@@ -45,3 +45,5 @@ UseAppLogFileContentReturn useAppLogFileContent({
     fetch: fetch,
   );
 }
+
+final UseAppLogFileContent useAppLogFileContent = useAppLogFileContentImpl;

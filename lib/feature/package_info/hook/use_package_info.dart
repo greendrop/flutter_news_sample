@@ -14,7 +14,7 @@ typedef UsePackageInfo = UsePackageInfoReturn Function();
 
 const String _hookName = 'usePackageInfo';
 
-UsePackageInfoReturn usePackageInfo() {
+UsePackageInfoReturn usePackageInfoImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
@@ -43,3 +43,5 @@ UsePackageInfoReturn usePackageInfo() {
     refresh: refresh,
   );
 }
+
+final UsePackageInfo usePackageInfo = usePackageInfoImpl;
