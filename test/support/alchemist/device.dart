@@ -96,4 +96,11 @@ class Device {
         '${size.width}x${size.height} @ $devicePixelRatio, '
         'text: $textScaleFactor, $brightness, safe: $safeArea';
   }
+
+  bool get isDark => brightness == Brightness.dark;
+  bool get isLight => brightness == Brightness.light;
+  bool get isPortrait => size.height > size.width;
+  bool get isLandscape => size.width > size.height;
+  bool get isTablet => size.shortestSide > 600;
+  bool get isPhone => size.shortestSide <= 600;
 }

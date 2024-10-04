@@ -13,10 +13,12 @@ class AppLogDetailPage extends HookConsumerWidget {
     super.key,
     required this.filename,
     this.useAppLogFileContent = useAppLogFileContentImpl,
+    this.stopLoadingIndicator = false,
   });
 
   final String filename;
   final UseAppLogFileContent useAppLogFileContent;
+  final bool stopLoadingIndicator;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -73,9 +75,13 @@ class AppLogDetailPage extends HookConsumerWidget {
     final translations = useTranslations();
 
     return appLogFileContent.state.when(
-      loading: () => const SliverFillRemaining(
+      loading: () => SliverFillRemaining(
         hasScrollBody: false,
-        child: Center(child: CircularProgressIndicator()),
+        child: Center(
+          child: CircularProgressIndicator(
+            value: stopLoadingIndicator ? 0.8 : null,
+          ),
+        ),
       ),
       error: (error, stackTrace) => SliverFillRemaining(
         hasScrollBody: false,
