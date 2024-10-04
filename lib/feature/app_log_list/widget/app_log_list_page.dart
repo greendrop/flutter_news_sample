@@ -16,10 +16,12 @@ class AppLogListPage extends HookConsumerWidget {
     super.key,
     this.useAppLogFiles = useAppLogFilesImpl,
     this.usePushAppLogDetailPage = usePushAppLogDetailPageImpl,
+    this.stopLoadingIndicator = false,
   });
 
   final UseAppLogFiles useAppLogFiles;
   final UsePushAppLogDetailPage usePushAppLogDetailPage;
+  final bool stopLoadingIndicator;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -87,9 +89,13 @@ class AppLogListPage extends HookConsumerWidget {
     required UsePushAppLogDetailPageReturn pushAppLogDetailPage,
   }) {
     return appLogFiles.state.when(
-      loading: () => const SliverFillRemaining(
+      loading: () => SliverFillRemaining(
         hasScrollBody: false,
-        child: Center(child: CircularProgressIndicator()),
+        child: Center(
+          child: CircularProgressIndicator(
+            value: stopLoadingIndicator ? 0.8 : null,
+          ),
+        ),
       ),
       error: (error, stackTrace) {
         final appException = error is AppException
