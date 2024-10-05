@@ -33,17 +33,21 @@ void main() {
     }
 
     for (final device in Device.all) {
-      goldenTest(
-        'Default ${device.name}',
-        fileName: 'locale_setting_page_default_${device.name}',
-        builder: () {
-          return GoldenTestDeviceScenario(
-            name: '',
-            device: device,
-            builder: buildLocaleSettingPage,
+      group(device.name, () {
+        group('Default', () {
+          goldenTest(
+            '',
+            fileName: 'locale_setting_page_default_${device.name}',
+            builder: () {
+              return GoldenTestDeviceScenario(
+                name: '',
+                device: device,
+                builder: buildLocaleSettingPage,
+              );
+            },
           );
-        },
-      );
+        });
+      });
     }
   });
 }
