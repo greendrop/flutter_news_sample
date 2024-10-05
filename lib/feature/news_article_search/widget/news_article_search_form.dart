@@ -7,6 +7,7 @@ class NewsArticleSearchForm extends StatefulHookConsumerWidget {
   const NewsArticleSearchForm({
     super.key,
     required this.initialKeyword,
+    this.initiallidationEnabled = false,
     this.onSubmit,
   });
 
@@ -14,6 +15,7 @@ class NewsArticleSearchForm extends StatefulHookConsumerWidget {
 
   final String initialKeyword;
   final void Function({required String keyword})? onSubmit;
+  final bool initiallidationEnabled;
 
   @override
   NewsArticleSearchFormState createState() => NewsArticleSearchFormState();
@@ -27,6 +29,9 @@ class NewsArticleSearchFormState extends ConsumerState<NewsArticleSearchForm> {
     super.initState();
 
     _formGroup = _buildFromGroup(context);
+    if (widget.initiallidationEnabled) {
+      _formGroup.markAllAsTouched();
+    }
   }
 
   @override

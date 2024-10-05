@@ -22,12 +22,14 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     this.usePushNewsArticleSearchDetailPage =
         usePushNewsArticleSearchDetailPageImpl,
     this.useUrlLauncher = useUrlLauncherImpl,
+    this.stopLoadingIndicator = false,
   });
 
   final UseNewsArticles useNewsArticles;
   final UseShowDangerTextSnackBar useShowDangerTextSnackBar;
   final UsePushNewsArticleSearchDetailPage usePushNewsArticleSearchDetailPage;
   final UseUrlLauncher useUrlLauncher;
+  final bool stopLoadingIndicator;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -136,9 +138,11 @@ class NewsArticleSearchPage extends HookConsumerWidget {
   }) {
     return newsArticles.state.when(
       loading: () {
-        return const SliverFillRemaining(
+        return SliverFillRemaining(
           child: Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              value: stopLoadingIndicator ? 0.8 : null,
+            ),
           ),
         );
       },
