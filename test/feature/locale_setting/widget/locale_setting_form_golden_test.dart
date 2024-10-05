@@ -24,17 +24,21 @@ void main() {
     }
 
     for (final brightness in Brightness.values) {
-      goldenTest(
-        brightness.name,
-        fileName: 'locale_setting_form_${brightness.name}',
-        builder: () {
-          return GoldenTestWidgetScenario(
-            name: '',
-            brightness: brightness,
-            builder: () => buildLocaleSettingForm(onSubmit: (locale) {}),
+      group(brightness.name, () {
+        group('Default', () {
+          goldenTest(
+            '',
+            fileName: 'locale_setting_form_${brightness.name}',
+            builder: () {
+              return GoldenTestWidgetScenario(
+                name: '',
+                brightness: brightness,
+                builder: () => buildLocaleSettingForm(onSubmit: (locale) {}),
+              );
+            },
           );
-        },
-      );
+        });
+      });
     }
   });
 }
