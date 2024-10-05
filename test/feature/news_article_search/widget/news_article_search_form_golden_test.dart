@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_form.dart';
@@ -25,12 +27,14 @@ void main() {
       );
     }
 
+    final fileNamePrefix = 'news_article_search_form${Platform.pathSeparator}';
+
     for (final brightness in Brightness.values) {
       group(brightness.name, () {
         group('Default', () {
           goldenTest(
             '',
-            fileName: 'news_article_search_form/default_${brightness.name}',
+            fileName: '${fileNamePrefix}default_${brightness.name}',
             builder: () {
               return GoldenTestWidgetScenario(
                 name: '',
@@ -46,7 +50,7 @@ void main() {
         group('Invalid', () {
           goldenTest(
             '',
-            fileName: 'news_article_search_form/invalid_${brightness.name}',
+            fileName: '${fileNamePrefix}invalid_${brightness.name}',
             builder: () {
               return GoldenTestWidgetScenario(
                 name: '',
@@ -63,8 +67,7 @@ void main() {
         group('Disabled Submit', () {
           goldenTest(
             '',
-            fileName:
-                'news_article_search_form/disabled_submit_${brightness.name}',
+            fileName: '${fileNamePrefix}disabled_submit_${brightness.name}',
             builder: () {
               return GoldenTestWidgetScenario(
                 name: '',

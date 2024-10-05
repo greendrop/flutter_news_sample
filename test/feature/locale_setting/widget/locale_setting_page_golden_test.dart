@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_locale.dart';
@@ -32,12 +34,14 @@ void main() {
       );
     }
 
+    final fileNamePrefix = 'locale_setting_page${Platform.pathSeparator}';
+
     for (final device in Device.all) {
       group(device.name, () {
         group('Default', () {
           goldenTest(
             '',
-            fileName: 'locale_setting_page_default_${device.name}',
+            fileName: '${fileNamePrefix}default_${device.name}',
             builder: () {
               return GoldenTestDeviceScenario(
                 name: '',

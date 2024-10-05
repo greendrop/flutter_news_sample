@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/setting/widget/app_about_list_tile.dart';
@@ -17,10 +19,12 @@ void main() {
       );
     }
 
+    final fileNamePrefix = 'app_about_list_tile${Platform.pathSeparator}';
+
     for (final brightness in Brightness.values) {
       goldenTest(
         'Enabled ${brightness.name}',
-        fileName: 'app_about_list_tile_enabled_${brightness.name}',
+        fileName: '${fileNamePrefix}enabled_${brightness.name}',
         builder: () {
           return GoldenTestWidgetScenario(
             name: '',
@@ -32,7 +36,7 @@ void main() {
 
       goldenTest(
         'Disabled ${brightness.name}',
-        fileName: 'app_about_list_tile_disabled_${brightness.name}',
+        fileName: '${fileNamePrefix}disabled_${brightness.name}',
         builder: () {
           return GoldenTestWidgetScenario(
             name: '',

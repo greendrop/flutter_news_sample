@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_image.dart';
@@ -17,12 +19,14 @@ void main() {
       return mockNetworkImages(() => NewsArticleImage(url: url));
     }
 
+    final fileNamePrefix = 'news_article_image${Platform.pathSeparator}';
+
     for (final brightness in Brightness.values) {
       group(brightness.name, () {
         group('Exist Image', () {
           goldenTest(
             '',
-            fileName: 'news_article_image_exist_image_${brightness.name}',
+            fileName: '${fileNamePrefix}exist_image_${brightness.name}',
             builder: () => GoldenTestWidgetScenario(
               name: '',
               brightness: brightness,
@@ -34,12 +38,12 @@ void main() {
         group('No Image', () {
           goldenTest(
             '',
-            fileName: 'news_article_image_no_image_${brightness.name}',
+            fileName: '${fileNamePrefix}no_image_${brightness.name}',
             builder: () {
               return GoldenTestWidgetScenario(
                 name: '',
                 brightness: brightness,
-                builder: () => mockNetworkImages(buildNewsArticleImage),
+                builder: buildNewsArticleImage,
               );
             },
           );
