@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/setting/widget/about_app_icon.dart';
@@ -17,10 +19,12 @@ void main() {
       );
     }
 
+    final fileNamePrefix = 'about_app_icon${Platform.pathSeparator}';
+
     for (final brightness in Brightness.values) {
       goldenTest(
         'Default ${brightness.name}',
-        fileName: 'about_app_icon_default_${brightness.name}',
+        fileName: '${fileNamePrefix}default_${brightness.name}',
         builder: () {
           return GoldenTestWidgetScenario(
             name: '',

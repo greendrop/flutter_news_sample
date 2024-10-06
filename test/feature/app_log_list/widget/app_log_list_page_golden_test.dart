@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/app_log_detail/hook/use_push_app_log_detail_page.dart';
@@ -58,12 +60,14 @@ void main() {
       );
     }
 
+    final fileNamePrefix = 'app_log_list_page${Platform.pathSeparator}';
+
     for (final device in Device.all) {
       group(device.name, () {
         group('Default', () {
           goldenTest(
             '',
-            fileName: 'app_log_list_page_default_${device.name}',
+            fileName: '${fileNamePrefix}default_${device.name}',
             builder: () {
               return GoldenTestDeviceScenario(
                 name: '',
@@ -77,7 +81,7 @@ void main() {
         group('Empty', () {
           goldenTest(
             '',
-            fileName: 'app_log_list_page_empty_${device.name}',
+            fileName: '${fileNamePrefix}empty_${device.name}',
             builder: () {
               return GoldenTestDeviceScenario(
                 name: '',
@@ -91,7 +95,7 @@ void main() {
         group('Loading', () {
           goldenTest(
             '',
-            fileName: 'app_log_list_page_loading_${device.name}',
+            fileName: '${fileNamePrefix}loading_${device.name}',
             builder: () {
               return GoldenTestDeviceScenario(
                 name: '',

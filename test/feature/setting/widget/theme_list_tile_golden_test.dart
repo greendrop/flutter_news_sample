@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/setting/widget/theme_list_tile.dart';
@@ -17,30 +19,36 @@ void main() {
       );
     }
 
-    for (final brightness in Brightness.values) {
-      goldenTest(
-        'Enabled ${brightness.name}',
-        fileName: 'theme_list_tile_enabled_${brightness.name}',
-        builder: () {
-          return GoldenTestWidgetScenario(
-            name: '',
-            brightness: brightness,
-            builder: () => buildThemeListTile(onTap: () {}),
-          );
-        },
-      );
+    final fileNamePrefix = 'theme_list_tile${Platform.pathSeparator}';
 
-      goldenTest(
-        'Disabled ${brightness.name}',
-        fileName: 'theme_list_tile_disabled_${brightness.name}',
-        builder: () {
-          return GoldenTestWidgetScenario(
-            name: '',
-            brightness: brightness,
-            builder: buildThemeListTile,
-          );
-        },
-      );
+    for (final brightness in Brightness.values) {
+      group('Enabled', () {
+        goldenTest(
+          '',
+          fileName: '${fileNamePrefix}enabled_${brightness.name}',
+          builder: () {
+            return GoldenTestWidgetScenario(
+              name: '',
+              brightness: brightness,
+              builder: () => buildThemeListTile(onTap: () {}),
+            );
+          },
+        );
+      });
+
+      group('Disabled', () {
+        goldenTest(
+          '',
+          fileName: '${fileNamePrefix}disabled_${brightness.name}',
+          builder: () {
+            return GoldenTestWidgetScenario(
+              name: '',
+              brightness: brightness,
+              builder: buildThemeListTile,
+            );
+          },
+        );
+      });
     }
   });
 }

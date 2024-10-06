@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/locale_setting/widget/locale_setting_form.dart';
@@ -23,12 +25,14 @@ void main() {
       );
     }
 
+    final fileNamePrefix = 'locale_setting_form${Platform.pathSeparator}';
+
     for (final brightness in Brightness.values) {
       group(brightness.name, () {
         group('Default', () {
           goldenTest(
             '',
-            fileName: 'locale_setting_form_${brightness.name}',
+            fileName: '${fileNamePrefix}default_${brightness.name}',
             builder: () {
               return GoldenTestWidgetScenario(
                 name: '',

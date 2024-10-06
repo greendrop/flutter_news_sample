@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/news_article/entity/news_article.dart';
@@ -77,12 +79,14 @@ void main() {
       );
     }
 
+    final fileNamePrefix = 'news_article_search_page${Platform.pathSeparator}';
+
     for (final device in Device.all) {
       group(device.name, () {
         group('Default', () {
           goldenTest(
             '',
-            fileName: 'news_article_search_page/default_${device.name}',
+            fileName: '${fileNamePrefix}default_${device.name}',
             builder: () {
               return GoldenTestDeviceScenario(
                 name: '',
@@ -96,7 +100,7 @@ void main() {
         group('Empty', () {
           goldenTest(
             '',
-            fileName: 'news_article_search_page/empty_${device.name}',
+            fileName: '${fileNamePrefix}empty_${device.name}',
             builder: () {
               return GoldenTestDeviceScenario(
                 name: '',
@@ -110,7 +114,7 @@ void main() {
         group('Loading', () {
           goldenTest(
             '',
-            fileName: 'news_article_search_page/loading_${device.name}',
+            fileName: '${fileNamePrefix}loading_${device.name}',
             builder: () {
               return GoldenTestDeviceScenario(
                 name: '',

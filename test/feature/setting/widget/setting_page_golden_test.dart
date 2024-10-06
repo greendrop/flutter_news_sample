@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page.dart';
@@ -59,10 +61,12 @@ void main() {
       );
     }
 
+    final fileNamePrefix = 'setting_page${Platform.pathSeparator}';
+
     for (final device in Device.all) {
       goldenTest(
         'Default ${device.name}',
-        fileName: 'setting_page_default_${device.name}',
+        fileName: '${fileNamePrefix}default_${device.name}',
         builder: () {
           return GoldenTestDeviceScenario(
             name: '',

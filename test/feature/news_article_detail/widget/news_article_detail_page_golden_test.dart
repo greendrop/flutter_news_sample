@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/widget/news_article_detail_page.dart';
@@ -21,12 +23,15 @@ void main() {
       );
     }
 
+    final fileNamePrefix =
+        'dev_news_article_detail_page${Platform.pathSeparator}';
+
     for (final device in Device.all) {
       group(device.name, () {
         group('Default', () {
           goldenTest(
             '',
-            fileName: 'dev_news_article_detail_page_default_${device.name}',
+            fileName: '${fileNamePrefix}default_${device.name}',
             builder: () {
               return GoldenTestDeviceScenario(
                 name: '',
