@@ -10,20 +10,10 @@ import '../../../support/widget/test_material_app.dart';
 
 void main() {
   group('AppLogListPage', () {
-    testWidgets(
-        [
-          'ログ一覧が表示されること',
-          'ログ一覧をタップすると、詳細画面への遷移が呼び出されること',
-        ].join(', '), (tester) async {
-      var tappedFilename = '';
-
-      UseAppLogFilesReturn useMockAppLogFiles() {
-        final state = AsyncValue.data([
-          AppLogFile(path: '/path/to/test1.log'),
-          AppLogFile(path: '/path/to/test2.log'),
-          AppLogFile(path: '/path/to/test3.log'),
-        ]);
-
+    UseAppLogFiles buildUseAppLogFiles({
+      required AsyncValue<List<AppLogFile>> state,
+    }) {
+      UseAppLogFilesReturn useAppLogFiles() {
         Future<void> fetch({bool isRefresh = false}) async {}
 
         return (
@@ -32,46 +22,68 @@ void main() {
         );
       }
 
-      UsePushAppLogDetailPageReturn useMockPushAppLogDetailPage() {
+      return useAppLogFiles;
+    }
+
+    var runnedPushAppLogDetailPageFilename = '';
+    UsePushAppLogDetailPage buildUsePushAppLogDetailPage() {
+      UsePushAppLogDetailPageReturn usePushAppLogDetailPage() {
         Future<void> run({required String filename}) {
-          tappedFilename = filename;
+          runnedPushAppLogDetailPageFilename = filename;
           return Future.value();
         }
 
         return (run: run);
       }
 
-      await tester.runAsync(() async {
-        await tester.pumpWidget(
-          ProviderScope(
-            child: TestMaterialApp(
-              child: AppLogListPage(
-                useAppLogFiles: useMockAppLogFiles,
-                usePushAppLogDetailPage: useMockPushAppLogDetailPage,
+      return usePushAppLogDetailPage;
+    }
+
+    group('ログファイルがある場合', () {
+      testWidgets(
+          [
+            'ログ一覧が表示されること',
+            'ログ一覧をタップすると、詳細画面への遷移が呼び出されること',
+          ].join(', '), (tester) async {
+        await tester.runAsync(() async {
+          await tester.pumpWidget(
+            ProviderScope(
+              child: TestMaterialApp(
+                child: AppLogListPage(
+                  useAppLogFiles: buildUseAppLogFiles(
+                    state: AsyncValue.data([
+                      AppLogFile(path: '/path/to/test1.log'),
+                      AppLogFile(path: '/path/to/test2.log'),
+                      AppLogFile(path: '/path/to/test3.log'),
+                    ]),
+                  ),
+                  usePushAppLogDetailPage: buildUsePushAppLogDetailPage(),
+                ),
               ),
             ),
-          ),
+          );
+        });
+        await tester.pumpAndSettle();
+
+        expect(
+          find.byKey(const ValueKey('ListTile-/path/to/test1.log')),
+          findsOneWidget,
         );
+        expect(
+          find.byKey(const ValueKey('ListTile-/path/to/test2.log')),
+          findsOneWidget,
+        );
+        expect(
+          find.byKey(const ValueKey('ListTile-/path/to/test3.log')),
+          findsOneWidget,
+        );
+
+        runnedPushAppLogDetailPageFilename = '';
+        await tester
+            .tap(find.byKey(const ValueKey('ListTile-/path/to/test2.log')));
+
+        expect(runnedPushAppLogDetailPageFilename, 'test2.log');
       });
-      await tester.pumpAndSettle();
-
-      expect(
-        find.byKey(const ValueKey('ListTile-/path/to/test1.log')),
-        findsOneWidget,
-      );
-      expect(
-        find.byKey(const ValueKey('ListTile-/path/to/test2.log')),
-        findsOneWidget,
-      );
-      expect(
-        find.byKey(const ValueKey('ListTile-/path/to/test3.log')),
-        findsOneWidget,
-      );
-
-      await tester
-          .tap(find.byKey(const ValueKey('ListTile-/path/to/test2.log')));
-
-      expect(tappedFilename, 'test2.log');
     });
   });
 }
