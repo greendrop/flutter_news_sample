@@ -95,7 +95,7 @@ class AppLogDetailPage extends HookConsumerWidget {
       data: (data) {
         final lines = data.split('\n');
 
-        if (lines.isEmpty) {
+        if (lines.isEmpty || (lines.length == 1 && lines.first.isEmpty)) {
           return SliverFillRemaining(
             hasScrollBody: false,
             child: Center(child: Text(translations.general.noDataAvailable)),

@@ -9,11 +9,15 @@ import '../../../support/widget/test_material_app.dart';
 
 void main() {
   group('LocaleSettingPage', () {
-    testWidgets('LocaleSettingFormが表示されること', (tester) async {
-      UseLocaleReturn useMockLocale() {
-        const state = null;
+    Locale? updatedLocale;
+    UseLocale buildUseLocale({
+      required Locale? state,
+    }) {
+      UseLocaleReturn useLocale() {
         Future<void> initialize() async {}
-        Future<void> update(Locale? locale) async {}
+        Future<void> update(Locale? locale) async {
+          updatedLocale = locale;
+        }
 
         return (
           state: state,
@@ -22,12 +26,16 @@ void main() {
         );
       }
 
+      return useLocale;
+    }
+
+    testWidgets('LocaleSettingFormが表示されること', (tester) async {
       await tester.runAsync(() async {
         await tester.pumpWidget(
           ProviderScope(
             child: TestMaterialApp(
               child: LocaleSettingPage(
-                useLocale: useMockLocale,
+                useLocale: buildUseLocale(state: null),
               ),
             ),
           ),
@@ -39,28 +47,12 @@ void main() {
     });
 
     testWidgets('Radioをタップして、updateが呼ばれること', (tester) async {
-      Locale? localeUpdated;
-
-      UseLocaleReturn useMockLocale() {
-        const state = null;
-        Future<void> initialize() async {}
-        Future<void> update(Locale? locale) async {
-          localeUpdated = locale;
-        }
-
-        return (
-          state: state,
-          initialize: initialize,
-          update: update,
-        );
-      }
-
       await tester.runAsync(() async {
         await tester.pumpWidget(
           ProviderScope(
             child: TestMaterialApp(
               child: LocaleSettingPage(
-                useLocale: useMockLocale,
+                useLocale: buildUseLocale(state: null),
               ),
             ),
           ),
@@ -71,14 +63,14 @@ void main() {
       final localeSettingFormFinder = find.byType(LocaleSettingForm);
       expect(localeSettingFormFinder, findsOneWidget);
 
+      updatedLocale = null;
       await tester.tap(
         find.descendant(
           of: localeSettingFormFinder,
           matching: find.byKey(const Key('localeEnRadioListTile')),
         ),
       );
-
-      expect(localeUpdated, const Locale('en'));
+      expect(updatedLocale, const Locale('en'));
     });
   });
 }

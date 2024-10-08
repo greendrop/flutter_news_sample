@@ -9,11 +9,15 @@ import '../../../support/widget/test_material_app.dart';
 
 void main() {
   group('ThemeSettingPage', () {
-    testWidgets('ThemeSettingFormが表示されること', (tester) async {
-      UseThemeModeReturn useMockThemeMode() {
+    var updatedThemeMode = ThemeMode.system;
+    UseThemeMode buildUseThemeMode() {
+      UseThemeModeReturn useThemeMode() {
         const state = ThemeMode.system;
         Future<void> initialize() async {}
-        Future<void> update(ThemeMode themeMode) async {}
+        Future<void> update(ThemeMode themeMode) async {
+          updatedThemeMode = themeMode;
+          return Future.value();
+        }
 
         return (
           state: state,
@@ -22,12 +26,16 @@ void main() {
         );
       }
 
+      return useThemeMode;
+    }
+
+    testWidgets('ThemeSettingFormが表示されること', (tester) async {
       await tester.runAsync(() async {
         await tester.pumpWidget(
           ProviderScope(
             child: TestMaterialApp(
               child: ThemeSettingPage(
-                useThemeMode: useMockThemeMode,
+                useThemeMode: buildUseThemeMode(),
               ),
             ),
           ),
@@ -39,28 +47,12 @@ void main() {
     });
 
     testWidgets('Radioをタップして、updateが呼ばれること', (tester) async {
-      var themeModeUpdated = ThemeMode.system;
-
-      UseThemeModeReturn useMockThemeMode() {
-        const state = ThemeMode.system;
-        Future<void> initialize() async {}
-        Future<void> update(ThemeMode themeMode) async {
-          themeModeUpdated = themeMode;
-        }
-
-        return (
-          state: state,
-          initialize: initialize,
-          update: update,
-        );
-      }
-
       await tester.runAsync(() async {
         await tester.pumpWidget(
           ProviderScope(
             child: TestMaterialApp(
               child: ThemeSettingPage(
-                useThemeMode: useMockThemeMode,
+                useThemeMode: buildUseThemeMode(),
               ),
             ),
           ),
@@ -71,14 +63,14 @@ void main() {
       final themeSettingFormFinder = find.byType(ThemeSettingForm);
       expect(themeSettingFormFinder, findsOneWidget);
 
+      updatedThemeMode = ThemeMode.system;
       await tester.tap(
         find.descendant(
           of: themeSettingFormFinder,
           matching: find.byKey(const Key('themeModeLightRadioListTile')),
         ),
       );
-
-      expect(themeModeUpdated, ThemeMode.light);
+      expect(updatedThemeMode, ThemeMode.light);
     });
   });
 }
