@@ -17,11 +17,12 @@ env:
   ACTIONLINT_ARCH: amd64
   ACTIONLINT_VERSION: 1.7.3
   ACTIONLINT_CHECKSUM: 37252b4d440b56374b0fc1726e05fd7452d30d6d774f6e9b52e65bb64475f9db
+
   # NOTE: ghalint をアップデートする場合は、 GHALINT_VERSION, GHALINT_CHECKSUM を更新してください
   GHALINT_OS: linux
   GHALINT_ARCH: amd64
-  GHALINT_VERSION: 0.2.12
-  GHALINT_CHECKSUM: 722d3420fff4f9a0d7b38b3654dfcddb4f1f6e2adbb3bba013f2d9eed406d9d5
+  GHALINT_VERSION: 1.0.0
+  GHALINT_CHECKSUM: e9006ff212a3b27a99af43db687ded78173baa2f9816b2e2a9bed03a2ed2f954
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
