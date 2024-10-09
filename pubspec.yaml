@@ -33,7 +33,7 @@ dependencies:
   reactive_forms: ^17.0.1
   retrofit: ^4.4.1
   riverpod_annotation: ^2.3.5
-  share_plus: ^10.0.2
+  share_plus: ^10.0.3
   shared_preferences: ^2.3.2
   slang: ^3.32.0
   slang_flutter: ^3.31.0
