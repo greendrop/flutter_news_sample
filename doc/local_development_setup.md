@@ -30,3 +30,24 @@
   ```
 
 - News API から取得した API KEY を stg.json, prod.json に設定
+
+### Visual Studio Code で開く
+
+- 以下のURLを参考に、Visual Studio Code を用意し、Flutter extension を追加する
+  https://docs.flutter.dev/tools/vs-code
+- Visual Studio Code でこのリポジトリのルートディレクトリを指定して開く
+
+### パーッケージのインストール
+
+- ターミナルでリポジトリのルートディレクトリを開き、`flutter pub get`を実行
+
+### 実機・シミュレーターでアプリを起動
+
+参考: https://docs.flutter.dev/tools/vs-code#running-and-debugging
+
+- 実機・シミュレーターでアプリを起動
+  - 実機・シミュレーターを接続
+  - Run > Start Debugging または F5 でアプリを起動
+
+> [!NOTE]
+> `.vscode/launch.json` で起動時のオプションを設定している
