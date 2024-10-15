@@ -23,8 +23,12 @@ mixin _$NewsArticleSource {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
+  /// Serializes this NewsArticleSource to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NewsArticleSource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NewsArticleSourceCopyWith<NewsArticleSource> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$NewsArticleSourceCopyWithImpl<$Res, $Val extends NewsArticleSource>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NewsArticleSource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$NewsArticleSourceImplCopyWithImpl<$Res>
       $Res Function(_$NewsArticleSourceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NewsArticleSource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$NewsArticleSourceImpl extends _NewsArticleSource {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NewsArticleSource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NewsArticleSourceImplCopyWith<_$NewsArticleSourceImpl> get copyWith =>
@@ -163,8 +173,11 @@ abstract class _NewsArticleSource extends NewsArticleSource {
   String? get id;
   @override
   String? get name;
+
+  /// Create a copy of NewsArticleSource
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NewsArticleSourceImplCopyWith<_$NewsArticleSourceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

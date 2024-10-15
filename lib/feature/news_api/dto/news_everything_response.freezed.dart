@@ -25,8 +25,12 @@ mixin _$NewsEverythingResponse {
   int? get totalResults => throw _privateConstructorUsedError;
   List<NewsArticle>? get articles => throw _privateConstructorUsedError;
 
+  /// Serializes this NewsEverythingResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NewsEverythingResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NewsEverythingResponseCopyWith<NewsEverythingResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$NewsEverythingResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NewsEverythingResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,6 +103,8 @@ class __$$NewsEverythingResponseImplCopyWithImpl<$Res>
       $Res Function(_$NewsEverythingResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NewsEverythingResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,12 +170,14 @@ class _$NewsEverythingResponseImpl extends _NewsEverythingResponse {
             const DeepCollectionEquality().equals(other._articles, _articles));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, totalResults,
       const DeepCollectionEquality().hash(_articles));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NewsEverythingResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NewsEverythingResponseImplCopyWith<_$NewsEverythingResponseImpl>
@@ -198,8 +208,11 @@ abstract class _NewsEverythingResponse extends NewsEverythingResponse {
   int? get totalResults;
   @override
   List<NewsArticle>? get articles;
+
+  /// Create a copy of NewsEverythingResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NewsEverythingResponseImplCopyWith<_$NewsEverythingResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

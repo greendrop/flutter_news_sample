@@ -22,8 +22,12 @@ AppLogFile _$AppLogFileFromJson(Map<String, dynamic> json) {
 mixin _$AppLogFile {
   String get path => throw _privateConstructorUsedError;
 
+  /// Serializes this AppLogFile to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AppLogFile
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppLogFileCopyWith<AppLogFile> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$AppLogFileCopyWithImpl<$Res, $Val extends AppLogFile>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppLogFile
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$AppLogFileImplCopyWithImpl<$Res>
       _$AppLogFileImpl _value, $Res Function(_$AppLogFileImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppLogFile
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,11 +127,13 @@ class _$AppLogFileImpl extends _AppLogFile {
             (identical(other.path, path) || other.path == path));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, path);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppLogFile
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppLogFileImplCopyWith<_$AppLogFileImpl> get copyWith =>
@@ -146,8 +156,11 @@ abstract class _AppLogFile extends AppLogFile {
 
   @override
   String get path;
+
+  /// Create a copy of AppLogFile
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppLogFileImplCopyWith<_$AppLogFileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
