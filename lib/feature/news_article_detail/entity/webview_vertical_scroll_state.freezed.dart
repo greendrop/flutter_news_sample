@@ -21,7 +21,9 @@ mixin _$WebViewVerticalScrollState {
   int get value => throw _privateConstructorUsedError;
   int get position => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WebViewVerticalScrollState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WebViewVerticalScrollStateCopyWith<WebViewVerticalScrollState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -48,6 +50,8 @@ class _$WebViewVerticalScrollStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WebViewVerticalScrollState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -95,6 +99,8 @@ class __$$WebViewVerticalScrollStateImplCopyWithImpl<$Res>
       $Res Function(_$WebViewVerticalScrollStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WebViewVerticalScrollState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -158,7 +164,9 @@ class _$WebViewVerticalScrollStateImpl extends _WebViewVerticalScrollState {
   @override
   int get hashCode => Object.hash(runtimeType, direction, value, position);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WebViewVerticalScrollState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WebViewVerticalScrollStateImplCopyWith<_$WebViewVerticalScrollStateImpl>
@@ -179,8 +187,11 @@ abstract class _WebViewVerticalScrollState extends WebViewVerticalScrollState {
   int get value;
   @override
   int get position;
+
+  /// Create a copy of WebViewVerticalScrollState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WebViewVerticalScrollStateImplCopyWith<_$WebViewVerticalScrollStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
