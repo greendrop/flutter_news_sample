@@ -10,7 +10,7 @@ analyzer:
     - "**/*.gr.dart"
     - "**/*.mocks.dart"
     - "lib/generated_plugin_registrant.dart"
-    - "widgetbook/**/*.dart"
+    - "widgetbook/**"
   errors:
     missing_required_param: warning
     missing_return: warning
