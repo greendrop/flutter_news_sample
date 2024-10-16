@@ -2,60 +2,66 @@
 
 ## 構成図
 
+
 ```mermaid
 graph TD;
   subgraph flutter[Flutter]
-    direction TB
+    direction LR
 
     subgraph feature1[feature 1]
-      direction LR
+      direction TB
 
       widget-f1[widget]
       hook-f1[hook]
       riverpod-f1[riverpod]
       repository-f1[repository]
 
-      widget-f1-->hook-f1
-      hook-f1-->riverpod-f1
-      riverpod-f1-->repository-f1
+      widget-f1<-->hook-f1
+      hook-f1<-- entity -->riverpod-f1
+      riverpod-f1<-- dto -->repository-f1
     end
 
     subgraph feature2[feature 2]
-      direction LR
+      direction TB
 
       widget-f2[widget]
       hook-f2[hook]
       riverpod-f2[riverpod]
       repository-f2[repository]
 
-      widget-f2-->hook-f2
-      hook-f2-->riverpod-f2
-      riverpod-f2-->repository-f2
+      widget-f2<-->hook-f2
+      hook-f2<-- entity -->riverpod-f2
+      riverpod-f2<-- dto -->repository-f2
     end
 
     subgraph feature3[feature 3]
-      direction LR
+      direction TB
 
       widget-f3[widget]
       hook-f3[hook]
       riverpod-f3[riverpod]
       repository-f3[repository]
 
-      widget-f3-->hook-f3
-      hook-f3-->riverpod-f3
-      riverpod-f3-->repository-f3
+      widget-f3<-->hook-f3
+      hook-f3<-- entity -->riverpod-f3
+      riverpod-f3<-- dto -->repository-f3
     end
   end
 
-  feature1<-.->feature2
-  feature2<-.->feature3
 
   storage[(Storage)]
   webapi[Web API]
 
-  flutter<-.->storage
-  flutter<-.->webapi
+
+  repository-f1<-.->storage
+  repository-f2<-.->storage
+  repository-f3<-.->storage
+  repository-f1<-.->webapi
+  repository-f2<-.->webapi
+  repository-f3<-.->webapi
 ```
+
+
 
 ## ディレクトリ・ファイル構成
 
