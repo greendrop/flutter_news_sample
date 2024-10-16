@@ -6,14 +6,6 @@ on:
     paths:
       - "**/*.yaml"
       - "**/*.yml"
-      - ".yamllint.yaml"
-  push:
-    branches:
-      - main
-    paths:
-      - "**/*.yaml"
-      - "**/*.yml"
-      - ".yamllint.yaml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
