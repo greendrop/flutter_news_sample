@@ -51,3 +51,21 @@
 
 > [!NOTE]
 > `.vscode/launch.json` で起動時のオプションを設定している
+
+## Widgetbook 構築手順
+
+### Widgetbook ディレクトリに移動
+
+```
+cd wigetbook
+```
+
+### パーッケージのインストール
+
+- ターミナルでリポジトリのルートディレクトリを開き、`flutter pub get`を実行
+
+### ブラウザでWidgetアプリを起動
+
+```
+flutter run -d chrome
+```
