@@ -1,5 +1,5 @@
 ---
-name: Flutter Widgetbook lint
+name: Flutter Widgetbook Lint
 
 on:
   pull_request:

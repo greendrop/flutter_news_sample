@@ -20,6 +20,8 @@
 ## アーキテクチャ
 
 - [アプリケーション](doc/architecture/application.md)
+- [継続的インテグレーション / Continuous Integration (CI)](doc/architecture/continuous_integration.md)
+- [継続的デリバリー / Continuous Delivery (CD)](doc/architecture/continuous_delivery.md)
 
 ## ローカル開発環境
 

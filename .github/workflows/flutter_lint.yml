@@ -1,5 +1,5 @@
 ---
-name: Flutter lint
+name: Flutter Lint
 
 on:
   pull_request:
