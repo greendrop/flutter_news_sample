@@ -3,6 +3,8 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
+    id "com.google.firebase.crashlytics"
 }
 
 def localProperties = new Properties()
@@ -23,6 +25,7 @@ if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
 
+// Ref: https://zenn.dev/altiveinc/articles/separating-environments-in-flutter
 // Extract dart-defines properties.
 // dart-define を入れる変数を宣言しています。
 def dartDefines = [:];
@@ -34,6 +37,17 @@ if (project.hasProperty('dart-defines')) {
             def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
             pair.length == 2 ? [(pair.first()): pair.last()] : [:]
         }
+}
+
+task selectGoogleServicesJson(type: Copy) {
+    from "src/${dartDefines.flavor}/google-services.json"
+    into './'
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'processDebugGoogleServices' || task.name == 'processReleaseGoogleServices') {
+        task.dependsOn selectGoogleServicesJson
+    }
 }
 
 android {

@@ -68,7 +68,8 @@
     "title": "App Log"
   },
   "devTools": {
-    "title": "Development Tools"
+    "title": "Development Tools",
+    "crashReportTest": "Crash Report Test"
   },
   "localeSetting": {
     "title": "Language",

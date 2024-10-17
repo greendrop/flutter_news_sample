@@ -51,10 +51,16 @@ app.*.map.json
 # coverage
 /coverage
 
-# iOS
-/ios/Flutter/Dart-Defines.xcconfig
-
 # Ignore non-CI golden files and failures
 test/**/goldens/**/*.*
 test/**/failures/**/*.*
 !test/**/goldens/ci/**/*.*
+
+# iOS
+/ios/Flutter/Dart-Defines.xcconfig
+
+# Firebase
+/android/app/google-services.json
+/android/app/src/*/google-services.json
+/ios/Runner/GoogleService-Info.plist
+/ios/Runner/Firebase/*/GoogleService-Info.plist
