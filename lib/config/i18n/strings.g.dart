@@ -4,7 +4,7 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 162 (81 per locale)
+/// Strings: 164 (82 per locale)
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -272,6 +272,7 @@ class _StringsDevToolsEn {
 
 	// Translations
 	String get title => 'Development Tools';
+	String get crashReportTest => 'Crash Report Test';
 }
 
 // Path: localeSetting
@@ -509,6 +510,7 @@ class _StringsDevToolsJa implements _StringsDevToolsEn {
 
 	// Translations
 	@override String get title => '開発ツール';
+	@override String get crashReportTest => 'クラッシュレポートテスト';
 }
 
 // Path: localeSetting
@@ -661,6 +663,7 @@ extension on Translations {
 			case 'aboutApp.title': return 'About App';
 			case 'appLogList.title': return 'App Log';
 			case 'devTools.title': return 'Development Tools';
+			case 'devTools.crashReportTest': return 'Crash Report Test';
 			case 'localeSetting.title': return 'Language';
 			case 'localeSetting.system': return 'System';
 			case 'localeSetting.english': return 'English';
@@ -750,6 +753,7 @@ extension on _StringsJa {
 			case 'aboutApp.title': return 'このアプリについて';
 			case 'appLogList.title': return 'アプリログ';
 			case 'devTools.title': return '開発ツール';
+			case 'devTools.crashReportTest': return 'クラッシュレポートテスト';
 			case 'localeSetting.title': return '言語';
 			case 'localeSetting.system': return 'システム';
 			case 'localeSetting.english': return 'English';

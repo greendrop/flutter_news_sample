@@ -3,6 +3,7 @@
   "showDevTool": "false",
   "appName": "News Sample",
   "appId": "com.example.flutternewssample",
+  "crashReportEnabled": true,
   "newsApiKey": "NEWS_API_KEY"
 }
 
