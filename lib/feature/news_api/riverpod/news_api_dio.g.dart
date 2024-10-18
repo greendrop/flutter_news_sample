@@ -6,7 +6,7 @@ part of 'news_api_dio.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$newsApiDioHash() => r'84dfac989935d88cb3b7148f7d5bc77a38987ba3';
+String _$newsApiDioHash() => r'ef873df4774d6c5d63f26348afec39673c81be75';
 
 /// See also [newsApiDio].
 @ProviderFor(newsApiDio)
