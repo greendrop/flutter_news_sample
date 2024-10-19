@@ -40,7 +40,7 @@ jobs:
           command: deploy_android_stg
 
       - name: Get branch name (Pull Request)
-        id: get_branch_name_if_pull_request
+        id: get_branch_name_if_workflow_dispatch
         if: ${{ github.event.issue.pull_request && steps.check_command_if_pull_request.outcome == 'success' }}
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
@@ -87,13 +87,13 @@ jobs:
         with:
           distribution: ${{ env.JAVA_DISTRIBUTION }}
           java-version: ${{ env.JAVA_VERSION }}
-  
+
       - name: Get Flutter version from .fvmrc
         id: get_flutter_version
         run: |
           flutter_version="$(< .fvmrc jq -r .flutter)"
           echo "version=$flutter_version" >> "$GITHUB_OUTPUT"
-  
+
       - name: Setup flutter
         uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2.16.0
         with:
