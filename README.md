@@ -16,10 +16,12 @@
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&style=plastic)
 ![iOS](https://img.shields.io/badge/iOS-000000?logo=ios&style=plastic)
 ![Android](https://img.shields.io/badge/Android-A4C639?logo=android&style=plastic)
+![Firebase](https://img.shields.io/badge/-Firebase-FFCA28.svg?logo=firebase&style=plastic)
 
 ## アーキテクチャ
 
 - [アプリケーション](doc/architecture/application.md)
+- [インフラ](doc/architecture/infrastructure.md)
 - [継続的インテグレーション / Continuous Integration (CI)](doc/architecture/continuous_integration.md)
 - [継続的デリバリー / Continuous Delivery (CD)](doc/architecture/continuous_delivery.md)
 
