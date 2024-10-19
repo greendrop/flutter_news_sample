@@ -23,7 +23,7 @@ platform :android do
       firebase_cli_token: ENV["DEPLOY_ANDROID_STG_FIREBASE_CLI_TOKEN"],
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
-      groups: ENV["DEPLOY_ANDROID_STG_GROUPS"],
+      groups: ENV["DEPLOY_ANDROID_STG_TESTER_GROUPS"],
       release_notes: ENV["DEPLOY_ANDROID_STG_RELEASE_NOTES"],
     )
   end
