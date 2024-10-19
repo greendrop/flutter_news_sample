@@ -28,7 +28,7 @@ jobs:
 
     outputs:
       outcome: ${{ steps.check_command_if_pull_request.outcome || steps.check_command_if_workflow_dispatch.outcome }}
-      target_branch_name: ${{ steps.get_branch_name_if_pull_request.outputs.result || steps.get_branch_name_if_workflow_dispatch.outputs.result }} }}
+      target_branch_name: ${{ steps.get_branch_name_if_pull_request.outputs.result || steps.get_branch_name_if_workflow_dispatch.outputs.result }}
 
     steps:
       - name: Check Command (Pull Request)
@@ -64,7 +64,7 @@ jobs:
         id: get_branch_name_if_pull_request
         if: ${{ github.event_name == 'workflow_dispatch' && steps.check_command_if_workflow_dispatch.outcome == 'success' }}
         run: |
-          echo "result=${{ env.branch }}" >> "$GITHUB_OUTPUT"
+          echo "result=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
 
   build:
     name: Build
