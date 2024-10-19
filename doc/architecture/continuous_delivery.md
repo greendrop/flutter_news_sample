@@ -12,7 +12,7 @@ README や doc, Widgetbook を GitHub Pages へデプロイする。
 
 ### 実行タイミング
 
-- main ブランチへ push
+- develop ブランチへ push
 
 ### Secrets, Variables 設定
 
