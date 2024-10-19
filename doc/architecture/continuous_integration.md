@@ -17,7 +17,7 @@ Flutter の静的解析を行う。
 ### 実行タイミング
 
 - Pull Request すべてのアクティビティ
-- main ブランチへ push
+- main, develop ブランチへ push
 
 ### Secrets, Variables 設定
 
@@ -34,7 +34,7 @@ Flutter のテストを行う。
 ### 実行タイミング
 
 - Pull Request すべてのアクティビティ
-- main ブランチへ push
+- main, develop ブランチへ push
 
 ### Secrets, Variables 設定
 
@@ -52,7 +52,7 @@ Flutter の Golden Test, VRT を行う。
 ### 実行タイミング
 
 - Pull Request すべてのアクティビティ
-- main ブランチへ push
+- main, develop ブランチへ push
 
 ### Secrets, Variables 設定
 
@@ -74,7 +74,7 @@ Flutter Widgetbook の静的解析を行う。
 ### 実行タイミング
 
 - Pull Request すべてのアクティビティ
-- main ブランチへ push
+- main, develop ブランチへ push
 
 ### Secrets, Variables 設定
 

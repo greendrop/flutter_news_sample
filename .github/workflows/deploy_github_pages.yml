@@ -4,7 +4,7 @@ name: Deploy GitHub Pages
 on:
   push:
     branches:
-      - main
+      - develop
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
