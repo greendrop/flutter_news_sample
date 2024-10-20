@@ -70,10 +70,24 @@ sequenceDiagram
 | DEPLOY_ANDROID_STG_TESTER_GROUPS | Firebase App Distribution テスターグループ |  |
 
 
-
 ## Deploy GitHub Pages
 
 README や doc, Widgetbook を GitHub Pages へデプロイする。
+
+### シーケンス図
+
+```mermaid
+sequenceDiagram
+  participant github as GitHub
+  participant github_actions as GitHub Actions
+  participant github_pages as GitHub Pages
+
+  github_actions ->> github: pull を検知
+  github -->> github_actions: 
+  github_actions ->> github_actions: Build
+  github_actions ->> github_pages: Deploy
+  github_pages -->> github_actions: 
+```
 
 ### 設定ファイル
 
