@@ -31,6 +31,20 @@
 
 - News API から取得した API KEY を stg.json, prod.json に設定
 
+
+### Firebase google-services.json, GoogleService-Info.plist を用意
+
+- Firebase console から google-services.json, GoogleService-Info.plist をダウンロード
+- ダウンロードした google-services.json, GoogleService-Info.plist を配置
+  - Android Stg
+    - 配置先: `android/app/src/stg/google-services.json`
+  - Android Prod
+    - 配置先: `android/app/src/prod/google-services.json`
+  - iOS Stg
+    - 配置先: `ios/Runner/Firebase/stg/GoogleService-Info.plist`
+  - iOS Prod
+    - 配置先: `ios/Runner/Firebase/prod/GoogleService-Info.plist`
+
 ### Visual Studio Code で開く
 
 - 以下のURLを参考に、Visual Studio Code を用意し、Flutter extension を追加する
