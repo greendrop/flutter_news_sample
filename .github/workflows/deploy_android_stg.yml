@@ -27,8 +27,8 @@ jobs:
     if: ${{ github.event.issue.pull_request || github.event_name == 'workflow_dispatch' }}
 
     outputs:
-      outcome: ${{ steps.check_command_if_pull_request.outcome || steps.check_command_if_workflow_dispatch.outcome }}
-      target_branch_name: ${{ steps.get_branch_name_if_pull_request.outputs.result || steps.get_branch_name_if_workflow_dispatch.outputs.result }}
+      outcome: ${{ steps.set_output.outputs.outcome }}
+      target_branch_name: ${{ steps.set_output.outputs.target_branch_name }}
 
     steps:
       - name: Check Command (Pull Request)
@@ -64,7 +64,18 @@ jobs:
         id: get_branch_name_if_pull_request
         if: ${{ github.event_name == 'workflow_dispatch' && steps.check_command_if_workflow_dispatch.outcome == 'success' }}
         run: |
-          echo "result=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
+          echo "outputs.result=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
+
+      - name: Set output
+        id: set_output
+        run: |
+          if [[ "${{ steps.check_command_if_pull_request.outcome }}" == "success" ]]; then
+            echo "outcome=${{ steps.check_command_if_pull_request.outcome }}" >> "$GITHUB_OUTPUT"
+            echo "target_branch_name=${{ steps.get_branch_name_if_workflow_dispatch.outputs.result }}" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ steps.check_command_if_workflow_dispatch.outcome }}" == "success" ]]; then
+            echo "outcome=${{ steps.check_command_if_workflow_dispatch.outcome }}" >> "$GITHUB_OUTPUT"
+            echo "target_branch_name=${{ steps.get_branch_name_if_workflow_dispatch.outputs.result }}" >> "$GITHUB_OUTPUT"
+          fi
 
   build:
     name: Build
@@ -115,19 +126,20 @@ jobs:
         env:
           FIREBASE_GOOGLE_SERVICE_JSON: ${{ secrets.FIREBASE_STG_GOOGLE_SERVICE_JSON }}
         run: |
+          mkdir -p android/app/src/stg
           echo "$FIREBASE_GOOGLE_SERVICE_JSON" | base64 --decode > android/app/src/stg/google-services.json
 
       - name: Create upload-keystore.jks
         env:
           ANDROID_KEYSTORE_JKS: ${{ secrets.ANDROID_KEYSTORE_JKS }}
         run: |
-          echo "$ANDROID_KEYSTORE_JKS" | base64 --decode > android/upload-keystore.jks
+          echo "$ANDROID_KEYSTORE_JKS" | base64 --decode > android/app/upload-keystore.jks
 
       - name: Create key.properties
         env:
           ANDROID_KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES }}
         run: |
-          echo "$ANDROID_KEY_PROPERTIES" | base64 --decode > android/key.properties
+          echo "$ANDROID_KEY_PROPERTIES" | base64 --decode > android/app/key.properties
 
       - name: Run flutter build
         run: |
@@ -184,7 +196,7 @@ jobs:
         env:
           DEPLOY_ANDROID_STG_FIREBASE_CLI_TOKEN: ${{ secrets.DEPLOY_ANDROID_STG_FIREBASE_CLI_TOKEN }}
           DEPLOY_ANDROID_STG_APP: ${{ vars.DEPLOY_ANDROID_STG_APP }}
-          DEPLOY_ANDROID_STG_GROUPS: ${{ vars.DEPLOY_ANDROID_STG_GROUPS }}
+          DEPLOY_ANDROID_STG_TESTER_GROUPS: ${{ vars.DEPLOY_ANDROID_STG_TESTER_GROUPS }}
           DEPLOY_ANDROID_STG_RELEASE_NOTES:
         working-directory: ./android
         run: |
