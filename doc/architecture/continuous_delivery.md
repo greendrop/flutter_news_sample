@@ -1,4 +1,4 @@
-# 継続的インテグレーション / Continuous Delivery (CD)
+# 継続的デリバリー / Continuous Delivery (CD)
 
 GitHub Actions を使用し、ビルド・デプロイなどを行う。
 
