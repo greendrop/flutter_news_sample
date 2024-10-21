@@ -15,8 +15,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/app_icon.png
   AssetGenImage get appIcon => const AssetGenImage('assets/icons/app_icon.png');
 
+  /// File path: assets/icons/app_icon_adaptive_foreground.png
+  AssetGenImage get appIconAdaptiveForeground =>
+      const AssetGenImage('assets/icons/app_icon_adaptive_foreground.png');
+
+  /// File path: assets/icons/app_icon_adaptive_icon_monochrome.png
+  AssetGenImage get appIconAdaptiveIconMonochrome =>
+      const AssetGenImage('assets/icons/app_icon_adaptive_icon_monochrome.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [appIcon];
+  List<AssetGenImage> get values =>
+      [appIcon, appIconAdaptiveForeground, appIconAdaptiveIconMonochrome];
 }
 
 class Assets {
