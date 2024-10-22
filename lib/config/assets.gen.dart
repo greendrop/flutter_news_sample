@@ -28,10 +28,25 @@ class $AssetsIconsGen {
       [appIcon, appIconAdaptiveForeground, appIconAdaptiveIconMonochrome];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/splash.png
+  AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
+
+  /// File path: assets/images/splash_android12.png
+  AssetGenImage get splashAndroid12 =>
+      const AssetGenImage('assets/images/splash_android12.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [splash, splashAndroid12];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {
