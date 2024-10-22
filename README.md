@@ -25,9 +25,10 @@
 - [継続的インテグレーション / Continuous Integration (CI)](doc/architecture/continuous_integration.md)
 - [継続的デリバリー / Continuous Delivery (CD)](doc/architecture/continuous_delivery.md)
 
-## ローカル開発環境
+## 開発環境
 
-- [ローカル開発環境構築](doc/local_development_setup.md)
+- [開発環境構築](doc/development/setup.md)
+- [開発用コマンド](doc/development/command.md)
 
 ## Widgetbook
 
