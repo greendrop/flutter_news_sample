@@ -48,6 +48,14 @@ jobs:
         run: |
           dart run build_runner build -d
 
+      - name: dart run flutter_launcher_icons
+        run: |
+          dart run flutter_launcher_icons
+
+      - name: dart run flutter_native_splash:create
+        run: |
+          dart run flutter_native_splash:create
+
       - name: Check diff for generated files
         run: |
           git add .

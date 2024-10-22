@@ -72,8 +72,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icons/
     - assets/fonts/
+    - assets/icons/
+    - assets/images/
 
   fonts:
     - family: "Inter"
