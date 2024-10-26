@@ -2,6 +2,8 @@
 
 ## リリース手順
 
+<!-- 変更する場合、 `.github/workflows/git-pr-release.erb` も更新してください。  -->
+
 ### 1. リリースブランチを作成
 
 - release ブランチを作成し、push する
