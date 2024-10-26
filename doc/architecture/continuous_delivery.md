@@ -70,6 +70,73 @@ sequenceDiagram
 | DEPLOY_ANDROID_STG_TESTER_GROUPS | Firebase App Distribution テスターグループ |  |
 
 
+## Deploy Android (Prod)
+
+Android (Stg) 向けにビルドを行い、 Google Play Console (Internal) へデプロイする。
+
+### シーケンス図
+
+#### 手動実行
+
+```mermaid
+sequenceDiagram
+  actor developer as Developer
+  participant github_actions as GitHub Actions
+  participant google_play as Google Play Console
+
+  developer ->> github_actions: 手動実行
+  github_actions ->> github_actions: Build
+  github_actions ->> google_play: Deploy
+  google_play -->> github_actions: 
+```
+
+#### Pull request に `/deploy_android_prod` コメントを登録
+
+```mermaid
+sequenceDiagram
+  actor developer as Developer
+  participant github_pr as GitHub Pull request
+  participant github_actions as GitHub Actions
+  participant google_play as Google Play Console
+
+  developer ->> github_pr: コメントを登録
+  github_actions ->> github_pr: コメントを検知
+  github_pr -->> github_actions: 
+  github_actions ->> github_actions: Build
+  github_actions ->> google_play: Deploy
+  google_play -->> github_actions: 
+  github_actions ->> github_pr: デプロイ完了コメントを登録
+  github_pr -->> github_actions: 
+```
+
+### 設定ファイル
+
+[deploy_android_prod.yml](../../.github/workflows/deploy_android_prod.yml)
+
+### 実行タイミング
+
+- 手動実行 (workflow_dispatch)
+- Pull Request へ `/deploy_android_prod` コメントを登録
+
+### Secrets, Variables 設定
+
+#### Repository secrets
+
+| Name | 設定内容 | 備考 |
+| --- | --- | --- |
+| ANDROID_KEYSTORE_JKS | `android/app/upload-keystore.jks` ファイルを base64 でエンコードした文字列  |  |
+| ANDROID_KEY_PROPERTIES | `android/app/key.properties` ファイルを base64 でエンコードした文字列 |  |
+| DART_DEFINE_FILE_PROD_JSON | `dart_define/prod.json` ファイルを base64 でエンコードした文字 |  |
+| DEPLOY_ANDROID_PROD_GOOGLE_PLAY_STORE_CREDENTIALS_JSON | Google Cloud サービスアカウントのクレデンシャルファイル `android/google-play-store-credentials.json` を base64 でエンコードした文字 | [参考](https://docs.fastlane.tools/actions/upload_to_play_store/) |
+| FIREBASE_PROD_GOOGLE_SERVICE_JSON | `android/app/src/prod/google-services.json` ファイルを base64 でエンコードした文字 |  |
+
+#### Repository variables
+
+| Name | 設定内容 | 備考 |
+| --- | --- | --- |
+| DEPLOY_ANDROID_PROD_PACKAGE_NAME | Google Play Console でのパッケージネーム・アプリケーション ID | 例: com.example.flutternewssample |
+
+
 ## Deploy GitHub Pages
 
 README や doc, Widgetbook を GitHub Pages へデプロイする。
