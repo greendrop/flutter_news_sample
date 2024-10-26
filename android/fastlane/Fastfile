@@ -27,4 +27,20 @@ platform :android do
       release_notes: ENV["DEPLOY_ANDROID_STG_RELEASE_NOTES"],
     )
   end
+
+  desc 'Deploy Prod to Google Play(Internal)'
+  lane :deploy_prod do
+    upload_to_play_store(
+      package_name: ENV["DEPLOY_ANDROID_PROD_PACKAGE_NAME"],
+      track: 'internal',
+      release_status: 'draft',
+      json_key: 'google-play-store-credentials.json',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_screenshots: true,
+      skip_upload_images: true,
+      skip_upload_apk: true,
+    )
+  end
 end

@@ -17,3 +17,4 @@ key.properties
 **/fastlane/Preview.html
 **/fastlane/screenshots
 **/fastlane/test_output
+google-play-store-credentials.json
