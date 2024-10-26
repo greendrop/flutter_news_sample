@@ -17,7 +17,7 @@ void useWebViewRequestGoBackEffectImpl({
   useEffect(
     () {
       if (requestGoBack) {
-        Future.delayed(Duration.zero, () async {
+        Future.microtask(() async {
           if (await webViewController.value?.canGoBack() ?? false) {
             await webViewController.value?.goBack();
           }

@@ -38,7 +38,7 @@ class _AppRootTier1 extends HookConsumerWidget {
 
     useEffect(
       () {
-        Future.delayed(Duration.zero, () async {
+        Future.microtask(() async {
           await appLoggerDirectory.initialize();
           isInitialized.value = true;
         });
@@ -70,7 +70,7 @@ class _AppRootTier2 extends HookConsumerWidget {
 
     useEffect(
       () {
-        Future.delayed(Duration.zero, () async {
+        Future.microtask(() async {
           await packageInfo.initialize();
           await themeMode.initialize();
           await locale.initialize();
@@ -103,7 +103,7 @@ class _AppRootTier3 extends HookConsumerWidget {
 
     useEffect(
       () {
-        Future.delayed(Duration.zero, () {
+        Future.microtask(() {
           if (locale.state == null) {
             LocaleSettings.useDeviceLocale();
           } else {

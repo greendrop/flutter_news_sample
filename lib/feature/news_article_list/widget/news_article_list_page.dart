@@ -50,7 +50,7 @@ class NewsArticleListPage extends HookConsumerWidget {
 
     useEffect(
       () {
-        Future.delayed(Duration.zero, () {
+        Future.microtask(() {
           newsArticlesByCategories.forEach((category, newsArticles) {
             newsArticles.fetch().onError((error, stackTrace) {});
           });
@@ -229,7 +229,7 @@ class NewsArticleListPage extends HookConsumerWidget {
                 itemBuilder: (BuildContext context, int index) {
                   if (index == data.items.length - 1 && data.hasNextPage) {
                     // NOTE: API上限にならないように、追加ページを取得しない
-                    // Future.delayed(Duration.zero, () {
+                    // Future.microtask(() {
                     //   newsArticles.fetchMore().onError(
                     //         (error, stackTrace) {},
                     //       );
