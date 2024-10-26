@@ -29,10 +29,12 @@
 
 - [開発環境構築](doc/development/setup.md)
 - [開発用コマンド](doc/development/command.md)
-
-## Widgetbook
-
 - [Widgetbook](https://greendrop.github.io/flutter_news_sample/doc/widgetbook/)
+
+## デプロイ・リリース
+
+- [デプロイ](doc/deploy_release/deploy.md)
+- [リリース](doc/deploy_release/release.md)
 
 ## トピック
 
