@@ -27,7 +27,7 @@ class AppLogDetailPage extends HookConsumerWidget {
 
     useEffect(
       () {
-        Future.delayed(Duration.zero, appLogFileContent.fetch);
+        Future.microtask(appLogFileContent.fetch);
         return () {};
       },
       [],

@@ -15,7 +15,7 @@ void useWebViewCanGoBackEffectImpl({
   final canGoBackSnapshot = useFuture(webViewController.value?.canGoBack());
   useEffect(
     () {
-      Future.delayed(Duration.zero, () {
+      Future.microtask(() {
         setWebviewCanGoBack(canGoBackSnapshot.data ?? false);
       });
       return () {};

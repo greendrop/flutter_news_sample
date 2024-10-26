@@ -17,7 +17,7 @@ void useWebviewVerticalScrollEffectImpl({
   final state = ref.watch(webViewVerticalScrollStateNotifierProvider);
   useEffect(
     () {
-      Future.delayed(Duration.zero, () {
+      Future.microtask(() {
         if (state.direction == WebviewVerticalScrollDirection.up) {
           appBarAnimationController.reverse();
         } else {
