@@ -50,7 +50,6 @@ updates:
   - package-ecosystem: 'bundler'
     directories:
       - '/android'
-      - '/ios'
     rebase-strategy: 'disabled'
     schedule:
       interval: 'daily'
