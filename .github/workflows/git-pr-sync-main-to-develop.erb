@@ -1,0 +1,7 @@
+Sync main to develop <%= Time.now %>
+main ブランチと develop ブランチの差分がないように同期する
+
+---
+<% pull_requests.each do |pr| -%>
+<%=  "- ##{pr.number} #{pr.title}" %>
+<% end -%>
