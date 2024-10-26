@@ -126,6 +126,7 @@ jobs:
         env:
           FIREBASE_GOOGLE_SERVICE_JSON: ${{ secrets.FIREBASE_PROD_GOOGLE_SERVICE_JSON }}
         run: |
+          mkdir -p android/app/src/prod
           echo "$FIREBASE_GOOGLE_SERVICE_JSON" | base64 --decode > android/app/src/prod/google-services.json
 
       - name: Create upload-keystore.jks
