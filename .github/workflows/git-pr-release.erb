@@ -1,0 +1,45 @@
+Release <%= Time.now %>
+## リリース手順
+
+### 1. リリースブランチを作成
+
+- [x] release ブランチを作成し、push する
+
+### 2. リリース用の Pull Request を作成
+
+- [x] Pull Request が自動作成される
+
+### 3. バージョンを更新し、release ブランチへマージ
+
+- [ ] release ブランチから別ブランチを作成する
+- [ ] pubspec.yaml のバージョンを更新し、 release ブランチへマージする Pull Request を作成する
+- [ ] 作成した Pull Request をマージする
+
+### 4. Firebase App Distribution にて、動作確認用のアプリを配布
+
+- [ ] Pull Request のコメントに `/deploy_android_dev` と登録し、アプリを配布する
+- [ ] App Distribution より動作確認用アプリを取得する
+- [ ] 動作確認を行う
+
+### 5. アプリをリリース
+
+- [ ] Pull Request のコメントに `/deploy_android_prod` と登録し、 アプリを配布する
+- [ ] Google Play Console よりアプリを公開する
+
+### 6. リリース用の Pull Request をマージ
+
+- [ ] Pull Request をマージする
+
+### 7. main ブランチからリリース, タグを作成
+
+- mainブランチへマージ後、 GitHub Releases からリリース・タグを作成する
+
+### 8. main ブランチから develop ブランチへマージする Pull Request を作成・マージ
+
+- [ ] GitHub Actions によって Pull Request が自動作成される
+- [ ] マージし、main ブランチと develop ブランチの差分を同期する
+
+---
+<% pull_requests.each do |pr| -%>
+<%=  "- ##{pr.number} #{pr.title}" %>
+<% end -%>
