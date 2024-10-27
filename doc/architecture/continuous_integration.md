@@ -6,9 +6,12 @@ GitHub Actions を使用し、テストの実行などを行う。
 
 Flutter の静的解析を行う。
 
-- `dart run build_runner build` の生成ファイルの差分確認
-- `dart format`
-- `flutter analyze`
+- 自動生成ファイルの差分確認
+  - `dart run build_runner build`
+  - `dart run flutter_launcher_icons`
+  - `dart run flutter_native_splash:create`
+- `dart format` で整形されていない Dart ファイルがないことを確認
+- `flutter analyze` で Dart ファイルを静的解析の違反がないことを確認
 
 ### 設定ファイル
 
