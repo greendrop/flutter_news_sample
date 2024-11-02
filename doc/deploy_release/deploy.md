@@ -2,7 +2,7 @@
 
 ## ステージング環境
 
-本番環境にリリースする前に、その動作を最終的に確認するための環境
+本番環境へリリースする前に、その動作を最終的に確認するための環境。
 
 ### デプロイ先
 
@@ -10,7 +10,7 @@
 
 Firebase App Distribution
 
-※ テスターに登録されているユーザーのみ利用可能
+※ テスターに登録されているユーザーのみ利用可能。
 
 ### 接続先
 
@@ -18,17 +18,17 @@ Firebase App Distribution
 
 https://newsapi.org/
 
-※ 開発者向けの別環境はないため、News APIの本番環境へ接続する
+※ 開発者向けの別環境はないため、News API の本番環境へ接続する。
 
 #### Firebase
 
-ステージング環境用に作成した Firebase プロジェクト
+ステージング環境用に作成した Firebase プロジェクト。
 
 ### デプロイ手順
 
 #### Android / 特定ブランチをデプロイ
 
-1. GitHub Actions > 「Deploy Android (Stg)」を選択
+1. GitHub Actions >「Deploy Android (Stg)」を選択
 2. Run workflow のドロップダウンブランチを選択し、「Run workflow」をクリック
 
 #### Android / Pull Request のブランチをデプロイ
@@ -39,7 +39,7 @@ https://newsapi.org/
 
 ## 本番環境 (Production)
 
-実際にユーザーに公開され、利用される環境
+実際にユーザーに公開され、利用される環境。
 
 ### デプロイ先
 
@@ -55,13 +55,13 @@ https://newsapi.org/
 
 #### Firebase
 
-本番環境用に作成した Firebase プロジェクト
+本番環境用に作成した Firebase プロジェクト。
 
 ### デプロイ手順
 
 #### Android / 特定ブランチをデプロイ
 
-1. GitHub Actions > 「Deploy Android (Prod)」を選択
+1. GitHub Actions >「Deploy Android (Prod)」を選択
 2. Run workflow のドロップダウンブランチを選択し、「Run workflow」をクリック
 
 #### Android / Pull Request のブランチをデプロイ

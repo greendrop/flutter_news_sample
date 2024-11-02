@@ -35,7 +35,7 @@
 
 ### 7. main ブランチからリリース, タグを作成
 
-- mainブランチへマージ後、 GitHub Releases からリリース・タグを作成する
+- main ブランチへマージ後、 GitHub Releases からリリース・タグを作成する
 
 ### 8. main ブランチから develop ブランチへマージする Pull Request を作成・マージ
 

@@ -64,3 +64,6 @@ test/**/failures/**/*.*
 /android/app/src/*/google-services.json
 /ios/Runner/GoogleService-Info.plist
 /ios/Runner/Firebase/*/GoogleService-Info.plist
+
+# node
+/node_modules/

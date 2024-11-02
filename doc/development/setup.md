@@ -5,15 +5,15 @@
 ### FVM をインストール
 
 - Flutter SDK のインストール・バージョン管理のため、[FVM](https://fvm.app/) をインストール
-- インストール後、`fvm doctor`を実行
+- インストール後、`fvm doctor` を実行
   - 正常にインストールできているか確認
   - 問題がある場合、その問題を解消
 
 ### Flutter SDK をインストール
 
-- Fluter SDK を`fvm install FLUTTER_VERSION`コマンドでインストール
-  - `FLUTTER_VERSION`は[こちら](../.fvmrc)を参照
-- インストール後、`fvm flutter doctor`を実行
+- Fluter SDK を `fvm install FLUTTER_VERSION` コマンドでインストール
+  - `FLUTTER_VERSION` は[こちら](../.fvmrc)を参照
+- インストール後、`fvm flutter doctor` を実行
   - 正常にインストールできているか確認
   - 問題がある場合、その問題を解消
 
@@ -47,13 +47,13 @@
 
 ### Visual Studio Code で開く
 
-- 以下のURLを参考に、Visual Studio Code を用意し、Flutter extension を追加する
+- 以下の URL を参考に、Visual Studio Code を用意し、Flutter extension を追加する
   https://docs.flutter.dev/tools/vs-code
 - Visual Studio Code でこのリポジトリのルートディレクトリを指定して開く
 
 ### パーッケージのインストール
 
-- ターミナルでリポジトリのルートディレクトリを開き、`flutter pub get`を実行
+- ターミナルでリポジトリのルートディレクトリを開き、`flutter pub get` を実行
 
 ### 実機・シミュレーターでアプリを起動
 
@@ -76,10 +76,34 @@ cd wigetbook
 
 ### パーッケージのインストール
 
-- ターミナルでリポジトリのルートディレクトリを開き、`flutter pub get`を実行
+- ターミナルでリポジトリのルートディレクトリを開き、`flutter pub get` を実行
 
 ### ブラウザでWidgetアプリを起動
 
 ```
 flutter run -d chrome
+```
+
+## Node 構築手順
+
+文章構成などで使用する Node.js の環境を構築する手順。
+
+### nodenv のインストール
+
+```
+brew install nodenv node-build
+```
+
+### Node.js のインストール
+
+```
+nodenv install NODE_VERSION
+```
+
+※ `NODE_VERSION` は[こちら](../.node-version)を参照。
+
+### npm パッケージのインストール
+
+```
+npm install
 ```

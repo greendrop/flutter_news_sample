@@ -134,13 +134,13 @@ graph TD;
 
 ### lib/main.dart
 
-- Flutter のエントリーポイントとなる`main`メソッドを記載
-- `MaterialApp`とは関係ない初期処理を行う
-- 初期処理後、`runApp`で`AppRoot`を呼び出す
+- Flutter のエントリーポイントとなる `main` メソッドを記載
+- `MaterialApp` とは関係ない初期処理を行う
+- 初期処理後、`runApp` で `AppRoot` を呼び出す
 
 ### lib/app_route.dart
 
-- `MaterialApp`の呼び出し及び、それに必要な初期処理を行う
+- `MaterialApp` の呼び出し及び、それに必要な初期処理を行う
 
 ### config/app_config.dart
 
@@ -163,18 +163,18 @@ graph TD;
 
 ### lib/feature/`<feature>`
 
-- `<feature>`関心事でディレクトリを分割する
+- `<feature>` 関心事でディレクトリを分割する
 - Widget や Hook などの機能レイヤーは、その中で分割する
 
 ### lib/feature/`<feature>`/widget
 
-- `<feature>`で利用利する Widget を格納
+- `<feature>` で利用利する Widget を格納
 - 画面遷移処理やアクションなどのロジックは記載せず、Hook を呼び出す
 - Riverpod は直接利用しない
 
 ### lib/feature/`<feature>`/hook
 
-- `<feature>`で利用利する Hook を格納
+- `<feature>` で利用利する Hook を格納
 - 画面遷移処理やアクションなどのロジックを記載
 - Riverpod が管理している状態の取得・更新などを行う
 
@@ -199,8 +199,8 @@ graph TD;
 
 ### アーキテクチャ
 
-- `<feature>`関心事でディレクトリを分割する
-- 全体が対象・関心事にどうしても分割できない場合、`lib/`配下の機能レイヤーのディレクトリを利用する
+- `<feature>` 関心事でディレクトリを分割する
+- 全体が対象・関心事にどうしても分割できない場合、`lib/` 配下の機能レイヤーのディレクトリを利用する
 - 機能レイヤーを飛び越えて呼び出し・利用しない
   - OK
     - Widget <--> Widget
