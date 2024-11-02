@@ -90,8 +90,14 @@ class SettingPage extends HookConsumerWidget {
                 padding: const EdgeInsets.all(DesignTokenSpacing.sm),
                 child: Column(
                   children: [
-                    LocaleListTile(onTap: pushLocaleSettingPage.run),
-                    ThemeListTile(onTap: pushThemeSettingPage.run),
+                    LocaleListTile(
+                      key: const ValueKey('LocaleListTile'),
+                      onTap: pushLocaleSettingPage.run,
+                    ),
+                    ThemeListTile(
+                      key: const ValueKey('ThemeListTile'),
+                      onTap: pushThemeSettingPage.run,
+                    ),
                   ],
                 ),
               ),
@@ -104,7 +110,10 @@ class SettingPage extends HookConsumerWidget {
                 padding: const EdgeInsets.all(DesignTokenSpacing.sm),
                 child: Column(
                   children: [
-                    AppAboutListTile(onTap: showAppAboutDialog.run),
+                    AppAboutListTile(
+                      key: const ValueKey('AppAboutListTile'),
+                      onTap: showAppAboutDialog.run,
+                    ),
                   ],
                 ),
               ),

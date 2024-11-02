@@ -9,8 +9,10 @@ void main() {
     group('selectedIndexが0の場合', () {
       testWidgets(
           [
-            '/news_articlesのindexが選択されること',
-            'NavigationRailDestinationをタップすると、ページ遷移処理が呼ばれること',
+            'NavigationRailが表示されること',
+            'NavigationRailDestinationが3つ表示されること',
+            'NavigationRailのselectedIndexが0であること',
+            'アイコンをタップすると、ページ遷移処理が呼ばれること',
           ].join(', '), (tester) async {
         var onDestinationSelectedIndex = 0;
         await tester.runAsync(() async {
@@ -35,25 +37,19 @@ void main() {
         expect(navigationRail.selectedIndex, 0);
 
         await tester.tap(
-          find.byKey(
-            const ValueKey('NewsArticlesNavigationRailDestinationIcon'),
-          ),
+          find.byKey(const ValueKey('NewsArticlesNavigationIcon')),
         );
         await tester.pumpAndSettle();
         expect(onDestinationSelectedIndex, 0);
 
         await tester.tap(
-          find.byKey(
-            const ValueKey('NewsArticlesSearchNavigationRailDestinationIcon'),
-          ),
+          find.byKey(const ValueKey('NewsArticlesSearchNavigationIcon')),
         );
         await tester.pumpAndSettle();
         expect(onDestinationSelectedIndex, 1);
 
         await tester.tap(
-          find.byKey(
-            const ValueKey('SettingNavigationRailDestinationIcon'),
-          ),
+          find.byKey(const ValueKey('SettingNavigationIcon')),
         );
         await tester.pumpAndSettle();
         expect(onDestinationSelectedIndex, 2);
@@ -61,7 +57,12 @@ void main() {
     });
 
     group('selectedIndexが1の場合', () {
-      testWidgets('/news_articles_searchのindexが選択されること', (tester) async {
+      testWidgets(
+          [
+            'NavigationRailが表示されること',
+            'NavigationRailDestinationが3つ表示されること',
+            'NavigationRailのselectedIndexが1であること',
+          ].join(', '), (tester) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
             TestMaterialApp(
@@ -84,7 +85,12 @@ void main() {
     });
 
     group('selectedIndexが2の場合', () {
-      testWidgets('/settingのindexが選択されること', (tester) async {
+      testWidgets(
+          [
+            'NavigationRailが表示されること',
+            'NavigationRailDestinationが3つ表示されること',
+            'NavigationRailのselectedIndexが2であること',
+          ].join(', '), (tester) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
             TestMaterialApp(

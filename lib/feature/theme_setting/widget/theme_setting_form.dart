@@ -37,10 +37,10 @@ class ThemeSettingFormState extends ConsumerState<ThemeSettingForm> {
       child: Column(
         children: [
           Column(
-            key: const Key('themeModeRadioListTiles'),
+            key: const ValueKey('themeModeRadioListTiles'),
             children: [
               ReactiveRadioListTile<ThemeMode>(
-                key: const Key('themeModeSystemRadioListTile'),
+                key: const ValueKey('themeModeSystemRadioListTile'),
                 formControlName: 'themeMode',
                 controlAffinity: ListTileControlAffinity.trailing,
                 secondary: const Icon(FontAwesomeIcons.gear),
@@ -51,7 +51,7 @@ class ThemeSettingFormState extends ConsumerState<ThemeSettingForm> {
                 },
               ),
               ReactiveRadioListTile<ThemeMode>(
-                key: const Key('themeModeLightRadioListTile'),
+                key: const ValueKey('themeModeLightRadioListTile'),
                 formControlName: 'themeMode',
                 controlAffinity: ListTileControlAffinity.trailing,
                 secondary: const Icon(FontAwesomeIcons.sun),
@@ -62,7 +62,7 @@ class ThemeSettingFormState extends ConsumerState<ThemeSettingForm> {
                 },
               ),
               ReactiveRadioListTile<ThemeMode>(
-                key: const Key('themeModeDarkRadioListTile'),
+                key: const ValueKey('themeModeDarkRadioListTile'),
                 formControlName: 'themeMode',
                 controlAffinity: ListTileControlAffinity.trailing,
                 secondary: const Icon(FontAwesomeIcons.moon),

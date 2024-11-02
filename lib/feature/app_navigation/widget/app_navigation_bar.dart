@@ -15,8 +15,6 @@ class AppNavigationBar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final currentUri = useAppRouterCurrentUri();
-
     return NavigationBar(
       destinations: _navigationDestinations(context, ref),
       selectedIndex: selectedIndex,
@@ -28,26 +26,23 @@ class AppNavigationBar extends HookConsumerWidget {
     final translations = useTranslations();
     return [
       NavigationDestination(
-        key: const ValueKey('NewsArticlesNavigationDestination'),
         icon: const Icon(
           FontAwesomeIcons.list,
-          key: ValueKey('NewsArticlesNavigationDestinationIcon'),
+          key: ValueKey('NewsArticlesNavigationIcon'),
         ),
         label: translations.newsArticleList.title,
       ),
       NavigationDestination(
-        key: const ValueKey('NewsArticlesSearchNavigationDestination'),
         icon: const Icon(
           FontAwesomeIcons.magnifyingGlass,
-          key: ValueKey('NewsArticlesSearchNavigationDestinationIcon'),
+          key: ValueKey('NewsArticlesSearchNavigationIcon'),
         ),
         label: translations.newsArticleSearch.title,
       ),
       NavigationDestination(
-        key: const ValueKey('SettingNavigationDestination'),
         icon: const Icon(
           FontAwesomeIcons.gear,
-          key: ValueKey('SettingNavigationDestinationIcon'),
+          key: ValueKey('SettingNavigationIcon'),
         ),
         label: translations.setting.title,
       ),

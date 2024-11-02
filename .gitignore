@@ -56,6 +56,9 @@ test/**/goldens/**/*.*
 test/**/failures/**/*.*
 !test/**/goldens/ci/**/*.*
 
+# Ignore integration test screenshots
+integration_test/screenshots/**/*.*
+
 # iOS
 /ios/Flutter/Dart-Defines.xcconfig
 
