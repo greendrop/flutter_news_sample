@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "preset-ja-technical-writing": true,
+    "preset-ja-spacing": {
+      "ja-nakaguro-or-halfwidth-space-between-katakana": true,
+      "ja-no-space-around-parentheses": true,
+      "ja-no-space-between-full-width": true,
+      "ja-space-between-half-and-full-width": {
+        "space": "always"
+      },
+      "ja-space-around-code": {
+        "before": true,
+        "after": true
+      }
+    }
+  },
+  "filters": {
+    "comments": true
+  }
+}

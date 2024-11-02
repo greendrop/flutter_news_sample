@@ -40,7 +40,7 @@ flutter pub upgrade --major-versions
 
 ### build_runner による自動生成
 
-[build_runner](https://pub.dev/packages/build_runner) に対応したものの自動生成を行う。
+[build_runner](https://pub.dev/packages/build_runner) に対応したものの自動生成をする。
 
 例えば、[freezed](https://pub.dev/packages/freezed), [riverpod_generator](https://pub.dev/packages/riverpod_generator), [go_router_builder](https://pub.dev/packages/go_router_builder) など。
 
@@ -100,4 +100,11 @@ flutter test --tags golden
 
 ```
 flutter test --update-goldens --tags=golden
+```
+
+## 文章構成
+
+*textlit で文章構成*
+```
+npm run textlint
 ```

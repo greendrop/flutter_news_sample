@@ -4,7 +4,7 @@ GitHub Actions を使用し、テストの実行などを行う。
 
 ## Flutter Lint
 
-Flutter の静的解析を行う。
+Flutter の静的解析をする。
 
 - 自動生成ファイルの差分確認
   - `dart run build_runner build`
@@ -24,7 +24,7 @@ Flutter の静的解析を行う。
 
 ### Secrets, Variables 設定
 
-なし
+なし。
 
 ## Flutter Test
 
@@ -41,7 +41,7 @@ Flutter のテストを行う。
 
 ### Secrets, Variables 設定
 
-なし
+なし。
 
 
 ## Flutter Golden Test
@@ -59,12 +59,12 @@ Flutter の Golden Test, VRT を行う。
 
 ### Secrets, Variables 設定
 
-なし
+なし。
 
 
 ## Flutter Widgetbook Lint
 
-Flutter Widgetbook の静的解析を行う。
+Flutter Widgetbook の静的解析をする。
 
 - `dart run build_runner build` の生成ファイルの差分確認
 - `dart format`
@@ -81,12 +81,12 @@ Flutter Widgetbook の静的解析を行う。
 
 ### Secrets, Variables 設定
 
-なし
+なし。
 
 
 ## GitHub Actions Lint
 
-GitHub Actions の静的解析を行う。
+GitHub Actions の静的解析をする。
 
 - [actionlint](https://github.com/rhysd/actionlint)
 - [ghalint](https://github.com/suzuki-shunsuke/ghalint)
@@ -97,18 +97,37 @@ GitHub Actions の静的解析を行う。
 
 ### 実行タイミング
 
-- Pull Request すべてのアクティビティで、以下のファイルが変更がある
+- Pull Request すべてのアクティビティで、以下のファイルに変更がある
   - .github/workflows/*.yaml
   - .github/workflows/*.yml
 
 ### Secrets, Variables 設定
 
-なし
+なし。
 
+## textlint
+
+Markdawn ファイルの文章の構成をする。
+
+- [textlint](https://github.com/textlint/textlint)
+
+### 設定ファイル
+
+[textlint.yml](../../.github/workflows/textlint.yml)
+
+### 実行タイミング
+
+- Pull Request すべてのアクティビティで、以下のファイルに変更がある
+  - *.md
+  - doc/**/*.yml
+
+### Secrets, Variables 設定
+
+なし。
 
 ## yamllint
 
-YAMLファイル の静的解析を行う。
+YAML ファイルの静的解析をする。
 
 - [yamllint](https://yamllint.readthedocs.io/)
 
@@ -118,10 +137,10 @@ YAMLファイル の静的解析を行う。
 
 ### 実行タイミング
 
-- Pull Request すべてのアクティビティで、以下のファイルが変更がある
+- Pull Request すべてのアクティビティで、以下のファイルに変更がある
   - **/*.yaml
   - **/*.yml
 
 ### Secrets, Variables 設定
 
-なし
+なし。

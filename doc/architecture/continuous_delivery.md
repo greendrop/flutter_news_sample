@@ -166,4 +166,4 @@ sequenceDiagram
 
 ### Secrets, Variables 設定
 
-なし
+なし。
