@@ -1,4 +1,4 @@
-// ref: https://stevenosse.com/taking-screenshots-during-flutter-widget-testing
+// ref: https://blog.stevenosse.com/taking-screenshots-during-flutter-widget-testing
 
 import 'dart:io';
 import 'dart:ui' as ui;
@@ -23,11 +23,7 @@ extension WidgetTesterScreenshot on WidgetTester {
       image.dispose();
     });
 
-    final directory = Directory('./screenshots');
-    if (!directory.existsSync()) {
-      directory.createSync();
-    }
-    File('./screenshots/$name.png').writeAsBytesSync(bytes);
+    File('$name.png').writeAsBytesSync(bytes);
   }
 
   Future<ui.Image> _captureImage(Element element) async {

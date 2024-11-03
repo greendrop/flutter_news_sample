@@ -58,7 +58,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.example.flutternewssample.flutter_news_sample"
+    namespace = "com.example.flutternewssample"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -77,6 +77,12 @@ android {
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
         resValue "string", "app_name", "${dartDefines.appName}"
+        testInstrumentationRunner "pl.leancode.patrol.PatrolJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: "true"
+    }
+
+    testOptions {
+        execution "ANDROIDX_TEST_ORCHESTRATOR"
     }
 
     signingConfigs {
@@ -99,4 +105,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    androidTestUtil 'androidx.test:orchestrator:1.4.2'
 }
