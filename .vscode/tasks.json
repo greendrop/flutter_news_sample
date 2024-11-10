@@ -1,0 +1,139 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "label": "flutter pub get",
+      "detail": "パッケージの取得",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "pub",
+        "get"
+      ]
+    },
+    {
+      "label": "dart run build_runner build",
+      "detail": "build_runner による自動生成",
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "build_runner",
+        "build"
+      ]
+    },
+    {
+      "label": "dart run build_runner build --delete-conflicting-outputs",
+      "detail": "build_runner による競合する出力を削除して自動生成",
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "build_runner",
+        "build",
+        "--delete-conflicting-outputs"
+      ]
+    },
+    {
+      "label": "dart run flutter_launcher_icons",
+      "detail": "アイコンの自動生成",
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "flutter_launcher_icons"
+      ]
+    },
+    {
+      "label": "dart run flutter_native_splash:create",
+      "detail": "スプラッシュの自動生成",
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "flutter_native_splash:create"
+      ]
+    },
+    {
+      "label": "flutter test",
+      "detail": "テストを実行",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "test"
+      ]
+    },
+    {
+      "label": "flutter test --exclude-tags golden",
+      "detail": "golden タグを除外してテストを実行",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "test",
+        "--exclude-tags",
+        "golden"
+      ]
+    },
+    {
+      "label": "flutter test --tags golden",
+      "detail": "golden タグのテストを実行",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "test",
+        "--tags",
+        "golden"
+      ]
+    },
+    {
+      "label": "flutter test --update-goldens --tags golden",
+      "detail": "golden タグのテストを実行してゴールデンファイルを更新",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "test",
+        "--update-goldens",
+        "--tags",
+        "golden"
+      ]
+    },
+    {
+      "label": "flutter drive --dart-define-from-file dart_define/integration_test_ios.json --driver test_driver/integration_test.dart --target integration_test/suite/general_test.dart",
+      "detail": "iOS シミュレーターでの統合テスト",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "drive",
+        "--dart-define-from-file",
+        "dart_define/integration_test_ios.json",
+        "--driver",
+        "test_driver/integration_test.dart",
+        "--target",
+        "integration_test/suite/general_test.dart"
+      ]
+    },
+    {
+      "label": "flutter drive --dart-define-from-file dart_define/integration_test_android.json --driver test_driver/integration_test.dart --target integration_test/suite/general_test.dart",
+      "detail": "Android シミュレーターでの統合テスト",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "drive",
+        "--dart-define-from-file",
+        "dart_define/integration_test_android.json",
+        "--driver",
+        "test_driver/integration_test.dart",
+        "--target",
+        "integration_test/suite/general_test.dart"
+      ]
+    },
+    {
+      "label": "npm run textlint",
+      "detail": "textlint による文章チェック",
+      "type": "npm",
+      "script": "textlint",
+    }
+  ]
+}

@@ -6,12 +6,17 @@ import '../roboto/locale_setting/locale_setting_page_driver.dart';
 import '../roboto/news_article_list/news_article_list_page_driver.dart';
 import '../roboto/setting/setting_page_driver.dart';
 import '../support/integration_test_widgets.dart';
+import '../wiremock/newsapi/top_headlines/success.dart';
+import '../wiremock/reset.dart';
 
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('Locale Setting', () {
     integrationTestWidgets('言語が設定できること', binding, (tester) async {
+      await resetMockApi();
+      await createNewsApiTopHeadlinesSuccessMockApi();
+
       await app.main();
 
       final newsArticleListPageDriver = NewsArticleListPageDriver(tester);
@@ -30,6 +35,8 @@ void main() {
       await localeSettingPageDriver.expectLocaleEnChanged();
       await localeSettingPageDriver.tapLocaleSystemRadioListTile();
       await localeSettingPageDriver.tapBack();
+
+      await settingPageDriver.waitUntileVisible();
     });
   });
 }

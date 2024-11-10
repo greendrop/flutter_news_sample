@@ -25,7 +25,15 @@ class NewsEverythingRepository {
     int page = 1,
   }) async {
     dio.interceptors.add(LogInterceptor(logPrint: logger.d));
-    final client = NewsEverythingClient(dio);
+    late NewsEverythingClient client;
+    if (AppConfig.instance.newsApiBaseUrl.isEmpty) {
+      client = NewsEverythingClient(dio);
+    } else {
+      client = NewsEverythingClient(
+        dio,
+        baseUrl: AppConfig.instance.newsApiBaseUrl + newsEverythingClientPath,
+      );
+    }
     try {
       final response = await client.get(
         apiKey: AppConfig.instance.newsApiKey,

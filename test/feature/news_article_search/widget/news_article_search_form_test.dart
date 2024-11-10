@@ -24,7 +24,7 @@ void main() {
       await tester.pumpAndSettle();
 
       final keywordTextFieldFinder = find.descendant(
-        of: find.byKey(const Key('NewsArticleSearchFormKeywordTextField')),
+        of: find.byKey(const ValueKey('NewsArticleSearchFormKeywordTextField')),
         matching: find.byType(TextField),
       );
       expect(keywordTextFieldFinder, findsOneWidget);
@@ -33,7 +33,7 @@ void main() {
       expect(keywordTextField.controller?.text, 'initialKeyword');
 
       final submitButtonFinder =
-          find.byKey(const Key('NewsArticleSearchFormSubmitButton'));
+          find.byKey(const ValueKey('NewsArticleSearchFormSubmitButton'));
       expect(submitButtonFinder, findsOneWidget);
     });
 

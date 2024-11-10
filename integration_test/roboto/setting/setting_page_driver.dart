@@ -29,6 +29,19 @@ class SettingPageDriver extends BaseDriver {
     await tester.tap(_findable.appAboutListTile);
   }
 
+  Future<void> tapNewsArticlesNavigationIcon() async {
+    await tester.tap(_findable.newsArticlesNavigationIcon);
+  }
+
+  Future<void> tapNewsArticlesSearchNavigationIcon() async {
+    await tester.tap(_findable.newsArticlesSearchNavigationIcon);
+  }
+
+  Future<void> tapSettingNavigationIcon() async {
+    await tester.pumpAndSettle();
+    await tester.tap(_findable.settingNavigationIcon);
+  }
+
   Future<void> tapBack() async {
     await tester.pumpAndSettle();
     await tester.tap(_findable.back);

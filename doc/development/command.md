@@ -87,7 +87,7 @@ flutter test
 *Golden Test, VRT を除くテストを実行*
 
 ```
-flutter test --coverage --exclude-tags golden
+flutter test --exclude-tags golden
 ```
 
 *Golden Test, VRT テストを実行*
@@ -99,7 +99,19 @@ flutter test --tags golden
 *Golden Test, VRT テストの比較画像を更新*
 
 ```
-flutter test --update-goldens --tags=golden
+flutter test --update-goldens --tags golden
+```
+
+### 結合テスト (Integration Test)
+
+*Integration Test を実行 (iOS向け)*
+```
+flutter drive --driver=test_driver/integration_test.dart --dart-define-from-file=dart_define/integration_test_ios.json --target=integration_test/suite/general_test.dart
+```
+
+*Integration Test を実行 (Android向け)*
+```
+flutter drive --driver=test_driver/integration_test.dart --dart-define-from-file=dart_define/integration_test_android.json --target=integration_test/suite/general_test.dart
 ```
 
 ## 文章構成

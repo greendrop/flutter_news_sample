@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import '../base_driver.dart';
-import 'news_article_list_page_findable.dart';
+import 'news_article_search_page_findable.dart';
 
-class NewsArticleListPageDriver extends BaseDriver {
-  NewsArticleListPageDriver(super.tester);
+class NewsArticleSearchPageDriver extends BaseDriver {
+  NewsArticleSearchPageDriver(super.tester);
 
-  final _findable = NewsArticleListPageFindable();
+  final _findable = NewsArticleSearchPageFindable();
 
   bool get isShown => _findable.isShown;
 
@@ -25,6 +25,19 @@ class NewsArticleListPageDriver extends BaseDriver {
   Future<void> tapSettingNavigationIcon() async {
     await tester.pumpAndSettle();
     await tester.tap(_findable.settingNavigationIcon);
+  }
+
+  Future<void> enterKeyword(String keyword) async {
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      _findable.newsArticleSearchFormKeywordTextField,
+      keyword,
+    );
+  }
+
+  Future<void> tapNewsArticleSearchFormSubmitButton() async {
+    await tester.pumpAndSettle();
+    await tester.tap(_findable.newsArticleSearchFormSubmitButton);
   }
 
   Future<void> expectNewsArticleGridItemCount(int count) async {

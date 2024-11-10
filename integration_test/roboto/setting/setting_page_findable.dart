@@ -13,5 +13,14 @@ class SettingPageFindable extends BaseFindable<SettingPage> {
 
   final appAboutListTile = find.byKey(const ValueKey('AppAboutListTile'));
 
+  final newsArticlesNavigationIcon =
+      find.byKey(const ValueKey('NewsArticlesNavigationIcon'));
+
+  final newsArticlesSearchNavigationIcon =
+      find.byKey(const ValueKey('NewsArticlesSearchNavigationIcon'));
+
+  final settingNavigationIcon =
+      find.byKey(const ValueKey('SettingNavigationIcon'));
+
   final back = find.byTooltip(RegExp(r'Back|戻る'));
 }

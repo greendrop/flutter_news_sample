@@ -26,7 +26,9 @@ void integrationTestWidgets(
         await callback(tester);
       } catch (error, stackTrace) {
         if (Platform.isAndroid) {
+          await tester.pumpAndSettle();
           await binding.convertFlutterSurfaceToImage();
+          await tester.pumpAndSettle();
         }
 
         // スタックトレースから 'integration_test/test' が含まれる行を探す
