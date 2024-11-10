@@ -25,7 +25,15 @@ class NewsTopHeadlinesRepository {
     int page = 1,
   }) async {
     dio.interceptors.add(LogInterceptor(logPrint: logger.d));
-    final client = NewsTopHeadlinesClient(dio);
+    late NewsTopHeadlinesClient client;
+    if (AppConfig.instance.newsApiBaseUrl.isEmpty) {
+      client = NewsTopHeadlinesClient(dio);
+    } else {
+      client = NewsTopHeadlinesClient(
+        dio,
+        baseUrl: AppConfig.instance.newsApiBaseUrl + newsTopHeadlinesClientPath,
+      );
+    }
     try {
       final response = await client.get(
         apiKey: AppConfig.instance.newsApiKey,

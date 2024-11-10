@@ -35,27 +35,21 @@ class AppNavigationRail extends HookConsumerWidget {
       NavigationRailDestination(
         icon: const Icon(
           FontAwesomeIcons.list,
-          key: ValueKey(
-            'NewsArticlesNavigationRailDestinationIcon',
-          ),
+          key: ValueKey('NewsArticlesNavigationIcon'),
         ),
         label: Text(translations.newsArticleList.title),
       ),
       NavigationRailDestination(
         icon: const Icon(
           FontAwesomeIcons.magnifyingGlass,
-          key: ValueKey(
-            'NewsArticlesSearchNavigationRailDestinationIcon',
-          ),
+          key: ValueKey('NewsArticlesSearchNavigationIcon'),
         ),
         label: Text(translations.newsArticleSearch.title),
       ),
       NavigationRailDestination(
         icon: const Icon(
           FontAwesomeIcons.gear,
-          key: ValueKey(
-            'SettingNavigationRailDestinationIcon',
-          ),
+          key: ValueKey('SettingNavigationIcon'),
         ),
         label: Text(translations.setting.title),
       ),

@@ -1,0 +1,11 @@
+{
+  "flavor": "stg",
+  "showDevTool": "true",
+  "appName": "News Sample(stg)",
+  "appId": "com.example.flutternewssample.stg",
+  "crashReportEnabled": false,
+  "appLogConsoleEnabled": false,
+  "newsApiBaseUrl": "http://localhost:8080/newsapi",
+  "newsApiKey": "NEWS_API_KEY",
+  "wireMockBaseUrl": "http://localhost:8080"
+}

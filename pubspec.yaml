@@ -57,6 +57,8 @@ dev_dependencies:
   freezed: ^2.5.2
   go_router_builder: ^2.7.1
   http_mock_adapter: ^0.6.1
+  integration_test:
+    sdk: flutter
   json_serializable: ^6.8.0
   mocktail: ^1.0.4
   mocktail_image_network: ^1.2.0

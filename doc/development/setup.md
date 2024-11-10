@@ -66,22 +66,18 @@
 > [!NOTE]
 > `.vscode/launch.json` で起動時のオプションを設定している
 
-## Widgetbook 構築手順
+## Docker 構築手順
 
-### Widgetbook ディレクトリに移動
+WireMock などの環境を Docker で構築する手順。
 
-```
-cd wigetbook
-```
+### Docker Desktop のインストール
 
-### パーッケージのインストール
+https://docs.docker.com/desktop/
 
-- ターミナルでリポジトリのルートディレクトリを開き、`flutter pub get` を実行
-
-### ブラウザでWidgetアプリを起動
+### コンテナの起動
 
 ```
-flutter run -d chrome
+docker compose up
 ```
 
 ## Node 構築手順
@@ -107,3 +103,40 @@ nodenv install NODE_VERSION
 ```
 npm install
 ```
+
+## Widgetbook 構築手順
+
+### Widgetbook ディレクトリに移動
+
+```
+cd wigetbook
+```
+
+### パーッケージのインストール
+
+- ターミナルでリポジトリのルートディレクトリを開き、`flutter pub get` を実行
+
+### ブラウザでWidgetアプリを起動
+
+```
+flutter run -d chrome
+```
+
+## Integration Test 構築手順
+
+### Dart define file を用意
+
+- 以下のコマンドを実行し、Dart define file を用意
+
+  ```
+  cp dart_define/integration_test_android_sample.json dart_define/integration_test_android.json
+  cp dart_define/integration_test_ios_sample.json dart_define/integration_test_ios.json
+  ```
+
+### iOS シミュレーター / Android エミュレーター を用意
+
+Integration Test を実行するために、iOS シミュレーター / Android エミュレーター を用意する。
+
+iOS シミュレーター: https://flutter.dev/docs/get-started/install/macos#set-up-the-ios-simulator
+
+Android エミュレーター: https://flutter.dev/docs/get-started/install/macos#set-up-the-android-emulator

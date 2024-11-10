@@ -4,7 +4,10 @@ import 'package:retrofit/retrofit.dart';
 
 part 'news_everything_client.g.dart';
 
-@RestApi(baseUrl: 'https://newsapi.org/v2/everything')
+const _baseUrl = 'https://newsapi.org';
+const newsEverythingClientPath = '/v2/everything';
+
+@RestApi(baseUrl: _baseUrl + newsEverythingClientPath)
 // ignore: one_member_abstracts
 abstract class NewsEverythingClient {
   factory NewsEverythingClient(Dio dio, {String baseUrl}) =
