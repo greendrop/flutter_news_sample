@@ -106,12 +106,12 @@ flutter test --update-goldens --tags golden
 
 *Integration Test を実行 (iOS向け)*
 ```
-flutter drive --driver=test_driver/integration_test.dart --dart-define-from-file=dart_define/integration_test_ios.json --target=integration_test/suite/general_test.dart
+flutter drive --driver test_driver/integration_test.dart --dart-define-from-file dart_define/integration_test_ios.json --target integration_test/suite/general_test.dart
 ```
 
 *Integration Test を実行 (Android向け)*
 ```
-flutter drive --driver=test_driver/integration_test.dart --dart-define-from-file=dart_define/integration_test_android.json --target=integration_test/suite/general_test.dart
+flutter drive --driver test_driver/integration_test.dart --dart-define-from-file dart_define/integration_test_android.json --target integration_test/suite/general_test.dart
 ```
 
 ## 文章構成
