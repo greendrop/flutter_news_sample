@@ -1,3 +1,4 @@
+---
 services:
   wiremock:
     image: wiremock/wiremock:3.9.2-1
