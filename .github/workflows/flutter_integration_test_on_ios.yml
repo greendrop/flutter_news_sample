@@ -16,6 +16,7 @@ env:
   JAVA_DISTRIBUTION: microsoft
   JAVA_VERSION: 17
   DART_DEFINE_FILE_PATH: dart_define/integration_test_ios.json
+  WIREMOCK_VERSION: 3.9.2
 
 jobs:
   test:
@@ -42,7 +43,7 @@ jobs:
 
       - name: Download WireMock
         run: |
-          curl -L https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.9.2/wiremock-standalone-3.9.2.jar -o wiremock-standalone.jar
+          curl -L "https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/${WIREMOCK_VERSION}/wiremock-standalone-${WIREMOCK_VERSION}.jar" -o wiremock-standalone.jar
 
       - name: Run WireMock
         run: |

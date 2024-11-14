@@ -17,6 +17,7 @@ env:
   JAVA_DISTRIBUTION: microsoft
   JAVA_VERSION: 17
   DART_DEFINE_FILE_PATH: dart_define/integration_test_android.json
+  WIREMOCK_VERSION: 3.9.2
 
 jobs:
   test:
@@ -24,11 +25,6 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: read
-    services:
-      wiremock:
-        image: wiremock/wiremock:3.9.2-1
-        ports:
-          - 8080:8080
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -38,6 +34,14 @@ jobs:
         with:
           distribution: ${{ env.JAVA_DISTRIBUTION }}
           java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Download WireMock
+        run: |
+          curl -L "https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/${WIREMOCK_VERSION}/wiremock-standalone-${WIREMOCK_VERSION}.jar" -o wiremock-standalone.jar
+
+      - name: Run WireMock
+        run: |
+          java -jar wiremock-standalone.jar --port 8080 &
 
       - name: Get Flutter version from .fvmrc
         id: get_flutter_version
