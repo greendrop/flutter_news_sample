@@ -85,6 +85,7 @@ jobs:
           api-level: ${{ env.ANDROID_EMULATOR_API_LEVEL }}
           script: >-
             flutter drive
+            --no-pub
             --dart-define-from-file ${{ env.DART_DEFINE_FILE_PATH }}
             --driver test_driver/integration_test.dart
             --target integration_test/suite/general_test.dart
