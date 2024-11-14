@@ -111,6 +111,33 @@ Android エミュレーターで Flutter の統合テストを行う。
 なし。
 
 
+## Flutter Integration Test on iOS
+
+iOS シミュレーターで Flutter の統合テストを行う。
+
+### 設定ファイル
+
+[flutter_integration_test_on_ios.yml](../../.github/workflows/flutter_integration_test_on_ios.yml)
+
+### 実行タイミング
+
+- Pull Request すべてのアクティビティ
+- main, develop ブランチへ push
+
+### Secrets, Variables 設定
+
+#### Repository secrets
+
+| Name | 設定内容 | 備考 |
+| --- | --- | --- |
+| DART_DEFINE_FILE_INTEGRATION_TEST_IOS_JSON | `dart_define/integration_test_ios.json` ファイルを base64 でエンコードした文字 |  |
+| FIREBASE_STG_GOOGLE_SERVICE_INFO_PLIST | `ios/Runner/Firebase/stg/GoogleService-Info.plist` ファイルを base64 でエンコードした文字 |  |
+
+#### Repository variables
+
+なし。
+
+
 ## GitHub Actions Lint
 
 GitHub Actions の静的解析をする。
