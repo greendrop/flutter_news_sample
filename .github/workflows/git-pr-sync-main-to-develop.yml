@@ -41,8 +41,6 @@ jobs:
       - name: Setup Ruby
         if: steps.check_for_changes.outputs.has_changes == 'true'
         uses: ruby/setup-ruby@a2bbe5b1b236842c1cb7dd11e8e3b51e0a616acc # v1.202.0
-        with:
-          ruby-version: 3.3
       - name: Install git-pr-release
         if: steps.check_for_changes.outputs.has_changes == 'true'
         run: gem install --no-document git-pr-release
