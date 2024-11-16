@@ -21,6 +21,7 @@
 ## アーキテクチャ
 
 - [アプリケーション](doc/architecture/application.md)
+- [テスト](doc/architecture/test.md)
 - [インフラ](doc/architecture/infrastructure.md)
 - [継続的インテグレーション / Continuous Integration (CI)](doc/architecture/continuous_integration.md)
 - [継続的デリバリー / Continuous Delivery (CD)](doc/architecture/continuous_delivery.md)
