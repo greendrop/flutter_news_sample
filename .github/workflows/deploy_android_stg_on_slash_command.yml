@@ -74,5 +74,7 @@ jobs:
               repo: context.repo.repo,
               workflow_id: "deploy_android_stg.yml",
               ref: "${{needs.check_slash_command.outputs.target_branch_name}}",
-              inputs: {}
+              inputs: {
+                pull_request_number: context.issue.number
+              }
             });
