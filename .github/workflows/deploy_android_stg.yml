@@ -143,7 +143,7 @@ jobs:
             Deploied Android (Stg) to Firebase App Distribution
         with:
           script: |
-            if (Number.isInteger("${{ inputs.pull_request_number }}")) {
+            if (Number.isInteger(Number.parseInt("${{ inputs.pull_request_number }}"))) {
               github.rest.issues.createComment({
                 issue_number: Number.parseInt("${{ inputs.pull_request_number }}"),
                 owner: context.repo.owner,
