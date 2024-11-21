@@ -65,6 +65,7 @@ jobs:
           DART_DEFINE_FILE_JSON: ${{ secrets.DART_DEFINE_FILE_INTEGRATION_TEST_ANDROID_JSON }}
         run: |
           echo "$DART_DEFINE_FILE_JSON" | base64 --decode > "$DART_DEFINE_FILE_PATH"
+          ls -l "$DART_DEFINE_FILE_PATH"
 
       - name: Create google-services.json
         env:
@@ -72,6 +73,7 @@ jobs:
         run: |
           mkdir -p android/app/src/stg
           echo "$FIREBASE_GOOGLE_SERVICE_JSON" | base64 --decode > android/app/src/stg/google-services.json
+          ls -l android/app/src/stg/google-services.json
 
       - name: Enable KVM
         run: |
