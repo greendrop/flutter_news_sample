@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_news_sample/main.dart' as app;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -35,6 +37,10 @@ void main() {
       final newsArticleDetailPageDriver = NewsArticleDetailPageDriver(tester);
       await newsArticleDetailPageDriver.waitUntileVisible();
       await newsArticleDetailPageDriver.expectTitle('title_1');
+
+      // GitHub Actions で稀にエラーとなるため、一時的に sleep を入れる
+      sleep(const Duration(seconds: 1));
+
       await newsArticleDetailPageDriver.tapBack();
 
       await newsArticleSearchPageDriver.waitUntileVisible();
