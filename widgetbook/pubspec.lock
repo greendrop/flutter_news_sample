@@ -864,10 +864,10 @@ packages:
     dependency: transitive
     description:
       name: share_plus
-      sha256: fec12c3c39f01e4df1ec6ad92b6e85503c5ca64ffd6e28d18c9ffe53fcc4cb11
+      sha256: "9c9bafd4060728d7cdb2464c341743adbd79d327cb067ec7afb64583540b47c8"
       url: "https://pub.dev"
     source: hosted
-    version: "10.0.3"
+    version: "10.1.2"
   share_plus_platform_interface:
     dependency: transitive
     description:
