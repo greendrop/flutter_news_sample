@@ -101,14 +101,14 @@ Android エミュレーターで Flutter の統合テストを行う。
 
 #### Repository secrets
 
-| Name | 設定内容 | 備考 |
-| --- | --- | --- |
-| DART_DEFINE_FILE_INTEGRATION_TEST_ANDROID_JSON | `dart_define/integration_test_android.json` ファイルを base64 でエンコードした文字 |  |
-| FIREBASE_STG_GOOGLE_SERVICE_JSON | `android/app/src/stg/google-services.json` ファイルを base64 でエンコードした文字 |  |
+なし。
 
 #### Repository variables
 
-なし。
+| Name | 設定内容 | 備考 |
+| --- | --- | --- |
+| DART_DEFINE_FILE_INTEGRATION_TEST_ANDROID_JSON | `dart_define/integration_test_android.json` ファイルを base64 でエンコードした文字 |  |
+| FIREBASE_DUMMY_GOOGLE_SERVICE_JSON | `android/app/src/stg/google-services.json` ファイルの内容をダミーに書き換え、 base64 でエンコードした文字 |  |
 
 
 ## Flutter Integration Test on iOS
@@ -128,14 +128,14 @@ iOS シミュレーターで Flutter の統合テストを行う。
 
 #### Repository secrets
 
-| Name | 設定内容 | 備考 |
-| --- | --- | --- |
-| DART_DEFINE_FILE_INTEGRATION_TEST_IOS_JSON | `dart_define/integration_test_ios.json` ファイルを base64 でエンコードした文字 |  |
-| FIREBASE_STG_GOOGLE_SERVICE_INFO_PLIST | `ios/Runner/Firebase/stg/GoogleService-Info.plist` ファイルを base64 でエンコードした文字 |  |
+なし。
 
 #### Repository variables
 
-なし。
+| Name | 設定内容 | 備考 |
+| --- | --- | --- |
+| DART_DEFINE_FILE_INTEGRATION_TEST_IOS_JSON | `dart_define/integration_test_ios.json` ファイルを base64 でエンコードした文字 |  |
+| FIREBASE_DUMMY_GOOGLE_SERVICE_INFO_PLIST | `ios/Runner/Firebase/stg/GoogleService-Info.plist` ファイルの内容をダミーに書き換え、 base64 でエンコードした文字 |  |
 
 
 ## GitHub Actions Lint
