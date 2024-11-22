@@ -7,7 +7,7 @@ part of 'locale_setting_route_data.dart';
 // **************************************************************************
 
 String _$localeSettingRouteDataHash() =>
-    r'fa3ec1df07990e8de7f4dcb1795234e123209194';
+    r'6d6c38dbd7ba1b5a8dd69abcbc1a0697c81ac559';
 
 /// See also [localeSettingRouteData].
 @ProviderFor(localeSettingRouteData)
@@ -22,7 +22,9 @@ final localeSettingRouteDataProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef LocaleSettingRouteDataRef
     = AutoDisposeProviderRef<LocaleSettingRouteData>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

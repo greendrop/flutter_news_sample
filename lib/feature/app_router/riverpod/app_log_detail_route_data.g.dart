@@ -7,7 +7,7 @@ part of 'app_log_detail_route_data.dart';
 // **************************************************************************
 
 String _$appLogDetailRouteDataHash() =>
-    r'b716c2d07e585a5b45bfc75e58b2586fa31f10d8';
+    r'd8c63ec38a7d8bd0bad33ba6bbf0ebebee22dcf0';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -144,6 +144,8 @@ class AppLogDetailRouteDataProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin AppLogDetailRouteDataRef
     on AutoDisposeProviderRef<AppLogDetailRouteData> {
   /// The parameter `filename` of this provider.
@@ -159,4 +161,4 @@ class _AppLogDetailRouteDataProviderElement
   String get filename => (origin as AppLogDetailRouteDataProvider).filename;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

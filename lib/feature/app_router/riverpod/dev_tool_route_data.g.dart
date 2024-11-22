@@ -6,7 +6,7 @@ part of 'dev_tool_route_data.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$devToolRouteDataHash() => r'ada0a6c0197f276f075c131867c1d3ec89a7d3b4';
+String _$devToolRouteDataHash() => r'67b04e50c01c990d02afc8fe1b34d36894bacb7d';
 
 /// See also [devToolRouteData].
 @ProviderFor(devToolRouteData)
@@ -20,6 +20,8 @@ final devToolRouteDataProvider = AutoDisposeProvider<DevToolRouteData>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DevToolRouteDataRef = AutoDisposeProviderRef<DevToolRouteData>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
