@@ -7,7 +7,7 @@ part of 'news_everything_repository.dart';
 // **************************************************************************
 
 String _$newsEverythingRepositoryHash() =>
-    r'4713ca78354489ac746e1148e2adeb32c9482007';
+    r'66ebf25861e77463961ea99e07ec07f17a842df3';
 
 /// See also [newsEverythingRepository].
 @ProviderFor(newsEverythingRepository)
@@ -22,7 +22,9 @@ final newsEverythingRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef NewsEverythingRepositoryRef
     = AutoDisposeProviderRef<NewsEverythingRepository>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

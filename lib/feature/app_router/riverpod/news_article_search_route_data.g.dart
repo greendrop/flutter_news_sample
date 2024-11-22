@@ -7,7 +7,7 @@ part of 'news_article_search_route_data.dart';
 // **************************************************************************
 
 String _$newsArticleSearchRouteDataHash() =>
-    r'9f4e2b320a716ee4003be7013a32c0d75ea706a0';
+    r'c0d498636f5b80c3312a59f29c9549998335844f';
 
 /// See also [newsArticleSearchRouteData].
 @ProviderFor(newsArticleSearchRouteData)
@@ -22,7 +22,9 @@ final newsArticleSearchRouteDataProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef NewsArticleSearchRouteDataRef
     = AutoDisposeProviderRef<NewsArticleSearchRouteData>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

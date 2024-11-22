@@ -7,7 +7,7 @@ part of 'news_article_detail_route_data.dart';
 // **************************************************************************
 
 String _$newsArticleDetailRouteDataHash() =>
-    r'12d7670adaa854b3823dd2572635616696215618';
+    r'09fc8b72f23c36e940a70b4b5cf34384e8cc1bca';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -158,6 +158,8 @@ class NewsArticleDetailRouteDataProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin NewsArticleDetailRouteDataRef
     on AutoDisposeProviderRef<NewsArticleDetailRouteData> {
   /// The parameter `title` of this provider.
@@ -178,4 +180,4 @@ class _NewsArticleDetailRouteDataProviderElement
   String get url => (origin as NewsArticleDetailRouteDataProvider).url;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -7,7 +7,7 @@ part of 'app_logger_directory_repository.dart';
 // **************************************************************************
 
 String _$appLoggerDirectoryRepositoryHash() =>
-    r'94db7d8c170cbe02acfd9f3567fce6111da5d8fd';
+    r'ea6282ffd1cd55a73c4f817ec3705c10842ee6d2';
 
 /// See also [appLoggerDirectoryRepository].
 @ProviderFor(appLoggerDirectoryRepository)
@@ -22,7 +22,9 @@ final appLoggerDirectoryRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AppLoggerDirectoryRepositoryRef
     = AutoDisposeProviderRef<AppLoggerDirectoryRepository>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -6,7 +6,7 @@ part of 'locale_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$localeRepositoryHash() => r'794dc330c9d688d33ba0721d72b678156fd62834';
+String _$localeRepositoryHash() => r'b4b942f057632697f78cb40c19502c2246c9e849';
 
 /// See also [localeRepository].
 @ProviderFor(localeRepository)
@@ -20,6 +20,8 @@ final localeRepositoryProvider = Provider<LocaleRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef LocaleRepositoryRef = ProviderRef<LocaleRepository>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
