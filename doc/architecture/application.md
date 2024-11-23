@@ -152,10 +152,9 @@ graph TD;
 
 - アプリ全体で使用する定数を記載
 
-### config/i18n
+### config/l10n
 
 - 多言語用のファイルを格納
-- ライブラリは、[slang](https://github.com/slang-i18n/slang)を使用
 
 ### config/theme
 
