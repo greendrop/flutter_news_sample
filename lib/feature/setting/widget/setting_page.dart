@@ -4,13 +4,13 @@ import 'package:flutter_news_sample/config/app_config.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/feature/dev_tool/hook/use_push_dev_tool_page.dart';
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_push_locale_setting_page.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:flutter_news_sample/feature/setting/hook/use_show_app_about_dialog.dart';
 import 'package:flutter_news_sample/feature/setting/widget/app_about_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/dev_tool_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/locale_list_tile.dart';
 import 'package:flutter_news_sample/feature/setting/widget/theme_list_tile.dart';
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_push_theme_setting_page.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -32,7 +32,7 @@ class SettingPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+    final l10n = useL10n();
     final pushLocaleSettingPage = usePushLocaleSettingPage();
     final pushThemeSettingPage = usePushThemeSettingPage();
     final showAppAboutDialog = useShowAppAboutDialog();
@@ -44,7 +44,7 @@ class SettingPage extends HookConsumerWidget {
           child: CustomScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
-              _appBar(context, ref, translations: translations),
+              _appBar(context, ref, l10n: l10n),
               _body(
                 context,
                 ref,
@@ -63,10 +63,10 @@ class SettingPage extends HookConsumerWidget {
   SliverAppBar _appBar(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
+    required L10n l10n,
   }) {
     return SliverAppBar(
-      title: Text(translations.setting.title),
+      title: Text(l10n.settingTitle),
       floating: true,
     );
   }

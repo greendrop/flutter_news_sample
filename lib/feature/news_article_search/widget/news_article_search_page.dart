@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_search_detail_page.dart';
 import 'package:flutter_news_sample/feature/news_article_search/hook/use_news_articles.dart';
 import 'package:flutter_news_sample/feature/news_article_search/widget/news_article_search_form.dart';
 import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/feature/url_launcher/hook/use_url_launcher.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -33,7 +33,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+    final l10n = useL10n();
     final currentKeyword = useState('');
     final newsArticles = useNewsArticles();
     final showDangerTextSnackBar = useShowDangerTextSnackBar();
@@ -58,7 +58,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                       .onError((error, stackTrace) {
                     showDangerTextSnackBar.run(
                       text: AppException.fromException(error as Exception?)
-                          .messageByTranslations(translations),
+                          .messageByL10n(l10n),
                     );
                   });
                 },
@@ -69,14 +69,14 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                     _appBar(
                       context,
                       ref,
-                      translations: translations,
+                      l10n: l10n,
                       currentKeyword: currentKeyword,
                       newsArticles: newsArticles,
                     ),
                     _body(
                       context,
                       ref,
-                      translations: translations,
+                      l10n: l10n,
                       currentKeyword: currentKeyword,
                       newsArticles: newsArticles,
                       gridCrossAxisCount: breakpoint.columns ~/ 2,
@@ -96,12 +96,12 @@ class NewsArticleSearchPage extends HookConsumerWidget {
   SliverAppBar _appBar(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
+    required L10n l10n,
     required UseNewsArticlesReturn newsArticles,
     required ValueNotifier<String> currentKeyword,
   }) {
     return SliverAppBar(
-      title: Text(translations.newsArticleSearch.title),
+      title: Text(l10n.newsArticleSearchTitle),
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Padding(
@@ -129,7 +129,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
+    required L10n l10n,
     required UseNewsArticlesReturn newsArticles,
     required UsePushNewsArticleSearchDetailPageReturn
         pushNewsArticleSearchDetailPage,
@@ -151,7 +151,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
           child: Center(
             child: Text(
               AppException.fromException(error as Exception)
-                  .messageByTranslations(translations),
+                  .messageByL10n(l10n),
             ),
           ),
         );
@@ -160,7 +160,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
         if (data.items.isEmpty) {
           return SliverFillRemaining(
             child: Center(
-              child: Text(translations.general.noDataAvailable),
+              child: Text(l10n.generalNoDataAvailable),
             ),
           );
         }

@@ -1,4 +1,4 @@
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 
 enum NewsHeadlineCategory {
   general(value: 'general'),
@@ -35,22 +35,22 @@ enum NewsHeadlineCategory {
 
   final String value;
 
-  String nameByTranslations(Translations translations) {
+  String nameByL10n(L10n l10n) {
     switch (this) {
       case NewsHeadlineCategory.general:
-        return translations.newsHeadlineCategory.general;
+        return l10n.newsHeadlineCategoryGeneral;
       case NewsHeadlineCategory.business:
-        return translations.newsHeadlineCategory.business;
+        return l10n.newsHeadlineCategoryBusiness;
       case NewsHeadlineCategory.entertainment:
-        return translations.newsHeadlineCategory.entertainment;
+        return l10n.newsHeadlineCategoryEntertainment;
       case NewsHeadlineCategory.health:
-        return translations.newsHeadlineCategory.health;
+        return l10n.newsHeadlineCategoryHealth;
       case NewsHeadlineCategory.science:
-        return translations.newsHeadlineCategory.science;
+        return l10n.newsHeadlineCategoryScience;
       case NewsHeadlineCategory.sports:
-        return translations.newsHeadlineCategory.sports;
+        return l10n.newsHeadlineCategorySports;
       case NewsHeadlineCategory.technology:
-        return translations.newsHeadlineCategory.technology;
+        return l10n.newsHeadlineCategoryTechnology;
     }
   }
 }

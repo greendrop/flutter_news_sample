@@ -1,4 +1,4 @@
-import 'package:flutter_news_sample/config/i18n/strings.g.dart';
+import 'package:flutter_gen/gen_l10n/l10n_ja.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -40,12 +40,10 @@ void main() {
       });
     });
 
-    group('#fromTranslations', () {
+    group('#messageByL10n', () {
       test('翻訳されたメッセージが返ること', () {
-        final translations = AppLocale.ja.translations;
-        final appException = AppException();
-
-        expect(appException.messageByTranslations(translations), 'エラーが発生しました。');
+        final l10n = L10nJa();
+        expect(AppException().messageByL10n(l10n), 'エラーが発生しました。');
       });
     });
   });

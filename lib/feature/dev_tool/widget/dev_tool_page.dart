@@ -5,8 +5,8 @@ import 'package:flutter_news_sample/feature/app_log_list/hook/use_push_app_log_l
 import 'package:flutter_news_sample/feature/dev_tool/hook/use_crash_report_test.dart';
 import 'package:flutter_news_sample/feature/dev_tool/widget/app_log_list_tile.dart';
 import 'package:flutter_news_sample/feature/dev_tool/widget/crash_report_test_list_tile.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -22,7 +22,7 @@ class DevToolPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+    final l10n = useL10n();
     final navigatorState = useNavigatorState();
     final pushAppLogListPage = usePushAppLogListPage();
     final crashReportTest = useCrashReportTest();
@@ -39,7 +39,7 @@ class DevToolPage extends HookConsumerWidget {
             child: CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
-                _appBar(context, ref, translations: translations),
+                _appBar(context, ref, l10n: l10n),
                 _body(
                   context,
                   ref,
@@ -57,10 +57,10 @@ class DevToolPage extends HookConsumerWidget {
   SliverAppBar _appBar(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
+    required L10n l10n,
   }) {
     return SliverAppBar(
-      title: Text(translations.devTools.title),
+      title: Text(l10n.devToolsTitle),
       floating: true,
     );
   }

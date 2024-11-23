@@ -3,13 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:flutter_news_sample/feature/news_article/widget/news_article_grid_item.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_push_news_article_detail_page.dart';
 import 'package:flutter_news_sample/feature/news_article_list/enum/news_headline_category.dart';
 import 'package:flutter_news_sample/feature/news_article_list/hook/use_news_articles.dart';
 import 'package:flutter_news_sample/feature/snack_bar/hook/show_danger_text_snack_bar.dart';
 import 'package:flutter_news_sample/feature/theme_data/hook/use_theme_data.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -31,7 +31,7 @@ class NewsArticleListPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+    final l10n = useL10n();
     final themeData = useThemeData();
     final pushNewsArticleDetailPage = usePushNewsArticleDetailPage();
     final showDangerTextSnackBar = useShowDangerTextSnackBarImpl();
@@ -73,14 +73,14 @@ class NewsArticleListPage extends HookConsumerWidget {
                   physics: const AlwaysScrollableScrollPhysics(),
                   headerSliverBuilder: (context, innerBoxIsScrolled) {
                     return [
-                      _appBar(context, ref, translations: translations),
+                      _appBar(context, ref, l10n: l10n),
                       _tabBar(
                         context,
                         ref,
                         newsArticlesByCategories: newsArticlesByCategories,
                         controller: tabController,
                         themeData: themeData,
-                        translations: translations,
+                        l10n: l10n,
                       ),
                     ];
                   },
@@ -90,7 +90,7 @@ class NewsArticleListPage extends HookConsumerWidget {
                     tabController: tabController,
                     newsArticlesByCategories: newsArticlesByCategories,
                     gridCrossAxisCount: breakpoint.columns ~/ 2,
-                    translations: translations,
+                    l10n: l10n,
                     pushNewsArticleDetailPage: pushNewsArticleDetailPage,
                     showDangerTextSnackBar: showDangerTextSnackBar,
                   ),
@@ -106,10 +106,10 @@ class NewsArticleListPage extends HookConsumerWidget {
   SliverAppBar _appBar(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
+    required L10n l10n,
   }) {
     return SliverAppBar(
-      title: Text(translations.newsArticleList.title),
+      title: Text(l10n.newsArticleListTitle),
       floating: true,
     );
   }
@@ -121,7 +121,7 @@ class NewsArticleListPage extends HookConsumerWidget {
         newsArticlesByCategories,
     required TabController controller,
     required ThemeData themeData,
-    required Translations translations,
+    required L10n l10n,
   }) {
     return SliverPersistentHeader(
       delegate: _TabBarDelegate(
@@ -133,7 +133,7 @@ class NewsArticleListPage extends HookConsumerWidget {
           tabs: newsArticlesByCategories.keys
               .map(
                 (category) => Tab(
-                  text: category.nameByTranslations(translations),
+                  text: category.nameByL10n(l10n),
                 ),
               )
               .toList(),
@@ -150,7 +150,7 @@ class NewsArticleListPage extends HookConsumerWidget {
     required Map<NewsHeadlineCategory, UseNewsArticlesReturn>
         newsArticlesByCategories,
     required int gridCrossAxisCount,
-    required Translations translations,
+    required L10n l10n,
     required UsePushNewsArticleDetailPageReturn pushNewsArticleDetailPage,
     required UseShowDangerTextSnackBarReturn showDangerTextSnackBar,
   }) {
@@ -166,7 +166,7 @@ class NewsArticleListPage extends HookConsumerWidget {
                 .onError((error, stackTrace) {
               showDangerTextSnackBar.run(
                 text: AppException.fromException(error as Exception?)
-                    .messageByTranslations(translations),
+                    .messageByL10n(l10n),
               );
             });
           },
@@ -192,7 +192,7 @@ class NewsArticleListPage extends HookConsumerWidget {
                       ),
                       child: Center(
                         child: Text(
-                          appException.messageByTranslations(translations),
+                          appException.messageByL10n(l10n),
                         ),
                       ),
                     ),
@@ -212,7 +212,7 @@ class NewsArticleListPage extends HookConsumerWidget {
                         ),
                         child: Center(
                           child: Text(
-                            translations.general.noDataAvailable,
+                            l10n.generalNoDataAvailable,
                           ),
                         ),
                       ),

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_news_sample/config/theme/app_theme_data.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 // ignore: depend_on_referenced_packages
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-import 'package:widgetbook_workspace/addon/slang_addon.dart';
 import 'package:widgetbook_workspace/integration/riverpod_integration.dart';
 
 import 'main.directories.g.dart';
@@ -51,9 +49,10 @@ class WidgetbookApp extends StatelessWidget {
           ),
         ),
         AlignmentAddon(),
-        SlangAddon(
-          locales: AppLocaleUtils.supportedLocales,
-          localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        LocalizationAddon(
+          locales: L10n.supportedLocales,
+          localizationsDelegates: L10n.localizationsDelegates,
+          initialLocale: L10n.supportedLocales.last,
         ),
       ],
       integrations: [RiverpodIntegration()],

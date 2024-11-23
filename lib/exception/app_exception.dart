@@ -1,4 +1,4 @@
-import 'package:flutter_news_sample/config/i18n/strings.g.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 
 class AppException implements Exception {
   AppException({this.parentException});
@@ -16,7 +16,7 @@ class AppException implements Exception {
     return 'An error has occurred.';
   }
 
-  String messageByTranslations(Translations translations) {
-    return translations.appException.message;
+  String messageByL10n(L10n l10n) {
+    return l10n.appExceptionMessage;
   }
 }
