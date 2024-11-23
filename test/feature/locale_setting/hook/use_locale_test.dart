@@ -31,6 +31,7 @@ void main() {
             ),
           ),
         );
+        await tester.pumpAndSettle();
 
         when(localeRepository.fetch)
             .thenAnswer((_) async => const Locale('ja'));

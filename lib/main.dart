@@ -13,11 +13,16 @@ import 'package:timezone/timezone.dart' as tz;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await _prepareLocaleSettings();
   await _prepareTimeZone();
   await _prepareFirebase();
   await _prepareFirebaseCrashlytics();
 
   runApp(ProviderScope(child: TranslationProvider(child: const AppRoot())));
+}
+
+Future<void> _prepareLocaleSettings() async {
+  await LocaleSettings.useDeviceLocale();
 }
 
 Future<void> _prepareTimeZone() async {

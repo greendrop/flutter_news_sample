@@ -103,11 +103,11 @@ class _AppRootTier3 extends HookConsumerWidget {
 
     useEffect(
       () {
-        Future.microtask(() {
+        Future.microtask(() async {
           if (locale.state == null) {
-            LocaleSettings.useDeviceLocale();
+            await LocaleSettings.useDeviceLocale();
           } else {
-            LocaleSettings.setLocaleRaw(locale.state!.toString());
+            await LocaleSettings.setLocaleRaw(locale.state!.toString());
           }
         });
         return () {};

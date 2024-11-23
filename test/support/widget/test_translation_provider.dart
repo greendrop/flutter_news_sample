@@ -17,8 +17,8 @@ class TestTranslationProvider extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     useEffect(
       () {
-        Future.microtask(() {
-          LocaleSettings.setLocaleRaw(locale.toString());
+        Future.microtask(() async {
+          await LocaleSettings.setLocaleRaw(locale.toString());
         });
         return () {};
       },
