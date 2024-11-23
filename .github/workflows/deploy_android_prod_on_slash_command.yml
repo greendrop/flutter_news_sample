@@ -1,5 +1,5 @@
 ---
-name: Deploy Android (Stg) on Slash Command
+name: Deploy Android (Prod) on Slash Command
 
 on:
   issue_comment:
@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
         uses: xt0rted/slash-command-action@bf51f8f5f4ea3d58abc7eca58f77104182b23e88 # v2.0.0
         with:
-          command: deploy_android_stg
+          command: deploy_android_prod
 
       - name: Get branch name
         id: get_branch_name
@@ -67,7 +67,7 @@ jobs:
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: "deploy_android_stg.yml",
+              workflow_id: "deploy_android_prod.yml",
               ref: "${{needs.check_slash_command.outputs.target_branch_name}}",
               inputs: {
                 pull_request_number: context.issue.number.toString()

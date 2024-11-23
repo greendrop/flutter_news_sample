@@ -8,36 +8,18 @@ Android (Stg) 向けにビルドを行い、 Firebase App Distribution へデプ
 
 ### シーケンス図
 
-#### 手動実行
-
 ```mermaid
 sequenceDiagram
   actor developer as Developer
   participant github_actions as GitHub Actions
+  participant github_pr as GitHub Pull request
   participant app_distribution as Firebase App Distribution
 
   developer ->> github_actions: 手動実行
   github_actions ->> github_actions: Build
   github_actions ->> app_distribution: Deploy
   app_distribution -->> github_actions: 
-```
-
-#### Pull request に `/deploy_android_stg` コメントを登録
-
-```mermaid
-sequenceDiagram
-  actor developer as Developer
-  participant github_pr as GitHub Pull request
-  participant github_actions as GitHub Actions
-  participant app_distribution as Firebase App Distribution
-
-  developer ->> github_pr: コメントを登録
-  github_actions ->> github_pr: コメントを検知
-  github_pr -->> github_actions: 
-  github_actions ->> github_actions: Build
-  github_actions ->> app_distribution: Deploy
-  app_distribution -->> github_actions: 
-  github_actions ->> github_pr: デプロイ完了コメントを登録
+  github_actions ->> github_pr: デプロイ完了コメントを登録 (オプション)
   github_pr -->> github_actions: 
 ```
 
@@ -48,7 +30,6 @@ sequenceDiagram
 ### 実行タイミング
 
 - 手動実行 (workflow_dispatch)
-- Pull Request へ `/deploy_android_stg` コメントを登録
 
 ### Secrets, Variables 設定
 
@@ -69,6 +50,37 @@ sequenceDiagram
 | DEPLOY_ANDROID_STG_APP | Firebase プロジェクトの設定 > マイアプリ > Android アプリ > アプリ ID |  |
 | DEPLOY_ANDROID_STG_TESTER_GROUPS | Firebase App Distribution テスターグループ |  |
 
+## Deploy Android (Stg) on Slash Command
+
+Deploy Android (Stg) を Slash Command で実行する。
+
+### シーケンス図
+
+```mermaid
+sequenceDiagram
+  actor developer as Developer
+  participant github_pr as GitHub Pull request
+  participant github_actions as GitHub Actions
+
+  developer ->> github_pr: コメントを登録
+  github_actions ->> github_pr: コメントを検知
+  github_pr -->> github_actions: 
+  github_actions ->> github_actions: Deploy Android (Stg) を実行
+```
+
+### 設定ファイル
+
+[deploy_android_stg_on_slash_command.yml](../../.github/workflows/deploy_android_stg_on_slash_command.yml)
+
+### 実行タイミング
+
+- 手動実行 (workflow_dispatch)
+- Pull Request へ `/deploy_android_stg` コメントを登録
+
+### Secrets, Variables 設定
+
+なし。
+
 
 ## Deploy Android (Prod)
 
@@ -76,36 +88,18 @@ Android (Stg) 向けにビルドを行い、 Google Play Console (Internal) へ�
 
 ### シーケンス図
 
-#### 手動実行
-
 ```mermaid
 sequenceDiagram
   actor developer as Developer
   participant github_actions as GitHub Actions
+  participant github_pr as GitHub Pull request
   participant google_play as Google Play Console
 
   developer ->> github_actions: 手動実行
   github_actions ->> github_actions: Build
   github_actions ->> google_play: Deploy
   google_play -->> github_actions: 
-```
-
-#### Pull request に `/deploy_android_prod` コメントを登録
-
-```mermaid
-sequenceDiagram
-  actor developer as Developer
-  participant github_pr as GitHub Pull request
-  participant github_actions as GitHub Actions
-  participant google_play as Google Play Console
-
-  developer ->> github_pr: コメントを登録
-  github_actions ->> github_pr: コメントを検知
-  github_pr -->> github_actions: 
-  github_actions ->> github_actions: Build
-  github_actions ->> google_play: Deploy
-  google_play -->> github_actions: 
-  github_actions ->> github_pr: デプロイ完了コメントを登録
+  github_actions ->> github_pr: デプロイ完了コメントを登録 (オプション)
   github_pr -->> github_actions: 
 ```
 
@@ -116,7 +110,6 @@ sequenceDiagram
 ### 実行タイミング
 
 - 手動実行 (workflow_dispatch)
-- Pull Request へ `/deploy_android_prod` コメントを登録
 
 ### Secrets, Variables 設定
 
@@ -135,6 +128,37 @@ sequenceDiagram
 | Name | 設定内容 | 備考 |
 | --- | --- | --- |
 | DEPLOY_ANDROID_PROD_PACKAGE_NAME | Google Play Console でのパッケージネーム・アプリケーション ID | 例: com.example.flutternewssample |
+
+
+## Deploy Android (Prod) on Slash Command
+
+Deploy Android (Prod) を Slash Command で実行する。
+
+### シーケンス図
+
+```mermaid
+sequenceDiagram
+  actor developer as Developer
+  participant github_pr as GitHub Pull request
+  participant github_actions as GitHub Actions
+
+  developer ->> github_pr: コメントを登録
+  github_actions ->> github_pr: コメントを検知
+  github_pr -->> github_actions: 
+  github_actions ->> github_actions: Deploy Android (Prod) を実行
+```
+
+### 設定ファイル
+
+[deploy_android_prod_on_slash_command.yml](../../.github/workflows/deploy_android_prod_on_slash_command.yml)
+
+### 実行タイミング
+
+- Pull Request へ `/deploy_android_prod` コメントを登録
+
+### Secrets, Variables 設定
+
+なし。
 
 
 ## Deploy GitHub Pages
