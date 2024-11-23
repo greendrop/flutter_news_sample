@@ -1,5 +1,5 @@
-import 'package:flutter_news_sample/config/i18n/strings.g.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 
 class AppHttpException extends AppException {
   AppHttpException({this.statusCode, this.body, super.parentException});
@@ -97,92 +97,90 @@ class AppHttpException extends AppException {
   }
 
   @override
-  String messageByTranslations(Translations translations) {
+  String messageByL10n(L10n l10n) {
     switch (statusCode) {
       case 400:
-        return translations.appHttpException.badRequestMessage;
+        return l10n.appHttpExceptionBadRequestMessage;
       case 401:
-        return translations.appHttpException.unauthorizedMessage;
+        return l10n.appHttpExceptionUnauthorizedMessage;
       case 402:
-        return translations.appHttpException.paymentRequiredMessage;
+        return l10n.appHttpExceptionPaymentRequiredMessage;
       case 403:
-        return translations.appHttpException.forbiddenMessage;
+        return l10n.appHttpExceptionForbiddenMessage;
       case 404:
-        return translations.appHttpException.notFoundMessage;
+        return l10n.appHttpExceptionNotFoundMessage;
       case 405:
-        return translations.appHttpException.methodNotAllowedMessage;
+        return l10n.appHttpExceptionMethodNotAllowedMessage;
       case 406:
-        return translations.appHttpException.notAcceptableMessage;
+        return l10n.appHttpExceptionNotAcceptableMessage;
       case 407:
-        return translations.appHttpException.proxyAuthenticationRequiredMessage;
+        return l10n.appHttpExceptionProxyAuthenticationRequiredMessage;
       case 408:
-        return translations.appHttpException.requestTimeoutMessage;
+        return l10n.appHttpExceptionRequestTimeoutMessage;
       case 409:
-        return translations.appHttpException.conflictMessage;
+        return l10n.appHttpExceptionConflictMessage;
       case 410:
-        return translations.appHttpException.goneMessage;
+        return l10n.appHttpExceptionGoneMessage;
       case 411:
-        return translations.appHttpException.lengthRequiredMessage;
+        return l10n.appHttpExceptionLengthRequiredMessage;
       case 412:
-        return translations.appHttpException.preconditionFailedMessage;
+        return l10n.appHttpExceptionPreconditionFailedMessage;
       case 413:
-        return translations.appHttpException.payloadTooLargeMessage;
+        return l10n.appHttpExceptionPayloadTooLargeMessage;
       case 414:
-        return translations.appHttpException.uriTooLongMessage;
+        return l10n.appHttpExceptionUriTooLongMessage;
       case 415:
-        return translations.appHttpException.unsupportedMediaTypeMessage;
+        return l10n.appHttpExceptionUnsupportedMediaTypeMessage;
       case 416:
-        return translations.appHttpException.rangeNotSatisfiableMessage;
+        return l10n.appHttpExceptionRangeNotSatisfiableMessage;
       case 417:
-        return translations.appHttpException.expectationFailedMessage;
+        return l10n.appHttpExceptionExpectationFailedMessage;
       case 418:
-        return translations.appHttpException.iAmATeapotMessage;
+        return l10n.appHttpExceptionIAmATeapotMessage;
       case 421:
-        return translations.appHttpException.misdirectedRequestMessage;
+        return l10n.appHttpExceptionMisdirectedRequestMessage;
       case 422:
-        return translations.appHttpException.unprocessableEntityMessage;
+        return l10n.appHttpExceptionUnprocessableEntityMessage;
       case 423:
-        return translations.appHttpException.lockedMessage;
+        return l10n.appHttpExceptionLockedMessage;
       case 424:
-        return translations.appHttpException.failedDependencyMessage;
+        return l10n.appHttpExceptionFailedDependencyMessage;
       case 425:
-        return translations.appHttpException.tooEarlyMessage;
+        return l10n.appHttpExceptionTooEarlyMessage;
       case 426:
-        return translations.appHttpException.upgradeRequiredMessage;
+        return l10n.appHttpExceptionUpgradeRequiredMessage;
       case 428:
-        return translations.appHttpException.preconditionRequiredMessage;
+        return l10n.appHttpExceptionPreconditionRequiredMessage;
       case 429:
-        return translations.appHttpException.tooManyRequestsMessage;
+        return l10n.appHttpExceptionTooManyRequestsMessage;
       case 431:
-        return translations.appHttpException.requestHeaderFieldsTooLargeMessage;
+        return l10n.appHttpExceptionRequestHeaderFieldsTooLargeMessage;
       case 451:
-        return translations.appHttpException.unavailableForLegalReasonsMessage;
+        return l10n.appHttpExceptionUnavailableForLegalReasonsMessage;
       case 500:
-        return translations.appHttpException.internalServerErrorMessage;
+        return l10n.appHttpExceptionInternalServerErrorMessage;
       case 501:
-        return translations.appHttpException.notImplementedMessage;
+        return l10n.appHttpExceptionNotImplementedMessage;
       case 502:
-        return translations.appHttpException.badGatewayMessage;
+        return l10n.appHttpExceptionBadGatewayMessage;
       case 503:
-        return translations.appHttpException.serviceUnavailableMessage;
+        return l10n.appHttpExceptionServiceUnavailableMessage;
       case 504:
-        return translations.appHttpException.gatewayTimeoutMessage;
+        return l10n.appHttpExceptionGatewayTimeoutMessage;
       case 505:
-        return translations.appHttpException.httpVersionNotSupportedMessage;
+        return l10n.appHttpExceptionHttpVersionNotSupportedMessage;
       case 506:
-        return translations.appHttpException.variantAlsoNegotiatesMessage;
+        return l10n.appHttpExceptionVariantAlsoNegotiatesMessage;
       case 507:
-        return translations.appHttpException.insufficientStorageMessage;
+        return l10n.appHttpExceptionInsufficientStorageMessage;
       case 508:
-        return translations.appHttpException.loopDetectedMessage;
+        return l10n.appHttpExceptionLoopDetectedMessage;
       case 510:
-        return translations.appHttpException.notExtendedMessage;
+        return l10n.appHttpExceptionNotExtendedMessage;
       case 511:
-        return translations
-            .appHttpException.networkAuthenticationRequiredMessage;
+        return l10n.appHttpExceptionNetworkAuthenticationRequiredMessage;
       default:
-        return translations.appHttpException
-            .defaultMessage(statusCode: statusCode ?? 0);
+        return l10n.appHttpExceptionDefaultMessage(statusCode ?? 0);
     }
   }
 }

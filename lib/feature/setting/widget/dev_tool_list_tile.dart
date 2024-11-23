@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,7 +13,7 @@ class DevToolListTile extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+    final l10n = useL10n();
 
     return ListTile(
       leading: const Icon(
@@ -22,7 +22,7 @@ class DevToolListTile extends HookConsumerWidget {
       ),
       title: Text(
         key: const Key('DevToolListTileTitleText'),
-        translations.devTools.title,
+        l10n.devToolsTitle,
       ),
       onTap: onTap,
     );

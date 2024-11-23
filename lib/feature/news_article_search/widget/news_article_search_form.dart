@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -78,17 +78,17 @@ class NewsArticleSearchFormState extends ConsumerState<NewsArticleSearchForm> {
   }
 
   Widget _buildKeywordTextField(BuildContext context) {
-    final translations = useTranslations();
+    final l10n = useL10n();
 
     return ReactiveTextField<String>(
       key: const ValueKey('NewsArticleSearchFormKeywordTextField'),
       formControlName: 'keyword',
       validationMessages: {
         ValidationMessage.required: (error) =>
-            translations.newsArticleSearchForm.keywordValidateBlank,
+            l10n.newsArticleSearchFormKeywordValidateBlank,
         ValidationMessage.maxLength: (error) =>
-            translations.newsArticleSearchForm.keywordValidateTooLong(
-              count: NewsArticleSearchForm.keywordMaxLength,
+            l10n.newsArticleSearchFormKeywordValidateTooLong(
+              NewsArticleSearchForm.keywordMaxLength,
             ),
       },
       onSubmitted: (_) => submit(),
@@ -96,7 +96,7 @@ class NewsArticleSearchFormState extends ConsumerState<NewsArticleSearchForm> {
   }
 
   Widget _buildSubmitButton(BuildContext context) {
-    final translations = useTranslations();
+    final l10n = useL10n();
 
     return ReactiveFormConsumer(
       builder: (context, formGroup, child) {
@@ -106,7 +106,7 @@ class NewsArticleSearchFormState extends ConsumerState<NewsArticleSearchForm> {
         return FilledButton(
           key: const ValueKey('NewsArticleSearchFormSubmitButton'),
           onPressed: onPressed,
-          child: Text(translations.general.search),
+          child: Text(l10n.generalSearch),
         );
       },
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -23,28 +23,29 @@ class AppNavigationBar extends HookConsumerWidget {
   }
 
   List<Widget> _navigationDestinations(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+    final l10n = useL10n();
+
     return [
       NavigationDestination(
         icon: const Icon(
           FontAwesomeIcons.list,
           key: ValueKey('NewsArticlesNavigationIcon'),
         ),
-        label: translations.newsArticleList.title,
+        label: l10n.newsArticleListTitle,
       ),
       NavigationDestination(
         icon: const Icon(
           FontAwesomeIcons.magnifyingGlass,
           key: ValueKey('NewsArticlesSearchNavigationIcon'),
         ),
-        label: translations.newsArticleSearch.title,
+        label: l10n.newsArticleSearchTitle,
       ),
       NavigationDestination(
         icon: const Icon(
           FontAwesomeIcons.gear,
           key: ValueKey('SettingNavigationIcon'),
         ),
-        label: translations.setting.title,
+        label: l10n.settingTitle,
       ),
     ];
   }

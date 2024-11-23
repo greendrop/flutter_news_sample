@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_can_go_back.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_current_url.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview
 import 'package:flutter_news_sample/feature/news_article_detail/hook/use_webview_vertical_scroll_effect.dart';
 import 'package:flutter_news_sample/feature/news_article_detail/widget/news_article_detail_webview.dart';
 import 'package:flutter_news_sample/feature/share/hook/use_share.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,7 +29,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+    final l10n = useL10n();
     final navigatorState = useNavigatorState();
     final appBarAnimationController = useAnimationController(
       duration: const Duration(milliseconds: 300),
@@ -80,7 +80,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
                             context,
                             ref,
                             navigatorState: navigatorState,
-                            translations: translations,
+                            l10n: l10n,
                             webViewCurrentUrl: webViewCurrentUrl,
                             webViewCanGoBack: webViewCanGoBack,
                             webViewRequestGoBack: webViewRequestGoBack,
@@ -109,7 +109,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref, {
     required NavigatorState navigatorState,
-    required Translations translations,
+    required L10n l10n,
     required UseWebViewCurrentUrlReturn webViewCurrentUrl,
     required UseWebViewCanGoBackReturn webViewCanGoBack,
     required UseWebViewRequestGoBackReturn webViewRequestGoBack,
@@ -135,7 +135,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
                 ? Icons.arrow_back_ios
                 : Icons.arrow_back,
           ),
-          tooltip: translations.general.back,
+          tooltip: l10n.generalBack,
           onPressed: () {
             if (context.mounted) {
               navigatorState.pop();
@@ -153,7 +153,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.share),
-          tooltip: translations.general.share,
+          tooltip: l10n.generalShare,
           onPressed: () async {
             await share.run(webViewCurrentUrl.state);
           },

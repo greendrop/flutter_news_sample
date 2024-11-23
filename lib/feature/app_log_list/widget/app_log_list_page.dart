@@ -4,8 +4,8 @@ import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/app_log_detail/hook/use_push_app_log_detail_page.dart';
 import 'package:flutter_news_sample/feature/app_log_list/hook/use_app_log_files.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -25,7 +25,7 @@ class AppLogListPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+    final l10n = useL10n();
     final navigatorState = useNavigatorState();
     final appLogFiles = useAppLogFiles();
     final pushAppLogDetailPage = usePushAppLogDetailPage();
@@ -53,11 +53,11 @@ class AppLogListPage extends HookConsumerWidget {
               child: CustomScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 slivers: [
-                  _appBar(context, ref, translations: translations),
+                  _appBar(context, ref, l10n: l10n),
                   _body(
                     context,
                     ref,
-                    translations: translations,
+                    l10n: l10n,
                     appLogFiles: appLogFiles,
                     pushAppLogDetailPage: pushAppLogDetailPage,
                   ),
@@ -73,10 +73,10 @@ class AppLogListPage extends HookConsumerWidget {
   SliverAppBar _appBar(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
+    required L10n l10n,
   }) {
     return SliverAppBar(
-      title: Text(translations.appLogList.title),
+      title: Text(l10n.appLogListTitle),
       floating: true,
     );
   }
@@ -84,7 +84,7 @@ class AppLogListPage extends HookConsumerWidget {
   Widget _body(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
+    required L10n l10n,
     required UseAppLogFilesReturn appLogFiles,
     required UsePushAppLogDetailPageReturn pushAppLogDetailPage,
   }) {
@@ -104,7 +104,7 @@ class AppLogListPage extends HookConsumerWidget {
         return SliverFillRemaining(
           hasScrollBody: false,
           child: Center(
-            child: Text(appException.messageByTranslations(translations)),
+            child: Text(appException.messageByL10n(l10n)),
           ),
         );
       },
@@ -112,7 +112,7 @@ class AppLogListPage extends HookConsumerWidget {
         if (files.isEmpty) {
           return SliverFillRemaining(
             hasScrollBody: false,
-            child: Center(child: Text(translations.general.noDataAvailable)),
+            child: Center(child: Text(l10n.generalNoDataAvailable)),
           );
         }
 

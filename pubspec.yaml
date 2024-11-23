@@ -39,8 +39,6 @@ dependencies:
   riverpod_annotation: ^2.3.5
   share_plus: ^10.1.2
   shared_preferences: ^2.3.2
-  slang: ^3.32.0
-  slang_flutter: ^3.31.0
   timezone: ^0.9.4
   url_launcher: ^6.3.1
 
@@ -67,11 +65,11 @@ dev_dependencies:
   riverpod_generator: ^2.6.3
   riverpod_lint: ^2.6.3
   share_plus_platform_interface: ^5.0.0
-  slang_build_runner: ^3.31.0
   url_launcher_platform_interface: ^2.3.2
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/fonts/

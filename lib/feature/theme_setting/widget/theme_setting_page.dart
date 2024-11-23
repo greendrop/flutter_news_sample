@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_theme_mode.dart';
 import 'package:flutter_news_sample/feature/theme_setting/widget/theme_setting_form.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -18,7 +18,7 @@ class ThemeSettingPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translations = useTranslations();
+    final l10n = useL10n();
     final themeMode = useThemeMode();
     final navigatorState = useNavigatorState();
 
@@ -34,7 +34,7 @@ class ThemeSettingPage extends HookConsumerWidget {
             child: CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: <Widget>[
-                _appBar(context, ref, translations: translations),
+                _appBar(context, ref, l10n: l10n),
                 _body(context, ref, themeMode: themeMode),
               ],
             ),
@@ -47,10 +47,10 @@ class ThemeSettingPage extends HookConsumerWidget {
   SliverAppBar _appBar(
     BuildContext context,
     WidgetRef ref, {
-    required Translations translations,
+    required L10n l10n,
   }) {
     return SliverAppBar(
-      title: Text(translations.themeSetting.title),
+      title: Text(l10n.themeSettingTitle),
       floating: true,
     );
   }

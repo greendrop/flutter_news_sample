@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_news_sample/config/i18n/strings.g.dart';
 import 'package:flutter_news_sample/config/theme/app_theme_data.dart';
 import 'package:flutter_news_sample/feature/app_logger/hook/use_app_logger_directory.dart';
 import 'package:flutter_news_sample/feature/app_router/hook/use_app_router.dart';
 import 'package:flutter_news_sample/feature/locale_setting/hook/use_locale.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:flutter_news_sample/feature/package_info/hook/use_package_info.dart';
 import 'package:flutter_news_sample/feature/theme_setting/hook/use_theme_mode.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -99,22 +98,6 @@ class _AppRootTier3 extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = useLocale();
-
-    useEffect(
-      () {
-        Future.microtask(() {
-          if (locale.state == null) {
-            LocaleSettings.useDeviceLocale();
-          } else {
-            LocaleSettings.setLocaleRaw(locale.state!.toString());
-          }
-        });
-        return () {};
-      },
-      [locale.state],
-    );
-
     return child;
   }
 }
@@ -125,15 +108,16 @@ class _AppRootTier4 extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final locale = useLocale();
     final themeMode = useThemeMode();
     final appRouter = useMemoized(useAppRouter);
 
     return MaterialApp.router(
-      localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      supportedLocales: AppLocaleUtils.supportedLocales,
-      locale: TranslationProvider.of(context).flutterLocale,
+      localizationsDelegates: L10n.localizationsDelegates,
+      supportedLocales: L10n.supportedLocales,
+      locale: locale.state,
       onGenerateTitle: (BuildContext context) =>
-          Translations.of(context).general.appTitle,
+          L10n.of(context)!.generalAppTitle,
       theme: AppThemeData().light,
       darkTheme: AppThemeData().dark,
       themeMode: themeMode.state,

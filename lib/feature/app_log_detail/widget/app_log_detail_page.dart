@@ -3,8 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_news_sample/config/app_constant.dart';
 import 'package:flutter_news_sample/exception/app_exception.dart';
 import 'package:flutter_news_sample/feature/app_log_detail/hook/use_app_log_file_content.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:flutter_news_sample/feature/navigator/hook/use_navigator_state.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
 import 'package:flutter_news_sample/widget/body_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -72,7 +72,7 @@ class AppLogDetailPage extends HookConsumerWidget {
     WidgetRef ref, {
     required UseAppLogFileContentReturn appLogFileContent,
   }) {
-    final translations = useTranslations();
+    final l10n = useL10n();
 
     return appLogFileContent.state.when(
       loading: () => SliverFillRemaining(
@@ -87,8 +87,7 @@ class AppLogDetailPage extends HookConsumerWidget {
         hasScrollBody: false,
         child: Center(
           child: Text(
-            AppException.fromException(error as Exception)
-                .messageByTranslations(translations),
+            AppException.fromException(error as Exception).messageByL10n(l10n),
           ),
         ),
       ),
@@ -98,7 +97,7 @@ class AppLogDetailPage extends HookConsumerWidget {
         if (lines.isEmpty || (lines.length == 1 && lines.first.isEmpty)) {
           return SliverFillRemaining(
             hasScrollBody: false,
-            child: Center(child: Text(translations.general.noDataAvailable)),
+            child: Center(child: Text(l10n.generalNoDataAvailable)),
           );
         }
         return SliverList(

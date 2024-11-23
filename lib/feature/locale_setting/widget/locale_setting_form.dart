@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -29,7 +29,7 @@ class LocaleSettingFormState extends ConsumerState<LocaleSettingForm> {
 
   @override
   Widget build(BuildContext context) {
-    final translations = useTranslations();
+    final l10n = useL10n();
 
     return ReactiveForm(
       formGroup: _formGroup,
@@ -42,7 +42,7 @@ class LocaleSettingFormState extends ConsumerState<LocaleSettingForm> {
                 key: const Key('localeSystemRadioListTile'),
                 formControlName: 'locale',
                 controlAffinity: ListTileControlAffinity.trailing,
-                title: Text(translations.localeSetting.system),
+                title: Text(l10n.localeSettingSystem),
                 value: null,
                 onChanged: (formControl) {
                   submit();
@@ -52,7 +52,7 @@ class LocaleSettingFormState extends ConsumerState<LocaleSettingForm> {
                 key: const Key('localeEnRadioListTile'),
                 formControlName: 'locale',
                 controlAffinity: ListTileControlAffinity.trailing,
-                title: Text(translations.localeSetting.english),
+                title: Text(l10n.localeSettingEnglish),
                 value: const Locale('en'),
                 onChanged: (formControl) {
                   submit();
@@ -62,7 +62,7 @@ class LocaleSettingFormState extends ConsumerState<LocaleSettingForm> {
                 key: const Key('localeJaRadioListTile'),
                 formControlName: 'locale',
                 controlAffinity: ListTileControlAffinity.trailing,
-                title: Text(translations.localeSetting.japanese),
+                title: Text(l10n.localeSettingJapanese),
                 value: const Locale('ja'),
                 onChanged: (formControl) {
                   submit();

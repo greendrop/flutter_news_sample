@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_sample/feature/translation/hook/use_translations.dart';
+import 'package:flutter_news_sample/feature/localization/hook/use_l10n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -30,7 +30,7 @@ class ThemeSettingFormState extends ConsumerState<ThemeSettingForm> {
 
   @override
   Widget build(BuildContext context) {
-    final translations = useTranslations();
+    final l10n = useL10n();
 
     return ReactiveForm(
       formGroup: _formGroup,
@@ -44,7 +44,7 @@ class ThemeSettingFormState extends ConsumerState<ThemeSettingForm> {
                 formControlName: 'themeMode',
                 controlAffinity: ListTileControlAffinity.trailing,
                 secondary: const Icon(FontAwesomeIcons.gear),
-                title: Text(translations.themeSetting.system),
+                title: Text(l10n.themeSettingSystem),
                 value: ThemeMode.system,
                 onChanged: (value) {
                   submit();
@@ -55,7 +55,7 @@ class ThemeSettingFormState extends ConsumerState<ThemeSettingForm> {
                 formControlName: 'themeMode',
                 controlAffinity: ListTileControlAffinity.trailing,
                 secondary: const Icon(FontAwesomeIcons.sun),
-                title: Text(translations.themeSetting.light),
+                title: Text(l10n.themeSettingLight),
                 value: ThemeMode.light,
                 onChanged: (value) {
                   submit();
@@ -66,7 +66,7 @@ class ThemeSettingFormState extends ConsumerState<ThemeSettingForm> {
                 formControlName: 'themeMode',
                 controlAffinity: ListTileControlAffinity.trailing,
                 secondary: const Icon(FontAwesomeIcons.moon),
-                title: Text(translations.themeSetting.dark),
+                title: Text(l10n.themeSettingDark),
                 value: ThemeMode.dark,
                 onChanged: (value) {
                   submit();
