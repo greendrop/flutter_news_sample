@@ -24,7 +24,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_timezone: ^3.0.1
-  font_awesome_flutter: ^10.7.0
+  font_awesome_flutter: ^10.8.0
   freezed_annotation: ^2.4.4
   go_router: ^14.6.1
   hooks_riverpod: ^2.6.1
