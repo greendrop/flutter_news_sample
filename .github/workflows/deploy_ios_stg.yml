@@ -72,16 +72,17 @@ jobs:
       - name: Cache Ruby bundle
         uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
         with:
-          path: android/vendor/bundle
-          key: android-ruby-bundle-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
+          path: ios/vendor/bundle
+          key: ios-ruby-bundle-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/ios/Gemfile.lock') }}
 
       - name: Run bundle install
-        working-directory: ./android
+        working-directory: ./ios
         run: |
           bundle config path vendor/bundle
           bundle install --clean
 
       - name: Run fastlane ios deploy_stg
+        working-directory: ./ios
         env:
           APPLE_STORE_CONNECT_KEY_ID: ${{ vars.APPLE_STORE_CONNECT_KEY_ID }}
           APPLE_STORE_CONNECT_ISSUER_ID: ${{ vars.APPLE_STORE_CONNECT_ISSUER_ID }}
@@ -121,11 +122,11 @@ jobs:
       - name: Cache Ruby bundle
         uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
         with:
-          path: android/vendor/bundle
-          key: android-ruby-bundle-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
+          path: ios/vendor/bundle
+          key: ios-ruby-bundle-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/ios/Gemfile.lock') }}
 
       - name: Run bundle install
-        working-directory: ./android
+        working-directory: ./ios
         run: |
           bundle config path vendor/bundle
           bundle install --clean
@@ -134,9 +135,9 @@ jobs:
         env:
           DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN: ${{ secrets.DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN }}
           DEPLOY_IOS_STG_APP: ${{ vars.DEPLOY_IOS_STG_APP }}
-          DEPLOY_ANDROID_STG_TESTER_GROUPS: ${{ vars.DEPLOY_IOS_STG_TESTER_GROUPS }}
-          DEPLOY_ANDROID_STG_RELEASE_NOTES:
-        working-directory: ./android
+          DEPLOY_IOS_STG_TESTER_GROUPS: ${{ vars.DEPLOY_IOS_STG_TESTER_GROUPS }}
+          DEPLOY_IOS_STG_RELEASE_NOTES:
+        working-directory: ./ios
         run: |
           bundle exec fastlane ios deploy_stg
 
