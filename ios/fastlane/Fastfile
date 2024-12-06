@@ -1,0 +1,107 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build Stg"
+  lane :build_stg do
+    # Ref: https://medium.com/@asagliocco/how-to-build-your-flutter-ios-app-in-the-ci-a6e563c528f
+
+    keychain_created = false
+    certificate_created = false
+    profile_created = false
+
+    # Create configuration file
+    flutter_build(
+      arg: "ios --config-only --no-codesign --dart-define-from-file=dart_define/stg.json",
+    )
+
+    # Create keychain
+    create_keychain(
+      name: "AppSigning",
+      password: "temp-keychain_password",
+      unlock: true,
+    )
+    keychain_created = true
+
+    # Load API Key
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APPLE_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APPLE_STORE_CONNECT_ISSUER_ID"],
+      key_filepath: "AuthKey_#{ENV["APPLE_STORE_CONNECT_KEY_ID"]}.p8",
+      in_house: false,
+    )
+
+    # Generate certificate and profile
+    cert(
+      api_key: api_key,
+      keychain_path: "#{ENV["HOME"]}/Library/Keychains/AppSigning-db",
+      keychain_password: "temp-keychain_password",
+    )
+    certificate_created = true
+
+    sigh(
+      api_key: api_key,
+      adhoc: true,
+      app_identifier: ENV["IOS_STG_APP_IDENTIFIER"],
+    )
+    profile_created = true
+
+    # Update code signing settings
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: "Runner.xcodeproj",
+      team_id: ENV["APPLE_DEVELOPER_TEAM_ID"],
+      code_sign_identity: "iPhone Distribution",
+      sdk: "iphoneos*",
+      profile_name: lane_context[SharedValues::SIGH_NAME],
+    )
+
+    # Build 
+    build_ios_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      export_method: "ad-hoc",
+    )
+  ensure
+    # Delete profile
+    delete_profile(
+      provisioning_name: lane_context[SharedValues::SIGH_NAME],
+      api_key:
+    ) if profile_created
+
+    # Delete certificate
+    delete_certificate(
+      certificate_id: lane_context[SharedValues::CERT_CERTIFICATE_ID],
+      api_key:,
+    ) if certificate_created
+
+    # Delete keychain
+    delete_keychain(name: "AppSigning") if keychain_created
+  end
+
+  desc "Deploy Stg to App Distribution"
+  lane :deploy_stg do
+    firebase_app_distribution(
+      app: ENV["DEPLOY_IOS_STG_APP"],
+      firebase_cli_token: ENV["DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN"],
+      ipa_path: "Runner.ipa",
+      groups: ENV["DEPLOY_IOS_STG_TESTER_GROUPS"],
+      release_notes: ENV["DEPLOY_IOS_STG_RELEASE_NOTES"],
+    )
+  end
+end

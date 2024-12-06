@@ -32,3 +32,16 @@ Runner/GeneratedPluginRegistrant.*
 !default.mode2v3
 !default.pbxuser
 !default.perspectivev3
+
+# fastlane
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+*.cer
+*.certSigningRequest
+*.p8
+*.p12
+*.mobileprovision
+Runner.app.dSYM.zip
+Runner.ipa

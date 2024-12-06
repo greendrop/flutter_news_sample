@@ -56,16 +56,16 @@ jobs:
 
       - name: Create dart define file
         env:
-          DART_DEFINE_FILE_JSON: ${{ secrets.DART_DEFINE_FILE_PROD_JSON }}
+          DART_DEFINE_FILE_PROD_JSON: ${{ secrets.DART_DEFINE_FILE_PROD_JSON }}
         run: |
-          echo "$DART_DEFINE_FILE_JSON" | base64 --decode > "$DART_DEFINE_FILE_PATH"
+          echo "$DART_DEFINE_FILE_PROD_JSON" | base64 --decode > "$DART_DEFINE_FILE_PATH"
 
       - name: Create google-services.json
         env:
-          FIREBASE_GOOGLE_SERVICE_JSON: ${{ secrets.FIREBASE_PROD_GOOGLE_SERVICE_JSON }}
+          FIREBASE_PROD_GOOGLE_SERVICE_JSON: ${{ secrets.FIREBASE_PROD_GOOGLE_SERVICE_JSON }}
         run: |
           mkdir -p android/app/src/prod
-          echo "$FIREBASE_GOOGLE_SERVICE_JSON" | base64 --decode > android/app/src/prod/google-services.json
+          echo "$FIREBASE_PROD_GOOGLE_SERVICE_JSON" | base64 --decode > android/app/src/prod/google-services.json
 
       - name: Create upload-keystore.jks
         env:
@@ -116,7 +116,7 @@ jobs:
         uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
         with:
           path: android/vendor/bundle
-          key: android-ruby-bundle-${{ hashFiles('android/.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
+          key: android-ruby-bundle-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
 
       - name: Run bundle install
         working-directory: ./android
@@ -130,12 +130,12 @@ jobs:
         run: |
           echo "$DEPLOY_ANDROID_PROD_GOOGLE_PLAY_STORE_CREDENTIALS_JSON" | base64 --decode > android/google-play-store-credentials.json
 
-      - name: Run fastlane deploy_prod
+      - name: Run fastlane android deploy_prod
         working-directory: ./android
         env:
           DEPLOY_ANDROID_PROD_PACKAGE_NAME: ${{ vars.DEPLOY_ANDROID_PROD_PACKAGE_NAME }}
         run: |
-          bundle exec fastlane deploy_prod
+          bundle exec fastlane android deploy_prod
 
       - name: Post deploied comment
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
