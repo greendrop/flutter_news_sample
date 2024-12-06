@@ -5,6 +5,7 @@ ignore:
   - .dart_tool
   - .git
   - build
+  - node_modules
 
 rules:
   comments:

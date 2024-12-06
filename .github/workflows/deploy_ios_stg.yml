@@ -1,9 +1,7 @@
 ---
-name: Deploy Android (Stg)
+name: Deploy iOS (Stg)
 
 env:
-  JAVA_DISTRIBUTION: microsoft
-  JAVA_VERSION: 17
   DART_DEFINE_FILE_PATH: dart_define/stg.json
 
 on:
@@ -31,12 +29,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-      - name: Setup Java
-        uses: actions/setup-java@8df1039502a15bceb9433410b1a100fbe190c53b # v4.5.0
-        with:
-          distribution: ${{ env.JAVA_DISTRIBUTION }}
-          java-version: ${{ env.JAVA_VERSION }}
-
       - name: Get Flutter version from .fvmrc
         id: get_flutter_version
         run: |
@@ -56,38 +48,51 @@ jobs:
 
       - name: Create dart define file
         env:
-          DART_DEFINE_FILE_STG_JSON: ${{ secrets.DART_DEFINE_FILE_STG_JSON }}
+          DART_DEFINE_FILE_JSON: ${{ secrets.DART_DEFINE_FILE_STG_JSON }}
         run: |
-          echo "$DART_DEFINE_FILE_STG_JSON" | base64 --decode > "$DART_DEFINE_FILE_PATH"
+          echo "$DART_DEFINE_FILE_JSON" | base64 --decode > "$DART_DEFINE_FILE_PATH"
 
-      - name: Create google-services.json
+      - name: Create GoogleService-Info.plist
         env:
-          FIREBASE_STG_GOOGLE_SERVICE_JSON: ${{ secrets.FIREBASE_STG_GOOGLE_SERVICE_JSON }}
+          FIREBASE_STG_GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.FIREBASE_STG_GOOGLE_SERVICE_INFO_PLIST }}
         run: |
-          mkdir -p android/app/src/stg
-          echo "$FIREBASE_STG_GOOGLE_SERVICE_JSON" | base64 --decode > android/app/src/stg/google-services.json
+          mkdir -p ios/Runner/Firebase/stg
+          echo "$FIREBASE_STG_GOOGLE_SERVICE_INFO_PLIST" | base64 --decode > ios/Runner/Firebase/stg/GoogleService-Info.plist
 
-      - name: Create upload-keystore.jks
+      - name: Create AuthKey.p8
         env:
-          ANDROID_KEYSTORE_JKS: ${{ secrets.ANDROID_KEYSTORE_JKS }}
+          APPLE_STORE_CONNECT_AUTH_KEY_P8: ${{ secrets.APPLE_STORE_CONNECT_AUTH_KEY_P8 }}
+          APPLE_STORE_CONNECT_KEY_ID: ${{ vars.APPLE_STORE_CONNECT_KEY_ID }}
         run: |
-          echo "$ANDROID_KEYSTORE_JKS" | base64 --decode > android/app/upload-keystore.jks
+          echo "$APPLE_STORE_CONNECT_AUTH_KEY_P8" | base64 --decode > "ios/AuthKey_${APPLE_STORE_CONNECT_KEY_ID}.p8"
 
-      - name: Create key.properties
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@a2bbe5b1b236842c1cb7dd11e8e3b51e0a616acc # v1.202.0
+
+      - name: Cache Ruby bundle
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+        with:
+          path: android/vendor/bundle
+          key: android-ruby-bundle-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
+
+      - name: Run bundle install
+        working-directory: ./android
+        run: |
+          bundle config path vendor/bundle
+          bundle install --clean
+
+      - name: Run fastlane ios deploy_stg
         env:
-          ANDROID_KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES }}
+          APPLE_STORE_CONNECT_KEY_ID: ${{ vars.APPLE_STORE_CONNECT_KEY_ID }}
+          APPLE_STORE_CONNECT_ISSUER_ID: ${{ vars.APPLE_STORE_CONNECT_ISSUER_ID }}
         run: |
-          echo "$ANDROID_KEY_PROPERTIES" | base64 --decode > android/app/key.properties
-
-      - name: Run flutter build
-        run: |
-          flutter build apk --release --dart-define-from-file="$DART_DEFINE_FILE_PATH"
+          bundle exec fastlane ios deploy_stg
 
       - name: Upload artifact
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
         with:
-          name: app-stg-release
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: stg-runner-ipa
+          path: ios/Runner.ipa
 
   deploy:
     name: Deploy
@@ -107,8 +112,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
-          name: app-stg-release
-          path: build/app/outputs/flutter-apk
+          name: stg-runner-ipa
+          path: ios
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@a2bbe5b1b236842c1cb7dd11e8e3b51e0a616acc # v1.202.0
@@ -125,22 +130,22 @@ jobs:
           bundle config path vendor/bundle
           bundle install --clean
 
-      - name: Run fastlane android deploy_stg
+      - name: Run fastlane ios deploy_stg
         env:
-          DEPLOY_ANDROID_STG_FIREBASE_CLI_TOKEN: ${{ secrets.DEPLOY_ANDROID_STG_FIREBASE_CLI_TOKEN }}
-          DEPLOY_ANDROID_STG_APP: ${{ vars.DEPLOY_ANDROID_STG_APP }}
-          DEPLOY_ANDROID_STG_TESTER_GROUPS: ${{ vars.DEPLOY_ANDROID_STG_TESTER_GROUPS }}
+          DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN: ${{ secrets.DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN }}
+          DEPLOY_IOS_STG_APP: ${{ vars.DEPLOY_IOS_STG_APP }}
+          DEPLOY_ANDROID_STG_TESTER_GROUPS: ${{ vars.DEPLOY_IOS_STG_TESTER_GROUPS }}
           DEPLOY_ANDROID_STG_RELEASE_NOTES:
         working-directory: ./android
         run: |
-          bundle exec fastlane android deploy_stg
+          bundle exec fastlane ios deploy_stg
 
       - name: Post deploied comment
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         if: ${{ github.event.inputs.pull_request_number != '' }}
         env:
           MESSAGE: |
-            Deploied Android (Stg) to Firebase App Distribution
+            Deploied iOS (Stg) to Firebase App Distribution
         with:
           script: |
             if (Number.isInteger(Number.parseInt("${{ inputs.pull_request_number }}"))) {
