@@ -1,0 +1,76 @@
+---
+name: Deploy iOS (Stg) on Slash Command
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  check_slash_command:
+    name: Check Slash Command
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    if: ${{ github.event.issue.pull_request }}
+
+    outputs:
+      command_name: ${{ steps.slash_command_action.outputs.command-name }}
+      command_arguments: ${{ steps.slash_command_action.outputs.command-arguments }}
+      outcome: ${{ steps.slash_command_action.outcome }}
+      target_branch_name: ${{ steps.get_branch_name.outputs.result }}
+
+    steps:
+      - name: Check Command
+        id: slash_command_action
+        if: ${{ github.event.issue.pull_request }}
+        continue-on-error: true
+        uses: xt0rted/slash-command-action@bf51f8f5f4ea3d58abc7eca58f77104182b23e88 # v2.0.0
+        with:
+          command: deploy_ios_stg
+
+      - name: Get branch name
+        id: get_branch_name
+        if: ${{ steps.slash_command_action.outcome == 'success' }}
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            const pull_request = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            })
+            return pull_request.data.head.ref
+          result-encoding: string
+
+  trigger_workflow_dispatch:
+    name: Trigger Workflow Dispatch
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: write
+    needs: check_slash_command
+    if: ${{ needs.check_slash_command.outputs.outcome == 'success' }}
+
+    steps:
+      - name: Create Workflow Dispatch
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "deploy_ios_stg.yml",
+              ref: "${{needs.check_slash_command.outputs.target_branch_name}}",
+              inputs: {
+                pull_request_number: context.issue.number.toString()
+              }
+            });
+
