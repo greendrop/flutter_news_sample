@@ -21,6 +21,7 @@ sequenceDiagram
   app_distribution -->> github_actions: 
   github_actions ->> github_pr: デプロイ完了コメントを登録 (オプション)
   github_pr -->> github_actions: 
+
 ```
 
 ### 設定ファイル
@@ -66,6 +67,7 @@ sequenceDiagram
   github_actions ->> github_pr: コメントを検知
   github_pr -->> github_actions: 
   github_actions ->> github_actions: Deploy Android (Stg) を実行
+
 ```
 
 ### 設定ファイル
@@ -101,6 +103,7 @@ sequenceDiagram
   google_play -->> github_actions: 
   github_actions ->> github_pr: デプロイ完了コメントを登録 (オプション)
   github_pr -->> github_actions: 
+
 ```
 
 ### 設定ファイル
@@ -146,6 +149,7 @@ sequenceDiagram
   github_actions ->> github_pr: コメントを検知
   github_pr -->> github_actions: 
   github_actions ->> github_actions: Deploy Android (Prod) を実行
+
 ```
 
 ### 設定ファイル
@@ -160,6 +164,89 @@ sequenceDiagram
 
 なし。
 
+## Deploy iOS (Stg)
+
+iOS (Stg) 向けにビルドを行い、 Firebase App Distribution へデプロイする。
+
+### シーケンス図
+
+```mermaid
+sequenceDiagram
+  actor developer as Developer
+  participant github_actions as GitHub Actions
+  participant github_pr as GitHub Pull request
+  participant app_distribution as Firebase App Distribution
+
+  developer ->> github_actions: 手動実行
+  github_actions ->> github_actions: Build
+  github_actions ->> app_distribution: Deploy
+  app_distribution -->> github_actions: 
+  github_actions ->> github_pr: デプロイ完了コメントを登録 (オプション)
+  github_pr -->> github_actions: 
+
+```
+
+### 設定ファイル
+
+[deploy_ios_stg.yml](../../.github/workflows/deploy_ios_stg.yml)
+
+### 実行タイミング
+
+- 手動実行 (workflow_dispatch)
+
+### Secrets, Variables 設定
+
+#### Repository secrets
+
+| Name | 設定内容 | 備考 |
+| --- | --- | --- |
+| APPLE_STORE_CONNECT_AUTH_KEY_P8 | Apple Store Connect API の認証キー (p8) ファイルを base64 でエンコードした文字 |  |
+| DART_DEFINE_FILE_STG_JSON | `dart_define/stg.json` ファイルを base64 でエンコードした文字 |  |
+| DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN | `firebase login:ci` で取得したトークン |  |
+| FIREBASE_STG_GOOGLE_SERVICE_INFO_PLIST | `ios/Runner/Stg/GoogleService-Info.plist` ファイルを base64 でエンコードした文字 |  |
+
+#### Repository variables
+
+| Name | 設定内容 | 備考 |
+| --- | --- | --- |
+| APPLE_STORE_CONNECT_KEY_ID | Apple Store Connect API の Key ID |  |
+| APPLE_DEVELOPER_TEAM_ID | Apple Developer Program の Team ID |  |
+| APPLE_STORE_CONNECT_ISSUER_ID | Apple Store Connect API の Issuer ID |  |
+| IOS_STG_APP_IDENTIFIER | iOS アプリの Bundle ID |  |
+| DEPLOY_IOS_STG_APP | Firebase プロジェクトの設定 > マイアプリ > iOS アプリ > アプリ ID |  |
+| DEPLOY_IOS_STG_TESTER_GROUPS | Firebase App Distribution テスターグループ |  |
+
+## Deploy iOS (Stg) on Slash Command
+
+Deploy iOS (Stg) を Slash Command で実行する。
+
+### シーケンス図
+
+```mermaid
+sequenceDiagram
+  actor developer as Developer
+  participant github_pr as GitHub Pull request
+  participant github_actions as GitHub Actions
+
+  developer ->> github_pr: コメントを登録
+  github_actions ->> github_pr: コメントを検知
+  github_pr -->> github_actions: 
+  github_actions ->> github_actions: Deploy Android (Stg) を実行
+
+```
+
+### 設定ファイル
+
+[deploy_ios_stg_on_slash_command.yml](../../.github/workflows/deploy_ios_stg_on_slash_command.yml)
+
+### 実行タイミング
+
+- 手動実行 (workflow_dispatch)
+- Pull Request へ `/deploy_ios_stg` コメントを登録
+
+### Secrets, Variables 設定
+
+なし。
 
 ## Deploy GitHub Pages
 
@@ -178,6 +265,7 @@ sequenceDiagram
   github_actions ->> github_actions: Build
   github_actions ->> github_pages: Deploy
   github_pages -->> github_actions: 
+
 ```
 
 ### 設定ファイル
