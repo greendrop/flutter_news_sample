@@ -20,7 +20,7 @@ concurrency:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 30
     permissions:
       contents: read
@@ -84,8 +84,10 @@ jobs:
       - name: Run fastlane ios deploy_stg
         working-directory: ./ios
         env:
+          APPLE_DEVELOPER_TEAM_ID: ${{ vars.APPLE_DEVELOPER_TEAM_ID }}
           APPLE_STORE_CONNECT_KEY_ID: ${{ vars.APPLE_STORE_CONNECT_KEY_ID }}
           APPLE_STORE_CONNECT_ISSUER_ID: ${{ vars.APPLE_STORE_CONNECT_ISSUER_ID }}
+          IOS_STG_APP_IDENTIFIER: ${{ vars.IOS_STG_APP_IDENTIFIER }}
         run: |
           bundle exec fastlane ios build_stg
 
@@ -133,10 +135,10 @@ jobs:
 
       - name: Run fastlane ios deploy_stg
         env:
-          DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN: ${{ secrets.DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN }}
           DEPLOY_IOS_STG_APP: ${{ vars.DEPLOY_IOS_STG_APP }}
-          DEPLOY_IOS_STG_TESTER_GROUPS: ${{ vars.DEPLOY_IOS_STG_TESTER_GROUPS }}
+          DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN: ${{ secrets.DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN }}
           DEPLOY_IOS_STG_RELEASE_NOTES:
+          DEPLOY_IOS_STG_TESTER_GROUPS: ${{ vars.DEPLOY_IOS_STG_TESTER_GROUPS }}
         working-directory: ./ios
         run: |
           bundle exec fastlane ios deploy_stg
