@@ -1,0 +1,27 @@
+---
+require:
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - 'Flutter/**/*'
+    - 'Podfile'
+    - 'vendor/bundle/**/*'
+  NewCops: enable
+
+Naming/PredicateName:
+  Enabled: true
+  Exclude:
+    - 'fastlane/actions/**/*'
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
