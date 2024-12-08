@@ -16,6 +16,13 @@
 default_platform(:android)
 
 platform :android do
+  desc "Build Stg"
+  lane :build_stg do
+    flutter_build(
+      arg: "apk --release --dart-define-from-file=dart_define/stg.json",
+    )
+  end
+
   desc "Deploy Stg to App Distribution"
   lane :deploy_stg do
     firebase_app_distribution(
@@ -25,6 +32,13 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
       groups: ENV["DEPLOY_ANDROID_STG_TESTER_GROUPS"],
       release_notes: ENV["DEPLOY_ANDROID_STG_RELEASE_NOTES"],
+    )
+  end
+
+  desc "Build Prod"
+  lane :build_prod do
+    flutter_build(
+      arg: "appbundle --release --dart-define-from-file=dart_define/prod.json",
     )
   end
 

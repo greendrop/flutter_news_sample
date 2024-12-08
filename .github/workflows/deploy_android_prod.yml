@@ -4,7 +4,6 @@ name: Deploy Android (Prod)
 env:
   JAVA_DISTRIBUTION: microsoft
   JAVA_VERSION: 17
-  DART_DEFINE_FILE_PATH: dart_define/prod.json
 
 on:
   workflow_dispatch:
@@ -56,6 +55,7 @@ jobs:
 
       - name: Create dart define file
         env:
+          DART_DEFINE_FILE_PATH: dart_define/prod.json
           DART_DEFINE_FILE_PROD_JSON: ${{ secrets.DART_DEFINE_FILE_PROD_JSON }}
         run: |
           echo "$DART_DEFINE_FILE_PROD_JSON" | base64 --decode > "$DART_DEFINE_FILE_PATH"
@@ -81,7 +81,7 @@ jobs:
 
       - name: flutter build
         run: |
-          flutter build appbundle --release --dart-define-from-file="$DART_DEFINE_FILE_PATH"
+          bundle exec fastlane android build_prod
 
       - name: Upload artifact
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
