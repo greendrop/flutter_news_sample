@@ -15,6 +15,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## Android
 
+### android build_stg
+
+```sh
+[bundle exec] fastlane android build_stg
+```
+
+Build Stg
+
 ### android deploy_stg
 
 ```sh
@@ -22,6 +30,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 ```
 
 Deploy Stg to App Distribution
+
+### android build_prod
+
+```sh
+[bundle exec] fastlane android build_prod
+```
+
+Build Prod
 
 ### android deploy_prod
 
