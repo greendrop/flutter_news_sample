@@ -159,6 +159,44 @@ GitHub Actions の静的解析をする。
 
 なし。
 
+## Ruby Lint on Android
+
+Ruby (Android) の静的解析をする。
+
+- [rubocop](https://github.com/rubocop/rubocop)
+
+### 設定ファイル
+
+[ruby_lint_on_android.yml](../../.github/workflows/ruby_lint_on_android.yml)
+
+### 実行タイミング
+
+- Pull Request すべてのアクティビティで、以下のファイルに変更がある
+  - android/**/*
+
+### Secrets, Variables 設定
+
+なし。
+
+## Ruby Lint on iOS
+
+Ruby (iOS) の静的解析をする。
+
+- [rubocop](https://github.com/rubocop/rubocop)
+
+### 設定ファイル
+
+[ruby_lint_on_ios.yml](../../.github/workflows/ruby_lint_on_ios.yml)
+
+### 実行タイミング
+
+- Pull Request すべてのアクティビティで、以下のファイルに変更がある
+  - ios/**/*
+
+### Secrets, Variables 設定
+
+なし。
+
 ## textlint
 
 Markdawn ファイルの文章の構成をする。
