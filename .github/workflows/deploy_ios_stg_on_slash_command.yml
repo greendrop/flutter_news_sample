@@ -73,4 +73,3 @@ jobs:
                 pull_request_number: context.issue.number.toString()
               }
             });
-
