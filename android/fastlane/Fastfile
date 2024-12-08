@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file contains the fastlane.tools configuration
 # You can find the documentation at https://docs.fastlane.tools
 #
@@ -16,36 +18,36 @@
 default_platform(:android)
 
 platform :android do
-  desc "Build Stg"
+  desc 'Build Stg'
   lane :build_stg do
     flutter_build(
-      arg: "apk --release --dart-define-from-file=dart_define/stg.json",
+      arg: 'apk --release --dart-define-from-file=dart_define/stg.json'
     )
   end
 
-  desc "Deploy Stg to App Distribution"
+  desc 'Deploy Stg to App Distribution'
   lane :deploy_stg do
     firebase_app_distribution(
-      app: ENV["DEPLOY_ANDROID_STG_APP"],
-      firebase_cli_token: ENV["DEPLOY_ANDROID_STG_FIREBASE_CLI_TOKEN"],
-      android_artifact_type: "APK",
-      android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
-      groups: ENV["DEPLOY_ANDROID_STG_TESTER_GROUPS"],
-      release_notes: ENV["DEPLOY_ANDROID_STG_RELEASE_NOTES"],
+      app: ENV.fetch('DEPLOY_ANDROID_STG_APP', nil),
+      firebase_cli_token: ENV.fetch('DEPLOY_ANDROID_STG_FIREBASE_CLI_TOKEN', nil),
+      android_artifact_type: 'APK',
+      android_artifact_path: '../build/app/outputs/flutter-apk/app-release.apk',
+      groups: ENV.fetch('DEPLOY_ANDROID_STG_TESTER_GROUPS', nil),
+      release_notes: ENV.fetch('DEPLOY_ANDROID_STG_RELEASE_NOTES', nil)
     )
   end
 
-  desc "Build Prod"
+  desc 'Build Prod'
   lane :build_prod do
     flutter_build(
-      arg: "appbundle --release --dart-define-from-file=dart_define/prod.json",
+      arg: 'appbundle --release --dart-define-from-file=dart_define/prod.json'
     )
   end
 
   desc 'Deploy Prod to Google Play(Internal)'
   lane :deploy_prod do
     upload_to_play_store(
-      package_name: ENV["DEPLOY_ANDROID_PROD_PACKAGE_NAME"],
+      package_name: ENV.fetch('DEPLOY_ANDROID_PROD_PACKAGE_NAME', nil),
       track: 'internal',
       release_status: 'draft',
       json_key: 'google-play-store-credentials.json',
@@ -54,7 +56,7 @@ platform :android do
       skip_upload_changelogs: true,
       skip_upload_screenshots: true,
       skip_upload_images: true,
-      skip_upload_apk: true,
+      skip_upload_apk: true
     )
   end
 end

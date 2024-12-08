@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "abbrev"
-gem "fastlane"
-gem "mutex_m"
+gem 'abbrev'
+gem 'fastlane'
+gem 'mutex_m'
+gem 'rubocop', require: false
+gem 'rubocop-performance', require: false
 
-eval_gemfile("fastlane/Pluginfile")
+eval_gemfile('fastlane/Pluginfile')
