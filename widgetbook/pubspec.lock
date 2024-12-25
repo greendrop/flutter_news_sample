@@ -1165,10 +1165,10 @@ packages:
     dependency: "direct main"
     description:
       name: widgetbook
-      sha256: "91841d7e5cf0ba710e30c11a0ec29a632a13a275381730849fdd91bd0e7f7352"
+      sha256: f1aec6e13bc30a0b0fd1e1db1533b01caa0946fc6f0caf0412c3aba9de7ec4db
       url: "https://pub.dev"
     source: hosted
-    version: "3.10.0"
+    version: "3.10.1"
   widgetbook_annotation:
     dependency: "direct main"
     description:
@@ -1181,10 +1181,10 @@ packages:
     dependency: "direct dev"
     description:
       name: widgetbook_generator
-      sha256: "5967de405c3e7e3d4ef56239c7b23f0affd69b181f7d041f8101f0fbdb9d4e2c"
+      sha256: d664ba02805c37ef4bf2a061493a6ec254b40f0d14c5546311566226d71845a2
       url: "https://pub.dev"
     source: hosted
-    version: "3.9.0"
+    version: "3.9.1"
   win32:
     dependency: transitive
     description:
