@@ -21,8 +21,8 @@ env:
   # NOTE: ghalint をアップデートする場合は、 GHALINT_VERSION, GHALINT_CHECKSUM を更新してください
   GHALINT_OS: linux
   GHALINT_ARCH: amd64
-  GHALINT_VERSION: 1.1.0
-  GHALINT_CHECKSUM: 0dd811c621ddb42e8f641b6882f66dfb12255bb206bdbf0c405eb5fc2d239765
+  GHALINT_VERSION: 1.2.0
+  GHALINT_CHECKSUM: 4ff8bff401262b63d96ba729328d2a87ae54b602020107cdd3c881920c3d4927
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -37,6 +37,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Download actionlint
         run: |
@@ -82,6 +84,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Get Binary Info
         id: get-binary-info
