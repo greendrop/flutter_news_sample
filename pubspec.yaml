@@ -10,7 +10,7 @@ environment:
 
 dependencies:
   breakpoint: ^1.2.0
-  collection: ^1.18.0
+  collection: ^1.19.0
   cupertino_icons: ^1.0.6
   dio: ^5.7.0
   firebase_analytics: ^11.3.6
