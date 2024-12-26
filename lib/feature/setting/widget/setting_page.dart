@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_sample/config/app_config.dart';
 import 'package:flutter_news_sample/config/design_token/spacing.dart';
@@ -134,7 +133,7 @@ class SettingPage extends HookConsumerWidget {
                   ),
                 )
               : null,
-        ].whereNotNull().toList(),
+        ].nonNulls.toList(),
       ),
     );
   }
