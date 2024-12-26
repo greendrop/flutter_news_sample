@@ -25,4 +25,4 @@ UsePushDevToolPageReturn usePushDevToolPageImpl() {
   return (run: run,);
 }
 
-final UsePushDevToolPage usePushDevToolPage = usePushDevToolPageImpl;
+const UsePushDevToolPage usePushDevToolPage = usePushDevToolPageImpl;

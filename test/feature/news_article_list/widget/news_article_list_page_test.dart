@@ -147,7 +147,7 @@ void main() {
             'NewsArticleGridItemが表示されないこと',
             '読み込み中が表示されること',
           ].join(', '), (tester) async {
-        final state = AsyncValue<NewsArticles>.loading();
+        const state = AsyncValue<NewsArticles>.loading();
 
         await tester.pumpWidget(
           TestMaterialApp(

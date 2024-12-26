@@ -30,4 +30,4 @@ UseAppLoggerDirectoryReturn useAppLoggerDirectoryImpl() {
   );
 }
 
-final UseAppLoggerDirectory useAppLoggerDirectory = useAppLoggerDirectoryImpl;
+const UseAppLoggerDirectory useAppLoggerDirectory = useAppLoggerDirectoryImpl;

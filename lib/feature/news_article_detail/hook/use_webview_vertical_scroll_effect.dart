@@ -30,5 +30,5 @@ void useWebviewVerticalScrollEffectImpl({
   );
 }
 
-final UseWebviewVerticalScrollEffect useWebviewVerticalScrollEffect =
+const UseWebviewVerticalScrollEffect useWebviewVerticalScrollEffect =
     useWebviewVerticalScrollEffectImpl;

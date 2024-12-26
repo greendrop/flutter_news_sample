@@ -14,7 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold(threshold: 0.02);
 
     Widget buildNotFoundPage() {
-      return TestMaterialApp(
+      return const TestMaterialApp(
         child: NotFoundPage(),
       );
     }

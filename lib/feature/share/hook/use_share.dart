@@ -87,4 +87,4 @@ UseShareReturn useShareImpl() {
   return (run: run, runXFiles: runXFiles);
 }
 
-final UseShare useShare = useShareImpl;
+const UseShare useShare = useShareImpl;

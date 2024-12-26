@@ -7,5 +7,5 @@ Uri useAppRouterCurrentUriImpl() {
   return GoRouterState.of(useContext()).uri;
 }
 
-final UseAppRouterCurrentUri useAppRouterCurrentUri =
+const UseAppRouterCurrentUri useAppRouterCurrentUri =
     useAppRouterCurrentUriImpl;

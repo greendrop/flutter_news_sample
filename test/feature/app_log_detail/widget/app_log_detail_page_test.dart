@@ -58,7 +58,7 @@ void main() {
                 child: AppLogDetailPage(
                   filename: 'test.log',
                   useAppLogFileContent: buildUseAppLogFileContent(
-                    state: AsyncValue.data(''),
+                    state: const AsyncValue.data(''),
                   ),
                 ),
               ),
@@ -80,7 +80,7 @@ void main() {
                 child: AppLogDetailPage(
                   filename: 'test.log',
                   useAppLogFileContent: buildUseAppLogFileContent(
-                    state: AsyncValue.loading(),
+                    state: const AsyncValue.loading(),
                   ),
                   stopLoadingIndicator: true,
                 ),

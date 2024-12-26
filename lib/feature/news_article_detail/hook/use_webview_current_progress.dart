@@ -37,5 +37,5 @@ UseWebViewCurrentProgressReturn useWebViewCurrentProgressImpl() {
   );
 }
 
-final UseWebViewCurrentProgress useWebViewCurrentProgress =
+const UseWebViewCurrentProgress useWebViewCurrentProgress =
     useWebViewCurrentProgressImpl;

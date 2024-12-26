@@ -32,5 +32,5 @@ void useWebViewRequestGoBackEffectImpl({
   );
 }
 
-final UseWebViewRequestGoBackEffect useWebViewRequestGoBackEffect =
+const UseWebViewRequestGoBackEffect useWebViewRequestGoBackEffect =
     useWebViewRequestGoBackEffectImpl;

@@ -23,4 +23,4 @@ GoRouter useAppRouterImpl({String initialLocation = '/news_articles'}) {
   );
 }
 
-final UseAppRouter useAppRouter = useAppRouterImpl;
+const UseAppRouter useAppRouter = useAppRouterImpl;

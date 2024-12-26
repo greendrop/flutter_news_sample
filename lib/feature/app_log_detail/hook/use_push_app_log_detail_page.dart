@@ -30,5 +30,5 @@ UsePushAppLogDetailPageReturn usePushAppLogDetailPageImpl() {
   return (run: run,);
 }
 
-final UsePushAppLogDetailPage usePushAppLogDetailPage =
+const UsePushAppLogDetailPage usePushAppLogDetailPage =
     usePushAppLogDetailPageImpl;

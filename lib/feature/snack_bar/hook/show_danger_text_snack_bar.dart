@@ -40,5 +40,5 @@ UseShowDangerTextSnackBarReturn useShowDangerTextSnackBarImpl() {
   return (run: run,);
 }
 
-final UseShowDangerTextSnackBar useShowDangerTextSnackBar =
+const UseShowDangerTextSnackBar useShowDangerTextSnackBar =
     useShowDangerTextSnackBarImpl;

@@ -37,5 +37,5 @@ UsePushNewsArticleSearchDetailPageReturn
   return (run: run,);
 }
 
-final UsePushNewsArticleSearchDetailPage usePushNewsArticleSearchDetailPage =
+const UsePushNewsArticleSearchDetailPage usePushNewsArticleSearchDetailPage =
     usePushNewsArticleSearchDetailPageImpl;

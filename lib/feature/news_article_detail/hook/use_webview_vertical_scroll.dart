@@ -36,5 +36,5 @@ UseWebviewVerticalScrollReturn useWebviewVerticalScrollImpl() {
   return (state: state, updatePosition: updatePosition);
 }
 
-final UseWebviewVerticalScroll useWebviewVerticalScroll =
+const UseWebviewVerticalScroll useWebviewVerticalScroll =
     useWebviewVerticalScrollImpl;

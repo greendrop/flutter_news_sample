@@ -22,4 +22,4 @@ UsePushAppLogListPageReturn usePushAppLogListPageImpl() {
   return (run: run,);
 }
 
-final UsePushAppLogListPage usePushAppLogListPage = usePushAppLogListPageImpl;
+const UsePushAppLogListPage usePushAppLogListPage = usePushAppLogListPageImpl;

@@ -27,5 +27,5 @@ PullToRefreshController? usePullToRefreshControllerImpl({
   );
 }
 
-final UsePullToRefreshController usePullToRefreshController =
+const UsePullToRefreshController usePullToRefreshController =
     usePullToRefreshControllerImpl;

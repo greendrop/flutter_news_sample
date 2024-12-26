@@ -7,4 +7,4 @@ NavigatorState useNavigatorStateImpl() {
   return Navigator.of(useContext());
 }
 
-final UseNavigatorState useNavigatorState = useNavigatorStateImpl;
+const UseNavigatorState useNavigatorState = useNavigatorStateImpl;

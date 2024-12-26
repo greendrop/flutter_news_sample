@@ -73,4 +73,4 @@ UseUrlLauncherReturn useUrlLauncherImpl() {
   );
 }
 
-final UseUrlLauncher useUrlLauncher = useUrlLauncherImpl;
+const UseUrlLauncher useUrlLauncher = useUrlLauncherImpl;

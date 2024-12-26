@@ -46,4 +46,4 @@ UseAppLogFileContentReturn useAppLogFileContentImpl({
   );
 }
 
-final UseAppLogFileContent useAppLogFileContent = useAppLogFileContentImpl;
+const UseAppLogFileContent useAppLogFileContent = useAppLogFileContentImpl;

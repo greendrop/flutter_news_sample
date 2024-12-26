@@ -43,4 +43,4 @@ UseShowAppAboutDialogReturn useShowAppAboutDialogImpl() {
   return (run: run,);
 }
 
-final UseShowAppAboutDialog useShowAppAboutDialog = useShowAppAboutDialogImpl;
+const UseShowAppAboutDialog useShowAppAboutDialog = useShowAppAboutDialogImpl;
