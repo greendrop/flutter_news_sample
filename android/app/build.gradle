@@ -40,10 +40,14 @@ if (project.hasProperty('dart-defines')) {
         }
 }
 
-task selectGoogleServicesJson(type: Copy) {
-    println "Copying google-services.json for flavor: ${dartDefines.flavor}"
-    from "src/${dartDefines.flavor}/google-services.json"
-    into './'
+task selectGoogleServicesJson {
+    doFirst {
+        copy {
+            println "Copying google-services.json for flavor: ${dartDefines.flavor}"
+            from "src/${dartDefines.flavor}/google-services.json"
+            into './'
+        }
+    }
 }
 
 tasks.whenTaskAdded { task ->
@@ -66,6 +70,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     defaultConfig {
