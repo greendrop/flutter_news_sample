@@ -38,5 +38,5 @@ UseWebViewRequestGoBackReturn useWebViewRequestGoBackImpl() {
   );
 }
 
-final UseWebViewRequestGoBack useWebViewRequestGoBack =
+const UseWebViewRequestGoBack useWebViewRequestGoBack =
     useWebViewRequestGoBackImpl;

@@ -9,4 +9,4 @@ Logger useAppLoggerImpl() {
   return (useContext() as WidgetRef).watch(appLoggerProvider);
 }
 
-final useAppLogger = useAppLoggerImpl;
+const useAppLogger = useAppLoggerImpl;

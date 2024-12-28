@@ -24,5 +24,5 @@ void useWebViewCanGoBackEffectImpl({
   );
 }
 
-final UseWebViewCanGoBackEffect useWebViewCanGoBackEffect =
+const UseWebViewCanGoBackEffect useWebViewCanGoBackEffect =
     useWebViewCanGoBackEffectImpl;

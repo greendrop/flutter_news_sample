@@ -36,5 +36,5 @@ UseGoNewsArticleListPageReturn useGoNewsArticleListPageImpl() {
   return (run: run,);
 }
 
-final UseGoNewsArticleListPage useGoNewsArticleListPage =
+const UseGoNewsArticleListPage useGoNewsArticleListPage =
     useGoNewsArticleListPageImpl;

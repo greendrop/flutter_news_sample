@@ -47,4 +47,4 @@ UseThemeModeReturn useThemeModeImpl() {
   );
 }
 
-final UseThemeMode useThemeMode = useThemeModeImpl;
+const UseThemeMode useThemeMode = useThemeModeImpl;

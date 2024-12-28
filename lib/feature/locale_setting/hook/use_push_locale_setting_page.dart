@@ -25,5 +25,5 @@ UsePushLocaleSettingPageReturn usePushLocaleSettingPageImpl() {
   return (run: run,);
 }
 
-final UsePushLocaleSettingPage usePushLocaleSettingPage =
+const UsePushLocaleSettingPage usePushLocaleSettingPage =
     usePushLocaleSettingPageImpl;

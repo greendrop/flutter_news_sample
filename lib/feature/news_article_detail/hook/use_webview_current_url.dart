@@ -37,4 +37,4 @@ UseWebViewCurrentUrlReturn useWebViewCurrentUrlImpl() {
   );
 }
 
-final UseWebViewCurrentUrl useWebViewCurrentUrl = useWebViewCurrentUrlImpl;
+const UseWebViewCurrentUrl useWebViewCurrentUrl = useWebViewCurrentUrlImpl;

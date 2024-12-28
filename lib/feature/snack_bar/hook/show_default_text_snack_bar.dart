@@ -29,5 +29,5 @@ UseShowDefaultTextSnackBarReturn useShowDefaultTextSnackBarImpl() {
   return (run: run,);
 }
 
-final UseShowDefaultTextSnackBar useShowDefaultTextSnackBar =
+const UseShowDefaultTextSnackBar useShowDefaultTextSnackBar =
     useShowDefaultTextSnackBarImpl;

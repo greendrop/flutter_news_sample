@@ -39,5 +39,5 @@ UseShowInfoTextSnackBarReturn useShowInfoTextSnackBarImpl() {
   return (run: run,);
 }
 
-final UseShowInfoTextSnackBar useShowInfoTextSnackBar =
+const UseShowInfoTextSnackBar useShowInfoTextSnackBar =
     useShowInfoTextSnackBarImpl;

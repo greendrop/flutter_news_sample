@@ -29,5 +29,5 @@ UseGoNewsArticleSearchPageReturn useGoNewsArticleSearchPageImpl() {
   return (run: run,);
 }
 
-final UseGoNewsArticleSearchPage useGoNewsArticleSearchPage =
+const UseGoNewsArticleSearchPage useGoNewsArticleSearchPage =
     useGoNewsArticleSearchPageImpl;

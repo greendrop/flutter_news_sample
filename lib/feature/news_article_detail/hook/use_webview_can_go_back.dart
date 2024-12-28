@@ -38,4 +38,4 @@ UseWebViewCanGoBackReturn useWebViewCanGoBackImpl() {
   );
 }
 
-final UseWebViewCanGoBack useWebViewCanGoBack = useWebViewCanGoBackImpl;
+const UseWebViewCanGoBack useWebViewCanGoBack = useWebViewCanGoBackImpl;

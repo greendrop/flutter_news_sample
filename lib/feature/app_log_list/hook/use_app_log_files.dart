@@ -38,4 +38,4 @@ UseAppLogFilesReturn useAppLogFilesImpl() {
   );
 }
 
-final UseAppLogFiles useAppLogFiles = useAppLogFilesImpl;
+const UseAppLogFiles useAppLogFiles = useAppLogFilesImpl;

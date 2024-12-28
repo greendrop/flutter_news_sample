@@ -47,4 +47,4 @@ UseLocaleReturn useLocaleImpl() {
   );
 }
 
-final UseLocale useLocale = useLocaleImpl;
+const UseLocale useLocale = useLocaleImpl;

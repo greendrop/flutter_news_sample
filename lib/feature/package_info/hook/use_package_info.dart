@@ -44,4 +44,4 @@ UsePackageInfoReturn usePackageInfoImpl() {
   );
 }
 
-final UsePackageInfo usePackageInfo = usePackageInfoImpl;
+const UsePackageInfo usePackageInfo = usePackageInfoImpl;

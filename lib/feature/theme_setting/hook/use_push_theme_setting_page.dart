@@ -22,5 +22,5 @@ UsePushThemeSettingPageReturn usePushThemeSettingPageImpl() {
   return (run: run,);
 }
 
-final UsePushThemeSettingPage usePushThemeSettingPage =
+const UsePushThemeSettingPage usePushThemeSettingPage =
     usePushThemeSettingPageImpl;

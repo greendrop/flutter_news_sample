@@ -5,4 +5,4 @@ ThemeData useThemeDataImpl() {
   return Theme.of(useContext());
 }
 
-final useThemeData = useThemeDataImpl;
+const useThemeData = useThemeDataImpl;

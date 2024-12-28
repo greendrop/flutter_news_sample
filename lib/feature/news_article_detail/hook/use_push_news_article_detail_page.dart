@@ -34,5 +34,5 @@ UsePushNewsArticleDetailPageReturn usePushNewsArticleDetailPageImpl() {
   return (run: run,);
 }
 
-final UsePushNewsArticleDetailPage usePushNewsArticleDetailPage =
+const UsePushNewsArticleDetailPage usePushNewsArticleDetailPage =
     usePushNewsArticleDetailPageImpl;

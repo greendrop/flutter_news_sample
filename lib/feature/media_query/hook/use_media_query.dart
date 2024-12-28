@@ -7,4 +7,4 @@ MediaQueryData useMediaQueryDataImpl() {
   return MediaQuery.of(useContext());
 }
 
-final UseMediaQueryData useMediaQueryData = useMediaQueryDataImpl;
+const UseMediaQueryData useMediaQueryData = useMediaQueryDataImpl;

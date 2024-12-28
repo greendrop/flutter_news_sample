@@ -20,4 +20,4 @@ UseCrashReportTestReturn useCrashReportTestImpl() {
   return (run: run,);
 }
 
-final UseCrashReportTest useCrashReportTest = useCrashReportTestImpl;
+const UseCrashReportTest useCrashReportTest = useCrashReportTestImpl;

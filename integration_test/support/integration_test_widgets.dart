@@ -32,7 +32,7 @@ void integrationTestWidgets(
         }
 
         // スタックトレースから 'integration_test/test' が含まれる行を探す
-        final baseDir = 'integration_test/test';
+        const baseDir = 'integration_test/test';
         final traceLines = stackTrace.toString().split('\n');
         final targetLine = traceLines.firstWhere(
           (line) => line.contains(baseDir),

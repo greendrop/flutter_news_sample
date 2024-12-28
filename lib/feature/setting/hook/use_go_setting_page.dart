@@ -28,4 +28,4 @@ UseGoSettingPageReturn useGoSettingPageImpl() {
   return (run: run,);
 }
 
-final UseGoSettingPage useGoSettingPage = useGoSettingPageImpl;
+const UseGoSettingPage useGoSettingPage = useGoSettingPageImpl;

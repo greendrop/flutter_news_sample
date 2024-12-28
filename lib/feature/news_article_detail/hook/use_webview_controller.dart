@@ -7,4 +7,4 @@ ObjectRef<InAppWebViewController?> useWebViewControllerImpl() {
   return useRef<InAppWebViewController?>(null);
 }
 
-final UseWebViewController useWebViewController = useWebViewControllerImpl;
+const UseWebViewController useWebViewController = useWebViewControllerImpl;

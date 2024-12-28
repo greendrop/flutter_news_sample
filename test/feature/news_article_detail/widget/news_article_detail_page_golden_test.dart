@@ -14,7 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold();
 
     Widget buildNewsArticleDetailPage() {
-      return TestMaterialApp(
+      return const TestMaterialApp(
         child: NewsArticleDetailPage(
           title: 'dummy',
           url: 'https://example.com',

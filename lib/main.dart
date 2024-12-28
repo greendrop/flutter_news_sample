@@ -16,7 +16,7 @@ Future<void> main() async {
   await _prepareFirebase();
   await _prepareFirebaseCrashlytics();
 
-  runApp(ProviderScope(child: const AppRoot()));
+  runApp(const ProviderScope(child: AppRoot()));
 }
 
 Future<void> _prepareTimeZone() async {

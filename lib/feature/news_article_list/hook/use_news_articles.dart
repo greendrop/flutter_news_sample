@@ -65,4 +65,4 @@ UseNewsArticlesReturn useNewsArticlesImpl({
   );
 }
 
-final UseNewsArticles useNewsArticles = useNewsArticlesImpl;
+const UseNewsArticles useNewsArticles = useNewsArticlesImpl;

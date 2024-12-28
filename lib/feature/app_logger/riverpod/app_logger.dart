@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_news_sample/config/app_config.dart';
 import 'package:flutter_news_sample/feature/app_logger/printer/json_fmt_printer.dart';
 import 'package:flutter_news_sample/feature/app_logger/riverpod/app_logger_directory.dart';
@@ -22,7 +21,7 @@ Logger appLogger(Ref ref) {
                 maxRotatedFilesCount: 8,
               )
             : null,
-      ].whereNotNull().toList(),
+      ].nonNulls.toList(),
     ),
   );
 }
