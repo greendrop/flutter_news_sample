@@ -97,6 +97,7 @@ jobs:
           echo "$ANDROID_KEY_PROPERTIES" | base64 --decode > android/app/key.properties
 
       - name: Run flutter build
+        working-directory: ./android
         run: |
           bundle exec fastlane android build_stg
 
