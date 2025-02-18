@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0 # git-pr-release needs the git histories
           persist-credentials: false
       - name: Setup Ruby
-        uses: ruby/setup-ruby@8711a86ab6f9aa72890da4123b2ef7283b6b22b6 # v1.217.0
+        uses: ruby/setup-ruby@32110d4e311bd8996b2a82bf2a43b714ccc91777 # v1.221.0
       - name: Install git-pr-release
         run: gem install --no-document git-pr-release
       - name: Run git-pr-release
