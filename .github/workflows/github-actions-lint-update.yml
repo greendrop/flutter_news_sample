@@ -1,0 +1,167 @@
+---
+name: GitHub Actions Lint Update
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+env:
+  GHA_LINT_WORKFLOW_FILE: .github/workflows/github-actions-lint.yml
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  update-binary-version:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        binary:
+          - actionlint
+          - ghalint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Get Environment Names
+        id: get-env-names
+        run: |
+          case ${{ matrix.binary }} in
+            actionlint)
+              {
+                echo "os=ACTIONLINT_OS"
+                echo "arch=ACTIONLINT_ARCH"
+                echo "version=ACTIONLINT_VERSION"
+                echo "checksum=ACTIONLINT_CHECKSUM"
+              } >> "${GITHUB_OUTPUT}"
+              ;;
+            ghalint)
+              {
+                echo "os=GHALINT_OS"
+                echo "arch=GHALINT_ARCH"
+                echo "version=GHALINT_VERSION"
+                echo "checksum=GHALINT_CHECKSUM"
+              } >> "${GITHUB_OUTPUT}"
+              ;;
+          esac
+      - name: Get Binary Info
+        id: get-binary-info
+        run: |
+          os=$(grep -E "${{ steps.get-env-names.outputs.os }}: " "${{ env.GHA_LINT_WORKFLOW_FILE }}" | sed -e "s/ *${{ steps.get-env-names.outputs.os }}: //")
+          arch=$(grep -E "${{ steps.get-env-names.outputs.arch }}: " "${{ env.GHA_LINT_WORKFLOW_FILE }}" | sed -e "s/ *${{ steps.get-env-names.outputs.arch }}: //")
+          version=$(grep -E "${{ steps.get-env-names.outputs.version }}: " "${{ env.GHA_LINT_WORKFLOW_FILE }}" | sed -e "s/ *${{ steps.get-env-names.outputs.version }}: //")
+          checksum=$(grep -E "${{ steps.get-env-names.outputs.checksum }}: " "${{ env.GHA_LINT_WORKFLOW_FILE }}" | sed -e "s/ *${{ steps.get-env-names.outputs.checksum }}: //")
+          case ${{ matrix.binary }} in
+            actionlint)
+              name=actionlint
+              owner=rhysd
+              repo=actionlint
+              releases_url=https://github.com/rhysd/actionlint/releases
+              ;;
+            ghalint)
+              name=ghalint
+              owner=suzuki-shunsuke
+              repo=ghalint
+              releases_url=https://github.com/suzuki-shunsuke/ghalint/releases
+              ;;
+          esac
+          {
+            echo "name=${name}"
+            echo "owner=${owner}"
+            echo "repo=${repo}"
+            echo "releases_url=${releases_url}"
+            echo "os=${os}"
+            echo "arch=${arch}"
+            echo "version=${version}"
+            echo "checksum=${checksum}"
+          } >> "${GITHUB_OUTPUT}"
+      - name: Check Binary Version
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        id: check-binary-version
+        env:
+          BINARY_NAME: ${{ matrix.binary }}
+          BINARY_OWNER: ${{ steps.get-binary-info.outputs.owner }}
+          BINARY_REPO: ${{ steps.get-binary-info.outputs.repo }}
+          BINARY_RELEASES_URL: ${{ steps.get-binary-info.outputs.releases_url }}
+          BINARY_OS: ${{ steps.get-binary-info.outputs.os }}
+          BINARY_OS_ENV_NAME: ${{ steps.get-env-names.outputs.os }}
+          BINARY_ARCH: ${{ steps.get-binary-info.outputs.arch }}
+          BINARY_ARCH_ENV_NAME: ${{ steps.get-env-names.outputs.arch }}
+          BINARY_VERSION: ${{ steps.get-binary-info.outputs.version }}
+          BINARY_VERSION_ENV_NAME: ${{ steps.get-env-names.outputs.version }}
+          BINARY_CHECKSUM: ${{ steps.get-binary-info.outputs.checksum }}
+          BINARY_CHECKSUM_ENV_NAME: ${{ steps.get-env-names.outputs.checksum }}
+        with:
+          result-encoding: string
+          script: |
+            const currentVersion = process.env.BINARY_VERSION;
+            const latestVersion = await github.rest.repos.getLatestRelease({
+              owner: process.env.BINARY_OWNER,
+              repo: process.env.BINARY_REPO
+            }).then(({ data }) => {
+              return data.tag_name.replace(/^v/, '');
+            });
+            console.log('currentVersion:', currentVersion);
+            console.log('latestVersion:', latestVersion);
+            core.setOutput('currentVersion', currentVersion);
+            core.setOutput('latestVersion', latestVersion);
+            const result = currentVersion === latestVersion ? 'true' : 'false';
+            if (result === 'false') {
+              const checkSumsTxtUrl = `https://github.com/${process.env.BINARY_OWNER}/${process.env.BINARY_REPO}/releases/download/v${latestVersion}/${process.env.BINARY_NAME}_${latestVersion}_checksums.txt`;
+              console.log('checkSumsTxtUrl:', checkSumsTxtUrl);
+              const response = await fetch(checkSumsTxtUrl);
+              const text = await response.text();
+              console.log('Checksums file content:', text);
+              const checksum = text.split("\n").find((line) => line.includes("linux_amd64")).split(" ")[0];
+              console.log('checksum:', checksum);
+              core.setOutput('checksum', checksum);
+            }
+            return result;
+      - name: Update env to github_actions_lint.yml
+        if: steps.check-binary-version.outputs.result == 'false'
+        env:
+          GHA_LINT_WORKFLOW_FILE: ${{ env.GHA_LINT_WORKFLOW_FILE }}
+          BINARY_NAME: ${{ matrix.binary }}
+          BINARY_OWNER: ${{ steps.get-binary-info.outputs.owner }}
+          BINARY_REPO: ${{ steps.get-binary-info.outputs.repo }}
+          BINARY_RELEASES_URL: ${{ steps.get-binary-info.outputs.releases_url }}
+          BINARY_OS: ${{ steps.get-binary-info.outputs.os }}
+          BINARY_OS_ENV_NAME: ${{ steps.get-env-names.outputs.os }}
+          BINARY_ARCH: ${{ steps.get-binary-info.outputs.arch }}
+          BINARY_ARCH_ENV_NAME: ${{ steps.get-env-names.outputs.arch }}
+          BINARY_VERSION: ${{ steps.get-binary-info.outputs.version }}
+          BINARY_VERSION_ENV_NAME: ${{ steps.get-env-names.outputs.version }}
+          BINARY_CHECKSUM: ${{ steps.get-binary-info.outputs.checksum }}
+          BINARY_CHECKSUM_ENV_NAME: ${{ steps.get-env-names.outputs.checksum }}
+          LATEST_VERSION: ${{ steps.check-binary-version.outputs.latestVersion }}
+          LATEST_CHECKSUM: ${{ steps.check-binary-version.outputs.checksum }}
+        run: |
+          sed -i "s/${BINARY_VERSION_ENV_NAME}: .*/${BINARY_VERSION_ENV_NAME}: ${LATEST_VERSION}/g" "${GHA_LINT_WORKFLOW_FILE}"
+          sed -i "s/${BINARY_CHECKSUM_ENV_NAME}: .*/${BINARY_CHECKSUM_ENV_NAME}: ${LATEST_CHECKSUM}/g" "${GHA_LINT_WORKFLOW_FILE}"
+      - name: Create GitHub App Token
+        if: steps.check-binary-version.outputs.result == 'false'
+        uses: actions/create-github-app-token@0d564482f06ca65fa9e77e2510873638c82206f2 # v1.11.5
+        id: app-token
+        with:
+          app-id: ${{ vars.GH_APPS_CREATE_PULL_REQEST_BOT_APP_ID }}
+          private-key: ${{ secrets.GH_APPS_CREATE_PULL_REQEST_BOT_PRIVATE_KEY }}
+
+      - name: Create Pull Request
+        if: steps.check-binary-version.outputs.result == 'false'
+        uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # v7.0.6
+        id: create-pull-request
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          commit-message: Update ${{ steps.get-binary-info.outputs.name }} from ${{ steps.get-binary-info.outputs.version }} to ${{ steps.check-binary-version.outputs.latestVersion }}
+          title: Update ${{ steps.get-binary-info.outputs.name }} from ${{ steps.get-binary-info.outputs.version }} to ${{ steps.check-binary-version.outputs.latestVersion }}
+          body: |
+            Update ${{ steps.get-binary-info.outputs.name }} from ${{ steps.get-binary-info.outputs.version }} to ${{ steps.check-binary-version.outputs.latestVersion }}
+            Release notes: ${{ steps.get-binary-info.outputs.releases_url }}
+          branch: update-${{ steps.get-binary-info.outputs.name }}-${{ steps.check-binary-version.outputs.latestVersion }}
