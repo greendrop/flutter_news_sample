@@ -59,7 +59,7 @@ jobs:
         uses: ruby/setup-ruby@32110d4e311bd8996b2a82bf2a43b714ccc91777 # v1.221.0
 
       - name: Cache Ruby bundle
-        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4.2.1
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
         with:
           path: android/vendor/bundle
           key: android-ruby-bundle-${{ runner.os }}-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
@@ -133,7 +133,7 @@ jobs:
         uses: ruby/setup-ruby@32110d4e311bd8996b2a82bf2a43b714ccc91777 # v1.221.0
 
       - name: Cache Ruby bundle
-        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4.2.1
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
         with:
           path: android/vendor/bundle
           key: android-ruby-bundle-${{ runner.os }}-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
