@@ -14,19 +14,20 @@
       ]
     },
     {
-      "label": "dart run build_runner build",
-      "detail": "build_runner による自動生成",
+      "label": "dart run build_runner build (app)",
+      "detail": "build_runner による自動生成 (app)",
       "type": "dart",
       "command": "dart",
       "args": [
         "run",
         "build_runner",
         "build"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
-      "label": "dart run build_runner build --delete-conflicting-outputs",
-      "detail": "build_runner による競合する出力を削除して自動生成",
+      "label": "dart run build_runner build --delete-conflicting-outputs (app)",
+      "detail": "build_runner による競合する出力を削除して自動生成 (app)",
       "type": "dart",
       "command": "dart",
       "args": [
@@ -34,75 +35,107 @@
         "build_runner",
         "build",
         "--delete-conflicting-outputs"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
-      "label": "dart run flutter_launcher_icons",
-      "detail": "アイコンの自動生成",
+      "label": "dart run build_runner build (widgetbook)",
+      "detail": "build_runner による自動生成 (widgetbook)",
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "build_runner",
+        "build"
+      ],
+      "cwd": "packages/widgetbook"
+    },
+    {
+      "label": "dart run build_runner build --delete-conflicting-outputs (widgetbook)",
+      "detail": "build_runner による競合する出力を削除して自動生成 (widgetbook)",
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "build_runner",
+        "build",
+        "--delete-conflicting-outputs"
+      ],
+      "cwd": "packages/widgetbook"
+    },
+    {
+      "label": "dart run flutter_launcher_icons (app)",
+      "detail": "アイコンの自動生成 (app)",
       "type": "dart",
       "command": "dart",
       "args": [
         "run",
         "flutter_launcher_icons"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
-      "label": "dart run flutter_native_splash:create",
-      "detail": "スプラッシュの自動生成",
+      "label": "dart run flutter_native_splash:create (app)",
+      "detail": "スプラッシュの自動生成 (app)",
       "type": "dart",
       "command": "dart",
       "args": [
         "run",
         "flutter_native_splash:create"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
-      "label": "flutter test",
-      "detail": "テストを実行",
-      "type": "flutter",
+      "label": "flutter test (app)",
+      "detail": "テストを実行 (app)",
+      "type": "dart",
       "command": "flutter",
       "args": [
         "test"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
-      "label": "flutter test --exclude-tags golden",
-      "detail": "golden タグを除外してテストを実行",
-      "type": "flutter",
+      "label": "flutter test --exclude-tags golden (app)",
+      "detail": "golden タグを除外してテストを実行 (app)",
+      "type": "dart",
       "command": "flutter",
       "args": [
         "test",
         "--exclude-tags",
         "golden"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
-      "label": "flutter test --tags golden",
+      "label": "flutter test --tags golden (app)",
       "detail": "golden タグのテストを実行",
-      "type": "flutter",
+      "type": "dart",
       "command": "flutter",
       "args": [
         "test",
         "--tags",
         "golden"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
-      "label": "flutter test --update-goldens --tags golden",
-      "detail": "golden タグのテストを実行してゴールデンファイルを更新",
-      "type": "flutter",
+      "label": "flutter test --update-goldens --tags golden (app)",
+      "detail": "golden タグのテストを実行してゴールデンファイルを更新 (app)",
+      "type": "dart",
       "command": "flutter",
       "args": [
         "test",
         "--update-goldens",
         "--tags",
         "golden"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
-      "label": "flutter drive --dart-define-from-file dart_define/integration_test_ios.json --driver test_driver/integration_test.dart --target integration_test/suite/general_test.dart",
-      "detail": "iOS シミュレーターでの統合テスト",
-      "type": "flutter",
+      "label": "flutter drive --dart-define-from-file dart_define/integration_test_ios.json --driver test_driver/integration_test.dart --target integration_test/suite/general_test.dart (app)",
+      "detail": "iOS シミュレーターでの統合テスト (app)",
+      "type": "dart",
       "command": "flutter",
       "args": [
         "drive",
@@ -112,12 +145,13 @@
         "test_driver/integration_test.dart",
         "--target",
         "integration_test/suite/general_test.dart"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
-      "label": "flutter drive --dart-define-from-file dart_define/integration_test_android.json --driver test_driver/integration_test.dart --target integration_test/suite/general_test.dart",
-      "detail": "Android シミュレーターでの統合テスト",
-      "type": "flutter",
+      "label": "flutter drive --dart-define-from-file dart_define/integration_test_android.json --driver test_driver/integration_test.dart --target integration_test/suite/general_test.dart (app)",
+      "detail": "Android シミュレーターでの統合テスト (app)",
+      "type": "dart",
       "command": "flutter",
       "args": [
         "drive",
@@ -127,7 +161,8 @@
         "test_driver/integration_test.dart",
         "--target",
         "integration_test/suite/general_test.dart"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
       "label": "npm run textlint",

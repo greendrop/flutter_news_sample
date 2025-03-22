@@ -5,9 +5,11 @@
 *.swp
 .DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
 migrate_working_dir/
 
 # IntelliJ related
@@ -44,29 +46,6 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
-
-# dart_define
-/dart_define
-
-# coverage
-/coverage
-
-# Ignore non-CI golden files and failures
-test/**/goldens/**/*.*
-test/**/failures/**/*.*
-!test/**/goldens/ci/**/*.*
-
-# Ignore integration test screenshots
-integration_test/screenshots/**/*.*
-
-# iOS
-/ios/Flutter/Dart-Defines.xcconfig
-
-# Firebase
-/android/app/google-services.json
-/android/app/src/*/google-services.json
-/ios/Runner/GoogleService-Info.plist
-/ios/Runner/Firebase/*/GoogleService-Info.plist
 
 # node
 /node_modules/

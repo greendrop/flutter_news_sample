@@ -1,0 +1,68 @@
+import 'package:app/feature/app_logger/riverpod/app_logger.dart';
+import 'package:app/feature/news_article_list/entity/news_articles.dart';
+import 'package:app/feature/news_article_list/riverpod/news_articles_notifier.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+typedef UseNewsArticlesReturn = ({
+  AsyncValue<NewsArticles> state,
+  Future<void> Function({bool isRefresh}) fetch,
+  Future<void> Function() fetchMore,
+});
+
+typedef UseNewsArticles = UseNewsArticlesReturn Function({
+  required String category,
+});
+
+const String _hookName = 'UseNewsArticles';
+
+UseNewsArticlesReturn useNewsArticlesImpl({
+  required String category,
+}) {
+  final context = useContext();
+  final ref = context as WidgetRef;
+
+  final state = ref.watch(newsArticlesNotifierProvider(category: category));
+
+  final fetch = useCallback(
+    ({bool isRefresh = false}) {
+      ref.read(appLoggerProvider).i(
+        [
+          '$_hookName#fetch',
+          {'category': category},
+        ],
+      );
+      return ref
+          .read(
+            newsArticlesNotifierProvider(category: category).notifier,
+          )
+          .fetch(isRefresh: isRefresh);
+    },
+    [category],
+  );
+
+  final fetchMore = useCallback(
+    () {
+      ref.read(appLoggerProvider).i(
+        [
+          '$_hookName#fetchMore',
+          {'category': category},
+        ],
+      );
+      return ref
+          .read(
+            newsArticlesNotifierProvider(category: category).notifier,
+          )
+          .fetchMore();
+    },
+    [category],
+  );
+
+  return (
+    state: state,
+    fetch: fetch,
+    fetchMore: fetchMore,
+  );
+}
+
+const UseNewsArticles useNewsArticles = useNewsArticlesImpl;

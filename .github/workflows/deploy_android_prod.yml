@@ -61,16 +61,17 @@ jobs:
       - name: Cache Ruby bundle
         uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4.2.1
         with:
-          path: android/vendor/bundle
-          key: android-ruby-bundle-${{ runner.os }}-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
+          path: packages/app/android/vendor/bundle
+          key: packages-app-android-ruby-bundle-${{ runner.os }}-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
 
       - name: Run bundle install
-        working-directory: ./android
+        working-directory: packages/app/android
         run: |
           bundle config path vendor/bundle
           bundle install --clean
 
       - name: Create dart define file
+        working-directory: packages/app
         env:
           DART_DEFINE_FILE_PATH: dart_define/prod.json
           DART_DEFINE_FILE_PROD_JSON: ${{ secrets.DART_DEFINE_FILE_PROD_JSON }}
@@ -78,6 +79,7 @@ jobs:
           echo "$DART_DEFINE_FILE_PROD_JSON" | base64 --decode > "$DART_DEFINE_FILE_PATH"
 
       - name: Create google-services.json
+        working-directory: packages/app
         env:
           FIREBASE_PROD_GOOGLE_SERVICE_JSON: ${{ secrets.FIREBASE_PROD_GOOGLE_SERVICE_JSON }}
         run: |
@@ -85,19 +87,21 @@ jobs:
           echo "$FIREBASE_PROD_GOOGLE_SERVICE_JSON" | base64 --decode > android/app/src/prod/google-services.json
 
       - name: Create upload-keystore.jks
+        working-directory: packages/app
         env:
           ANDROID_KEYSTORE_JKS: ${{ secrets.ANDROID_KEYSTORE_JKS }}
         run: |
           echo "$ANDROID_KEYSTORE_JKS" | base64 --decode > android/app/upload-keystore.jks
 
       - name: Create key.properties
+        working-directory: packages/app
         env:
           ANDROID_KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES }}
         run: |
           echo "$ANDROID_KEY_PROPERTIES" | base64 --decode > android/app/key.properties
 
       - name: Run flutter build
-        working-directory: ./android
+        working-directory: packages/app/android
         run: |
           bundle exec fastlane android build_prod
 
@@ -105,7 +109,7 @@ jobs:
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
         with:
           name: app-prod-release
-          path: build/app/outputs/bundle/release/app-release.aab
+          path: packages/app/build/app/outputs/bundle/release/app-release.aab
 
   deploy:
     needs:
@@ -127,7 +131,7 @@ jobs:
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
           name: app-prod-release
-          path: build/app/outputs/bundle/release/
+          path: packages/app/build/app/outputs/bundle/release/
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@32110d4e311bd8996b2a82bf2a43b714ccc91777 # v1.221.0
@@ -135,23 +139,24 @@ jobs:
       - name: Cache Ruby bundle
         uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4.2.1
         with:
-          path: android/vendor/bundle
-          key: android-ruby-bundle-${{ runner.os }}-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
+          path: packages/app/android/vendor/bundle
+          key: packages-app-android-ruby-bundle-${{ runner.os }}-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/android/Gemfile.lock') }}
 
       - name: Run bundle install
-        working-directory: ./android
+        working-directory: packages/app/android
         run: |
           bundle config path vendor/bundle
           bundle install --clean
 
       - name: Create google-play-store-credentials.json
+        working-directory: packages/app
         env:
           DEPLOY_ANDROID_PROD_GOOGLE_PLAY_STORE_CREDENTIALS_JSON: ${{ secrets.DEPLOY_ANDROID_PROD_GOOGLE_PLAY_STORE_CREDENTIALS_JSON }}
         run: |
           echo "$DEPLOY_ANDROID_PROD_GOOGLE_PLAY_STORE_CREDENTIALS_JSON" | base64 --decode > android/google-play-store-credentials.json
 
       - name: Run fastlane android deploy_prod
-        working-directory: ./android
+        working-directory: packages/app/android
         env:
           DEPLOY_ANDROID_PROD_PACKAGE_NAME: ${{ vars.DEPLOY_ANDROID_PROD_PACKAGE_NAME }}
         run: |

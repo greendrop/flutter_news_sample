@@ -1,0 +1,10 @@
+import 'package:app/feature/app_router/route_data/app_route_data.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'setting_route_data.g.dart';
+
+@riverpod
+SettingRouteData settingRouteData(Ref ref) {
+  return SettingRouteData();
+}

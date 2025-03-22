@@ -58,7 +58,7 @@ jobs:
           key: ios-ruby-bundle-${{ runner.os }}-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/ios/Gemfile.lock') }}
 
       - name: Run bundle install
-        working-directory: ./ios
+        working-directory: packages/app/ios
         run: |
           bundle config path vendor/bundle
           bundle install --clean
@@ -84,7 +84,7 @@ jobs:
           echo "$APPLE_STORE_CONNECT_AUTH_KEY_P8" | base64 --decode > "ios/AuthKey_${APPLE_STORE_CONNECT_KEY_ID}.p8"
 
       - name: Run fastlane ios deploy_stg
-        working-directory: ./ios
+        working-directory: packages/app/ios
         env:
           APPLE_DEVELOPER_TEAM_ID: ${{ vars.APPLE_DEVELOPER_TEAM_ID }}
           APPLE_STORE_CONNECT_KEY_ID: ${{ vars.APPLE_STORE_CONNECT_KEY_ID }}
@@ -132,7 +132,7 @@ jobs:
           key: ios-ruby-bundle-${{ runner.os }}-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/ios/Gemfile.lock') }}
 
       - name: Run bundle install
-        working-directory: ./ios
+        working-directory: packages/app/ios
         run: |
           bundle config path vendor/bundle
           bundle install --clean
@@ -143,7 +143,7 @@ jobs:
           DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN: ${{ secrets.DEPLOY_IOS_STG_FIREBASE_CLI_TOKEN }}
           DEPLOY_IOS_STG_RELEASE_NOTES:
           DEPLOY_IOS_STG_TESTER_GROUPS: ${{ vars.DEPLOY_IOS_STG_TESTER_GROUPS }}
-        working-directory: ./ios
+        working-directory: packages/app/ios
         run: |
           bundle exec fastlane ios deploy_stg
 
