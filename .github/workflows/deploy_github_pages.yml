@@ -58,19 +58,18 @@ jobs:
           flutter-version: ${{ steps.get_flutter_version.outputs.version }}
           cache: true
 
-      - name: flutter pub get (for widgetbook)
-        working-directory: widgetbook
+      - name: flutter pub get
         run: |
           flutter pub get
 
       - name: flutter build web (for widgetbook)
-        working-directory: widgetbook
+        working-directory: packages/app/widgetbook
         run: |
           flutter build web --base-href "/${GITHUB_REPOSITORY#"${GITHUB_REPOSITORY_OWNER}"/}/doc/widgetbook/"
 
       - name: Move widgetbook to doc
         run: |
-          sudo mv widgetbook/build/web _site/doc/widgetbook
+          sudo mv packages/app/widgetbook/build/web _site/doc/widgetbook
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1

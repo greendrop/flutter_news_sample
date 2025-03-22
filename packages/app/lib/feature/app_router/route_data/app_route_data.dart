@@ -1,0 +1,137 @@
+import 'package:app/feature/app_log_detail/widget/app_log_detail_page.dart';
+import 'package:app/feature/app_log_list/widget/app_log_list_page.dart';
+import 'package:app/feature/dev_tool/widget/dev_tool_page.dart';
+import 'package:app/feature/locale_setting/widget/locale_setting_page.dart';
+import 'package:app/feature/news_article_detail/widget/news_article_detail_page.dart';
+import 'package:app/feature/news_article_list/enum/news_headline_category.dart';
+import 'package:app/feature/news_article_list/widget/news_article_list_page.dart';
+import 'package:app/feature/news_article_search/widget/news_article_search_page.dart';
+import 'package:app/feature/not_found/widget/not_found_page.dart';
+import 'package:app/feature/setting/widget/setting_page.dart';
+import 'package:app/feature/theme_setting/widget/theme_setting_page.dart';
+import 'package:app/widget/scaffold_with_nav_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+part 'app_log_detail_route_data.dart';
+part 'app_log_list_route_data.dart';
+part 'dev_tool_route_data.dart';
+part 'locale_setting_route_data.dart';
+part 'news_article_branch_data.dart';
+part 'news_article_detail_route_data.dart';
+part 'news_article_list_route_data.dart';
+part 'news_article_search_branch_data.dart';
+part 'news_article_search_detail_route_data.dart';
+part 'news_article_search_route_data.dart';
+part 'setting_branch_data.dart';
+part 'setting_route_data.dart';
+part 'theme_setting_route_data.dart';
+
+part 'app_route_data.g.dart';
+
+final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+final shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
+final newsArticleBranchNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'news_article_branch');
+final newsArticleSearchBranchNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'news_article_search_branch');
+final settingBranchNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'setting_branch');
+
+@TypedStatefulShellRoute<AppShellRouteData>(
+  branches: <TypedStatefulShellBranch<StatefulShellBranchData>>[
+    TypedStatefulShellBranch<NewsArticleBranchData>(
+      routes: [
+        TypedGoRoute<NewsArticleListRouteData>(
+          path: '/news_articles',
+          routes: [
+            TypedGoRoute<NewsArticleDetailRouteData>(
+              path: 'detail',
+            ),
+          ],
+        ),
+      ],
+    ),
+    TypedStatefulShellBranch<NewsArticleSearchBranchData>(
+      routes: [
+        TypedGoRoute<NewsArticleSearchRouteData>(
+          path: '/news_articles_search',
+          routes: [
+            TypedGoRoute<NewsArticleSearchDetailRouteData>(
+              path: 'detail',
+            ),
+          ],
+        ),
+      ],
+    ),
+    TypedStatefulShellBranch<SettingBranchData>(
+      routes: [
+        TypedGoRoute<SettingRouteData>(
+          path: '/setting',
+          routes: [
+            TypedGoRoute<ThemeSettingRouteData>(
+              path: 'theme',
+            ),
+            TypedGoRoute<LocaleSettingRouteData>(
+              path: 'locale',
+            ),
+            TypedGoRoute<DevToolRouteData>(
+              path: 'dev_tool',
+              routes: [
+                TypedGoRoute<AppLogListRouteData>(
+                  path: 'app_logs',
+                  routes: [
+                    TypedGoRoute<AppLogDetailRouteData>(
+                      path: ':filename',
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    ),
+  ],
+)
+class AppShellRouteData extends StatefulShellRouteData {
+  const AppShellRouteData();
+
+  static final $navigatorKey = shellNavigatorKey;
+
+  @override
+  Widget builder(
+    BuildContext context,
+    GoRouterState state,
+    StatefulNavigationShell navigationShell,
+  ) {
+    return ScaffoldWithNavBar(
+      currentIndex: navigationShell.currentIndex,
+      onDestinationSelected: (index) {
+        navigationShell.goBranch(
+          index,
+          initialLocation: index == navigationShell.currentIndex,
+        );
+      },
+      child: navigationShell,
+    );
+  }
+}
+
+@TypedGoRoute<NotFoundRouteData>(
+  path: '/:path(.*)',
+)
+class NotFoundRouteData extends GoRouteData {
+  const NotFoundRouteData({
+    required this.path,
+  });
+
+  static final $parentNavigatorKey = rootNavigatorKey;
+
+  final String path;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const NotFoundPage();
+  }
+}

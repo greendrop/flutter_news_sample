@@ -1,0 +1,76 @@
+---
+name: Flutter Test on App
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+      actions: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Get Flutter version from .fvmrc
+        id: get_flutter_version
+        run: |
+          flutter_version="$(< .fvmrc jq -r .flutter)"
+          echo "version=$flutter_version" >> "$GITHUB_OUTPUT"
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@f2c4f6686ca8e8d6e6d0f28410eeef506ed66aff # v2.18.0
+        with:
+          channel: "stable"
+          flutter-version: ${{ steps.get_flutter_version.outputs.version }}
+          cache: true
+
+      - name: flutter pub get
+        run: |
+          flutter pub get
+
+      - name: flutter test
+        working-directory: packages/app
+        run: |
+          flutter test --coverage --exclude-tags golden
+
+      - name: Install LCOV
+        run: |
+          sudo apt-get -y install lcov
+          lcov --version
+
+      - name: Report code coverage to console
+        working-directory: packages/app
+        run: |
+          lcov --list coverage/lcov.info --list-full-path --rc lcov_branch_coverage=1
+
+      - name: Generate code coverage html
+        working-directory: packages/app
+        run: |
+          genhtml coverage/lcov.info --output-directory coverage/html
+
+      - name: Upload coverage to artifact
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
+        with:
+          name: coverage
+          path: packages/app/coverage
+
+      - name: Report coverage to GitHub
+        uses: k1LoW/octocov-action@1ad702b3118b6a055c00b01db68ca0d9f6641dbc # v1.4.0
+        with:
+          work-dir: packages/app

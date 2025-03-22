@@ -1,0 +1,97 @@
+---
+name: Flutter Integration Test on App Android
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+env:
+  ANDROID_EMULATOR_API_LEVEL: 29
+  JAVA_DISTRIBUTION: microsoft
+  JAVA_VERSION: 17
+  DART_DEFINE_FILE_PATH: dart_define/integration_test_android.json
+  WIREMOCK_VERSION: 3.9.2
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Setup Java
+        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4.7.0
+        with:
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Download WireMock
+        run: |
+          curl -L "https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/${WIREMOCK_VERSION}/wiremock-standalone-${WIREMOCK_VERSION}.jar" -o wiremock-standalone.jar
+
+      - name: Run WireMock
+        run: |
+          java -jar wiremock-standalone.jar --port 8080 &
+
+      - name: Get Flutter version from .fvmrc
+        id: get_flutter_version
+        run: |
+          flutter_version="$(< .fvmrc jq -r .flutter)"
+          echo "version=$flutter_version" >> "$GITHUB_OUTPUT"
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@f2c4f6686ca8e8d6e6d0f28410eeef506ed66aff # v2.18.0
+        with:
+          channel: "stable"
+          flutter-version: ${{ steps.get_flutter_version.outputs.version }}
+          cache: true
+
+      - name: flutter pub get
+        run: |
+          flutter pub get
+
+      - name: Create dart define file
+        working-directory: packages/app
+        env:
+          DART_DEFINE_FILE_JSON: ${{ secrets.DART_DEFINE_FILE_INTEGRATION_TEST_ANDROID_JSON }}
+        run: |
+          echo "$DART_DEFINE_FILE_JSON" | base64 --decode > "$DART_DEFINE_FILE_PATH"
+          ls -l "$DART_DEFINE_FILE_PATH"
+
+      - name: Create google-services.json
+        working-directory: packages/app
+        env:
+          FIREBASE_GOOGLE_SERVICE_JSON: ${{ secrets.FIREBASE_STG_GOOGLE_SERVICE_JSON }}
+        run: |
+          mkdir -p android/app/src/stg
+          echo "$FIREBASE_GOOGLE_SERVICE_JSON" | base64 --decode > android/app/src/stg/google-services.json
+          ls -l android/app/src/stg/google-services.json
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run flutter drive
+        uses: reactivecircus/android-emulator-runner@62dbb605bba737720e10b196cb4220d374026a6d # v2.33.0
+        with:
+          api-level: ${{ env.ANDROID_EMULATOR_API_LEVEL }}
+          working-directory: packages/app
+          script: >-
+            flutter drive
+            --dart-define-from-file ${{ env.DART_DEFINE_FILE_PATH }}
+            --driver test_driver/integration_test.dart
+            --target integration_test/suite/general_test.dart

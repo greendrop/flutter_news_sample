@@ -9,7 +9,8 @@
       "args": [
         "--debug",
         "--dart-define-from-file=dart_define/stg.json"
-      ]
+      ],
+      "cwd": "packages/app"
     },
     {
       "name": "prod",
@@ -19,7 +20,15 @@
       "args": [
         "--debug",
         "--dart-define-from-file=dart_define/prod.json"
-      ]
-    }
+      ],
+      "cwd": "packages/app"
+    },
+    {
+      "name": "widgetbook",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "cwd": "packages/widgetbook"
+    },
   ]
 }
