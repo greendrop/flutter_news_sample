@@ -63,13 +63,13 @@ jobs:
           flutter pub get
 
       - name: flutter build web (for widgetbook)
-        working-directory: packages/app/widgetbook
+        working-directory: packages/widgetbook
         run: |
           flutter build web --base-href "/${GITHUB_REPOSITORY#"${GITHUB_REPOSITORY_OWNER}"/}/doc/widgetbook/"
 
       - name: Move widgetbook to doc
         run: |
-          sudo mv packages/app/widgetbook/build/web _site/doc/widgetbook
+          sudo mv packages/widgetbook/build/web _site/doc/widgetbook
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
