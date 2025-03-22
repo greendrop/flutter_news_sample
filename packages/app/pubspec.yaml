@@ -21,7 +21,7 @@ dependencies:
   firebase_performance: ^0.10.0+10
   flutter:
     sdk: flutter
-  flutter_hooks: ^0.20.5
+  flutter_hooks: ^0.21.2
   flutter_inappwebview: ^6.1.5
   flutter_localizations:
     sdk: flutter
@@ -64,7 +64,7 @@ dev_dependencies:
   mocktail_image_network: ^1.2.0
   plugin_platform_interface: ^2.1.8
   retrofit_generator: ^9.1.7
-  riverpod_generator: ^2.6.3
+  riverpod_generator: ^2.6.4
   riverpod_lint: ^2.6.3
   share_plus_platform_interface: ^5.0.0
   url_launcher_platform_interface: ^2.3.2
