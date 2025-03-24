@@ -14,7 +14,7 @@ dependencies:
   breakpoint: ^1.2.0
   collection: ^1.18.0
   cupertino_icons: ^1.0.6
-  dio: ^5.7.0
+  dio: ^5.8.0+1
   firebase_analytics: ^11.3.6
   firebase_core: ^3.6.0
   firebase_crashlytics: ^4.2.0
