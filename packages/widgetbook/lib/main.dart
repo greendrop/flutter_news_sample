@@ -23,17 +23,16 @@ class WidgetbookApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Widgetbook.material(
       directories: directories,
-      appBuilder: (context, child) => UncontrolledProviderScope(
-        container: WidgetbookState.of(context).riverpodIntegration?.container ??
-            ProviderContainer(),
-        child: child,
-      ),
+      appBuilder:
+          (context, child) => UncontrolledProviderScope(
+            container:
+                WidgetbookState.of(context).riverpodIntegration?.container ??
+                ProviderContainer(),
+            child: child,
+          ),
       addons: [
         DeviceFrameAddon(
-          devices: [
-            ...Devices.ios.all,
-            ...Devices.android.all,
-          ],
+          devices: [...Devices.ios.all, ...Devices.android.all],
           initialDevice: Devices.ios.iPhone13,
         ),
         InspectorAddon(),
@@ -45,9 +44,7 @@ class WidgetbookApp extends StatelessWidget {
         ),
         BuilderAddon(
           name: 'SafeArea',
-          builder: (_, child) => SafeArea(
-            child: child,
-          ),
+          builder: (_, child) => SafeArea(child: child),
         ),
         AlignmentAddon(),
         LocalizationAddon(

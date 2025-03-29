@@ -5,10 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 class LocalFileComparatorWithThreshold extends LocalFileComparator {
   LocalFileComparatorWithThreshold(super.testFile, this.threshold)
-      : assert(
-          threshold >= 0 && threshold <= 1,
-          'Threshold must be between 0 and 1! ',
-        );
+    : assert(
+        threshold >= 0 && threshold <= 1,
+        'Threshold must be between 0 and 1! ',
+      );
 
   final double threshold;
 

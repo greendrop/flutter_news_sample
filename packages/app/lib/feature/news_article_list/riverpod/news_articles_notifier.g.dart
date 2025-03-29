@@ -34,9 +34,7 @@ abstract class _$NewsArticlesNotifier
     extends BuildlessAutoDisposeAsyncNotifier<NewsArticles> {
   late final String category;
 
-  FutureOr<NewsArticles> build({
-    required String category,
-  });
+  FutureOr<NewsArticles> build({required String category});
 }
 
 /// See also [NewsArticlesNotifier].
@@ -49,21 +47,15 @@ class NewsArticlesNotifierFamily extends Family<AsyncValue<NewsArticles>> {
   const NewsArticlesNotifierFamily();
 
   /// See also [NewsArticlesNotifier].
-  NewsArticlesNotifierProvider call({
-    required String category,
-  }) {
-    return NewsArticlesNotifierProvider(
-      category: category,
-    );
+  NewsArticlesNotifierProvider call({required String category}) {
+    return NewsArticlesNotifierProvider(category: category);
   }
 
   @override
   NewsArticlesNotifierProvider getProviderOverride(
     covariant NewsArticlesNotifierProvider provider,
   ) {
-    return call(
-      category: provider.category,
-    );
+    return call(category: provider.category);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -82,24 +74,27 @@ class NewsArticlesNotifierFamily extends Family<AsyncValue<NewsArticles>> {
 }
 
 /// See also [NewsArticlesNotifier].
-class NewsArticlesNotifierProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    NewsArticlesNotifier, NewsArticles> {
+class NewsArticlesNotifierProvider
+    extends
+        AutoDisposeAsyncNotifierProviderImpl<
+          NewsArticlesNotifier,
+          NewsArticles
+        > {
   /// See also [NewsArticlesNotifier].
-  NewsArticlesNotifierProvider({
-    required String category,
-  }) : this._internal(
-          () => NewsArticlesNotifier()..category = category,
-          from: newsArticlesNotifierProvider,
-          name: r'newsArticlesNotifierProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$newsArticlesNotifierHash,
-          dependencies: NewsArticlesNotifierFamily._dependencies,
-          allTransitiveDependencies:
-              NewsArticlesNotifierFamily._allTransitiveDependencies,
-          category: category,
-        );
+  NewsArticlesNotifierProvider({required String category})
+    : this._internal(
+        () => NewsArticlesNotifier()..category = category,
+        from: newsArticlesNotifierProvider,
+        name: r'newsArticlesNotifierProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$newsArticlesNotifierHash,
+        dependencies: NewsArticlesNotifierFamily._dependencies,
+        allTransitiveDependencies:
+            NewsArticlesNotifierFamily._allTransitiveDependencies,
+        category: category,
+      );
 
   NewsArticlesNotifierProvider._internal(
     super._createNotifier, {
@@ -117,9 +112,7 @@ class NewsArticlesNotifierProvider extends AutoDisposeAsyncNotifierProviderImpl<
   FutureOr<NewsArticles> runNotifierBuild(
     covariant NewsArticlesNotifier notifier,
   ) {
-    return notifier.build(
-      category: category,
-    );
+    return notifier.build(category: category);
   }
 
   @override
@@ -140,7 +133,7 @@ class NewsArticlesNotifierProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
   @override
   AutoDisposeAsyncNotifierProviderElement<NewsArticlesNotifier, NewsArticles>
-      createElement() {
+  createElement() {
     return _NewsArticlesNotifierProviderElement(this);
   }
 
@@ -167,12 +160,17 @@ mixin NewsArticlesNotifierRef
 }
 
 class _NewsArticlesNotifierProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<NewsArticlesNotifier,
-        NewsArticles> with NewsArticlesNotifierRef {
+    extends
+        AutoDisposeAsyncNotifierProviderElement<
+          NewsArticlesNotifier,
+          NewsArticles
+        >
+    with NewsArticlesNotifierRef {
   _NewsArticlesNotifierProviderElement(super.provider);
 
   @override
   String get category => (origin as NewsArticlesNotifierProvider).category;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

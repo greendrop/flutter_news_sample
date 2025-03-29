@@ -64,17 +64,15 @@ class NewsArticleSearchFormState extends ConsumerState<NewsArticleSearchForm> {
   }
 
   FormGroup _buildFromGroup(BuildContext context) {
-    return FormGroup(
-      {
-        'keyword': FormControl<String>(
-          value: widget.initialKeyword,
-          validators: [
-            Validators.required,
-            Validators.maxLength(NewsArticleSearchForm.keywordMaxLength),
-          ],
-        ),
-      },
-    );
+    return FormGroup({
+      'keyword': FormControl<String>(
+        value: widget.initialKeyword,
+        validators: [
+          Validators.required,
+          Validators.maxLength(NewsArticleSearchForm.keywordMaxLength),
+        ],
+      ),
+    });
   }
 
   Widget _buildKeywordTextField(BuildContext context) {
@@ -84,10 +82,10 @@ class NewsArticleSearchFormState extends ConsumerState<NewsArticleSearchForm> {
       key: const ValueKey('NewsArticleSearchFormKeywordTextField'),
       formControlName: 'keyword',
       validationMessages: {
-        ValidationMessage.required: (error) =>
-            l10n.newsArticleSearchFormKeywordValidateBlank,
-        ValidationMessage.maxLength: (error) =>
-            l10n.newsArticleSearchFormKeywordValidateTooLong(
+        ValidationMessage.required:
+            (error) => l10n.newsArticleSearchFormKeywordValidateBlank,
+        ValidationMessage.maxLength:
+            (error) => l10n.newsArticleSearchFormKeywordValidateTooLong(
               NewsArticleSearchForm.keywordMaxLength,
             ),
       },

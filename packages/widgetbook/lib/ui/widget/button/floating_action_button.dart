@@ -14,37 +14,22 @@ class FloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return material.FloatingActionButton(
-      onPressed: onPressed,
-      child: child,
-    );
+    return material.FloatingActionButton(onPressed: onPressed, child: child);
   }
 }
 
-@UseCase(
-  name: 'Enabled',
-  type: FloatingActionButton,
-)
+@UseCase(name: 'Enabled', type: FloatingActionButton)
 Widget buildFloatingActionButtonEnabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
-    child: FloatingActionButton(
-      onPressed: () {},
-      child: const Icon(Icons.add),
-    ),
+    child: FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
   );
 }
 
-@UseCase(
-  name: 'Disabled',
-  type: FloatingActionButton,
-)
+@UseCase(name: 'Disabled', type: FloatingActionButton)
 Widget buildFloatingActionButtonDisabledUseCase(BuildContext context) {
   return const Padding(
     padding: EdgeInsets.all(8),
-    child: FloatingActionButton(
-      onPressed: null,
-      child: Icon(Icons.add),
-    ),
+    child: FloatingActionButton(onPressed: null, child: Icon(Icons.add)),
   );
 }

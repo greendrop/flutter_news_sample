@@ -40,21 +40,15 @@ class AppLogDetailRouteDataFamily extends Family<AppLogDetailRouteData> {
   const AppLogDetailRouteDataFamily();
 
   /// See also [appLogDetailRouteData].
-  AppLogDetailRouteDataProvider call({
-    required String filename,
-  }) {
-    return AppLogDetailRouteDataProvider(
-      filename: filename,
-    );
+  AppLogDetailRouteDataProvider call({required String filename}) {
+    return AppLogDetailRouteDataProvider(filename: filename);
   }
 
   @override
   AppLogDetailRouteDataProvider getProviderOverride(
     covariant AppLogDetailRouteDataProvider provider,
   ) {
-    return call(
-      filename: provider.filename,
-    );
+    return call(filename: provider.filename);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -76,24 +70,23 @@ class AppLogDetailRouteDataFamily extends Family<AppLogDetailRouteData> {
 class AppLogDetailRouteDataProvider
     extends AutoDisposeProvider<AppLogDetailRouteData> {
   /// See also [appLogDetailRouteData].
-  AppLogDetailRouteDataProvider({
-    required String filename,
-  }) : this._internal(
-          (ref) => appLogDetailRouteData(
-            ref as AppLogDetailRouteDataRef,
-            filename: filename,
-          ),
-          from: appLogDetailRouteDataProvider,
-          name: r'appLogDetailRouteDataProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$appLogDetailRouteDataHash,
-          dependencies: AppLogDetailRouteDataFamily._dependencies,
-          allTransitiveDependencies:
-              AppLogDetailRouteDataFamily._allTransitiveDependencies,
+  AppLogDetailRouteDataProvider({required String filename})
+    : this._internal(
+        (ref) => appLogDetailRouteData(
+          ref as AppLogDetailRouteDataRef,
           filename: filename,
-        );
+        ),
+        from: appLogDetailRouteDataProvider,
+        name: r'appLogDetailRouteDataProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$appLogDetailRouteDataHash,
+        dependencies: AppLogDetailRouteDataFamily._dependencies,
+        allTransitiveDependencies:
+            AppLogDetailRouteDataFamily._allTransitiveDependencies,
+        filename: filename,
+      );
 
   AppLogDetailRouteDataProvider._internal(
     super._createNotifier, {
@@ -160,5 +153,6 @@ class _AppLogDetailRouteDataProviderElement
   @override
   String get filename => (origin as AppLogDetailRouteDataProvider).filename;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

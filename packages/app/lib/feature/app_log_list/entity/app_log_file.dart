@@ -5,9 +5,7 @@ part 'app_log_file.g.dart';
 
 @freezed
 class AppLogFile with _$AppLogFile {
-  factory AppLogFile({
-    @Default('') String path,
-  }) = _AppLogFile;
+  factory AppLogFile({@Default('') String path}) = _AppLogFile;
   const AppLogFile._();
 
   factory AppLogFile.fromJson(Map<String, dynamic> json) =>

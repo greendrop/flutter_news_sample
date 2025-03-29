@@ -23,9 +23,10 @@ class WebViewVerticalScrollStateNotifier
     if (value.abs() <= 1) {
       return;
     }
-    final direction = value > 0
-        ? WebviewVerticalScrollDirection.down
-        : WebviewVerticalScrollDirection.up;
+    final direction =
+        value > 0
+            ? WebviewVerticalScrollDirection.down
+            : WebviewVerticalScrollDirection.up;
     if (beforeDirection == direction) {
       value += beforeValue;
     }

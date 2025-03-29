@@ -16,10 +16,7 @@ void main() {
       }) {
         Future<void> fetch() async {}
 
-        return (
-          state: state,
-          fetch: fetch,
-        );
+        return (state: state, fetch: fetch);
       }
 
       return useAppLogFileContent;

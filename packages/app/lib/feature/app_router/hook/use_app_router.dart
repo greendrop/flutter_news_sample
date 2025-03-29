@@ -17,9 +17,7 @@ GoRouter useAppRouterImpl({String initialLocation = '/news_articles'}) {
     //   return null;
     // },
     // refreshListenable: null,
-    observers: [
-      LoggerNavigatorObserver(logger: appLogger),
-    ],
+    observers: [LoggerNavigatorObserver(logger: appLogger)],
   );
 }
 

@@ -10,9 +10,7 @@ import '../../../support/widget/mock_go_router_provider.dart';
 import '../../../support/widget/test_material_app.dart';
 
 class MockAppLogDetailRouteData extends Mock implements AppLogDetailRouteData {
-  MockAppLogDetailRouteData({
-    required this.filename,
-  });
+  MockAppLogDetailRouteData({required this.filename});
 
   @override
   final String filename;
@@ -26,14 +24,16 @@ void main() {
         late BuildContext builderContext;
 
         final goRouter = MockGoRouter();
-        final appLogDetailRouteData =
-            MockAppLogDetailRouteData(filename: 'dummy');
+        final appLogDetailRouteData = MockAppLogDetailRouteData(
+          filename: 'dummy',
+        );
 
         await tester.pumpWidget(
           TestMaterialApp(
             providerScopeOverrides: [
-              appLogDetailRouteDataProvider(filename: 'dummy')
-                  .overrideWithValue(appLogDetailRouteData),
+              appLogDetailRouteDataProvider(
+                filename: 'dummy',
+              ).overrideWithValue(appLogDetailRouteData),
             ],
             child: MockGoRouterProvider(
               goRouter: goRouter,
@@ -49,14 +49,16 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(() => appLogDetailRouteData.push<void>(builderContext))
-            .thenAnswer((_) async {});
+        when(
+          () => appLogDetailRouteData.push<void>(builderContext),
+        ).thenAnswer((_) async {});
 
         await pushAppLogDetailPage.run(filename: 'dummy');
         await tester.pumpAndSettle();
 
-        verify(() => appLogDetailRouteData.push<void>(builderContext))
-            .called(1);
+        verify(
+          () => appLogDetailRouteData.push<void>(builderContext),
+        ).called(1);
       });
     });
   });

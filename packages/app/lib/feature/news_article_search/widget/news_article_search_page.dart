@@ -56,11 +56,12 @@ class NewsArticleSearchPage extends HookConsumerWidget {
                   return newsArticles
                       .fetch(keyword: currentKeyword.value, isRefresh: true)
                       .onError((error, stackTrace) {
-                    showDangerTextSnackBar.run(
-                      text: AppException.fromException(error as Exception?)
-                          .messageByL10n(l10n),
-                    );
-                  });
+                        showDangerTextSnackBar.run(
+                          text: AppException.fromException(
+                            error as Exception?,
+                          ).messageByL10n(l10n),
+                        );
+                      });
                 },
                 edgeOffset: kToolbarHeight * 2,
                 child: CustomScrollView(
@@ -132,7 +133,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     required L10n l10n,
     required UseNewsArticlesReturn newsArticles,
     required UsePushNewsArticleSearchDetailPageReturn
-        pushNewsArticleSearchDetailPage,
+    pushNewsArticleSearchDetailPage,
     required ValueNotifier<String> currentKeyword,
     required int gridCrossAxisCount,
   }) {
@@ -150,8 +151,9 @@ class NewsArticleSearchPage extends HookConsumerWidget {
         return SliverFillRemaining(
           child: Center(
             child: Text(
-              AppException.fromException(error as Exception)
-                  .messageByL10n(l10n),
+              AppException.fromException(
+                error as Exception,
+              ).messageByL10n(l10n),
             ),
           ),
         );
@@ -159,9 +161,7 @@ class NewsArticleSearchPage extends HookConsumerWidget {
       data: (data) {
         if (data.items.isEmpty) {
           return SliverFillRemaining(
-            child: Center(
-              child: Text(l10n.generalNoDataAvailable),
-            ),
+            child: Center(child: Text(l10n.generalNoDataAvailable)),
           );
         }
         return SliverGrid.builder(

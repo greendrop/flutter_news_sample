@@ -12,12 +12,15 @@ String _$newsArticlesNotifierHash() =>
 /// See also [NewsArticlesNotifier].
 @ProviderFor(NewsArticlesNotifier)
 final newsArticlesNotifierProvider = AutoDisposeAsyncNotifierProvider<
-    NewsArticlesNotifier, NewsArticles>.internal(
+  NewsArticlesNotifier,
+  NewsArticles
+>.internal(
   NewsArticlesNotifier.new,
   name: r'newsArticlesNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$newsArticlesNotifierHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$newsArticlesNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

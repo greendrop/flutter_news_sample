@@ -17,9 +17,9 @@ Logger appLogger(Ref ref) {
         AppConfig.instance.appLogConsoleEnabled ? ConsoleOutput() : null,
         logDirectory != null
             ? AdvancedFileOutput(
-                path: logDirectory.path,
-                maxRotatedFilesCount: 8,
-              )
+              path: logDirectory.path,
+              maxRotatedFilesCount: 8,
+            )
             : null,
       ].nonNulls.toList(),
     ),

@@ -1,9 +1,7 @@
 import 'package:app/feature/app_logger/hook/use_app_logger.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-typedef UseCrashReportTestReturn = ({
-  Future<void> Function() run,
-});
+typedef UseCrashReportTestReturn = ({Future<void> Function() run});
 
 typedef UseCrashReportTest = UseCrashReportTestReturn Function();
 
@@ -17,7 +15,7 @@ UseCrashReportTestReturn useCrashReportTestImpl() {
     throw Exception('Crash Report Test');
   });
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UseCrashReportTest useCrashReportTest = useCrashReportTestImpl;

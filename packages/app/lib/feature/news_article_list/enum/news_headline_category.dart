@@ -7,8 +7,7 @@ enum NewsHeadlineCategory {
   health(value: 'health'),
   science(value: 'science'),
   sports(value: 'sports'),
-  technology(value: 'technology'),
-  ;
+  technology(value: 'technology');
 
   const NewsHeadlineCategory({required this.value});
 

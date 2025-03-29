@@ -12,7 +12,8 @@ part of 'news_articles.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$NewsArticles {
@@ -30,8 +31,9 @@ mixin _$NewsArticles {
 /// @nodoc
 abstract class $NewsArticlesCopyWith<$Res> {
   factory $NewsArticlesCopyWith(
-          NewsArticles value, $Res Function(NewsArticles) then) =
-      _$NewsArticlesCopyWithImpl<$Res, NewsArticles>;
+    NewsArticles value,
+    $Res Function(NewsArticles) then,
+  ) = _$NewsArticlesCopyWithImpl<$Res, NewsArticles>;
   @useResult
   $Res call({List<NewsArticle> items, bool hasNextPage, int currentPage});
 }
@@ -55,20 +57,26 @@ class _$NewsArticlesCopyWithImpl<$Res, $Val extends NewsArticles>
     Object? hasNextPage = null,
     Object? currentPage = null,
   }) {
-    return _then(_value.copyWith(
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<NewsArticle>,
-      hasNextPage: null == hasNextPage
-          ? _value.hasNextPage
-          : hasNextPage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      currentPage: null == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            items:
+                null == items
+                    ? _value.items
+                    : items // ignore: cast_nullable_to_non_nullable
+                        as List<NewsArticle>,
+            hasNextPage:
+                null == hasNextPage
+                    ? _value.hasNextPage
+                    : hasNextPage // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            currentPage:
+                null == currentPage
+                    ? _value.currentPage
+                    : currentPage // ignore: cast_nullable_to_non_nullable
+                        as int,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -76,8 +84,9 @@ class _$NewsArticlesCopyWithImpl<$Res, $Val extends NewsArticles>
 abstract class _$$NewsArticlesImplCopyWith<$Res>
     implements $NewsArticlesCopyWith<$Res> {
   factory _$$NewsArticlesImplCopyWith(
-          _$NewsArticlesImpl value, $Res Function(_$NewsArticlesImpl) then) =
-      __$$NewsArticlesImplCopyWithImpl<$Res>;
+    _$NewsArticlesImpl value,
+    $Res Function(_$NewsArticlesImpl) then,
+  ) = __$$NewsArticlesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<NewsArticle> items, bool hasNextPage, int currentPage});
@@ -88,8 +97,9 @@ class __$$NewsArticlesImplCopyWithImpl<$Res>
     extends _$NewsArticlesCopyWithImpl<$Res, _$NewsArticlesImpl>
     implements _$$NewsArticlesImplCopyWith<$Res> {
   __$$NewsArticlesImplCopyWithImpl(
-      _$NewsArticlesImpl _value, $Res Function(_$NewsArticlesImpl) _then)
-      : super(_value, _then);
+    _$NewsArticlesImpl _value,
+    $Res Function(_$NewsArticlesImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of NewsArticles
   /// with the given fields replaced by the non-null parameter values.
@@ -100,32 +110,37 @@ class __$$NewsArticlesImplCopyWithImpl<$Res>
     Object? hasNextPage = null,
     Object? currentPage = null,
   }) {
-    return _then(_$NewsArticlesImpl(
-      items: null == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<NewsArticle>,
-      hasNextPage: null == hasNextPage
-          ? _value.hasNextPage
-          : hasNextPage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      currentPage: null == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _$NewsArticlesImpl(
+        items:
+            null == items
+                ? _value._items
+                : items // ignore: cast_nullable_to_non_nullable
+                    as List<NewsArticle>,
+        hasNextPage:
+            null == hasNextPage
+                ? _value.hasNextPage
+                : hasNextPage // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        currentPage:
+            null == currentPage
+                ? _value.currentPage
+                : currentPage // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$NewsArticlesImpl extends _NewsArticles {
-  _$NewsArticlesImpl(
-      {final List<NewsArticle> items = const [],
-      this.hasNextPage = false,
-      this.currentPage = 1})
-      : _items = items,
-        super._();
+  _$NewsArticlesImpl({
+    final List<NewsArticle> items = const [],
+    this.hasNextPage = false,
+    this.currentPage = 1,
+  }) : _items = items,
+       super._();
 
   final List<NewsArticle> _items;
   @override
@@ -161,8 +176,12 @@ class _$NewsArticlesImpl extends _NewsArticles {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_items), hasNextPage, currentPage);
+  int get hashCode => Object.hash(
+    runtimeType,
+    const DeepCollectionEquality().hash(_items),
+    hasNextPage,
+    currentPage,
+  );
 
   /// Create a copy of NewsArticles
   /// with the given fields replaced by the non-null parameter values.
@@ -174,10 +193,11 @@ class _$NewsArticlesImpl extends _NewsArticles {
 }
 
 abstract class _NewsArticles extends NewsArticles {
-  factory _NewsArticles(
-      {final List<NewsArticle> items,
-      final bool hasNextPage,
-      final int currentPage}) = _$NewsArticlesImpl;
+  factory _NewsArticles({
+    final List<NewsArticle> items,
+    final bool hasNextPage,
+    final int currentPage,
+  }) = _$NewsArticlesImpl;
   _NewsArticles._() : super._();
 
   @override

@@ -14,10 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class SettingPage extends StatelessWidget {
-  const SettingPage({
-    super.key,
-    required this.showDevTool,
-  });
+  const SettingPage({super.key, required this.showDevTool});
 
   final bool showDevTool;
 
@@ -69,18 +66,12 @@ class SettingPage extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: SettingPage,
-)
+@UseCase(name: 'Default', type: SettingPage)
 Widget buildSettingDefaultUseCase(BuildContext context) {
   return const SettingPage(showDevTool: false);
 }
 
-@UseCase(
-  name: 'Default With Dev Tool',
-  type: SettingPage,
-)
+@UseCase(name: 'Default With Dev Tool', type: SettingPage)
 Widget buildSettingDefaultWithDevToolUseCase(BuildContext context) {
   return const SettingPage(showDevTool: true);
 }

@@ -31,12 +31,15 @@ part 'app_route_data.g.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
-final newsArticleBranchNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'news_article_branch');
-final newsArticleSearchBranchNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'news_article_search_branch');
-final settingBranchNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'setting_branch');
+final newsArticleBranchNavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'news_article_branch',
+);
+final newsArticleSearchBranchNavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'news_article_search_branch',
+);
+final settingBranchNavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'setting_branch',
+);
 
 @TypedStatefulShellRoute<AppShellRouteData>(
   branches: <TypedStatefulShellBranch<StatefulShellBranchData>>[
@@ -44,11 +47,7 @@ final settingBranchNavigatorKey =
       routes: [
         TypedGoRoute<NewsArticleListRouteData>(
           path: '/news_articles',
-          routes: [
-            TypedGoRoute<NewsArticleDetailRouteData>(
-              path: 'detail',
-            ),
-          ],
+          routes: [TypedGoRoute<NewsArticleDetailRouteData>(path: 'detail')],
         ),
       ],
     ),
@@ -57,9 +56,7 @@ final settingBranchNavigatorKey =
         TypedGoRoute<NewsArticleSearchRouteData>(
           path: '/news_articles_search',
           routes: [
-            TypedGoRoute<NewsArticleSearchDetailRouteData>(
-              path: 'detail',
-            ),
+            TypedGoRoute<NewsArticleSearchDetailRouteData>(path: 'detail'),
           ],
         ),
       ],
@@ -69,21 +66,15 @@ final settingBranchNavigatorKey =
         TypedGoRoute<SettingRouteData>(
           path: '/setting',
           routes: [
-            TypedGoRoute<ThemeSettingRouteData>(
-              path: 'theme',
-            ),
-            TypedGoRoute<LocaleSettingRouteData>(
-              path: 'locale',
-            ),
+            TypedGoRoute<ThemeSettingRouteData>(path: 'theme'),
+            TypedGoRoute<LocaleSettingRouteData>(path: 'locale'),
             TypedGoRoute<DevToolRouteData>(
               path: 'dev_tool',
               routes: [
                 TypedGoRoute<AppLogListRouteData>(
                   path: 'app_logs',
                   routes: [
-                    TypedGoRoute<AppLogDetailRouteData>(
-                      path: ':filename',
-                    ),
+                    TypedGoRoute<AppLogDetailRouteData>(path: ':filename'),
                   ],
                 ),
               ],
@@ -118,13 +109,9 @@ class AppShellRouteData extends StatefulShellRouteData {
   }
 }
 
-@TypedGoRoute<NotFoundRouteData>(
-  path: '/:path(.*)',
-)
+@TypedGoRoute<NotFoundRouteData>(path: '/:path(.*)')
 class NotFoundRouteData extends GoRouteData {
-  const NotFoundRouteData({
-    required this.path,
-  });
+  const NotFoundRouteData({required this.path});
 
   static final $parentNavigatorKey = rootNavigatorKey;
 

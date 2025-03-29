@@ -64,10 +64,7 @@ class SettingPage extends HookConsumerWidget {
     WidgetRef ref, {
     required L10n l10n,
   }) {
-    return SliverAppBar(
-      title: Text(l10n.settingTitle),
-      floating: true,
-    );
+    return SliverAppBar(title: Text(l10n.settingTitle), floating: true);
   }
 
   Widget _body(
@@ -81,59 +78,60 @@ class SettingPage extends HookConsumerWidget {
     return SliverFillRemaining(
       hasScrollBody: false,
       child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(DesignTokenSpacing.sm),
-            child: Card(
-              child: Padding(
+        children:
+            [
+              Padding(
                 padding: const EdgeInsets.all(DesignTokenSpacing.sm),
-                child: Column(
-                  children: [
-                    LocaleListTile(
-                      key: const ValueKey('LocaleListTile'),
-                      onTap: pushLocaleSettingPage.run,
-                    ),
-                    ThemeListTile(
-                      key: const ValueKey('ThemeListTile'),
-                      onTap: pushThemeSettingPage.run,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(DesignTokenSpacing.sm),
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(DesignTokenSpacing.sm),
-                child: Column(
-                  children: [
-                    AppAboutListTile(
-                      key: const ValueKey('AppAboutListTile'),
-                      onTap: showAppAboutDialog.run,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          showDevTool
-              ? Padding(
-                  padding: const EdgeInsets.all(DesignTokenSpacing.sm),
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(DesignTokenSpacing.sm),
-                      child: Column(
-                        children: [
-                          DevToolListTile(onTap: pushDevToolPage.run),
-                        ],
-                      ),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(DesignTokenSpacing.sm),
+                    child: Column(
+                      children: [
+                        LocaleListTile(
+                          key: const ValueKey('LocaleListTile'),
+                          onTap: pushLocaleSettingPage.run,
+                        ),
+                        ThemeListTile(
+                          key: const ValueKey('ThemeListTile'),
+                          onTap: pushThemeSettingPage.run,
+                        ),
+                      ],
                     ),
                   ),
-                )
-              : null,
-        ].nonNulls.toList(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(DesignTokenSpacing.sm),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(DesignTokenSpacing.sm),
+                    child: Column(
+                      children: [
+                        AppAboutListTile(
+                          key: const ValueKey('AppAboutListTile'),
+                          onTap: showAppAboutDialog.run,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              showDevTool
+                  ? Padding(
+                    padding: const EdgeInsets.all(DesignTokenSpacing.sm),
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(DesignTokenSpacing.sm),
+                        child: Column(
+                          children: [
+                            DevToolListTile(onTap: pushDevToolPage.run),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                  : null,
+            ].nonNulls.toList(),
       ),
     );
   }

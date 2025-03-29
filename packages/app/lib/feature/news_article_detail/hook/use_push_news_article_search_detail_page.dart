@@ -4,37 +4,31 @@ import 'package:app/feature/app_router/route_data/app_route_data.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UsePushNewsArticleSearchDetailPageReturn = ({
-  Future<void> Function({required String title, required String url}) run,
-});
+typedef UsePushNewsArticleSearchDetailPageReturn =
+    ({Future<void> Function({required String title, required String url}) run});
 
-typedef UsePushNewsArticleSearchDetailPage
-    = UsePushNewsArticleSearchDetailPageReturn Function();
+typedef UsePushNewsArticleSearchDetailPage =
+    UsePushNewsArticleSearchDetailPageReturn Function();
 
 const String _hookName = 'usePushNewsArticleSearchDetailPage';
 
 UsePushNewsArticleSearchDetailPageReturn
-    usePushNewsArticleSearchDetailPageImpl() {
+usePushNewsArticleSearchDetailPageImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
 
-  final run = useCallback(
-    ({required String title, required String url}) {
-      appLogger.i([
-        '$_hookName#run',
-        {'title': title, 'url': url},
-      ]);
-      return ref
-          .read(
-            newsArticleSearchDetailRouteDataProvider(title: title, url: url),
-          )
-          .push<void>(context);
-    },
-    [],
-  );
+  final run = useCallback(({required String title, required String url}) {
+    appLogger.i([
+      '$_hookName#run',
+      {'title': title, 'url': url},
+    ]);
+    return ref
+        .read(newsArticleSearchDetailRouteDataProvider(title: title, url: url))
+        .push<void>(context);
+  }, []);
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UsePushNewsArticleSearchDetailPage usePushNewsArticleSearchDetailPage =

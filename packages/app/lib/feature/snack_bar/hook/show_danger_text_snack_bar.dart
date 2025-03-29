@@ -4,11 +4,13 @@ import 'package:app/feature/theme_data/hook/use_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-typedef UseShowDangerTextSnackBarReturn = ({
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function({
-    required String text,
-  }) run,
-});
+typedef UseShowDangerTextSnackBarReturn =
+    ({
+      ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function({
+        required String text,
+      })
+      run,
+    });
 
 typedef UseShowDangerTextSnackBar = UseShowDangerTextSnackBarReturn Function();
 
@@ -27,17 +29,21 @@ UseShowDangerTextSnackBarReturn useShowDangerTextSnackBarImpl() {
         text,
         style: (themeData.snackBarTheme.contentTextStyle ?? const TextStyle())
             .copyWith(
-          color:
-              DesignTokenColor.fromBrightness(themeData.brightness).dangerText,
-        ),
+              color:
+                  DesignTokenColor.fromBrightness(
+                    themeData.brightness,
+                  ).dangerText,
+            ),
       ),
-      backgroundColor: DesignTokenColor.fromBrightness(themeData.brightness)
-          .dangerBackground,
+      backgroundColor:
+          DesignTokenColor.fromBrightness(
+            themeData.brightness,
+          ).dangerBackground,
     );
     return ScaffoldMessenger.of(context).showSnackBar(snackBar);
   });
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UseShowDangerTextSnackBar useShowDangerTextSnackBar =

@@ -20,17 +20,11 @@ void main() {
         Future<void> initialize() async {}
         Future<void> update(ThemeMode themeMode) async {}
 
-        return (
-          state: state,
-          initialize: initialize,
-          update: update,
-        );
+        return (state: state, initialize: initialize, update: update);
       }
 
       return TestMaterialApp(
-        child: ThemeSettingPage(
-          useThemeMode: useThemeMode,
-        ),
+        child: ThemeSettingPage(useThemeMode: useThemeMode),
       );
     }
 

@@ -4,12 +4,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class AppBar extends StatelessWidget {
-  const AppBar({
-    super.key,
-    required this.title,
-    this.leading,
-    this.actions,
-  });
+  const AppBar({super.key, required this.title, this.leading, this.actions});
 
   final Widget title;
   final Widget? leading;
@@ -21,20 +16,14 @@ class AppBar extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: AppBar,
-)
+@UseCase(name: 'Default', type: AppBar)
 Widget buildAppBarDefaultUseCase(BuildContext context) {
   return AppBar(
     title: Text(context.knobs.string(label: 'Title', initialValue: 'Title')),
   );
 }
 
-@UseCase(
-  name: 'With Leading',
-  type: AppBar,
-)
+@UseCase(name: 'With Leading', type: AppBar)
 Widget buildAppBarWithLeadingUseCase(BuildContext context) {
   return AppBar(
     title: Text(context.knobs.string(label: 'Title', initialValue: 'Title')),
@@ -42,10 +31,7 @@ Widget buildAppBarWithLeadingUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'With Actions',
-  type: AppBar,
-)
+@UseCase(name: 'With Actions', type: AppBar)
 Widget buildAppBarWithActionsUseCase(BuildContext context) {
   return AppBar(
     title: Text(context.knobs.string(label: 'Title', initialValue: 'Title')),

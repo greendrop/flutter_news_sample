@@ -39,9 +39,10 @@ void main() {
               return GoldenTestWidgetScenario(
                 name: '',
                 brightness: brightness,
-                builder: () => buildNewsArticleSearchForm(
-                  onSubmit: ({required String keyword}) {},
-                ),
+                builder:
+                    () => buildNewsArticleSearchForm(
+                      onSubmit: ({required String keyword}) {},
+                    ),
               );
             },
           );
@@ -55,10 +56,11 @@ void main() {
               return GoldenTestWidgetScenario(
                 name: '',
                 brightness: brightness,
-                builder: () => buildNewsArticleSearchForm(
-                  initiallidationEnabled: true,
-                  onSubmit: ({required String keyword}) {},
-                ),
+                builder:
+                    () => buildNewsArticleSearchForm(
+                      initiallidationEnabled: true,
+                      onSubmit: ({required String keyword}) {},
+                    ),
               );
             },
           );

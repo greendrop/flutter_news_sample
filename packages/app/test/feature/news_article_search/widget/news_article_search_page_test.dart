@@ -29,11 +29,7 @@ void main() {
           return Future.value();
         }
 
-        return (
-          state: state,
-          fetch: fetch,
-          fetchMore: fetchMore,
-        );
+        return (state: state, fetch: fetch, fetchMore: fetchMore);
       }
 
       return useNewsArticles;
@@ -41,9 +37,9 @@ void main() {
 
     var runnedPushNewsArticleDetailPage = false;
     UsePushNewsArticleSearchDetailPage
-        buildUsePushNewsArticleSearchDetailPage() {
+    buildUsePushNewsArticleSearchDetailPage() {
       UsePushNewsArticleSearchDetailPageReturn
-          usePushNewsArticleSearchDetailPage() {
+      usePushNewsArticleSearchDetailPage() {
         Future<void> run({required String title, required String url}) {
           runnedPushNewsArticleDetailPage = true;
           return Future.value();
@@ -57,11 +53,7 @@ void main() {
 
     group('useNewsArticles#state.itemsが0件', () {
       testWidgets('データがないメッセージが表示されること', (tester) async {
-        final state = AsyncValue.data(
-          NewsArticles(
-            items: [],
-          ),
-        );
+        final state = AsyncValue.data(NewsArticles(items: []));
 
         await tester.pumpWidget(
           TestMaterialApp(
@@ -89,18 +81,9 @@ void main() {
           final state = AsyncValue.data(
             NewsArticles(
               items: [
-                NewsArticle(
-                  title: 'title1',
-                  url: 'https://example.com',
-                ),
-                NewsArticle(
-                  title: 'title2',
-                  url: 'https://example.com',
-                ),
-                NewsArticle(
-                  title: 'title3',
-                  url: 'https://example.com',
-                ),
+                NewsArticle(title: 'title1', url: 'https://example.com'),
+                NewsArticle(title: 'title2', url: 'https://example.com'),
+                NewsArticle(title: 'title3', url: 'https://example.com'),
               ],
             ),
           );
@@ -131,10 +114,7 @@ void main() {
 
     group('useNewsArticles#state.itemsが読込中', () {
       testWidgets(
-        [
-          'NewsArticleGridItemが表示されないこと',
-          '読み込み中が表示されること',
-        ].join(', '),
+        ['NewsArticleGridItemが表示されないこと', '読み込み中が表示されること'].join(', '),
         (tester) async {
           const state = AsyncValue<NewsArticles>.loading();
 
@@ -157,61 +137,48 @@ void main() {
     });
 
     group('初期表示', () {
-      testWidgets(
-        'データがないメッセージが表示されること',
-        (tester) async {
-          await tester.pumpWidget(
-            const TestMaterialApp(
-              child: Scaffold(
-                body: NewsArticleSearchPage(),
-              ),
-            ),
-          );
-          await tester.pumpAndSettle();
+      testWidgets('データがないメッセージが表示されること', (tester) async {
+        await tester.pumpWidget(
+          const TestMaterialApp(child: Scaffold(body: NewsArticleSearchPage())),
+        );
+        await tester.pumpAndSettle();
 
-          expect(find.text('データがありません。'), findsOneWidget);
-        },
-      );
+        expect(find.text('データがありません。'), findsOneWidget);
+      });
     });
 
     group('NewsArticleSearchFormでキーワードを入力し検索をタップ', () {
-      testWidgets(
-        'useNewsArticles#fetchが呼ばれること',
-        (tester) async {
-          final state = AsyncValue.data(
-            NewsArticles(
-              items: [],
-            ),
-          );
-          fetchedNewsArticles = false;
+      testWidgets('useNewsArticles#fetchが呼ばれること', (tester) async {
+        final state = AsyncValue.data(NewsArticles(items: []));
+        fetchedNewsArticles = false;
 
-          await tester.pumpWidget(
-            TestMaterialApp(
-              child: Scaffold(
-                body: NewsArticleSearchPage(
-                  useNewsArticles: buildUseNewsArticles(state: state),
-                ),
+        await tester.pumpWidget(
+          TestMaterialApp(
+            child: Scaffold(
+              body: NewsArticleSearchPage(
+                useNewsArticles: buildUseNewsArticles(state: state),
               ),
             ),
-          );
-          await tester.pumpAndSettle();
+          ),
+        );
+        await tester.pumpAndSettle();
 
-          final keywordTextFieldFinder = find.descendant(
-            of: find.byKey(const Key('NewsArticleSearchFormKeywordTextField')),
-            matching: find.byType(TextField),
-          );
+        final keywordTextFieldFinder = find.descendant(
+          of: find.byKey(const Key('NewsArticleSearchFormKeywordTextField')),
+          matching: find.byType(TextField),
+        );
 
-          await tester.enterText(keywordTextFieldFinder, 'keyword');
-          await tester.pumpAndSettle();
+        await tester.enterText(keywordTextFieldFinder, 'keyword');
+        await tester.pumpAndSettle();
 
-          fetchedNewsArticles = false;
-          await tester
-              .tap(find.byKey(const Key('NewsArticleSearchFormSubmitButton')));
-          await tester.pumpAndSettle();
+        fetchedNewsArticles = false;
+        await tester.tap(
+          find.byKey(const Key('NewsArticleSearchFormSubmitButton')),
+        );
+        await tester.pumpAndSettle();
 
-          expect(fetchedNewsArticles, true);
-        },
-      );
+        expect(fetchedNewsArticles, true);
+      });
     });
   });
 }

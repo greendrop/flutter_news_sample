@@ -52,9 +52,7 @@ class NewsArticleDetailWebView extends HookConsumerWidget {
       webViewController: webViewController,
       setWebviewCanGoBack: webViewCanGoBack.setState,
     );
-    useWebViewRequestGoBackEffect(
-      webViewController: webViewController,
-    );
+    useWebViewRequestGoBackEffect(webViewController: webViewController);
 
     return Stack(
       children: [
@@ -97,9 +95,7 @@ class NewsArticleDetailWebView extends HookConsumerWidget {
             ].contains(uri.scheme)) {
               if (await urlLauncher.canLaunchUrl(uri)) {
                 // Launch the App
-                await urlLauncher.launchUrl(
-                  uri,
-                );
+                await urlLauncher.launchUrl(uri);
                 // and cancel the request
                 return NavigationActionPolicy.CANCEL;
               }
@@ -123,10 +119,11 @@ class NewsArticleDetailWebView extends HookConsumerWidget {
             webViewCurrentUrl.setState(url.toString());
           },
           onConsoleMessage: (controller, consoleMessage) {
-            final message = {
-              'message': 'WebViewPage#onConsoleMessage',
-              'consoleMessage': consoleMessage.toString(),
-            }.toString();
+            final message =
+                {
+                  'message': 'WebViewPage#onConsoleMessage',
+                  'consoleMessage': consoleMessage.toString(),
+                }.toString();
             switch (consoleMessage.messageLevel) {
               case ConsoleMessageLevel.DEBUG:
                 appLogger.d(message);

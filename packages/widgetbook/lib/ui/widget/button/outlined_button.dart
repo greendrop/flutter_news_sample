@@ -15,17 +15,11 @@ class OutlinedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return material.OutlinedButton(
-      onPressed: onPressed,
-      child: child,
-    );
+    return material.OutlinedButton(onPressed: onPressed, child: child);
   }
 }
 
-@UseCase(
-  name: 'Enabled',
-  type: OutlinedButton,
-)
+@UseCase(name: 'Enabled', type: OutlinedButton)
 Widget buildOutlinedButtonEnabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -36,10 +30,7 @@ Widget buildOutlinedButtonEnabledUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Disabled',
-  type: OutlinedButton,
-)
+@UseCase(name: 'Disabled', type: OutlinedButton)
 Widget buildOutlinedButtonDisabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),

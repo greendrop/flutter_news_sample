@@ -7,11 +7,9 @@ import '../../../support/widget/test_material_app.dart';
 
 void main() {
   group('NewsArticleSearchForm', () {
-    testWidgets(
-        [
-          '入力フィールド、ボタンが表示されること',
-          '初期値が設定されていること',
-        ].join(', '), (tester) async {
+    testWidgets(['入力フィールド、ボタンが表示されること', '初期値が設定されていること'].join(', '), (
+      tester,
+    ) async {
       await tester.pumpWidget(
         const ProviderScope(
           child: TestMaterialApp(
@@ -32,8 +30,9 @@ void main() {
       final keywordTextField = tester.widget<TextField>(keywordTextFieldFinder);
       expect(keywordTextField.controller?.text, 'initialKeyword');
 
-      final submitButtonFinder =
-          find.byKey(const ValueKey('NewsArticleSearchFormSubmitButton'));
+      final submitButtonFinder = find.byKey(
+        const ValueKey('NewsArticleSearchFormSubmitButton'),
+      );
       expect(submitButtonFinder, findsOneWidget);
     });
 
@@ -64,8 +63,9 @@ void main() {
       await tester.enterText(keywordTextFieldFinder, 'newKeyword');
       await tester.pumpAndSettle();
 
-      await tester
-          .tap(find.byKey(const Key('NewsArticleSearchFormSubmitButton')));
+      await tester.tap(
+        find.byKey(const Key('NewsArticleSearchFormSubmitButton')),
+      );
       await tester.pumpAndSettle();
 
       expect(onSubmitKeyword, 'newKeyword');

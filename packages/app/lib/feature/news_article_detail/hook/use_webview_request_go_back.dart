@@ -3,11 +3,12 @@ import 'package:app/feature/news_article_detail/riverpod/webview_request_go_back
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UseWebViewRequestGoBackReturn = ({
-  bool state,
-  // ignore: avoid_positional_boolean_parameters
-  void Function(bool) setState,
-});
+typedef UseWebViewRequestGoBackReturn =
+    ({
+      bool state,
+      // ignore: avoid_positional_boolean_parameters
+      void Function(bool) setState,
+    });
 
 typedef UseWebViewRequestGoBack = UseWebViewRequestGoBackReturn Function();
 
@@ -19,23 +20,21 @@ UseWebViewRequestGoBackReturn useWebViewRequestGoBackImpl() {
 
   final state = ref.watch(webViewRequestGoBackNotifierProvider);
 
-  final setState = useCallback(
-    (bool value) {
-      ref.read(appLoggerProvider).i(
-            {'message': '$_hookName#setState', 'value': value.toString()}
-                .toString(),
-          );
-      return ref
-          .read(webViewRequestGoBackNotifierProvider.notifier)
-          .setState(value);
-    },
-    [state],
-  );
+  final setState = useCallback((bool value) {
+    ref
+        .read(appLoggerProvider)
+        .i(
+          {
+            'message': '$_hookName#setState',
+            'value': value.toString(),
+          }.toString(),
+        );
+    return ref
+        .read(webViewRequestGoBackNotifierProvider.notifier)
+        .setState(value);
+  }, [state]);
 
-  return (
-    state: state,
-    setState: setState,
-  );
+  return (state: state, setState: setState);
 }
 
 const UseWebViewRequestGoBack useWebViewRequestGoBack =

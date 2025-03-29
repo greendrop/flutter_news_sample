@@ -5,8 +5,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'news_article_search_route_data.g.dart';
 
 @riverpod
-NewsArticleSearchRouteData newsArticleSearchRouteData(
-  Ref ref,
-) {
+NewsArticleSearchRouteData newsArticleSearchRouteData(Ref ref) {
   return NewsArticleSearchRouteData();
 }

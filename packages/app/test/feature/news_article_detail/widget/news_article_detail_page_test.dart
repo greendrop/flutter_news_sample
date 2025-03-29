@@ -8,25 +8,24 @@ import '../../../support/widget/test_material_app.dart';
 void main() {
   group('NewsArticleDetailPage', () {
     testWidgets(
-        [
-          '引数のtitleが表示されること',
-          'NewsArticleDetailWebViewが表示されること',
-        ].join(', '), (tester) async {
-      await tester.pumpWidget(
-        const TestMaterialApp(
-          child: Scaffold(
-            body: NewsArticleDetailPage(
-              title: 'dummy',
-              url: 'https://example.com',
-              isDummyWebView: true,
+      ['引数のtitleが表示されること', 'NewsArticleDetailWebViewが表示されること'].join(', '),
+      (tester) async {
+        await tester.pumpWidget(
+          const TestMaterialApp(
+            child: Scaffold(
+              body: NewsArticleDetailPage(
+                title: 'dummy',
+                url: 'https://example.com',
+                isDummyWebView: true,
+              ),
             ),
           ),
-        ),
-      );
-      await tester.pumpAndSettle();
+        );
+        await tester.pumpAndSettle();
 
-      expect(find.text('dummy'), findsOneWidget);
-      expect(find.byType(NewsArticleDetailWebView), findsOneWidget);
-    });
+        expect(find.text('dummy'), findsOneWidget);
+        expect(find.byType(NewsArticleDetailWebView), findsOneWidget);
+      },
+    );
   });
 }

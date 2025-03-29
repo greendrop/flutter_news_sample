@@ -10,11 +10,7 @@ void main() {
     testWidgets('Iconが表示されること', (tester) async {
       await tester.pumpWidget(
         const ProviderScope(
-          child: TestMaterialApp(
-            child: Scaffold(
-              body: AboutAppIcon(),
-            ),
-          ),
+          child: TestMaterialApp(child: Scaffold(body: AboutAppIcon())),
         ),
       );
       await tester.pumpAndSettle();

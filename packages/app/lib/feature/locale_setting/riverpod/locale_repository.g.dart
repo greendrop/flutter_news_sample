@@ -13,9 +13,10 @@ String _$localeRepositoryHash() => r'b4b942f057632697f78cb40c19502c2246c9e849';
 final localeRepositoryProvider = Provider<LocaleRepository>.internal(
   localeRepository,
   name: r'localeRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$localeRepositoryHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$localeRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

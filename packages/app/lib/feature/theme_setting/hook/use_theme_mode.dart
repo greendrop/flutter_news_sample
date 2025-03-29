@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UseThemeModeReturn = ({
-  ThemeMode state,
-  Future<void> Function() initialize,
-  Future<void> Function(ThemeMode) update,
-});
+typedef UseThemeModeReturn =
+    ({
+      ThemeMode state,
+      Future<void> Function() initialize,
+      Future<void> Function(ThemeMode) update,
+    });
 
 typedef UseThemeMode = UseThemeModeReturn Function();
 
@@ -21,30 +22,20 @@ UseThemeModeReturn useThemeModeImpl() {
 
   final state = ref.watch(themeModeNotifierProvider);
 
-  final initialize = useCallback(
-    () {
-      appLogger.i(['$_hookName#initialize']);
-      return ref.read(themeModeNotifierProvider.notifier).initialize();
-    },
-    [state],
-  );
+  final initialize = useCallback(() {
+    appLogger.i(['$_hookName#initialize']);
+    return ref.read(themeModeNotifierProvider.notifier).initialize();
+  }, [state]);
 
-  final update = useCallback(
-    (ThemeMode value) {
-      appLogger.i([
-        '$_hookName#update',
-        {'value': value},
-      ]);
-      return ref.read(themeModeNotifierProvider.notifier).setThemeMode(value);
-    },
-    [state],
-  );
+  final update = useCallback((ThemeMode value) {
+    appLogger.i([
+      '$_hookName#update',
+      {'value': value},
+    ]);
+    return ref.read(themeModeNotifierProvider.notifier).setThemeMode(value);
+  }, [state]);
 
-  return (
-    state: state,
-    initialize: initialize,
-    update: update,
-  );
+  return (state: state, initialize: initialize, update: update);
 }
 
 const UseThemeMode useThemeMode = useThemeModeImpl;

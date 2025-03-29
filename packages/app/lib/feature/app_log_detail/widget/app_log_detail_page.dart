@@ -25,13 +25,10 @@ class AppLogDetailPage extends HookConsumerWidget {
     final navigatorState = useNavigatorState();
     final appLogFileContent = useAppLogFileContent(filename: filename);
 
-    useEffect(
-      () {
-        Future.microtask(appLogFileContent.fetch);
-        return () {};
-      },
-      [],
-    );
+    useEffect(() {
+      Future.microtask(appLogFileContent.fetch);
+      return () {};
+    }, []);
 
     return Scaffold(
       body: SafeArea(
@@ -49,11 +46,7 @@ class AppLogDetailPage extends HookConsumerWidget {
                 physics: const AlwaysScrollableScrollPhysics(),
                 slivers: [
                   _appBar(context, ref),
-                  _body(
-                    context,
-                    ref,
-                    appLogFileContent: appLogFileContent,
-                  ),
+                  _body(context, ref, appLogFileContent: appLogFileContent),
                 ],
               ),
             ),
@@ -75,22 +68,26 @@ class AppLogDetailPage extends HookConsumerWidget {
     final l10n = useL10n();
 
     return appLogFileContent.state.when(
-      loading: () => SliverFillRemaining(
-        hasScrollBody: false,
-        child: Center(
-          child: CircularProgressIndicator(
-            value: stopLoadingIndicator ? 0.8 : null,
+      loading:
+          () => SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(
+              child: CircularProgressIndicator(
+                value: stopLoadingIndicator ? 0.8 : null,
+              ),
+            ),
           ),
-        ),
-      ),
-      error: (error, stackTrace) => SliverFillRemaining(
-        hasScrollBody: false,
-        child: Center(
-          child: Text(
-            AppException.fromException(error as Exception).messageByL10n(l10n),
+      error:
+          (error, stackTrace) => SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(
+              child: Text(
+                AppException.fromException(
+                  error as Exception,
+                ).messageByL10n(l10n),
+              ),
+            ),
           ),
-        ),
-      ),
       data: (data) {
         final lines = data.split('\n');
 
@@ -101,23 +98,20 @@ class AppLogDetailPage extends HookConsumerWidget {
           );
         }
         return SliverList(
-          delegate: SliverChildBuilderDelegate(
-            childCount: lines.length,
-            (context, index) {
-              return ListTile(
-                title: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        lines[index],
-                        overflow: TextOverflow.visible,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
+          delegate: SliverChildBuilderDelegate(childCount: lines.length, (
+            context,
+            index,
+          ) {
+            return ListTile(
+              title: Row(
+                children: [
+                  Expanded(
+                    child: Text(lines[index], overflow: TextOverflow.visible),
+                  ),
+                ],
+              ),
+            );
+          }),
         );
       },
     );

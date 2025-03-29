@@ -12,7 +12,8 @@ part of 'news_article.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 NewsArticle _$NewsArticleFromJson(Map<String, dynamic> json) {
   return _NewsArticle.fromJson(json);
@@ -42,18 +43,20 @@ mixin _$NewsArticle {
 /// @nodoc
 abstract class $NewsArticleCopyWith<$Res> {
   factory $NewsArticleCopyWith(
-          NewsArticle value, $Res Function(NewsArticle) then) =
-      _$NewsArticleCopyWithImpl<$Res, NewsArticle>;
+    NewsArticle value,
+    $Res Function(NewsArticle) then,
+  ) = _$NewsArticleCopyWithImpl<$Res, NewsArticle>;
   @useResult
-  $Res call(
-      {NewsArticleSource? source,
-      String? author,
-      String? title,
-      String? description,
-      String? url,
-      String? urlToImage,
-      DateTime? publishedAt,
-      String? content});
+  $Res call({
+    NewsArticleSource? source,
+    String? author,
+    String? title,
+    String? description,
+    String? url,
+    String? urlToImage,
+    DateTime? publishedAt,
+    String? content,
+  });
 
   $NewsArticleSourceCopyWith<$Res>? get source;
 }
@@ -82,40 +85,51 @@ class _$NewsArticleCopyWithImpl<$Res, $Val extends NewsArticle>
     Object? publishedAt = freezed,
     Object? content = freezed,
   }) {
-    return _then(_value.copyWith(
-      source: freezed == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as NewsArticleSource?,
-      author: freezed == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      urlToImage: freezed == urlToImage
-          ? _value.urlToImage
-          : urlToImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      publishedAt: freezed == publishedAt
-          ? _value.publishedAt
-          : publishedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            source:
+                freezed == source
+                    ? _value.source
+                    : source // ignore: cast_nullable_to_non_nullable
+                        as NewsArticleSource?,
+            author:
+                freezed == author
+                    ? _value.author
+                    : author // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            title:
+                freezed == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            description:
+                freezed == description
+                    ? _value.description
+                    : description // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            url:
+                freezed == url
+                    ? _value.url
+                    : url // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            urlToImage:
+                freezed == urlToImage
+                    ? _value.urlToImage
+                    : urlToImage // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            publishedAt:
+                freezed == publishedAt
+                    ? _value.publishedAt
+                    : publishedAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            content:
+                freezed == content
+                    ? _value.content
+                    : content // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of NewsArticle
@@ -137,19 +151,21 @@ class _$NewsArticleCopyWithImpl<$Res, $Val extends NewsArticle>
 abstract class _$$NewsArticleImplCopyWith<$Res>
     implements $NewsArticleCopyWith<$Res> {
   factory _$$NewsArticleImplCopyWith(
-          _$NewsArticleImpl value, $Res Function(_$NewsArticleImpl) then) =
-      __$$NewsArticleImplCopyWithImpl<$Res>;
+    _$NewsArticleImpl value,
+    $Res Function(_$NewsArticleImpl) then,
+  ) = __$$NewsArticleImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {NewsArticleSource? source,
-      String? author,
-      String? title,
-      String? description,
-      String? url,
-      String? urlToImage,
-      DateTime? publishedAt,
-      String? content});
+  $Res call({
+    NewsArticleSource? source,
+    String? author,
+    String? title,
+    String? description,
+    String? url,
+    String? urlToImage,
+    DateTime? publishedAt,
+    String? content,
+  });
 
   @override
   $NewsArticleSourceCopyWith<$Res>? get source;
@@ -160,8 +176,9 @@ class __$$NewsArticleImplCopyWithImpl<$Res>
     extends _$NewsArticleCopyWithImpl<$Res, _$NewsArticleImpl>
     implements _$$NewsArticleImplCopyWith<$Res> {
   __$$NewsArticleImplCopyWithImpl(
-      _$NewsArticleImpl _value, $Res Function(_$NewsArticleImpl) _then)
-      : super(_value, _then);
+    _$NewsArticleImpl _value,
+    $Res Function(_$NewsArticleImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of NewsArticle
   /// with the given fields replaced by the non-null parameter values.
@@ -177,56 +194,66 @@ class __$$NewsArticleImplCopyWithImpl<$Res>
     Object? publishedAt = freezed,
     Object? content = freezed,
   }) {
-    return _then(_$NewsArticleImpl(
-      source: freezed == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as NewsArticleSource?,
-      author: freezed == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      urlToImage: freezed == urlToImage
-          ? _value.urlToImage
-          : urlToImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      publishedAt: freezed == publishedAt
-          ? _value.publishedAt
-          : publishedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$NewsArticleImpl(
+        source:
+            freezed == source
+                ? _value.source
+                : source // ignore: cast_nullable_to_non_nullable
+                    as NewsArticleSource?,
+        author:
+            freezed == author
+                ? _value.author
+                : author // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        title:
+            freezed == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        description:
+            freezed == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        url:
+            freezed == url
+                ? _value.url
+                : url // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        urlToImage:
+            freezed == urlToImage
+                ? _value.urlToImage
+                : urlToImage // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        publishedAt:
+            freezed == publishedAt
+                ? _value.publishedAt
+                : publishedAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        content:
+            freezed == content
+                ? _value.content
+                : content // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$NewsArticleImpl extends _NewsArticle {
-  _$NewsArticleImpl(
-      {this.source,
-      this.author,
-      this.title,
-      this.description,
-      this.url,
-      this.urlToImage,
-      this.publishedAt,
-      this.content})
-      : super._();
+  _$NewsArticleImpl({
+    this.source,
+    this.author,
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.publishedAt,
+    this.content,
+  }) : super._();
 
   factory _$NewsArticleImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsArticleImplFromJson(json);
@@ -273,8 +300,17 @@ class _$NewsArticleImpl extends _NewsArticle {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, source, author, title,
-      description, url, urlToImage, publishedAt, content);
+  int get hashCode => Object.hash(
+    runtimeType,
+    source,
+    author,
+    title,
+    description,
+    url,
+    urlToImage,
+    publishedAt,
+    content,
+  );
 
   /// Create a copy of NewsArticle
   /// with the given fields replaced by the non-null parameter values.
@@ -286,22 +322,21 @@ class _$NewsArticleImpl extends _NewsArticle {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NewsArticleImplToJson(
-      this,
-    );
+    return _$$NewsArticleImplToJson(this);
   }
 }
 
 abstract class _NewsArticle extends NewsArticle {
-  factory _NewsArticle(
-      {final NewsArticleSource? source,
-      final String? author,
-      final String? title,
-      final String? description,
-      final String? url,
-      final String? urlToImage,
-      final DateTime? publishedAt,
-      final String? content}) = _$NewsArticleImpl;
+  factory _NewsArticle({
+    final NewsArticleSource? source,
+    final String? author,
+    final String? title,
+    final String? description,
+    final String? url,
+    final String? urlToImage,
+    final DateTime? publishedAt,
+    final String? content,
+  }) = _$NewsArticleImpl;
   _NewsArticle._() : super._();
 
   factory _NewsArticle.fromJson(Map<String, dynamic> json) =

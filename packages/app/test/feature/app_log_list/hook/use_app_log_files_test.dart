@@ -24,132 +24,142 @@ void main() {
   group('useAppLogFiles', () {
     group('#fetch', () {
       testWidgets(
-          [
-            'appLogFilesRepository.fetchが呼ばれること',
-            'AppLogFilesのstateに設定されること',
-          ].join(', '), (tester) async {
-        late UseAppLogFilesReturn appLogFiles;
+        [
+          'appLogFilesRepository.fetchが呼ばれること',
+          'AppLogFilesのstateに設定されること',
+        ].join(', '),
+        (tester) async {
+          late UseAppLogFilesReturn appLogFiles;
 
-        final appLoggerDirectoryRepository = MockAppLoggerDirectoryRepository();
-        final appLogFilesRepository = MockAppLogFilesRepository();
+          final appLoggerDirectoryRepository =
+              MockAppLoggerDirectoryRepository();
+          final appLogFilesRepository = MockAppLogFilesRepository();
 
-        final directory = Directory('test');
-        when(appLoggerDirectoryRepository.fetch)
-            .thenAnswer((_) async => directory);
+          final directory = Directory('test');
+          when(
+            appLoggerDirectoryRepository.fetch,
+          ).thenAnswer((_) async => directory);
 
-        await tester.pumpWidget(
-          TestMaterialApp(
-            providerScopeOverrides: [
-              appLoggerDirectoryRepositoryProvider
-                  .overrideWithValue(appLoggerDirectoryRepository),
-              appLogFilesRepositoryProvider
-                  .overrideWithValue(appLogFilesRepository),
-            ],
-            child: HookConsumer(
-              builder: (context, ref, child) {
-                useEffect(
-                  () {
+          await tester.pumpWidget(
+            TestMaterialApp(
+              providerScopeOverrides: [
+                appLoggerDirectoryRepositoryProvider.overrideWithValue(
+                  appLoggerDirectoryRepository,
+                ),
+                appLogFilesRepositoryProvider.overrideWithValue(
+                  appLogFilesRepository,
+                ),
+              ],
+              child: HookConsumer(
+                builder: (context, ref, child) {
+                  useEffect(() {
                     ref.read(appLoggerDirectoryProvider.notifier).initialize();
                     return () {};
-                  },
-                  [],
-                );
+                  }, []);
 
-                appLogFiles = useAppLogFiles();
-                return Container();
-              },
+                  appLogFiles = useAppLogFiles();
+                  return Container();
+                },
+              ),
             ),
-          ),
-        );
-        await tester.pumpAndSettle();
+          );
+          await tester.pumpAndSettle();
 
-        when(() => appLogFilesRepository.fetch(directory: directory))
-            .thenAnswer(
-          (_) async => [
-            File('test1.log'),
-            File('test2.txt'),
-            File('test3.log'),
-          ],
-        );
+          when(
+            () => appLogFilesRepository.fetch(directory: directory),
+          ).thenAnswer(
+            (_) async => [
+              File('test1.log'),
+              File('test2.txt'),
+              File('test3.log'),
+            ],
+          );
 
-        await appLogFiles.fetch();
-        await tester.pumpAndSettle();
+          await appLogFiles.fetch();
+          await tester.pumpAndSettle();
 
-        verify(() => appLogFilesRepository.fetch(directory: directory))
-            .called(1);
-        expect(appLogFiles.state.hasValue, isTrue);
-        expect(appLogFiles.state.hasError, isFalse);
-        expect(appLogFiles.state.isLoading, isFalse);
-        expect(appLogFiles.state.valueOrNull, [
-          AppLogFile(path: 'test1.log'),
-          AppLogFile(path: 'test3.log'),
-        ]);
-      });
+          verify(
+            () => appLogFilesRepository.fetch(directory: directory),
+          ).called(1);
+          expect(appLogFiles.state.hasValue, isTrue);
+          expect(appLogFiles.state.hasError, isFalse);
+          expect(appLogFiles.state.isLoading, isFalse);
+          expect(appLogFiles.state.valueOrNull, [
+            AppLogFile(path: 'test1.log'),
+            AppLogFile(path: 'test3.log'),
+          ]);
+        },
+      );
     });
 
     group('#fetch(isRefresh: true)', () {
       testWidgets(
-          [
-            'appLogFilesRepository.fetchが呼ばれること',
-            'AppLogFileがstateに設定されること',
-          ].join(', '), (tester) async {
-        late UseAppLogFilesReturn appLogFiles;
+        [
+          'appLogFilesRepository.fetchが呼ばれること',
+          'AppLogFileがstateに設定されること',
+        ].join(', '),
+        (tester) async {
+          late UseAppLogFilesReturn appLogFiles;
 
-        final appLoggerDirectoryRepository = MockAppLoggerDirectoryRepository();
-        final appLogFilesRepository = MockAppLogFilesRepository();
+          final appLoggerDirectoryRepository =
+              MockAppLoggerDirectoryRepository();
+          final appLogFilesRepository = MockAppLogFilesRepository();
 
-        final directory = Directory('test');
-        when(appLoggerDirectoryRepository.fetch)
-            .thenAnswer((_) async => directory);
+          final directory = Directory('test');
+          when(
+            appLoggerDirectoryRepository.fetch,
+          ).thenAnswer((_) async => directory);
 
-        await tester.pumpWidget(
-          TestMaterialApp(
-            providerScopeOverrides: [
-              appLoggerDirectoryRepositoryProvider
-                  .overrideWithValue(appLoggerDirectoryRepository),
-              appLogFilesRepositoryProvider
-                  .overrideWithValue(appLogFilesRepository),
-            ],
-            child: HookConsumer(
-              builder: (context, ref, child) {
-                useEffect(
-                  () {
+          await tester.pumpWidget(
+            TestMaterialApp(
+              providerScopeOverrides: [
+                appLoggerDirectoryRepositoryProvider.overrideWithValue(
+                  appLoggerDirectoryRepository,
+                ),
+                appLogFilesRepositoryProvider.overrideWithValue(
+                  appLogFilesRepository,
+                ),
+              ],
+              child: HookConsumer(
+                builder: (context, ref, child) {
+                  useEffect(() {
                     ref.read(appLoggerDirectoryProvider.notifier).initialize();
                     return () {};
-                  },
-                  [],
-                );
+                  }, []);
 
-                appLogFiles = useAppLogFiles();
-                return Container();
-              },
+                  appLogFiles = useAppLogFiles();
+                  return Container();
+                },
+              ),
             ),
-          ),
-        );
-        await tester.pumpAndSettle();
+          );
+          await tester.pumpAndSettle();
 
-        when(() => appLogFilesRepository.fetch(directory: directory))
-            .thenAnswer(
-          (_) async => [
-            File('test1.log'),
-            File('test2.txt'),
-            File('test3.log'),
-          ],
-        );
+          when(
+            () => appLogFilesRepository.fetch(directory: directory),
+          ).thenAnswer(
+            (_) async => [
+              File('test1.log'),
+              File('test2.txt'),
+              File('test3.log'),
+            ],
+          );
 
-        await appLogFiles.fetch(isRefresh: true);
-        await tester.pumpAndSettle();
+          await appLogFiles.fetch(isRefresh: true);
+          await tester.pumpAndSettle();
 
-        verify(() => appLogFilesRepository.fetch(directory: directory))
-            .called(1);
-        expect(appLogFiles.state.hasValue, isTrue);
-        expect(appLogFiles.state.hasError, isFalse);
-        expect(appLogFiles.state.isLoading, isFalse);
-        expect(appLogFiles.state.valueOrNull, [
-          AppLogFile(path: 'test1.log'),
-          AppLogFile(path: 'test3.log'),
-        ]);
-      });
+          verify(
+            () => appLogFilesRepository.fetch(directory: directory),
+          ).called(1);
+          expect(appLogFiles.state.hasValue, isTrue);
+          expect(appLogFiles.state.hasError, isFalse);
+          expect(appLogFiles.state.isLoading, isFalse);
+          expect(appLogFiles.state.valueOrNull, [
+            AppLogFile(path: 'test1.log'),
+            AppLogFile(path: 'test3.log'),
+          ]);
+        },
+      );
     });
   });
 }

@@ -17,18 +17,12 @@ class NewsArticleImage extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Exist Image Enabled',
-  type: NewsArticleImage,
-)
+@UseCase(name: 'Exist Image Enabled', type: NewsArticleImage)
 Widget buildNewsArticleImageExistImageUseCase(BuildContext context) {
   return const NewsArticleImage(url: _dummyImageUrl);
 }
 
-@UseCase(
-  name: 'Not Exist Image',
-  type: NewsArticleImage,
-)
+@UseCase(name: 'Not Exist Image', type: NewsArticleImage)
 Widget buildNewsArticleImageNotExistImageUseCase(BuildContext context) {
   return const NewsArticleImage(url: null);
 }

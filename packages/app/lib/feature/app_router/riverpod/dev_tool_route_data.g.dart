@@ -13,9 +13,10 @@ String _$devToolRouteDataHash() => r'67b04e50c01c990d02afc8fe1b34d36894bacb7d';
 final devToolRouteDataProvider = AutoDisposeProvider<DevToolRouteData>.internal(
   devToolRouteData,
   name: r'devToolRouteDataProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$devToolRouteDataHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$devToolRouteDataHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

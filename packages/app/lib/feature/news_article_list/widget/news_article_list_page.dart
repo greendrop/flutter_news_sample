@@ -36,29 +36,28 @@ class NewsArticleListPage extends HookConsumerWidget {
     final pushNewsArticleDetailPage = usePushNewsArticleDetailPage();
     final showDangerTextSnackBar = useShowDangerTextSnackBarImpl();
 
-    final newsArticlesByCategories = NewsHeadlineCategory.values
-        .fold(<NewsHeadlineCategory, UseNewsArticlesReturn>{}, (acc, category) {
-      acc[category] = useNewsArticles(category: category.value);
-      return acc;
-    });
+    final newsArticlesByCategories = NewsHeadlineCategory.values.fold(
+      <NewsHeadlineCategory, UseNewsArticlesReturn>{},
+      (acc, category) {
+        acc[category] = useNewsArticles(category: category.value);
+        return acc;
+      },
+    );
     final tabController = useTabController(
       initialLength: newsArticlesByCategories.length,
-      initialIndex: newsArticlesByCategories.keys
-          .toList()
-          .indexWhere((category) => category == initialCategory),
+      initialIndex: newsArticlesByCategories.keys.toList().indexWhere(
+        (category) => category == initialCategory,
+      ),
     );
 
-    useEffect(
-      () {
-        Future.microtask(() {
-          newsArticlesByCategories.forEach((category, newsArticles) {
-            newsArticles.fetch().onError((error, stackTrace) {});
-          });
+    useEffect(() {
+      Future.microtask(() {
+        newsArticlesByCategories.forEach((category, newsArticles) {
+          newsArticles.fetch().onError((error, stackTrace) {});
         });
-        return () {};
-      },
-      [],
-    );
+      });
+      return () {};
+    }, []);
 
     return LayoutBuilder(
       builder: (_, constraints) {
@@ -108,35 +107,30 @@ class NewsArticleListPage extends HookConsumerWidget {
     WidgetRef ref, {
     required L10n l10n,
   }) {
-    return SliverAppBar(
-      title: Text(l10n.newsArticleListTitle),
-      floating: true,
-    );
+    return SliverAppBar(title: Text(l10n.newsArticleListTitle), floating: true);
   }
 
   Widget _tabBar(
     BuildContext context,
     WidgetRef ref, {
     required Map<NewsHeadlineCategory, UseNewsArticlesReturn>
-        newsArticlesByCategories,
+    newsArticlesByCategories,
     required TabController controller,
     required ThemeData themeData,
     required L10n l10n,
   }) {
     return SliverPersistentHeader(
       delegate: _TabBarDelegate(
-        backgroundColor: themeData.appBarTheme.backgroundColor ??
+        backgroundColor:
+            themeData.appBarTheme.backgroundColor ??
             themeData.scaffoldBackgroundColor,
         tabBar: TabBar(
           controller: controller,
           isScrollable: true,
-          tabs: newsArticlesByCategories.keys
-              .map(
-                (category) => Tab(
-                  text: category.nameByL10n(l10n),
-                ),
-              )
-              .toList(),
+          tabs:
+              newsArticlesByCategories.keys
+                  .map((category) => Tab(text: category.nameByL10n(l10n)))
+                  .toList(),
         ),
       ),
       pinned: true,
@@ -148,7 +142,7 @@ class NewsArticleListPage extends HookConsumerWidget {
     WidgetRef ref, {
     required TabController tabController,
     required Map<NewsHeadlineCategory, UseNewsArticlesReturn>
-        newsArticlesByCategories,
+    newsArticlesByCategories,
     required int gridCrossAxisCount,
     required L10n l10n,
     required UsePushNewsArticleDetailPageReturn pushNewsArticleDetailPage,
@@ -156,116 +150,113 @@ class NewsArticleListPage extends HookConsumerWidget {
   }) {
     return TabBarView(
       controller: tabController,
-      children: newsArticlesByCategories.keys.map<Widget>((category) {
-        final newsArticles = newsArticlesByCategories[category]!;
+      children:
+          newsArticlesByCategories.keys.map<Widget>((category) {
+            final newsArticles = newsArticlesByCategories[category]!;
 
-        return RefreshIndicator(
-          onRefresh: () {
-            return newsArticles
-                .fetch(isRefresh: true)
-                .onError((error, stackTrace) {
-              showDangerTextSnackBar.run(
-                text: AppException.fromException(error as Exception?)
-                    .messageByL10n(l10n),
-              );
-            });
-          },
-          child: newsArticles.state.when(
-            loading: () {
-              return Center(
-                child: CircularProgressIndicator(
-                  value: stopLoadingIndicator ? 0.8 : null,
-                ),
-              );
-            },
-            error: (error, stackTrace) {
-              final appException = error is AppException
-                  ? error
-                  : AppException(parentException: error as Exception);
-              return LayoutBuilder(
-                builder: (context, constraints) {
-                  return SingleChildScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minHeight: constraints.maxHeight,
-                      ),
-                      child: Center(
-                        child: Text(
-                          appException.messageByL10n(l10n),
-                        ),
-                      ),
+            return RefreshIndicator(
+              onRefresh: () {
+                return newsArticles.fetch(isRefresh: true).onError((
+                  error,
+                  stackTrace,
+                ) {
+                  showDangerTextSnackBar.run(
+                    text: AppException.fromException(
+                      error as Exception?,
+                    ).messageByL10n(l10n),
+                  );
+                });
+              },
+              child: newsArticles.state.when(
+                loading: () {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: stopLoadingIndicator ? 0.8 : null,
                     ),
                   );
                 },
-              );
-            },
-            data: (data) {
-              if (data.items.isEmpty) {
-                return LayoutBuilder(
-                  builder: (context, constraints) {
-                    return SingleChildScrollView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: constraints.maxHeight,
-                        ),
-                        child: Center(
-                          child: Text(
-                            l10n.generalNoDataAvailable,
+                error: (error, stackTrace) {
+                  final appException =
+                      error is AppException
+                          ? error
+                          : AppException(parentException: error as Exception);
+                  return LayoutBuilder(
+                    builder: (context, constraints) {
+                      return SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: constraints.maxHeight,
+                          ),
+                          child: Center(
+                            child: Text(appException.messageByL10n(l10n)),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                );
-              }
-
-              return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: gridCrossAxisCount,
-                ),
-                itemCount: data.items.length,
-                itemBuilder: (BuildContext context, int index) {
-                  if (index == data.items.length - 1 && data.hasNextPage) {
-                    // NOTE: API上限にならないように、追加ページを取得しない
-                    // Future.microtask(() {
-                    //   newsArticles.fetchMore().onError(
-                    //         (error, stackTrace) {},
-                    //       );
-                    // });
-                  }
-                  return NewsArticleGridItem(
-                    newsArticle: data.items[index],
-                    onTap: () {
-                      if (data.items[index].url == null) {
-                        return;
-                      }
-
-                      if (defaultTargetPlatform == TargetPlatform.android ||
-                          defaultTargetPlatform == TargetPlatform.iOS) {
-                        pushNewsArticleDetailPage.run(
-                          title: data.items[index].title ?? '',
-                          url: data.items[index].url ?? '',
-                        );
-                      }
+                      );
                     },
                   );
                 },
-              );
-            },
-          ),
-        );
-      }).toList(),
+                data: (data) {
+                  if (data.items.isEmpty) {
+                    return LayoutBuilder(
+                      builder: (context, constraints) {
+                        return SingleChildScrollView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: constraints.maxHeight,
+                            ),
+                            child: Center(
+                              child: Text(l10n.generalNoDataAvailable),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: gridCrossAxisCount,
+                    ),
+                    itemCount: data.items.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index == data.items.length - 1 && data.hasNextPage) {
+                        // NOTE: API上限にならないように、追加ページを取得しない
+                        // Future.microtask(() {
+                        //   newsArticles.fetchMore().onError(
+                        //         (error, stackTrace) {},
+                        //       );
+                        // });
+                      }
+                      return NewsArticleGridItem(
+                        newsArticle: data.items[index],
+                        onTap: () {
+                          if (data.items[index].url == null) {
+                            return;
+                          }
+
+                          if (defaultTargetPlatform == TargetPlatform.android ||
+                              defaultTargetPlatform == TargetPlatform.iOS) {
+                            pushNewsArticleDetailPage.run(
+                              title: data.items[index].title ?? '',
+                              url: data.items[index].url ?? '',
+                            );
+                          }
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            );
+          }).toList(),
     );
   }
 }
 
 class _TabBarDelegate extends SliverPersistentHeaderDelegate {
-  _TabBarDelegate({
-    required this.tabBar,
-    required this.backgroundColor,
-  });
+  _TabBarDelegate({required this.tabBar, required this.backgroundColor});
 
   final TabBar tabBar;
   final Color? backgroundColor;
@@ -282,10 +273,7 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    return Container(
-      color: backgroundColor,
-      child: tabBar,
-    );
+    return Container(color: backgroundColor, child: tabBar);
   }
 
   @override

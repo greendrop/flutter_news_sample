@@ -6,15 +6,17 @@ import 'package:url_launcher/url_launcher.dart' as url_launcher;
 export 'package:url_launcher/url_launcher.dart'
     show LaunchMode, WebViewConfiguration;
 
-typedef UseUrlLauncherReturn = ({
-  Future<bool> Function(Uri url) canLaunchUrl,
-  Future<bool> Function(
-    Uri url, {
-    url_launcher.LaunchMode mode,
-    url_launcher.WebViewConfiguration webViewConfiguration,
-    String? webOnlyWindowName,
-  }) launchUrl,
-});
+typedef UseUrlLauncherReturn =
+    ({
+      Future<bool> Function(Uri url) canLaunchUrl,
+      Future<bool> Function(
+        Uri url, {
+        url_launcher.LaunchMode mode,
+        url_launcher.WebViewConfiguration webViewConfiguration,
+        String? webOnlyWindowName,
+      })
+      launchUrl,
+    });
 
 typedef UseUrlLauncher = UseUrlLauncherReturn Function();
 
@@ -24,53 +26,40 @@ UseUrlLauncherReturn useUrlLauncherImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
-  final canLaunchUrl = useCallback(
-    (Uri url) {
-      ref.read(appLoggerProvider).i(
-        [
-          '$_hookName#canLaunchUrl',
-          {'url': url},
-        ],
-      );
+  final canLaunchUrl = useCallback((Uri url) {
+    ref.read(appLoggerProvider).i([
+      '$_hookName#canLaunchUrl',
+      {'url': url},
+    ]);
 
-      return url_launcher.canLaunchUrl(url);
-    },
-    [],
-  );
+    return url_launcher.canLaunchUrl(url);
+  }, []);
 
-  final launchUrl = useCallback(
-    (
-      Uri url, {
-      url_launcher.LaunchMode mode = url_launcher.LaunchMode.platformDefault,
-      url_launcher.WebViewConfiguration webViewConfiguration =
-          const url_launcher.WebViewConfiguration(),
-      String? webOnlyWindowName,
-    }) {
-      ref.read(appLoggerProvider).i(
-        [
-          '$_hookName#launchUrl',
-          {
-            'url': url,
-            'mode': mode,
-            'webViewConfiguration': webViewConfiguration,
-            'webOnlyWindowName': webOnlyWindowName,
-          },
-        ],
-      );
-      return url_launcher.launchUrl(
-        url,
-        mode: mode,
-        webViewConfiguration: webViewConfiguration,
-        webOnlyWindowName: webOnlyWindowName,
-      );
-    },
-    [],
-  );
+  final launchUrl = useCallback((
+    Uri url, {
+    url_launcher.LaunchMode mode = url_launcher.LaunchMode.platformDefault,
+    url_launcher.WebViewConfiguration webViewConfiguration =
+        const url_launcher.WebViewConfiguration(),
+    String? webOnlyWindowName,
+  }) {
+    ref.read(appLoggerProvider).i([
+      '$_hookName#launchUrl',
+      {
+        'url': url,
+        'mode': mode,
+        'webViewConfiguration': webViewConfiguration,
+        'webOnlyWindowName': webOnlyWindowName,
+      },
+    ]);
+    return url_launcher.launchUrl(
+      url,
+      mode: mode,
+      webViewConfiguration: webViewConfiguration,
+      webOnlyWindowName: webOnlyWindowName,
+    );
+  }, []);
 
-  return (
-    canLaunchUrl: canLaunchUrl,
-    launchUrl: launchUrl,
-  );
+  return (canLaunchUrl: canLaunchUrl, launchUrl: launchUrl);
 }
 
 const UseUrlLauncher useUrlLauncher = useUrlLauncherImpl;

@@ -4,11 +4,14 @@ class AppConfig {
   factory AppConfig() => instance;
   AppConfig._internal() {
     flavor = const String.fromEnvironment('flavor');
-    showDevTool = Platform.environment['SHOW_DEV_TOOL'] == 'true' ||
+    showDevTool =
+        Platform.environment['SHOW_DEV_TOOL'] == 'true' ||
         const bool.fromEnvironment('showDevTool');
     crashReportEnabled = const bool.fromEnvironment('crashReportEnabled');
-    appLogConsoleEnabled =
-        const bool.fromEnvironment('appLogConsoleEnabled', defaultValue: true);
+    appLogConsoleEnabled = const bool.fromEnvironment(
+      'appLogConsoleEnabled',
+      defaultValue: true,
+    );
     newsApiBaseUrl = const String.fromEnvironment('newsApiBaseUrl');
     newsApiKey = const String.fromEnvironment('newsApiKey');
 

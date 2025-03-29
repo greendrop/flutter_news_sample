@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ThemeSettingPage extends HookConsumerWidget {
-  const ThemeSettingPage({
-    super.key,
-    this.useThemeMode = useThemeModeImpl,
-  });
+  const ThemeSettingPage({super.key, this.useThemeMode = useThemeModeImpl});
 
   final UseThemeMode useThemeMode;
 
@@ -49,10 +46,7 @@ class ThemeSettingPage extends HookConsumerWidget {
     WidgetRef ref, {
     required L10n l10n,
   }) {
-    return SliverAppBar(
-      title: Text(l10n.themeSettingTitle),
-      floating: true,
-    );
+    return SliverAppBar(title: Text(l10n.themeSettingTitle), floating: true);
   }
 
   Widget _body(

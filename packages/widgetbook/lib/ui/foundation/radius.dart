@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class RadiusWidget extends StatelessWidget {
-  const RadiusWidget({
-    super.key,
-    required this.radius,
-    required this.name,
-  });
+  const RadiusWidget({super.key, required this.radius, required this.name});
 
   final double radius;
   final String name;
@@ -28,12 +24,7 @@ class RadiusWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 16),
-        Column(
-          children: [
-            Text(name),
-            Text('Value: $radius'),
-          ],
-        ),
+        Column(children: [Text(name), Text('Value: $radius')]),
       ],
     );
   }
@@ -70,10 +61,7 @@ class Radius extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: Radius,
-)
+@UseCase(name: 'Default', type: Radius)
 Widget buildRadiusDefaultUseCase(BuildContext context) {
   return const Padding(padding: EdgeInsets.all(8), child: Radius());
 }

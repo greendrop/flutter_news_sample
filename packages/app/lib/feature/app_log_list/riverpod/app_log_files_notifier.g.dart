@@ -12,12 +12,15 @@ String _$appLogFilesNotifierHash() =>
 /// See also [AppLogFilesNotifier].
 @ProviderFor(AppLogFilesNotifier)
 final appLogFilesNotifierProvider = AutoDisposeAsyncNotifierProvider<
-    AppLogFilesNotifier, List<AppLogFile>>.internal(
+  AppLogFilesNotifier,
+  List<AppLogFile>
+>.internal(
   AppLogFilesNotifier.new,
   name: r'appLogFilesNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$appLogFilesNotifierHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$appLogFilesNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

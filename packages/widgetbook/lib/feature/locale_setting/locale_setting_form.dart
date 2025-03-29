@@ -16,10 +16,7 @@ class LocaleSettingForm extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: LocaleSettingForm,
-)
+@UseCase(name: 'Default', type: LocaleSettingForm)
 Widget buildLocaleSettingFormDefaultUseCase(BuildContext context) {
   return const LocaleSettingForm();
 }

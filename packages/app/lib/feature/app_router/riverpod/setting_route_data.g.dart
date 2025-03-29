@@ -13,9 +13,10 @@ String _$settingRouteDataHash() => r'da894770b6b43cd88792aa6323b262183de1a36d';
 final settingRouteDataProvider = AutoDisposeProvider<SettingRouteData>.internal(
   settingRouteData,
   name: r'settingRouteDataProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$settingRouteDataHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$settingRouteDataHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

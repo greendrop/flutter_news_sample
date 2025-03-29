@@ -8,9 +8,7 @@ void main() {
   group('ThemeModeRepository', () {
     group('#fetch', () {
       test('空文字で保存されている場合、ThemeMode.systemを返すこと', () async {
-        SharedPreferences.setMockInitialValues({
-          'themeMode': '',
-        });
+        SharedPreferences.setMockInitialValues({'themeMode': ''});
         final container = ProviderContainer();
 
         final repository = container.read(themeModeRepositoryProvider);
@@ -20,9 +18,7 @@ void main() {
       });
 
       test('ThemeMode.lightで保存されている場合、ThemeMode.lightを返すこと', () async {
-        SharedPreferences.setMockInitialValues({
-          'themeMode': 'light',
-        });
+        SharedPreferences.setMockInitialValues({'themeMode': 'light'});
         final container = ProviderContainer();
 
         final repository = container.read(themeModeRepositoryProvider);
@@ -34,9 +30,7 @@ void main() {
 
     group('#update', () {
       test('#指定した値で更新されること', () async {
-        SharedPreferences.setMockInitialValues({
-          'themeMode': 'light',
-        });
+        SharedPreferences.setMockInitialValues({'themeMode': 'light'});
         final container = ProviderContainer();
 
         final repository = container.read(themeModeRepositoryProvider);

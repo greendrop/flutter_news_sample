@@ -59,11 +59,13 @@ class DesignTokenColor {
   final Color dangerText;
   final Color dangerBackground;
 
-  static final DesignTokenColor light =
-      DesignTokenColor.fromBrightness(Brightness.light);
+  static final DesignTokenColor light = DesignTokenColor.fromBrightness(
+    Brightness.light,
+  );
 
-  static final DesignTokenColor dark =
-      DesignTokenColor.fromBrightness(Brightness.dark);
+  static final DesignTokenColor dark = DesignTokenColor.fromBrightness(
+    Brightness.dark,
+  );
 }
 
 abstract class DesignTokenBaseColor {

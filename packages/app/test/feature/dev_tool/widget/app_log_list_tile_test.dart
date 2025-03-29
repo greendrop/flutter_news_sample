@@ -10,11 +10,7 @@ void main() {
     testWidgets('leading, titleが表示されること', (tester) async {
       await tester.pumpWidget(
         const ProviderScope(
-          child: TestMaterialApp(
-            child: Scaffold(
-              body: AppLogListTile(),
-            ),
-          ),
+          child: TestMaterialApp(child: Scaffold(body: AppLogListTile())),
         ),
       );
       await tester.pumpAndSettle();

@@ -4,9 +4,7 @@ import 'package:app/feature/app_router/route_data/app_route_data.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UsePushDevToolPageReturn = ({
-  Future<void> Function() run,
-});
+typedef UsePushDevToolPageReturn = ({Future<void> Function() run});
 
 typedef UsePushDevToolPage = UsePushDevToolPageReturn Function();
 
@@ -22,7 +20,7 @@ UsePushDevToolPageReturn usePushDevToolPageImpl() {
     return ref.read(devToolRouteDataProvider).push<void>(context);
   });
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UsePushDevToolPage usePushDevToolPage = usePushDevToolPageImpl;

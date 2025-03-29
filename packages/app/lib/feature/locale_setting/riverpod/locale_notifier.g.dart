@@ -12,14 +12,15 @@ String _$localeNotifierHash() => r'6da5cae9bc7ba85d00edde39afa142c55cf62dcd';
 @ProviderFor(LocaleNotifier)
 final localeNotifierProvider =
     NotifierProvider<LocaleNotifier, Locale?>.internal(
-  LocaleNotifier.new,
-  name: r'localeNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$localeNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      LocaleNotifier.new,
+      name: r'localeNotifierProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$localeNotifierHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$LocaleNotifier = Notifier<Locale?>;
 // ignore_for_file: type=lint

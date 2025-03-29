@@ -30,13 +30,10 @@ class AppLogListPage extends HookConsumerWidget {
     final appLogFiles = useAppLogFiles();
     final pushAppLogDetailPage = usePushAppLogDetailPage();
 
-    useEffect(
-      () {
-        Future.microtask(appLogFiles.fetch);
-        return () {};
-      },
-      [],
-    );
+    useEffect(() {
+      Future.microtask(appLogFiles.fetch);
+      return () {};
+    }, []);
 
     return Scaffold(
       body: SafeArea(
@@ -75,10 +72,7 @@ class AppLogListPage extends HookConsumerWidget {
     WidgetRef ref, {
     required L10n l10n,
   }) {
-    return SliverAppBar(
-      title: Text(l10n.appLogListTitle),
-      floating: true,
-    );
+    return SliverAppBar(title: Text(l10n.appLogListTitle), floating: true);
   }
 
   Widget _body(
@@ -89,23 +83,23 @@ class AppLogListPage extends HookConsumerWidget {
     required UsePushAppLogDetailPageReturn pushAppLogDetailPage,
   }) {
     return appLogFiles.state.when(
-      loading: () => SliverFillRemaining(
-        hasScrollBody: false,
-        child: Center(
-          child: CircularProgressIndicator(
-            value: stopLoadingIndicator ? 0.8 : null,
+      loading:
+          () => SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(
+              child: CircularProgressIndicator(
+                value: stopLoadingIndicator ? 0.8 : null,
+              ),
+            ),
           ),
-        ),
-      ),
       error: (error, stackTrace) {
-        final appException = error is AppException
-            ? error
-            : AppException(parentException: error as Exception);
+        final appException =
+            error is AppException
+                ? error
+                : AppException(parentException: error as Exception);
         return SliverFillRemaining(
           hasScrollBody: false,
-          child: Center(
-            child: Text(appException.messageByL10n(l10n)),
-          ),
+          child: Center(child: Text(appException.messageByL10n(l10n))),
         );
       },
       data: (files) {
@@ -117,24 +111,19 @@ class AppLogListPage extends HookConsumerWidget {
         }
 
         return SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return ListTile(
-                key: ValueKey('ListTile-${files[index].path}'),
-                leading: const Icon(FontAwesomeIcons.file),
-                title: Text(
-                  basename(files[index].path),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                onTap: () {
-                  pushAppLogDetailPage.run(
-                    filename: basename(files[index].path),
-                  );
-                },
-              );
-            },
-            childCount: files.length,
-          ),
+          delegate: SliverChildBuilderDelegate((context, index) {
+            return ListTile(
+              key: ValueKey('ListTile-${files[index].path}'),
+              leading: const Icon(FontAwesomeIcons.file),
+              title: Text(
+                basename(files[index].path),
+                overflow: TextOverflow.ellipsis,
+              ),
+              onTap: () {
+                pushAppLogDetailPage.run(filename: basename(files[index].path));
+              },
+            );
+          }, childCount: files.length),
         );
       },
     );

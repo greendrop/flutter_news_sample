@@ -33,18 +33,13 @@ void main() {
           state = AsyncValue.data(
             NewsArticles(
               items: List.generate(3, (index) {
-                return NewsArticle(
-                  title: 'title',
-                  url: 'https://example.com',
-                );
+                return NewsArticle(title: 'title', url: 'https://example.com');
               }),
             ),
           );
         }
 
-        Future<void> fetch({
-          bool isRefresh = false,
-        }) async {
+        Future<void> fetch({bool isRefresh = false}) async {
           return Future.value();
         }
 
@@ -52,11 +47,7 @@ void main() {
           return Future.value();
         }
 
-        return (
-          state: state,
-          fetch: fetch,
-          fetchMore: fetchMore,
-        );
+        return (state: state, fetch: fetch, fetchMore: fetchMore);
       }
 
       UsePushNewsArticleDetailPageReturn usePushNewsArticleDetailPage() {

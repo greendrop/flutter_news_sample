@@ -12,10 +12,12 @@ part of 'news_everything_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 NewsEverythingResponse _$NewsEverythingResponseFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _NewsEverythingResponse.fromJson(json);
 }
 
@@ -37,16 +39,19 @@ mixin _$NewsEverythingResponse {
 
 /// @nodoc
 abstract class $NewsEverythingResponseCopyWith<$Res> {
-  factory $NewsEverythingResponseCopyWith(NewsEverythingResponse value,
-          $Res Function(NewsEverythingResponse) then) =
-      _$NewsEverythingResponseCopyWithImpl<$Res, NewsEverythingResponse>;
+  factory $NewsEverythingResponseCopyWith(
+    NewsEverythingResponse value,
+    $Res Function(NewsEverythingResponse) then,
+  ) = _$NewsEverythingResponseCopyWithImpl<$Res, NewsEverythingResponse>;
   @useResult
   $Res call({String? status, int? totalResults, List<NewsArticle>? articles});
 }
 
 /// @nodoc
-class _$NewsEverythingResponseCopyWithImpl<$Res,
-        $Val extends NewsEverythingResponse>
+class _$NewsEverythingResponseCopyWithImpl<
+  $Res,
+  $Val extends NewsEverythingResponse
+>
     implements $NewsEverythingResponseCopyWith<$Res> {
   _$NewsEverythingResponseCopyWithImpl(this._value, this._then);
 
@@ -64,20 +69,26 @@ class _$NewsEverythingResponseCopyWithImpl<$Res,
     Object? totalResults = freezed,
     Object? articles = freezed,
   }) {
-    return _then(_value.copyWith(
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      totalResults: freezed == totalResults
-          ? _value.totalResults
-          : totalResults // ignore: cast_nullable_to_non_nullable
-              as int?,
-      articles: freezed == articles
-          ? _value.articles
-          : articles // ignore: cast_nullable_to_non_nullable
-              as List<NewsArticle>?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            status:
+                freezed == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            totalResults:
+                freezed == totalResults
+                    ? _value.totalResults
+                    : totalResults // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            articles:
+                freezed == articles
+                    ? _value.articles
+                    : articles // ignore: cast_nullable_to_non_nullable
+                        as List<NewsArticle>?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -85,9 +96,9 @@ class _$NewsEverythingResponseCopyWithImpl<$Res,
 abstract class _$$NewsEverythingResponseImplCopyWith<$Res>
     implements $NewsEverythingResponseCopyWith<$Res> {
   factory _$$NewsEverythingResponseImplCopyWith(
-          _$NewsEverythingResponseImpl value,
-          $Res Function(_$NewsEverythingResponseImpl) then) =
-      __$$NewsEverythingResponseImplCopyWithImpl<$Res>;
+    _$NewsEverythingResponseImpl value,
+    $Res Function(_$NewsEverythingResponseImpl) then,
+  ) = __$$NewsEverythingResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? status, int? totalResults, List<NewsArticle>? articles});
@@ -95,13 +106,13 @@ abstract class _$$NewsEverythingResponseImplCopyWith<$Res>
 
 /// @nodoc
 class __$$NewsEverythingResponseImplCopyWithImpl<$Res>
-    extends _$NewsEverythingResponseCopyWithImpl<$Res,
-        _$NewsEverythingResponseImpl>
+    extends
+        _$NewsEverythingResponseCopyWithImpl<$Res, _$NewsEverythingResponseImpl>
     implements _$$NewsEverythingResponseImplCopyWith<$Res> {
   __$$NewsEverythingResponseImplCopyWithImpl(
-      _$NewsEverythingResponseImpl _value,
-      $Res Function(_$NewsEverythingResponseImpl) _then)
-      : super(_value, _then);
+    _$NewsEverythingResponseImpl _value,
+    $Res Function(_$NewsEverythingResponseImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of NewsEverythingResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -112,30 +123,37 @@ class __$$NewsEverythingResponseImplCopyWithImpl<$Res>
     Object? totalResults = freezed,
     Object? articles = freezed,
   }) {
-    return _then(_$NewsEverythingResponseImpl(
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      totalResults: freezed == totalResults
-          ? _value.totalResults
-          : totalResults // ignore: cast_nullable_to_non_nullable
-              as int?,
-      articles: freezed == articles
-          ? _value._articles
-          : articles // ignore: cast_nullable_to_non_nullable
-              as List<NewsArticle>?,
-    ));
+    return _then(
+      _$NewsEverythingResponseImpl(
+        status:
+            freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        totalResults:
+            freezed == totalResults
+                ? _value.totalResults
+                : totalResults // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        articles:
+            freezed == articles
+                ? _value._articles
+                : articles // ignore: cast_nullable_to_non_nullable
+                    as List<NewsArticle>?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$NewsEverythingResponseImpl extends _NewsEverythingResponse {
-  _$NewsEverythingResponseImpl(
-      {this.status, this.totalResults, final List<NewsArticle>? articles})
-      : _articles = articles,
-        super._();
+  _$NewsEverythingResponseImpl({
+    this.status,
+    this.totalResults,
+    final List<NewsArticle>? articles,
+  }) : _articles = articles,
+       super._();
 
   factory _$NewsEverythingResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsEverythingResponseImplFromJson(json);
@@ -172,8 +190,12 @@ class _$NewsEverythingResponseImpl extends _NewsEverythingResponse {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, status, totalResults,
-      const DeepCollectionEquality().hash(_articles));
+  int get hashCode => Object.hash(
+    runtimeType,
+    status,
+    totalResults,
+    const DeepCollectionEquality().hash(_articles),
+  );
 
   /// Create a copy of NewsEverythingResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -181,22 +203,24 @@ class _$NewsEverythingResponseImpl extends _NewsEverythingResponse {
   @override
   @pragma('vm:prefer-inline')
   _$$NewsEverythingResponseImplCopyWith<_$NewsEverythingResponseImpl>
-      get copyWith => __$$NewsEverythingResponseImplCopyWithImpl<
-          _$NewsEverythingResponseImpl>(this, _$identity);
+  get copyWith =>
+      __$$NewsEverythingResponseImplCopyWithImpl<_$NewsEverythingResponseImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NewsEverythingResponseImplToJson(
-      this,
-    );
+    return _$$NewsEverythingResponseImplToJson(this);
   }
 }
 
 abstract class _NewsEverythingResponse extends NewsEverythingResponse {
-  factory _NewsEverythingResponse(
-      {final String? status,
-      final int? totalResults,
-      final List<NewsArticle>? articles}) = _$NewsEverythingResponseImpl;
+  factory _NewsEverythingResponse({
+    final String? status,
+    final int? totalResults,
+    final List<NewsArticle>? articles,
+  }) = _$NewsEverythingResponseImpl;
   _NewsEverythingResponse._() : super._();
 
   factory _NewsEverythingResponse.fromJson(Map<String, dynamic> json) =
@@ -214,5 +238,5 @@ abstract class _NewsEverythingResponse extends NewsEverythingResponse {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NewsEverythingResponseImplCopyWith<_$NewsEverythingResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

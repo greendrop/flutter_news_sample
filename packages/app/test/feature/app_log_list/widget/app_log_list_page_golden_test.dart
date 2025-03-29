@@ -17,10 +17,7 @@ void main() {
   group('AppLogListPage Golden Test', () {
     prepareGoldenFileComparatorWithThreshold();
 
-    Widget buildAppLogListPage({
-      bool isLoading = false,
-      bool isEmpty = false,
-    }) {
+    Widget buildAppLogListPage({bool isLoading = false, bool isEmpty = false}) {
       UseAppLogFilesReturn useAppLogFiles() {
         late AsyncValue<List<AppLogFile>> state;
         if (isLoading) {
@@ -37,10 +34,7 @@ void main() {
 
         Future<void> fetch({bool isRefresh = false}) async {}
 
-        return (
-          state: state,
-          fetch: fetch,
-        );
+        return (state: state, fetch: fetch);
       }
 
       UsePushAppLogDetailPageReturn usePushAppLogDetailPage() {

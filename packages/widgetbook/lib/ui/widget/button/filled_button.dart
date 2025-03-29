@@ -28,10 +28,7 @@ class FilledButton extends StatelessWidget {
         );
       }
 
-      return material.FilledButton.tonal(
-        onPressed: onPressed,
-        child: child,
-      );
+      return material.FilledButton.tonal(onPressed: onPressed, child: child);
     }
 
     if (iconData != null) {
@@ -42,17 +39,11 @@ class FilledButton extends StatelessWidget {
       );
     }
 
-    return material.FilledButton(
-      onPressed: onPressed,
-      child: child,
-    );
+    return material.FilledButton(onPressed: onPressed, child: child);
   }
 }
 
-@UseCase(
-  name: 'Enabled',
-  type: FilledButton,
-)
+@UseCase(name: 'Enabled', type: FilledButton)
 Widget buildFilledButtonEnabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -63,10 +54,7 @@ Widget buildFilledButtonEnabledUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Enabled With Icon',
-  type: FilledButton,
-)
+@UseCase(name: 'Enabled With Icon', type: FilledButton)
 Widget buildFilledButtonEnabledWithIconUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -78,10 +66,7 @@ Widget buildFilledButtonEnabledWithIconUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Disabled',
-  type: FilledButton,
-)
+@UseCase(name: 'Disabled', type: FilledButton)
 Widget buildFilledButtonDisabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -92,10 +77,7 @@ Widget buildFilledButtonDisabledUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Disabled With Icon',
-  type: FilledButton,
-)
+@UseCase(name: 'Disabled With Icon', type: FilledButton)
 Widget buildFilledButtonDisabledWithIconUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -107,10 +89,7 @@ Widget buildFilledButtonDisabledWithIconUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Tonal Enabled',
-  type: FilledButton,
-)
+@UseCase(name: 'Tonal Enabled', type: FilledButton)
 Widget buildFilledButtonTonalEnabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -122,10 +101,7 @@ Widget buildFilledButtonTonalEnabledUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Tonal Enabled With Icon',
-  type: FilledButton,
-)
+@UseCase(name: 'Tonal Enabled With Icon', type: FilledButton)
 Widget buildFilledButtonTonalEnabledWithIconUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -138,10 +114,7 @@ Widget buildFilledButtonTonalEnabledWithIconUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Tonal Disabled',
-  type: FilledButton,
-)
+@UseCase(name: 'Tonal Disabled', type: FilledButton)
 Widget buildFilledButtonTonalDisabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -153,10 +126,7 @@ Widget buildFilledButtonTonalDisabledUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Tonal Disabled With Icon',
-  type: FilledButton,
-)
+@UseCase(name: 'Tonal Disabled With Icon', type: FilledButton)
 Widget buildFilledButtonTonalDisabledWithIconUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),

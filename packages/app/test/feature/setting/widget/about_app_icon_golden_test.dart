@@ -14,9 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold();
 
     Widget buildAboutAppIcon() {
-      return const TestMaterialApp(
-        child: AboutAppIcon(),
-      );
+      return const TestMaterialApp(child: AboutAppIcon());
     }
 
     final fileNamePrefix = 'about_app_icon${Platform.pathSeparator}';

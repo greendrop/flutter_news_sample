@@ -92,12 +92,8 @@ class ThemeSettingFormState extends ConsumerState<ThemeSettingForm> {
   }
 
   FormGroup _buildFromGroup(BuildContext context) {
-    return FormGroup(
-      {
-        'themeMode': FormControl<ThemeMode>(
-          value: widget.initialThemeMode,
-        ),
-      },
-    );
+    return FormGroup({
+      'themeMode': FormControl<ThemeMode>(value: widget.initialThemeMode),
+    });
   }
 }

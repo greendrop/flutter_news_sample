@@ -3,10 +3,7 @@ import 'package:flutter/material.dart' as material show NavigationRail;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class NavigationRail extends StatelessWidget {
-  const NavigationRail({
-    super.key,
-    this.labelType,
-  });
+  const NavigationRail({super.key, this.labelType});
 
   final NavigationRailLabelType? labelType;
 
@@ -16,10 +13,7 @@ class NavigationRail extends StatelessWidget {
       selectedIndex: 0,
       labelType: labelType,
       destinations: const [
-        NavigationRailDestination(
-          icon: Icon(Icons.home),
-          label: Text('Home'),
-        ),
+        NavigationRailDestination(icon: Icon(Icons.home), label: Text('Home')),
         NavigationRailDestination(
           icon: Icon(Icons.search),
           label: Text('Search'),
@@ -37,34 +31,22 @@ class NavigationRail extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: NavigationRail,
-)
+@UseCase(name: 'Default', type: NavigationRail)
 Widget buildNavigationRailDefaultUseCase(BuildContext context) {
   return const NavigationRail();
 }
 
-@UseCase(
-  name: 'LabelTypeAll',
-  type: NavigationRail,
-)
+@UseCase(name: 'LabelTypeAll', type: NavigationRail)
 Widget buildNavigationRailLabelTypeAllUseCase(BuildContext context) {
   return const NavigationRail(labelType: NavigationRailLabelType.all);
 }
 
-@UseCase(
-  name: 'LabelTypeSelected',
-  type: NavigationRail,
-)
+@UseCase(name: 'LabelTypeSelected', type: NavigationRail)
 Widget buildNavigationRailLabelTypeSelectedUseCase(BuildContext context) {
   return const NavigationRail(labelType: NavigationRailLabelType.selected);
 }
 
-@UseCase(
-  name: 'LabelTypeNone',
-  type: NavigationRail,
-)
+@UseCase(name: 'LabelTypeNone', type: NavigationRail)
 Widget buildNavigationRailLabelTypeNoneUseCase(BuildContext context) {
   return const NavigationRail(labelType: NavigationRailLabelType.none);
 }

@@ -82,18 +82,12 @@ class LocaleSettingFormState extends ConsumerState<LocaleSettingForm> {
       return;
     }
 
-    widget.onSubmit?.call(
-      _formGroup.control('locale').value as Locale?,
-    );
+    widget.onSubmit?.call(_formGroup.control('locale').value as Locale?);
   }
 
   FormGroup _buildFromGroup(BuildContext context) {
-    return FormGroup(
-      {
-        'locale': FormControl<Locale?>(
-          value: widget.initialLocale,
-        ),
-      },
-    );
+    return FormGroup({
+      'locale': FormControl<Locale?>(value: widget.initialLocale),
+    });
   }
 }

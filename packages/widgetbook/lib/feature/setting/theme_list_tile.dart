@@ -14,18 +14,12 @@ class ThemeListTile extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Enabled',
-  type: ThemeListTile,
-)
+@UseCase(name: 'Enabled', type: ThemeListTile)
 Widget buildThemeListTileEnabledUseCase(BuildContext context) {
   return ThemeListTile(onTap: () {});
 }
 
-@UseCase(
-  name: 'Disabled',
-  type: ThemeListTile,
-)
+@UseCase(name: 'Disabled', type: ThemeListTile)
 Widget buildThemeListTileDisabledUseCase(BuildContext context) {
   return const ThemeListTile();
 }

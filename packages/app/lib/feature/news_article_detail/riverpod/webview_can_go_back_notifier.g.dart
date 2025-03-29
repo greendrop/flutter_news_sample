@@ -13,14 +13,15 @@ String _$webViewCanGoBackNotifierHash() =>
 @ProviderFor(WebViewCanGoBackNotifier)
 final webViewCanGoBackNotifierProvider =
     AutoDisposeNotifierProvider<WebViewCanGoBackNotifier, bool>.internal(
-  WebViewCanGoBackNotifier.new,
-  name: r'webViewCanGoBackNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$webViewCanGoBackNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      WebViewCanGoBackNotifier.new,
+      name: r'webViewCanGoBackNotifierProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$webViewCanGoBackNotifierHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$WebViewCanGoBackNotifier = AutoDisposeNotifier<bool>;
 // ignore_for_file: type=lint

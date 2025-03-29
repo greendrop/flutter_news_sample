@@ -40,8 +40,9 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(() => devToolRouteData.push<void>(builderContext))
-            .thenAnswer((_) async {});
+        when(
+          () => devToolRouteData.push<void>(builderContext),
+        ).thenAnswer((_) async {});
 
         await pushDevToolPage.run();
         await tester.pumpAndSettle();

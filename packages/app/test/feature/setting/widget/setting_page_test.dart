@@ -71,50 +71,49 @@ void main() {
 
     group('showDevToolがtrueの場合', () {
       testWidgets(
-          [
-            'ListTileが表示されること',
-            'ListTileをタップすると、ページ遷移処理が呼ばれること',
-          ].join(', '), (tester) async {
-        await tester.runAsync(() async {
-          await tester.pumpWidget(
-            TestMaterialApp(
-              child: SettingPage(
-                usePushLocaleSettingPage: buildUsePushLocaleSettingPage(),
-                usePushThemeSettingPage: buildUsePushThemeSettingPage(),
-                useShowAppAboutDialog: buildUseShowAppAboutDialog(),
-                usePushDevToolPage: buildUsePushDevToolPage(),
-                showDevTool: true,
+        ['ListTileが表示されること', 'ListTileをタップすると、ページ遷移処理が呼ばれること'].join(', '),
+        (tester) async {
+          await tester.runAsync(() async {
+            await tester.pumpWidget(
+              TestMaterialApp(
+                child: SettingPage(
+                  usePushLocaleSettingPage: buildUsePushLocaleSettingPage(),
+                  usePushThemeSettingPage: buildUsePushThemeSettingPage(),
+                  useShowAppAboutDialog: buildUseShowAppAboutDialog(),
+                  usePushDevToolPage: buildUsePushDevToolPage(),
+                  showDevTool: true,
+                ),
               ),
-            ),
-          );
-        });
-        await tester.pumpAndSettle();
+            );
+          });
+          await tester.pumpAndSettle();
 
-        expect(find.byType(LocaleListTile), findsOneWidget);
-        expect(find.byType(ThemeListTile), findsOneWidget);
-        expect(find.byType(AppAboutListTile), findsOneWidget);
-        expect(find.byType(DevToolListTile), findsOneWidget);
+          expect(find.byType(LocaleListTile), findsOneWidget);
+          expect(find.byType(ThemeListTile), findsOneWidget);
+          expect(find.byType(AppAboutListTile), findsOneWidget);
+          expect(find.byType(DevToolListTile), findsOneWidget);
 
-        runnedLocaleSettingPage = false;
-        await tester.tap(find.byType(LocaleListTile));
-        await tester.pumpAndSettle();
-        expect(runnedLocaleSettingPage, isTrue);
+          runnedLocaleSettingPage = false;
+          await tester.tap(find.byType(LocaleListTile));
+          await tester.pumpAndSettle();
+          expect(runnedLocaleSettingPage, isTrue);
 
-        runnedThemeSettingPage = false;
-        await tester.tap(find.byType(ThemeListTile));
-        await tester.pumpAndSettle();
-        expect(runnedThemeSettingPage, isTrue);
+          runnedThemeSettingPage = false;
+          await tester.tap(find.byType(ThemeListTile));
+          await tester.pumpAndSettle();
+          expect(runnedThemeSettingPage, isTrue);
 
-        runnedShowAppAboutDialog = false;
-        await tester.tap(find.byType(AppAboutListTile));
-        await tester.pumpAndSettle();
-        expect(runnedShowAppAboutDialog, isTrue);
+          runnedShowAppAboutDialog = false;
+          await tester.tap(find.byType(AppAboutListTile));
+          await tester.pumpAndSettle();
+          expect(runnedShowAppAboutDialog, isTrue);
 
-        runnedDevToolPage = false;
-        await tester.tap(find.byType(DevToolListTile));
-        await tester.pumpAndSettle();
-        expect(runnedDevToolPage, isTrue);
-      });
+          runnedDevToolPage = false;
+          await tester.tap(find.byType(DevToolListTile));
+          await tester.pumpAndSettle();
+          expect(runnedDevToolPage, isTrue);
+        },
+      );
     });
 
     group('showDevToolがfalseの場合', () {

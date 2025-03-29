@@ -1,9 +1,7 @@
 part of 'app_route_data.dart';
 
 class AppLogDetailRouteData extends GoRouteData {
-  const AppLogDetailRouteData({
-    required this.filename,
-  });
+  const AppLogDetailRouteData({required this.filename});
 
   static final $parentNavigatorKey = rootNavigatorKey;
 

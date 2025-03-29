@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class SpacingWidget extends StatelessWidget {
-  const SpacingWidget({
-    super.key,
-    required this.spacing,
-    required this.name,
-  });
+  const SpacingWidget({super.key, required this.spacing, required this.name});
 
   final double spacing;
   final String name;
@@ -23,12 +19,7 @@ class SpacingWidget extends StatelessWidget {
           child: Container(color: Colors.blue),
         ),
         const SizedBox(width: 16),
-        Column(
-          children: [
-            Text(name),
-            Text('Value: $spacing'),
-          ],
-        ),
+        Column(children: [Text(name), Text('Value: $spacing')]),
       ],
     );
   }
@@ -63,10 +54,7 @@ class Spacing extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: Spacing,
-)
+@UseCase(name: 'Default', type: Spacing)
 Widget buildSpacingDefaultUseCase(BuildContext context) {
   return const Padding(padding: EdgeInsets.all(8), child: Spacing());
 }

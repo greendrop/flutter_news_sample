@@ -30,8 +30,9 @@ void main() {
         await tester.pumpWidget(
           TestMaterialApp(
             providerScopeOverrides: [
-              newsArticleListRouteDataProvider(category: null)
-                  .overrideWithValue(newsArticleListRouteData),
+              newsArticleListRouteDataProvider(
+                category: null,
+              ).overrideWithValue(newsArticleListRouteData),
             ],
             child: MockGoRouterProvider(
               goRouter: goRouter,
@@ -47,8 +48,9 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(() => newsArticleListRouteData.go(builderContext))
-            .thenAnswer((_) async {});
+        when(
+          () => newsArticleListRouteData.go(builderContext),
+        ).thenAnswer((_) async {});
 
         goNewsArticleListPage.run();
         await tester.pumpAndSettle();

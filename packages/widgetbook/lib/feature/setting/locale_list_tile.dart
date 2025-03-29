@@ -14,18 +14,12 @@ class LocaleListTile extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Enabled',
-  type: LocaleListTile,
-)
+@UseCase(name: 'Enabled', type: LocaleListTile)
 Widget buildLocaleListTileEnabledUseCase(BuildContext context) {
   return LocaleListTile(onTap: () {});
 }
 
-@UseCase(
-  name: 'Disabled',
-  type: LocaleListTile,
-)
+@UseCase(name: 'Disabled', type: LocaleListTile)
 Widget buildLocaleListTileDisabledUseCase(BuildContext context) {
   return const LocaleListTile();
 }

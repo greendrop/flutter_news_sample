@@ -5,9 +5,7 @@ import 'package:app/feature/setting/widget/about_app_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-typedef UseShowAppAboutDialogReturn = ({
-  void Function() run,
-});
+typedef UseShowAppAboutDialogReturn = ({void Function() run});
 
 typedef UseShowAppAboutDialog = UseShowAppAboutDialogReturn Function();
 
@@ -18,29 +16,26 @@ UseShowAppAboutDialogReturn useShowAppAboutDialogImpl() {
   final appLogger = useAppLogger();
   final packageInfo = usePackageInfo();
 
-  final run = useCallback(
-    () {
-      appLogger.i(['$_hookName#run']);
-      if (packageInfo.state == null) {
-        return;
-      }
+  final run = useCallback(() {
+    appLogger.i(['$_hookName#run']);
+    if (packageInfo.state == null) {
+      return;
+    }
 
-      return showAboutDialog(
-        context: context,
-        applicationName: packageInfo.state!.appName,
-        applicationVersion: packageInfo.state!.version,
-        applicationIcon: const Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: DesignTokenSpacing.sm),
-            child: AboutAppIcon(),
-          ),
+    return showAboutDialog(
+      context: context,
+      applicationName: packageInfo.state!.appName,
+      applicationVersion: packageInfo.state!.version,
+      applicationIcon: const Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: DesignTokenSpacing.sm),
+          child: AboutAppIcon(),
         ),
-      );
-    },
-    [packageInfo.state],
-  );
+      ),
+    );
+  }, [packageInfo.state]);
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UseShowAppAboutDialog useShowAppAboutDialog = useShowAppAboutDialogImpl;

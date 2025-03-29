@@ -15,11 +15,7 @@ class AppRoot extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const _AppRootTier1(
-      child: _AppRootTier2(
-        child: _AppRootTier3(
-          child: _AppRootTier4(),
-        ),
-      ),
+      child: _AppRootTier2(child: _AppRootTier3(child: _AppRootTier4())),
     );
   }
 }
@@ -35,17 +31,14 @@ class _AppRootTier1 extends HookConsumerWidget {
     final isInitialized = useState(false);
     final appLoggerDirectory = useAppLoggerDirectory();
 
-    useEffect(
-      () {
-        Future.microtask(() async {
-          await appLoggerDirectory.initialize();
-          isInitialized.value = true;
-        });
+    useEffect(() {
+      Future.microtask(() async {
+        await appLoggerDirectory.initialize();
+        isInitialized.value = true;
+      });
 
-        return () {};
-      },
-      [],
-    );
+      return () {};
+    }, []);
 
     if (!isInitialized.value) {
       return const Center(child: CircularProgressIndicator());
@@ -67,20 +60,17 @@ class _AppRootTier2 extends HookConsumerWidget {
     final themeMode = useThemeMode();
     final locale = useLocale();
 
-    useEffect(
-      () {
-        Future.microtask(() async {
-          await packageInfo.initialize();
-          await themeMode.initialize();
-          await locale.initialize();
+    useEffect(() {
+      Future.microtask(() async {
+        await packageInfo.initialize();
+        await themeMode.initialize();
+        await locale.initialize();
 
-          isInitialized.value = true;
-        });
+        isInitialized.value = true;
+      });
 
-        return () {};
-      },
-      [],
-    );
+      return () {};
+    }, []);
 
     if (!isInitialized.value) {
       return const Center(child: CircularProgressIndicator());
@@ -116,8 +106,8 @@ class _AppRootTier4 extends HookConsumerWidget {
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
       locale: locale.state,
-      onGenerateTitle: (BuildContext context) =>
-          L10n.of(context)!.generalAppTitle,
+      onGenerateTitle:
+          (BuildContext context) => L10n.of(context)!.generalAppTitle,
       theme: AppThemeData().light,
       darkTheme: AppThemeData().dark,
       themeMode: themeMode.state,

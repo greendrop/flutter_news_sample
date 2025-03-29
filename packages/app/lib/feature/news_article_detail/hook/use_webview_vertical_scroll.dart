@@ -6,10 +6,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 export 'package:app/feature/news_article_detail/entity/webview_vertical_scroll_state.dart';
 
-typedef UseWebviewVerticalScrollReturn = ({
-  WebViewVerticalScrollState state,
-  void Function(int position) updatePosition,
-});
+typedef UseWebviewVerticalScrollReturn =
+    ({
+      WebViewVerticalScrollState state,
+      void Function(int position) updatePosition,
+    });
 
 typedef UseWebviewVerticalScroll = UseWebviewVerticalScrollReturn Function();
 
@@ -22,16 +23,12 @@ UseWebviewVerticalScrollReturn useWebviewVerticalScrollImpl() {
 
   final state = ref.watch(webViewVerticalScrollStateNotifierProvider);
 
-  final updatePosition = useCallback(
-    (int position) {
-      appLogger.i([
-        '$_hookName#updatePosition',
-      ]);
-      return ref
-          .read(webViewVerticalScrollStateNotifierProvider.notifier)
-          .updatePosition(position);
-    },
-  );
+  final updatePosition = useCallback((int position) {
+    appLogger.i(['$_hookName#updatePosition']);
+    return ref
+        .read(webViewVerticalScrollStateNotifierProvider.notifier)
+        .updatePosition(position);
+  });
 
   return (state: state, updatePosition: updatePosition);
 }

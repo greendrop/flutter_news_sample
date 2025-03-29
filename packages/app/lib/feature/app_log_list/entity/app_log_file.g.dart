@@ -7,11 +7,7 @@ part of 'app_log_file.dart';
 // **************************************************************************
 
 _$AppLogFileImpl _$$AppLogFileImplFromJson(Map<String, dynamic> json) =>
-    _$AppLogFileImpl(
-      path: json['path'] as String? ?? '',
-    );
+    _$AppLogFileImpl(path: json['path'] as String? ?? '');
 
 Map<String, dynamic> _$$AppLogFileImplToJson(_$AppLogFileImpl instance) =>
-    <String, dynamic>{
-      'path': instance.path,
-    };
+    <String, dynamic>{'path': instance.path};

@@ -4,11 +4,12 @@ import 'package:app/feature/news_article_search/riverpod/news_articles_notifier.
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UseNewsArticlesReturn = ({
-  AsyncValue<NewsArticles> state,
-  Future<void> Function({required String keyword, bool isRefresh}) fetch,
-  Future<void> Function() fetchMore,
-});
+typedef UseNewsArticlesReturn =
+    ({
+      AsyncValue<NewsArticles> state,
+      Future<void> Function({required String keyword, bool isRefresh}) fetch,
+      Future<void> Function() fetchMore,
+    });
 
 typedef UseNewsArticles = UseNewsArticlesReturn Function();
 
@@ -20,44 +21,25 @@ UseNewsArticlesReturn useNewsArticlesImpl() {
 
   final state = ref.watch(newsArticlesNotifierProvider);
 
-  final fetch = useCallback(
-    ({required String keyword, bool isRefresh = false}) {
-      ref.read(appLoggerProvider).i(
-        [
-          '$_hookName#fetch',
-          {'keyword': keyword},
-        ],
-      );
-      return ref
-          .read(
-            newsArticlesNotifierProvider.notifier,
-          )
-          .fetch(keyword: keyword, isRefresh: isRefresh);
-    },
-    [],
-  );
+  final fetch = useCallback(({
+    required String keyword,
+    bool isRefresh = false,
+  }) {
+    ref.read(appLoggerProvider).i([
+      '$_hookName#fetch',
+      {'keyword': keyword},
+    ]);
+    return ref
+        .read(newsArticlesNotifierProvider.notifier)
+        .fetch(keyword: keyword, isRefresh: isRefresh);
+  }, []);
 
-  final fetchMore = useCallback(
-    () {
-      ref.read(appLoggerProvider).i(
-        [
-          '$_hookName#fetchMore',
-        ],
-      );
-      return ref
-          .read(
-            newsArticlesNotifierProvider.notifier,
-          )
-          .fetchMore();
-    },
-    [],
-  );
+  final fetchMore = useCallback(() {
+    ref.read(appLoggerProvider).i(['$_hookName#fetchMore']);
+    return ref.read(newsArticlesNotifierProvider.notifier).fetchMore();
+  }, []);
 
-  return (
-    state: state,
-    fetch: fetch,
-    fetchMore: fetchMore,
-  );
+  return (state: state, fetch: fetch, fetchMore: fetchMore);
 }
 
 const UseNewsArticles useNewsArticles = useNewsArticlesImpl;

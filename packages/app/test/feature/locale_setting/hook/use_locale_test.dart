@@ -32,8 +32,9 @@ void main() {
           ),
         );
 
-        when(localeRepository.fetch)
-            .thenAnswer((_) async => const Locale('ja'));
+        when(
+          localeRepository.fetch,
+        ).thenAnswer((_) async => const Locale('ja'));
 
         await locale.initialize();
 
@@ -61,8 +62,9 @@ void main() {
           ),
         );
 
-        when(() => localeRepository.update(const Locale('en')))
-            .thenAnswer((_) async {});
+        when(
+          () => localeRepository.update(const Locale('en')),
+        ).thenAnswer((_) async {});
 
         await locale.update(const Locale('en'));
 

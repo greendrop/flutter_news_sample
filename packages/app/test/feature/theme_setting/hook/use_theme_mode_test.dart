@@ -21,8 +21,9 @@ void main() {
         await tester.pumpWidget(
           TestMaterialApp(
             providerScopeOverrides: [
-              themeModeRepositoryProvider
-                  .overrideWithValue(themeModeRepository),
+              themeModeRepositoryProvider.overrideWithValue(
+                themeModeRepository,
+              ),
             ],
             child: HookConsumer(
               builder: (context, ref, child) {
@@ -34,8 +35,9 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(themeModeRepository.fetch)
-            .thenAnswer((_) async => ThemeMode.system);
+        when(
+          themeModeRepository.fetch,
+        ).thenAnswer((_) async => ThemeMode.system);
 
         await themeMode.initialize();
 
@@ -52,8 +54,9 @@ void main() {
         await tester.pumpWidget(
           TestMaterialApp(
             providerScopeOverrides: [
-              themeModeRepositoryProvider
-                  .overrideWithValue(themeModeRepository),
+              themeModeRepositoryProvider.overrideWithValue(
+                themeModeRepository,
+              ),
             ],
             child: HookConsumer(
               builder: (context, ref, child) {
@@ -64,8 +67,9 @@ void main() {
           ),
         );
 
-        when(() => themeModeRepository.update(ThemeMode.system))
-            .thenAnswer((_) async {});
+        when(
+          () => themeModeRepository.update(ThemeMode.system),
+        ).thenAnswer((_) async {});
 
         await themeMode.update(ThemeMode.system);
 

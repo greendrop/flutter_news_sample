@@ -7,19 +7,20 @@ part of 'news_top_headlines_response.dart';
 // **************************************************************************
 
 _$NewsTopHeadlinesResponseImpl _$$NewsTopHeadlinesResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$NewsTopHeadlinesResponseImpl(
-      status: json['status'] as String?,
-      totalResults: (json['totalResults'] as num?)?.toInt(),
-      articles: (json['articles'] as List<dynamic>?)
+  Map<String, dynamic> json,
+) => _$NewsTopHeadlinesResponseImpl(
+  status: json['status'] as String?,
+  totalResults: (json['totalResults'] as num?)?.toInt(),
+  articles:
+      (json['articles'] as List<dynamic>?)
           ?.map((e) => NewsArticle.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+);
 
 Map<String, dynamic> _$$NewsTopHeadlinesResponseImplToJson(
-        _$NewsTopHeadlinesResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'totalResults': instance.totalResults,
-      'articles': instance.articles?.map((e) => e.toJson()).toList(),
-    };
+  _$NewsTopHeadlinesResponseImpl instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'totalResults': instance.totalResults,
+  'articles': instance.articles?.map((e) => e.toJson()).toList(),
+};

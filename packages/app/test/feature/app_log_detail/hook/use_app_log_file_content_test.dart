@@ -25,71 +25,74 @@ void main() {
   group('useAppLogFileContent', () {
     group('#initialize', () {
       testWidgets(
-          [
-            'appLogFileRepository.fetchが呼ばれること',
-            'AppLogFilesのstateに設定されること',
-          ].join(', '), (tester) async {
-        late UseAppLogFileContentReturn appLogFileContent;
+        [
+          'appLogFileRepository.fetchが呼ばれること',
+          'AppLogFilesのstateに設定されること',
+        ].join(', '),
+        (tester) async {
+          late UseAppLogFileContentReturn appLogFileContent;
 
-        final directory = Directory('path/to');
-        const filename = 'dummy';
-        final appLoggerDirectoryRepository = MockAppLoggerDirectoryRepository();
-        final appLogFileRepository = MockAppLogFileRepository();
-        final file = MockFile();
+          final directory = Directory('path/to');
+          const filename = 'dummy';
+          final appLoggerDirectoryRepository =
+              MockAppLoggerDirectoryRepository();
+          final appLogFileRepository = MockAppLogFileRepository();
+          final file = MockFile();
 
-        when(appLoggerDirectoryRepository.fetch)
-            .thenAnswer((_) async => directory);
+          when(
+            appLoggerDirectoryRepository.fetch,
+          ).thenAnswer((_) async => directory);
 
-        await tester.pumpWidget(
-          TestMaterialApp(
-            providerScopeOverrides: [
-              appLoggerDirectoryRepositoryProvider
-                  .overrideWithValue(appLoggerDirectoryRepository),
-              appLogFileRepositoryProvider
-                  .overrideWithValue(appLogFileRepository),
-            ],
-            child: HookConsumer(
-              builder: (context, ref, child) {
-                useEffect(
-                  () {
+          await tester.pumpWidget(
+            TestMaterialApp(
+              providerScopeOverrides: [
+                appLoggerDirectoryRepositoryProvider.overrideWithValue(
+                  appLoggerDirectoryRepository,
+                ),
+                appLogFileRepositoryProvider.overrideWithValue(
+                  appLogFileRepository,
+                ),
+              ],
+              child: HookConsumer(
+                builder: (context, ref, child) {
+                  useEffect(() {
                     ref.read(appLoggerDirectoryProvider.notifier).initialize();
                     return () {};
-                  },
-                  [],
-                );
+                  }, []);
 
-                appLogFileContent = useAppLogFileContent(filename: filename);
-                return Container();
-              },
+                  appLogFileContent = useAppLogFileContent(filename: filename);
+                  return Container();
+                },
+              ),
             ),
-          ),
-        );
-        await tester.pumpAndSettle();
+          );
+          await tester.pumpAndSettle();
 
-        when(
-          () => appLogFileRepository.fetch(
-            directory: directory,
-            filename: filename,
-          ),
-        ).thenAnswer((_) async => file);
-        when(file.readAsString).thenAnswer((_) async => 'dummy');
+          when(
+            () => appLogFileRepository.fetch(
+              directory: directory,
+              filename: filename,
+            ),
+          ).thenAnswer((_) async => file);
+          when(file.readAsString).thenAnswer((_) async => 'dummy');
 
-        await appLogFileContent.fetch();
-        await tester.pumpAndSettle();
+          await appLogFileContent.fetch();
+          await tester.pumpAndSettle();
 
-        verify(appLoggerDirectoryRepository.fetch).called(1);
-        verify(
-          () => appLogFileRepository.fetch(
-            directory: directory,
-            filename: filename,
-          ),
-        ).called(1);
+          verify(appLoggerDirectoryRepository.fetch).called(1);
+          verify(
+            () => appLogFileRepository.fetch(
+              directory: directory,
+              filename: filename,
+            ),
+          ).called(1);
 
-        expect(appLogFileContent.state.hasValue, isTrue);
-        expect(appLogFileContent.state.hasError, isFalse);
-        expect(appLogFileContent.state.isLoading, isFalse);
-        expect(appLogFileContent.state.valueOrNull, 'dummy');
-      });
+          expect(appLogFileContent.state.hasValue, isTrue);
+          expect(appLogFileContent.state.hasError, isFalse);
+          expect(appLogFileContent.state.isLoading, isFalse);
+          expect(appLogFileContent.state.valueOrNull, 'dummy');
+        },
+      );
     });
   });
 }

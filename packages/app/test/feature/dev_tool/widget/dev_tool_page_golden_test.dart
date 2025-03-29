@@ -24,9 +24,7 @@ void main() {
       }
 
       return TestMaterialApp(
-        child: DevToolPage(
-          usePushAppLogListPage: usePushAppLogListPage,
-        ),
+        child: DevToolPage(usePushAppLogListPage: usePushAppLogListPage),
       );
     }
 

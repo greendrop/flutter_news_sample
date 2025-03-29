@@ -21,9 +21,7 @@ Future<void> main() async {
 
 Future<void> _prepareTimeZone() async {
   tz.initializeTimeZones();
-  tz.setLocalLocation(
-    tz.getLocation(await FlutterTimezone.getLocalTimezone()),
-  );
+  tz.setLocalLocation(tz.getLocation(await FlutterTimezone.getLocalTimezone()));
 }
 
 Future<void> _prepareFirebase() async {

@@ -16,23 +16,14 @@ class ThemeSettingPage extends StatelessWidget {
       Future<void> initialize() async {}
       Future<void> update(ThemeMode themeMode) async {}
 
-      return (
-        state: state,
-        initialize: initialize,
-        update: update,
-      );
+      return (state: state, initialize: initialize, update: update);
     }
 
-    return feature.ThemeSettingPage(
-      useThemeMode: useThemeMode,
-    );
+    return feature.ThemeSettingPage(useThemeMode: useThemeMode);
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: ThemeSettingPage,
-)
+@UseCase(name: 'Default', type: ThemeSettingPage)
 Widget buildThemeSettingPageDefaultUseCase(BuildContext context) {
   return const ThemeSettingPage();
 }

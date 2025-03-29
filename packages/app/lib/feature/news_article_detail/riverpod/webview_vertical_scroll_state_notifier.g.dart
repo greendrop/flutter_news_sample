@@ -12,17 +12,20 @@ String _$webViewVerticalScrollStateNotifierHash() =>
 /// See also [WebViewVerticalScrollStateNotifier].
 @ProviderFor(WebViewVerticalScrollStateNotifier)
 final webViewVerticalScrollStateNotifierProvider = AutoDisposeNotifierProvider<
-    WebViewVerticalScrollStateNotifier, WebViewVerticalScrollState>.internal(
+  WebViewVerticalScrollStateNotifier,
+  WebViewVerticalScrollState
+>.internal(
   WebViewVerticalScrollStateNotifier.new,
   name: r'webViewVerticalScrollStateNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$webViewVerticalScrollStateNotifierHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$webViewVerticalScrollStateNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$WebViewVerticalScrollStateNotifier
-    = AutoDisposeNotifier<WebViewVerticalScrollState>;
+typedef _$WebViewVerticalScrollStateNotifier =
+    AutoDisposeNotifier<WebViewVerticalScrollState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UseLocaleReturn = ({
-  Locale? state,
-  Future<void> Function() initialize,
-  Future<void> Function(Locale?) update,
-});
+typedef UseLocaleReturn =
+    ({
+      Locale? state,
+      Future<void> Function() initialize,
+      Future<void> Function(Locale?) update,
+    });
 
 typedef UseLocale = UseLocaleReturn Function();
 
@@ -21,30 +22,20 @@ UseLocaleReturn useLocaleImpl() {
 
   final state = ref.watch(localeNotifierProvider);
 
-  final initialize = useCallback(
-    () {
-      appLogger.i(['$_hookName#initialize']);
-      return ref.read(localeNotifierProvider.notifier).initialize();
-    },
-    [],
-  );
+  final initialize = useCallback(() {
+    appLogger.i(['$_hookName#initialize']);
+    return ref.read(localeNotifierProvider.notifier).initialize();
+  }, []);
 
-  final update = useCallback(
-    (Locale? value) {
-      appLogger.i([
-        '$_hookName#update',
-        {'value': value},
-      ]);
-      return ref.read(localeNotifierProvider.notifier).setLocale(value);
-    },
-    [],
-  );
+  final update = useCallback((Locale? value) {
+    appLogger.i([
+      '$_hookName#update',
+      {'value': value},
+    ]);
+    return ref.read(localeNotifierProvider.notifier).setLocale(value);
+  }, []);
 
-  return (
-    state: state,
-    initialize: initialize,
-    update: update,
-  );
+  return (state: state, initialize: initialize, update: update);
 }
 
 const UseLocale useLocale = useLocaleImpl;

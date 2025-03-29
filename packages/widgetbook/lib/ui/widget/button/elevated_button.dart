@@ -25,17 +25,11 @@ class ElevatedButton extends StatelessWidget {
       );
     }
 
-    return material.ElevatedButton(
-      onPressed: onPressed,
-      child: child,
-    );
+    return material.ElevatedButton(onPressed: onPressed, child: child);
   }
 }
 
-@UseCase(
-  name: 'Enabled',
-  type: ElevatedButton,
-)
+@UseCase(name: 'Enabled', type: ElevatedButton)
 Widget buildElevatedButtonEnabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -46,10 +40,7 @@ Widget buildElevatedButtonEnabledUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Enabled With Icon',
-  type: ElevatedButton,
-)
+@UseCase(name: 'Enabled With Icon', type: ElevatedButton)
 Widget buildElevatedButtonEnabledWithIconUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -61,10 +52,7 @@ Widget buildElevatedButtonEnabledWithIconUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Disabled',
-  type: ElevatedButton,
-)
+@UseCase(name: 'Disabled', type: ElevatedButton)
 Widget buildElevatedButtonDisabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -75,10 +63,7 @@ Widget buildElevatedButtonDisabledUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Disabled With Icon',
-  type: ElevatedButton,
-)
+@UseCase(name: 'Disabled With Icon', type: ElevatedButton)
 Widget buildElevatedButtonDisabledWithIconUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),

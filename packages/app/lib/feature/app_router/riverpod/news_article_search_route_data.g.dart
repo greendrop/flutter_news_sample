@@ -13,18 +13,19 @@ String _$newsArticleSearchRouteDataHash() =>
 @ProviderFor(newsArticleSearchRouteData)
 final newsArticleSearchRouteDataProvider =
     AutoDisposeProvider<NewsArticleSearchRouteData>.internal(
-  newsArticleSearchRouteData,
-  name: r'newsArticleSearchRouteDataProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$newsArticleSearchRouteDataHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      newsArticleSearchRouteData,
+      name: r'newsArticleSearchRouteDataProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$newsArticleSearchRouteDataHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef NewsArticleSearchRouteDataRef
-    = AutoDisposeProviderRef<NewsArticleSearchRouteData>;
+typedef NewsArticleSearchRouteDataRef =
+    AutoDisposeProviderRef<NewsArticleSearchRouteData>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

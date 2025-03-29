@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class DevToolPage extends StatelessWidget {
-  const DevToolPage({
-    super.key,
-  });
+  const DevToolPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +35,7 @@ class DevToolPage extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: DevToolPage,
-)
+@UseCase(name: 'Default', type: DevToolPage)
 Widget buildAppLogListPageDefaultUseCase(BuildContext context) {
   return const DevToolPage();
 }

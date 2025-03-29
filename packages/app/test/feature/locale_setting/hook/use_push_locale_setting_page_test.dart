@@ -25,8 +25,9 @@ void main() {
         await tester.pumpWidget(
           TestMaterialApp(
             providerScopeOverrides: [
-              localeSettingRouteDataProvider
-                  .overrideWithValue(localeSettingRouteData),
+              localeSettingRouteDataProvider.overrideWithValue(
+                localeSettingRouteData,
+              ),
             ],
             child: MockGoRouterProvider(
               goRouter: goRouter,
@@ -42,14 +43,16 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(() => localeSettingRouteData.push<void>(builderContext))
-            .thenAnswer((_) async {});
+        when(
+          () => localeSettingRouteData.push<void>(builderContext),
+        ).thenAnswer((_) async {});
 
         await pushLocaleSettingPage.run();
         await tester.pumpAndSettle();
 
-        verify(() => localeSettingRouteData.push<void>(builderContext))
-            .called(1);
+        verify(
+          () => localeSettingRouteData.push<void>(builderContext),
+        ).called(1);
       });
     });
   });
