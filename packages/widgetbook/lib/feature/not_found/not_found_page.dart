@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class NotFoundPage extends StatelessWidget {
-  const NotFoundPage({
-    super.key,
-  });
+  const NotFoundPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +12,7 @@ class NotFoundPage extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: NotFoundPage,
-)
+@UseCase(name: 'Default', type: NotFoundPage)
 Widget buildSettingDefaultUseCase(BuildContext context) {
   return const NotFoundPage();
 }

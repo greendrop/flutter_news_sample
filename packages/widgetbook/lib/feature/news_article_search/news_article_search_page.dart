@@ -62,15 +62,11 @@ class NewsArticleSearchPage extends StatelessWidget {
         return Future.value();
       }
 
-      return (
-        state: state,
-        fetch: fetch,
-        fetchMore: fetchMore,
-      );
+      return (state: state, fetch: fetch, fetchMore: fetchMore);
     }
 
     UsePushNewsArticleSearchDetailPageReturn
-        usePushNewsArticleSearchDetailPage() {
+    usePushNewsArticleSearchDetailPage() {
       Future<void> run({required String title, required String url}) {
         return Future.value();
       }
@@ -89,26 +85,17 @@ class NewsArticleSearchPage extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: NewsArticleSearchPage,
-)
+@UseCase(name: 'Default', type: NewsArticleSearchPage)
 Widget buildNewsArticleSearchPageDefaultUseCase(BuildContext context) {
   return const NewsArticleSearchPage();
 }
 
-@UseCase(
-  name: 'Loading',
-  type: NewsArticleSearchPage,
-)
+@UseCase(name: 'Loading', type: NewsArticleSearchPage)
 Widget buildNewsArticleListPageLoadingUseCase(BuildContext context) {
   return const NewsArticleSearchPage(isLoading: true);
 }
 
-@UseCase(
-  name: 'Empty',
-  type: NewsArticleSearchPage,
-)
+@UseCase(name: 'Empty', type: NewsArticleSearchPage)
 Widget buildNewsArticleSearchPageEmptyUseCase(BuildContext context) {
   return const NewsArticleSearchPage(isEmpty: true);
 }

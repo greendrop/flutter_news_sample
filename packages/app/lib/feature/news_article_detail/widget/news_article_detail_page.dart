@@ -73,7 +73,8 @@ class NewsArticleDetailPage extends HookConsumerWidget {
                           -kToolbarHeight * appBarAnimationController.value,
                         ),
                         child: SizedBox(
-                          height: (-kToolbarHeight *
+                          height:
+                              (-kToolbarHeight *
                                   appBarAnimationController.value) +
                               kToolbarHeight,
                           child: _appBar(

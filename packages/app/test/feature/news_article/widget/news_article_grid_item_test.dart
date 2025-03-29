@@ -10,9 +10,7 @@ import '../../../support/widget/test_material_app.dart';
 void main() {
   group('NewsArticleGridItem', () {
     testWidgets('タイトル, 画像が表示されること', (tester) async {
-      final newsArticle = NewsArticle(
-        title: 'title',
-      );
+      final newsArticle = NewsArticle(title: 'title');
 
       await tester.pumpWidget(
         ProviderScope(
@@ -34,9 +32,7 @@ void main() {
     });
 
     testWidgets('タップして、onTapが呼ばれること', (tester) async {
-      final newsArticle = NewsArticle(
-        title: 'title',
-      );
+      final newsArticle = NewsArticle(title: 'title');
       var isCalled = false;
 
       await tester.pumpWidget(

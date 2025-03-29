@@ -10,17 +10,14 @@ void main() {
     testWidgets('leading, titleが表示されること', (tester) async {
       await tester.pumpWidget(
         const ProviderScope(
-          child: TestMaterialApp(
-            child: Scaffold(
-              body: AppAboutListTile(),
-            ),
-          ),
+          child: TestMaterialApp(child: Scaffold(body: AppAboutListTile())),
         ),
       );
       await tester.pumpAndSettle();
 
-      final leadingFinder =
-          find.byKey(const Key('AppAboutListTileLeadingIcon'));
+      final leadingFinder = find.byKey(
+        const Key('AppAboutListTileLeadingIcon'),
+      );
       expect(leadingFinder, findsOneWidget);
 
       final titleFinder = find.byKey(const Key('AppAboutListTileTitleText'));

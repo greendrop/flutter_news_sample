@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LocaleSettingPage extends HookConsumerWidget {
-  const LocaleSettingPage({
-    super.key,
-    this.useLocale = useLocaleImpl,
-  });
+  const LocaleSettingPage({super.key, this.useLocale = useLocaleImpl});
 
   final UseLocale useLocale;
 
@@ -49,10 +46,7 @@ class LocaleSettingPage extends HookConsumerWidget {
     WidgetRef ref, {
     required L10n l10n,
   }) {
-    return SliverAppBar(
-      title: Text(l10n.localeSettingTitle),
-      floating: true,
-    );
+    return SliverAppBar(title: Text(l10n.localeSettingTitle), floating: true);
   }
 
   Widget _body(

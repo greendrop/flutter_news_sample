@@ -14,11 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold();
 
     Widget buildAppLogListTile({VoidCallback? onTap}) {
-      return TestMaterialApp(
-        child: AppLogListTile(
-          onTap: onTap,
-        ),
-      );
+      return TestMaterialApp(child: AppLogListTile(onTap: onTap));
     }
 
     final fileNamePrefix = 'app_log_list_tile${Platform.pathSeparator}';

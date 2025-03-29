@@ -34,9 +34,9 @@ class GoldenTestWidgetScenario extends StatelessWidget {
             maxHeight: maxHeight,
           ),
           child: MediaQuery(
-            data: MediaQuery.of(context).copyWith(
-              platformBrightness: brightness,
-            ),
+            data: MediaQuery.of(
+              context,
+            ).copyWith(platformBrightness: brightness),
             child: builder(),
           ),
         ),

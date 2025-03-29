@@ -29,12 +29,14 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
     }
 
     try {
-      final response =
-          await ref.read(newsEverythingRepositoryProvider).get(query: keyword);
+      final response = await ref
+          .read(newsEverythingRepositoryProvider)
+          .get(query: keyword);
 
-      final responseArticles = (response.articles ?? []).map((responseArticle) {
-        return NewsArticle.fromJson(responseArticle.toJson());
-      }).toList();
+      final responseArticles =
+          (response.articles ?? []).map((responseArticle) {
+            return NewsArticle.fromJson(responseArticle.toJson());
+          }).toList();
 
       final hasNextPage = responseArticles.isNotEmpty;
       final newsArticles = NewsArticles(
@@ -46,19 +48,21 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
       state = AsyncValue<NewsArticles>.data(newsArticles);
       return Future.value();
     } on Exception catch (e) {
-      appLogger.e(
-        [
-          '$_notifierName#fetch',
-          {'Exception': e},
-        ],
-      );
+      appLogger.e([
+        '$_notifierName#fetch',
+        {'Exception': e},
+      ]);
       final appException = AppException.fromException(e);
       if (isRefresh) {
-        state = AsyncValue<NewsArticles>.error(appException, StackTrace.current)
-            .copyWithPrevious(state);
+        state = AsyncValue<NewsArticles>.error(
+          appException,
+          StackTrace.current,
+        ).copyWithPrevious(state);
       } else {
-        state =
-            AsyncValue<NewsArticles>.error(appException, StackTrace.current);
+        state = AsyncValue<NewsArticles>.error(
+          appException,
+          StackTrace.current,
+        );
       }
       return Future.error(appException);
     }
@@ -79,9 +83,10 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
           .read(newsEverythingRepositoryProvider)
           .get(query: keyword, page: page);
 
-      final responseArticles = (response.articles ?? []).map((responseArticle) {
-        return NewsArticle.fromJson(responseArticle.toJson());
-      }).toList();
+      final responseArticles =
+          (response.articles ?? []).map((responseArticle) {
+            return NewsArticle.fromJson(responseArticle.toJson());
+          }).toList();
       final hasNextPage = responseArticles.isNotEmpty;
 
       var newsArticles = state.valueOrNull;
@@ -99,19 +104,20 @@ class NewsArticlesNotifier extends _$NewsArticlesNotifier {
         );
       }
 
-      state =
-          AsyncValue<NewsArticles>.data(newsArticles).copyWithPrevious(state);
+      state = AsyncValue<NewsArticles>.data(
+        newsArticles,
+      ).copyWithPrevious(state);
       return Future.value();
     } on Exception catch (e) {
-      appLogger.e(
-        [
-          '$_notifierName#fetchMore',
-          {'Exception': e},
-        ],
-      );
+      appLogger.e([
+        '$_notifierName#fetchMore',
+        {'Exception': e},
+      ]);
       final appException = AppException.fromException(e);
-      state = AsyncValue<NewsArticles>.error(appException, StackTrace.current)
-          .copyWithPrevious(state);
+      state = AsyncValue<NewsArticles>.error(
+        appException,
+        StackTrace.current,
+      ).copyWithPrevious(state);
       return Future.error(appException);
     }
   }

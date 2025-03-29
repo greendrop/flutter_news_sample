@@ -4,9 +4,8 @@ import 'package:app/feature/app_router/route_data/app_route_data.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UsePushAppLogDetailPageReturn = ({
-  Future<void> Function({required String filename}) run,
-});
+typedef UsePushAppLogDetailPageReturn =
+    ({Future<void> Function({required String filename}) run});
 
 typedef UsePushAppLogDetailPage = UsePushAppLogDetailPageReturn Function();
 
@@ -27,7 +26,7 @@ UsePushAppLogDetailPageReturn usePushAppLogDetailPageImpl() {
         .push<void>(context);
   });
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UsePushAppLogDetailPage usePushAppLogDetailPage =

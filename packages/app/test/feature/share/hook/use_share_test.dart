@@ -44,9 +44,7 @@ void main() {
 
         await share.run('Share text');
 
-        verify(
-          () => mockMethodChannelShare.share('Share text'),
-        ).called(1);
+        verify(() => mockMethodChannelShare.share('Share text')).called(1);
       });
     });
   });

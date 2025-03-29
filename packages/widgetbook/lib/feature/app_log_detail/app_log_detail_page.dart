@@ -40,10 +40,7 @@ class AppLogDetailPage extends StatelessWidget {
 
       Future<void> fetch() async {}
 
-      return (
-        state: state,
-        fetch: fetch,
-      );
+      return (state: state, fetch: fetch);
     }
 
     return feature.AppLogDetailPage(
@@ -53,26 +50,17 @@ class AppLogDetailPage extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: AppLogDetailPage,
-)
+@UseCase(name: 'Default', type: AppLogDetailPage)
 Widget buildAppLogDetailPageDefaultUseCase(BuildContext context) {
   return const AppLogDetailPage();
 }
 
-@UseCase(
-  name: 'Loading',
-  type: AppLogDetailPage,
-)
+@UseCase(name: 'Loading', type: AppLogDetailPage)
 Widget buildAppLogDetailPageLoadingUseCase(BuildContext context) {
   return const AppLogDetailPage(isLoading: true);
 }
 
-@UseCase(
-  name: 'Empty',
-  type: AppLogDetailPage,
-)
+@UseCase(name: 'Empty', type: AppLogDetailPage)
 Widget buildAppLogDetailPageEmptyUseCase(BuildContext context) {
   return const AppLogDetailPage(isEmpty: true);
 }

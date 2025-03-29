@@ -14,9 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold(threshold: 0.02);
 
     Widget buildNotFoundPage() {
-      return const TestMaterialApp(
-        child: NotFoundPage(),
-      );
+      return const TestMaterialApp(child: NotFoundPage());
     }
 
     final fileNamePrefix = 'not_found_page${Platform.pathSeparator}';

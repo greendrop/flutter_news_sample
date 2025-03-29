@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class TextWidget extends StatelessWidget {
-  const TextWidget({
-    super.key,
-    required this.name,
-    this.style,
-  });
+  const TextWidget({super.key, required this.name, this.style});
 
   final String name;
   final TextStyle? style;
@@ -55,10 +51,7 @@ class Typography extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: Typography,
-)
+@UseCase(name: 'Default', type: Typography)
 Widget buildTypographyDefaultUseCase(BuildContext context) {
   return const Padding(padding: EdgeInsets.all(8), child: Typography());
 }

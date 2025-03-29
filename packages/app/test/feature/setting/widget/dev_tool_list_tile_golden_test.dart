@@ -14,9 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold();
 
     Widget buildDevToolListTile({VoidCallback? onTap}) {
-      return TestMaterialApp(
-        child: DevToolListTile(onTap: onTap),
-      );
+      return TestMaterialApp(child: DevToolListTile(onTap: onTap));
     }
 
     final fileNamePrefix = 'dev_tool_list_tile${Platform.pathSeparator}';

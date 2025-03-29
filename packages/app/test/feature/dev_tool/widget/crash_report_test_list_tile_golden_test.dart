@@ -14,11 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold();
 
     Widget buildCrashReportListTile({VoidCallback? onTap}) {
-      return TestMaterialApp(
-        child: CrashReportListTile(
-          onTap: onTap,
-        ),
-      );
+      return TestMaterialApp(child: CrashReportListTile(onTap: onTap));
     }
 
     final fileNamePrefix = 'crash_report_list_tile${Platform.pathSeparator}';

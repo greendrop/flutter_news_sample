@@ -25,17 +25,11 @@ class TextButton extends StatelessWidget {
       );
     }
 
-    return material.TextButton(
-      onPressed: onPressed,
-      child: child,
-    );
+    return material.TextButton(onPressed: onPressed, child: child);
   }
 }
 
-@UseCase(
-  name: 'Enabled',
-  type: TextButton,
-)
+@UseCase(name: 'Enabled', type: TextButton)
 Widget buildTextButtonEnabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -46,10 +40,7 @@ Widget buildTextButtonEnabledUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Enabled With Icon',
-  type: TextButton,
-)
+@UseCase(name: 'Enabled With Icon', type: TextButton)
 Widget buildTextButtonEnabledWithIconUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -61,10 +52,7 @@ Widget buildTextButtonEnabledWithIconUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Disabled',
-  type: TextButton,
-)
+@UseCase(name: 'Disabled', type: TextButton)
 Widget buildTextButtonDisabledUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),
@@ -75,10 +63,7 @@ Widget buildTextButtonDisabledUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'Disabled With Icon',
-  type: TextButton,
-)
+@UseCase(name: 'Disabled With Icon', type: TextButton)
 Widget buildTextButtonDisabledWithIconUseCase(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8),

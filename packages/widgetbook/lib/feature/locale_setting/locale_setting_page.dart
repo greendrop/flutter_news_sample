@@ -16,23 +16,14 @@ class LocaleSettingPage extends StatelessWidget {
       Future<void> initialize() async {}
       Future<void> update(Locale? locale) async {}
 
-      return (
-        state: state,
-        initialize: initialize,
-        update: update,
-      );
+      return (state: state, initialize: initialize, update: update);
     }
 
-    return feature.LocaleSettingPage(
-      useLocale: useLocale,
-    );
+    return feature.LocaleSettingPage(useLocale: useLocale);
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: LocaleSettingPage,
-)
+@UseCase(name: 'Default', type: LocaleSettingPage)
 Widget buildLocaleSettingPageDefaultUseCase(BuildContext context) {
   return const LocaleSettingPage();
 }

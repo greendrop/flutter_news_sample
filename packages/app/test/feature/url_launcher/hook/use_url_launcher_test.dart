@@ -40,8 +40,9 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(() => mockUrlLauncherPlatform.canLaunch('https://example.com'))
-            .thenAnswer((_) async => true);
+        when(
+          () => mockUrlLauncherPlatform.canLaunch('https://example.com'),
+        ).thenAnswer((_) async => true);
 
         await urlLauncher.canLaunchUrl(Uri.parse('https://example.com'));
 
@@ -68,19 +69,13 @@ void main() {
         await tester.pumpAndSettle();
 
         when(
-          () => mockUrlLauncherPlatform.launchUrl(
-            'https://example.com',
-            any(),
-          ),
+          () => mockUrlLauncherPlatform.launchUrl('https://example.com', any()),
         ).thenAnswer((_) async => true);
 
         await urlLauncher.launchUrl(Uri.parse('https://example.com'));
 
         verify(
-          () => mockUrlLauncherPlatform.launchUrl(
-            'https://example.com',
-            any(),
-          ),
+          () => mockUrlLauncherPlatform.launchUrl('https://example.com', any()),
         ).called(1);
       });
     });

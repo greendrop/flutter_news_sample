@@ -15,18 +15,12 @@ class CrashReportListTile extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Enabled',
-  type: CrashReportListTile,
-)
+@UseCase(name: 'Enabled', type: CrashReportListTile)
 Widget buildCrashReportListTileEnabledUseCase(BuildContext context) {
   return CrashReportListTile(onTap: () {});
 }
 
-@UseCase(
-  name: 'Disabled',
-  type: CrashReportListTile,
-)
+@UseCase(name: 'Disabled', type: CrashReportListTile)
 Widget buildCrashReportListTileDisabledUseCase(BuildContext context) {
   return const CrashReportListTile();
 }

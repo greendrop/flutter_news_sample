@@ -19,11 +19,7 @@ void main() {
           return Future.value();
         }
 
-        return (
-          state: state,
-          initialize: initialize,
-          update: update,
-        );
+        return (state: state, initialize: initialize, update: update);
       }
 
       return useThemeMode;
@@ -34,9 +30,7 @@ void main() {
         await tester.pumpWidget(
           ProviderScope(
             child: TestMaterialApp(
-              child: ThemeSettingPage(
-                useThemeMode: buildUseThemeMode(),
-              ),
+              child: ThemeSettingPage(useThemeMode: buildUseThemeMode()),
             ),
           ),
         );
@@ -51,9 +45,7 @@ void main() {
         await tester.pumpWidget(
           ProviderScope(
             child: TestMaterialApp(
-              child: ThemeSettingPage(
-                useThemeMode: buildUseThemeMode(),
-              ),
+              child: ThemeSettingPage(useThemeMode: buildUseThemeMode()),
             ),
           ),
         );

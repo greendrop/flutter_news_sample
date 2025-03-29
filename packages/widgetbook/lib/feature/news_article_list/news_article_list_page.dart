@@ -51,9 +51,7 @@ class NewsArticleListPage extends StatelessWidget {
         );
       }
 
-      Future<void> fetch({
-        bool isRefresh = false,
-      }) async {
+      Future<void> fetch({bool isRefresh = false}) async {
         return Future.value();
       }
 
@@ -61,11 +59,7 @@ class NewsArticleListPage extends StatelessWidget {
         return Future.value();
       }
 
-      return (
-        state: state,
-        fetch: fetch,
-        fetchMore: fetchMore,
-      );
+      return (state: state, fetch: fetch, fetchMore: fetchMore);
     }
 
     UsePushNewsArticleDetailPageReturn usePushNewsArticleDetailPage() {
@@ -87,26 +81,17 @@ class NewsArticleListPage extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: NewsArticleListPage,
-)
+@UseCase(name: 'Default', type: NewsArticleListPage)
 Widget buildNewsArticleListPageDefaultUseCase(BuildContext context) {
   return const NewsArticleListPage();
 }
 
-@UseCase(
-  name: 'Loading',
-  type: NewsArticleListPage,
-)
+@UseCase(name: 'Loading', type: NewsArticleListPage)
 Widget buildNewsArticleListPageLoadingUseCase(BuildContext context) {
   return const NewsArticleListPage(isLoading: true);
 }
 
-@UseCase(
-  name: 'Empty',
-  type: NewsArticleListPage,
-)
+@UseCase(name: 'Empty', type: NewsArticleListPage)
 Widget buildNewsArticleListPageEmptyUseCase(BuildContext context) {
   return const NewsArticleListPage(isEmpty: true);
 }

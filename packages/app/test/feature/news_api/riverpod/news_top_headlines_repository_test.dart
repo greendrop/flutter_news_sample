@@ -52,8 +52,9 @@ void main() {
               ],
             );
 
-            final repository =
-                container.read(newsTopHeadlinesRepositoryProvider);
+            final repository = container.read(
+              newsTopHeadlinesRepositoryProvider,
+            );
 
             final response = await repository.get(category: 'general');
             expect(response.articles, [
@@ -92,8 +93,9 @@ void main() {
               ],
             );
 
-            final repository =
-                container.read(newsTopHeadlinesRepositoryProvider);
+            final repository = container.read(
+              newsTopHeadlinesRepositoryProvider,
+            );
 
             expect(
               () async => repository.get(category: 'general'),
@@ -146,8 +148,9 @@ void main() {
               ],
             );
 
-            final repository =
-                container.read(newsTopHeadlinesRepositoryProvider);
+            final repository = container.read(
+              newsTopHeadlinesRepositoryProvider,
+            );
 
             final response = await repository.get(category: 'general', page: 2);
             expect(response.articles, [

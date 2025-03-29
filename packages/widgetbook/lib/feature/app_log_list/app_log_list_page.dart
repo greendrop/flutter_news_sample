@@ -42,10 +42,7 @@ class AppLogListPage extends StatelessWidget {
 
       Future<void> fetch({bool isRefresh = false}) async {}
 
-      return (
-        state: state,
-        fetch: fetch,
-      );
+      return (state: state, fetch: fetch);
     }
 
     UsePushAppLogDetailPageReturn useMockPushAppLogDetailPage() {
@@ -63,26 +60,17 @@ class AppLogListPage extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: AppLogListPage,
-)
+@UseCase(name: 'Default', type: AppLogListPage)
 Widget buildAppLogListPageDefaultUseCase(BuildContext context) {
   return const AppLogListPage();
 }
 
-@UseCase(
-  name: 'Loading',
-  type: AppLogListPage,
-)
+@UseCase(name: 'Loading', type: AppLogListPage)
 Widget buildAppLogListPageLoadingUseCase(BuildContext context) {
   return const AppLogListPage(isLoading: true);
 }
 
-@UseCase(
-  name: 'Empty',
-  type: AppLogListPage,
-)
+@UseCase(name: 'Empty', type: AppLogListPage)
 Widget buildAppLogListPageEmptyUseCase(BuildContext context) {
   return const AppLogListPage(isEmpty: true);
 }

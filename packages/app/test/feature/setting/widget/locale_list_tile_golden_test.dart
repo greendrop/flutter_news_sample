@@ -14,9 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold();
 
     Widget buildLocaleListTile({VoidCallback? onTap}) {
-      return TestMaterialApp(
-        child: LocaleListTile(onTap: onTap),
-      );
+      return TestMaterialApp(child: LocaleListTile(onTap: onTap));
     }
 
     final fileNamePrefix = 'locale_list_tile${Platform.pathSeparator}';

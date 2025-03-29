@@ -11,10 +11,7 @@ import '../../../support/widget/test_material_app.dart';
 
 class MockNewsArticleDetailRouteData extends Mock
     implements NewsArticleDetailRouteData {
-  MockNewsArticleDetailRouteData({
-    required this.title,
-    required this.url,
-  });
+  MockNewsArticleDetailRouteData({required this.title, required this.url});
 
   @override
   final String title;
@@ -57,8 +54,9 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(() => newsArticleDetailRouteData.push<void>(builderContext))
-            .thenAnswer((_) async {});
+        when(
+          () => newsArticleDetailRouteData.push<void>(builderContext),
+        ).thenAnswer((_) async {});
 
         await pushNewsArticleDetailPage.run(
           title: 'dummy',
@@ -66,8 +64,9 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        verify(() => newsArticleDetailRouteData.push<void>(builderContext))
-            .called(1);
+        verify(
+          () => newsArticleDetailRouteData.push<void>(builderContext),
+        ).called(1);
       });
     });
   });

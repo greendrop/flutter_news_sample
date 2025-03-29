@@ -14,18 +14,12 @@ class AppAboutListTile extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Enabled',
-  type: AppAboutListTile,
-)
+@UseCase(name: 'Enabled', type: AppAboutListTile)
 Widget buildAppAboutListTileEnabledUseCase(BuildContext context) {
   return AppAboutListTile(onTap: () {});
 }
 
-@UseCase(
-  name: 'Disabled',
-  type: AppAboutListTile,
-)
+@UseCase(name: 'Disabled', type: AppAboutListTile)
 Widget buildAppAboutListTileDisabledUseCase(BuildContext context) {
   return const AppAboutListTile();
 }

@@ -4,11 +4,13 @@ import 'package:app/feature/theme_data/hook/use_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-typedef UseShowInfoTextSnackBarReturn = ({
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function({
-    required String text,
-  }) run,
-});
+typedef UseShowInfoTextSnackBarReturn =
+    ({
+      ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function({
+        required String text,
+      })
+      run,
+    });
 
 typedef UseShowInfoTextSnackBar = UseShowInfoTextSnackBarReturn Function();
 
@@ -27,8 +29,11 @@ UseShowInfoTextSnackBarReturn useShowInfoTextSnackBarImpl() {
         text,
         style: (themeData.snackBarTheme.contentTextStyle ?? const TextStyle())
             .copyWith(
-          color: DesignTokenColor.fromBrightness(themeData.brightness).infoText,
-        ),
+              color:
+                  DesignTokenColor.fromBrightness(
+                    themeData.brightness,
+                  ).infoText,
+            ),
       ),
       backgroundColor:
           DesignTokenColor.fromBrightness(themeData.brightness).infoBackground,
@@ -36,7 +41,7 @@ UseShowInfoTextSnackBarReturn useShowInfoTextSnackBarImpl() {
     return ScaffoldMessenger.of(context).showSnackBar(snackBar);
   });
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UseShowInfoTextSnackBar useShowInfoTextSnackBar =

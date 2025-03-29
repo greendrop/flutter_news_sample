@@ -4,9 +4,7 @@ import 'package:app/feature/app_router/route_data/app_route_data.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UsePushLocaleSettingPageReturn = ({
-  Future<void> Function() run,
-});
+typedef UsePushLocaleSettingPageReturn = ({Future<void> Function() run});
 
 typedef UsePushLocaleSettingPage = UsePushLocaleSettingPageReturn Function();
 
@@ -22,7 +20,7 @@ UsePushLocaleSettingPageReturn usePushLocaleSettingPageImpl() {
     return ref.read(localeSettingRouteDataProvider).push<void>(context);
   });
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UsePushLocaleSettingPage usePushLocaleSettingPage =

@@ -19,15 +19,15 @@ class AppLogFilesNotifier extends _$AppLogFilesNotifier {
       return Future.value();
     }
 
-    final appLogger = ref.read(appLoggerProvider)
-      ..i([
-        '$_notifierName#fetch',
-        {'isRefresh': isRefresh},
-      ]);
+    final appLogger = ref.read(appLoggerProvider)..i([
+      '$_notifierName#fetch',
+      {'isRefresh': isRefresh},
+    ]);
 
     if (isRefresh) {
-      state =
-          const AsyncValue<List<AppLogFile>>.loading().copyWithPrevious(state);
+      state = const AsyncValue<List<AppLogFile>>.loading().copyWithPrevious(
+        state,
+      );
     } else {
       state = const AsyncValue<List<AppLogFile>>.loading();
     }
@@ -42,25 +42,26 @@ class AppLogFilesNotifier extends _$AppLogFilesNotifier {
       final value = await ref
           .read(appLogFilesRepositoryProvider)
           .fetch(directory: directory);
-      final appLogFiles = value
-          .where((element) => element.path.endsWith('.log'))
-          .map((element) => AppLogFile(path: element.path))
-          .toList();
+      final appLogFiles =
+          value
+              .where((element) => element.path.endsWith('.log'))
+              .map((element) => AppLogFile(path: element.path))
+              .toList();
       state = AsyncValue.data(appLogFiles);
       return Future.value();
     } on Exception catch (e) {
-      appLogger.e(
-        [
-          '$_notifierName#fetch',
-          {'isRefresh': isRefresh, 'Exception': e},
-        ],
-      );
+      appLogger.e([
+        '$_notifierName#fetch',
+        {'isRefresh': isRefresh, 'Exception': e},
+      ]);
       final appException =
           e is AppException ? e : AppException(parentException: e);
 
       if (isRefresh) {
-        state = AsyncValue<List<AppLogFile>>.error(e, StackTrace.current)
-            .copyWithPrevious(state);
+        state = AsyncValue<List<AppLogFile>>.error(
+          e,
+          StackTrace.current,
+        ).copyWithPrevious(state);
       } else {
         state = AsyncValue<List<AppLogFile>>.error(e, StackTrace.current);
       }

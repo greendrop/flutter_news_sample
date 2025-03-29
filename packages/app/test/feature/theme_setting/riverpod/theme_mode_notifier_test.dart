@@ -19,8 +19,9 @@ void main() {
           ],
         );
 
-        when(themeModeRepository.fetch)
-            .thenAnswer((_) async => ThemeMode.system);
+        when(
+          themeModeRepository.fetch,
+        ).thenAnswer((_) async => ThemeMode.system);
 
         final notifier = container.read(themeModeNotifierProvider.notifier);
         await notifier.initialize();
@@ -39,8 +40,9 @@ void main() {
         ],
       );
 
-      when(() => themeModeRepository.update(ThemeMode.light))
-          .thenAnswer((_) async {});
+      when(
+        () => themeModeRepository.update(ThemeMode.light),
+      ).thenAnswer((_) async {});
 
       final notifier = container.read(themeModeNotifierProvider.notifier);
       await notifier.setThemeMode(ThemeMode.light);

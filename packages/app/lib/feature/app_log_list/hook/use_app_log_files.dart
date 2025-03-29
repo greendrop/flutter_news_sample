@@ -4,10 +4,11 @@ import 'package:app/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UseAppLogFilesReturn = ({
-  AsyncValue<List<AppLogFile>> state,
-  Future<void> Function({bool isRefresh}) fetch,
-});
+typedef UseAppLogFilesReturn =
+    ({
+      AsyncValue<List<AppLogFile>> state,
+      Future<void> Function({bool isRefresh}) fetch,
+    });
 
 typedef UseAppLogFiles = UseAppLogFilesReturn Function();
 
@@ -19,23 +20,17 @@ UseAppLogFilesReturn useAppLogFilesImpl() {
 
   final state = ref.watch(appLogFilesNotifierProvider);
 
-  final fetch = useCallback(
-    ({bool isRefresh = false}) {
-      ref.read(appLoggerProvider).i([
-        '$_hookName#fetch',
-        {'isRefresh': isRefresh},
-      ]);
-      return ref
-          .read(appLogFilesNotifierProvider.notifier)
-          .fetch(isRefresh: isRefresh);
-    },
-    [state],
-  );
+  final fetch = useCallback(({bool isRefresh = false}) {
+    ref.read(appLoggerProvider).i([
+      '$_hookName#fetch',
+      {'isRefresh': isRefresh},
+    ]);
+    return ref
+        .read(appLogFilesNotifierProvider.notifier)
+        .fetch(isRefresh: isRefresh);
+  }, [state]);
 
-  return (
-    state: state,
-    fetch: fetch,
-  );
+  return (state: state, fetch: fetch);
 }
 
 const UseAppLogFiles useAppLogFiles = useAppLogFilesImpl;

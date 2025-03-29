@@ -3,11 +3,12 @@ import 'package:app/feature/news_article_detail/riverpod/webview_current_progres
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UseWebViewCurrentProgressReturn = ({
-  int state,
-  // ignore: avoid_positional_boolean_parameters
-  void Function(int) setState,
-});
+typedef UseWebViewCurrentProgressReturn =
+    ({
+      int state,
+      // ignore: avoid_positional_boolean_parameters
+      void Function(int) setState,
+    });
 
 typedef UseWebViewCurrentProgress = UseWebViewCurrentProgressReturn Function();
 
@@ -19,22 +20,17 @@ UseWebViewCurrentProgressReturn useWebViewCurrentProgressImpl() {
 
   final state = ref.watch(webViewCurrentProgressNotifierProvider);
 
-  final setState = useCallback(
-    (int value) {
-      ref.read(appLoggerProvider).i(
-        {'message': '$_hookName#setState', 'value': value},
-      );
-      return ref
-          .read(webViewCurrentProgressNotifierProvider.notifier)
-          .setState(value);
-    },
-    [state],
-  );
+  final setState = useCallback((int value) {
+    ref.read(appLoggerProvider).i({
+      'message': '$_hookName#setState',
+      'value': value,
+    });
+    return ref
+        .read(webViewCurrentProgressNotifierProvider.notifier)
+        .setState(value);
+  }, [state]);
 
-  return (
-    state: state,
-    setState: setState,
-  );
+  return (state: state, setState: setState);
 }
 
 const UseWebViewCurrentProgress useWebViewCurrentProgress =

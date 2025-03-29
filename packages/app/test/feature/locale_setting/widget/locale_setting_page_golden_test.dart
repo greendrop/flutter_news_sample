@@ -20,18 +20,10 @@ void main() {
         Future<void> initialize() async {}
         Future<void> update(Locale? locale) async {}
 
-        return (
-          state: state,
-          initialize: initialize,
-          update: update,
-        );
+        return (state: state, initialize: initialize, update: update);
       }
 
-      return TestMaterialApp(
-        child: LocaleSettingPage(
-          useLocale: useLocale,
-        ),
-      );
+      return TestMaterialApp(child: LocaleSettingPage(useLocale: useLocale));
     }
 
     final fileNamePrefix = 'locale_setting_page${Platform.pathSeparator}';

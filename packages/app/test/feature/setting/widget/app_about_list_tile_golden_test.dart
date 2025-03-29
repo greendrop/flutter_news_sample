@@ -14,9 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold();
 
     Widget buildAppAboutListTile({VoidCallback? onTap}) {
-      return TestMaterialApp(
-        child: AppAboutListTile(onTap: onTap),
-      );
+      return TestMaterialApp(child: AppAboutListTile(onTap: onTap));
     }
 
     final fileNamePrefix = 'app_about_list_tile${Platform.pathSeparator}';

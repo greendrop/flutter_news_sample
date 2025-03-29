@@ -25,18 +25,19 @@ class MockNewsArticleSearchDetailRouteData extends Mock
 void main() {
   group('usePushNewsArticleSearchDetailPage', () {
     group('#run', () {
-      testWidgets('NewsArticleSearchDetailRouteData#pushが呼ばれること',
-          (tester) async {
+      testWidgets('NewsArticleSearchDetailRouteData#pushが呼ばれること', (
+        tester,
+      ) async {
         late UsePushNewsArticleSearchDetailPageReturn
-            pushNewsArticleSearchDetailPage;
+        pushNewsArticleSearchDetailPage;
         late BuildContext builderContext;
 
         final goRouter = MockGoRouter();
         final newsArticleSearchDetailRouteData =
             MockNewsArticleSearchDetailRouteData(
-          title: 'dummy',
-          url: 'https://example.com',
-        );
+              title: 'dummy',
+              url: 'https://example.com',
+            );
 
         await tester.pumpWidget(
           TestMaterialApp(
@@ -61,8 +62,9 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(() => newsArticleSearchDetailRouteData.push<void>(builderContext))
-            .thenAnswer((_) async {});
+        when(
+          () => newsArticleSearchDetailRouteData.push<void>(builderContext),
+        ).thenAnswer((_) async {});
 
         await pushNewsArticleSearchDetailPage.run(
           title: 'dummy',

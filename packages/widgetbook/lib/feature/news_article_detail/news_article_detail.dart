@@ -9,9 +9,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class NewsArticleDetailPage extends StatelessWidget {
-  const NewsArticleDetailPage({
-    super.key,
-  });
+  const NewsArticleDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +44,7 @@ class NewsArticleDetailPage extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: NewsArticleDetailPage,
-)
+@UseCase(name: 'Default', type: NewsArticleDetailPage)
 Widget buildNewsArticleDetailPageDefaultUseCase(BuildContext context) {
   return const NewsArticleDetailPage();
 }

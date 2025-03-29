@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UseWebviewVerticalScrollEffect = void Function({
-  required AnimationController appBarAnimationController,
-});
+typedef UseWebviewVerticalScrollEffect =
+    void Function({required AnimationController appBarAnimationController});
 
 void useWebviewVerticalScrollEffectImpl({
   required AnimationController appBarAnimationController,
@@ -15,19 +14,16 @@ void useWebviewVerticalScrollEffectImpl({
   final ref = context as WidgetRef;
 
   final state = ref.watch(webViewVerticalScrollStateNotifierProvider);
-  useEffect(
-    () {
-      Future.microtask(() {
-        if (state.direction == WebviewVerticalScrollDirection.up) {
-          appBarAnimationController.reverse();
-        } else {
-          appBarAnimationController.forward();
-        }
-      });
-      return () {};
-    },
-    [state.direction],
-  );
+  useEffect(() {
+    Future.microtask(() {
+      if (state.direction == WebviewVerticalScrollDirection.up) {
+        appBarAnimationController.reverse();
+      } else {
+        appBarAnimationController.forward();
+      }
+    });
+    return () {};
+  }, [state.direction]);
 }
 
 const UseWebviewVerticalScrollEffect useWebviewVerticalScrollEffect =

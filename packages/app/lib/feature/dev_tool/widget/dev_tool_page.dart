@@ -59,10 +59,7 @@ class DevToolPage extends HookConsumerWidget {
     WidgetRef ref, {
     required L10n l10n,
   }) {
-    return SliverAppBar(
-      title: Text(l10n.devToolsTitle),
-      floating: true,
-    );
+    return SliverAppBar(title: Text(l10n.devToolsTitle), floating: true);
   }
 
   Widget _body(

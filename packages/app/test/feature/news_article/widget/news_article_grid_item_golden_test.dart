@@ -23,10 +23,7 @@ void main() {
     }) {
       return TestMaterialApp(
         child: NewsArticleGridItem(
-          newsArticle: NewsArticle(
-            title: 'title',
-            urlToImage: imageUrl,
-          ),
+          newsArticle: NewsArticle(title: 'title', urlToImage: imageUrl),
           onTap: onTap,
         ),
       );
@@ -44,8 +41,8 @@ void main() {
               return GoldenTestWidgetScenario(
                 name: '',
                 brightness: brightness,
-                builder: () =>
-                    buildNewsArticleGridItem(imageUrl: _dummyImageUrl),
+                builder:
+                    () => buildNewsArticleGridItem(imageUrl: _dummyImageUrl),
               );
             },
           );

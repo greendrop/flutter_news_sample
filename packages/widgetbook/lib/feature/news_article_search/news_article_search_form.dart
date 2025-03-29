@@ -16,10 +16,7 @@ class NewsArticleSearchForm extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: NewsArticleSearchForm,
-)
+@UseCase(name: 'Default', type: NewsArticleSearchForm)
 Widget buildNewsArticleSearchFormDefaultUseCase(BuildContext context) {
   return const NewsArticleSearchForm();
 }

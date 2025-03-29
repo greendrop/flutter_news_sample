@@ -7,11 +7,7 @@ void main() {
   group('NotFoundPage', () {
     testWidgets('Not Foundが表示されること', (tester) async {
       await tester.runAsync(() async {
-        await tester.pumpWidget(
-          const TestMaterialApp(
-            child: NotFoundPage(),
-          ),
-        );
+        await tester.pumpWidget(const TestMaterialApp(child: NotFoundPage()));
       });
       await tester.pumpAndSettle();
 

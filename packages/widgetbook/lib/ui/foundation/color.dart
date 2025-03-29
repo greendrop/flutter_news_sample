@@ -5,11 +5,7 @@ import 'package:flutter/material.dart' as material show Color;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class ColorWidget extends StatelessWidget {
-  const ColorWidget({
-    super.key,
-    required this.color,
-    required this.name,
-  });
+  const ColorWidget({super.key, required this.color, required this.name});
 
   final material.Color color;
   final String name;
@@ -20,11 +16,7 @@ class ColorWidget extends StatelessWidget {
 
     return Row(
       children: [
-        SizedBox(
-          height: 50,
-          width: 50,
-          child: Container(color: color),
-        ),
+        SizedBox(height: 50, width: 50, child: Container(color: color)),
         const SizedBox(width: spacing),
         Column(
           children: [
@@ -57,50 +49,26 @@ class Color extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ColorWidget(
-            color: designTokenColor.primary,
-            name: 'Primary',
-          ),
+          ColorWidget(color: designTokenColor.primary, name: 'Primary'),
           const SizedBox(height: spacing),
-          ColorWidget(
-            color: designTokenColor.onPrimary,
-            name: 'On Primary',
-          ),
+          ColorWidget(color: designTokenColor.onPrimary, name: 'On Primary'),
           const SizedBox(height: spacing),
-          ColorWidget(
-            color: designTokenColor.secondary,
-            name: 'Secondary',
-          ),
+          ColorWidget(color: designTokenColor.secondary, name: 'Secondary'),
           const SizedBox(height: spacing),
           ColorWidget(
             color: designTokenColor.onSecondary,
             name: 'On Secondary',
           ),
           const SizedBox(height: spacing),
-          ColorWidget(
-            color: designTokenColor.error,
-            name: 'Error',
-          ),
+          ColorWidget(color: designTokenColor.error, name: 'Error'),
           const SizedBox(height: spacing),
-          ColorWidget(
-            color: designTokenColor.onError,
-            name: 'On Error',
-          ),
+          ColorWidget(color: designTokenColor.onError, name: 'On Error'),
           const SizedBox(height: spacing),
-          ColorWidget(
-            color: designTokenColor.surface,
-            name: 'Surface',
-          ),
+          ColorWidget(color: designTokenColor.surface, name: 'Surface'),
           const SizedBox(height: spacing),
-          ColorWidget(
-            color: designTokenColor.onSurface,
-            name: 'On Surface',
-          ),
+          ColorWidget(color: designTokenColor.onSurface, name: 'On Surface'),
           const SizedBox(height: spacing),
-          ColorWidget(
-            color: designTokenColor.infoText,
-            name: 'Info Text',
-          ),
+          ColorWidget(color: designTokenColor.infoText, name: 'Info Text'),
           const SizedBox(height: spacing),
           ColorWidget(
             color: designTokenColor.infoBackground,
@@ -117,10 +85,7 @@ class Color extends StatelessWidget {
             name: 'Warning Background',
           ),
           const SizedBox(height: spacing),
-          ColorWidget(
-            color: designTokenColor.dangerText,
-            name: 'Danger Text',
-          ),
+          ColorWidget(color: designTokenColor.dangerText, name: 'Danger Text'),
           const SizedBox(height: spacing),
           ColorWidget(
             color: designTokenColor.dangerBackground,
@@ -132,10 +97,7 @@ class Color extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Default',
-  type: Color,
-)
+@UseCase(name: 'Default', type: Color)
 Widget buildColorDefaultUseCase(BuildContext context) {
   return const Padding(padding: EdgeInsets.all(8), child: Color());
 }

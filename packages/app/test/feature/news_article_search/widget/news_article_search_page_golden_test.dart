@@ -33,10 +33,7 @@ void main() {
           state = AsyncValue.data(
             NewsArticles(
               items: List.generate(3, (index) {
-                return NewsArticle(
-                  title: 'title',
-                  url: 'https://example.com',
-                );
+                return NewsArticle(title: 'title', url: 'https://example.com');
               }),
             ),
           );
@@ -53,15 +50,11 @@ void main() {
           return Future.value();
         }
 
-        return (
-          state: state,
-          fetch: fetch,
-          fetchMore: fetchMore,
-        );
+        return (state: state, fetch: fetch, fetchMore: fetchMore);
       }
 
       UsePushNewsArticleSearchDetailPageReturn
-          usePushNewsArticleSearchDetailPage() {
+      usePushNewsArticleSearchDetailPage() {
         Future<void> run({required String title, required String url}) {
           return Future.value();
         }

@@ -4,11 +4,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-typedef UsePackageInfoReturn = ({
-  PackageInfo? state,
-  Future<void> Function() initialize,
-  Future<void> Function() refresh,
-});
+typedef UsePackageInfoReturn =
+    ({
+      PackageInfo? state,
+      Future<void> Function() initialize,
+      Future<void> Function() refresh,
+    });
 
 typedef UsePackageInfo = UsePackageInfoReturn Function();
 
@@ -21,27 +22,17 @@ UsePackageInfoReturn usePackageInfoImpl() {
 
   final state = ref.watch(packageInfoNotifierProvider);
 
-  final initialize = useCallback(
-    () {
-      appLogger.i(['$_hookName#initialize']);
-      return ref.refresh(packageInfoNotifierProvider.notifier).initialize();
-    },
-    [],
-  );
+  final initialize = useCallback(() {
+    appLogger.i(['$_hookName#initialize']);
+    return ref.refresh(packageInfoNotifierProvider.notifier).initialize();
+  }, []);
 
-  final refresh = useCallback(
-    () {
-      appLogger.i(['$_hookName#refresh']);
-      return ref.read(packageInfoNotifierProvider.notifier).refresh();
-    },
-    [],
-  );
+  final refresh = useCallback(() {
+    appLogger.i(['$_hookName#refresh']);
+    return ref.read(packageInfoNotifierProvider.notifier).refresh();
+  }, []);
 
-  return (
-    state: state,
-    initialize: initialize,
-    refresh: refresh,
-  );
+  return (state: state, initialize: initialize, refresh: refresh);
 }
 
 const UsePackageInfo usePackageInfo = usePackageInfoImpl;

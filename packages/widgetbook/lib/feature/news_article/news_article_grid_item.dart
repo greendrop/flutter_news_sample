@@ -9,11 +9,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 const String _dummyImageUrl = 'https://dummyimage.com/600x400/000/fff';
 
 class NewsArticleGridItem extends StatelessWidget {
-  const NewsArticleGridItem({
-    super.key,
-    required this.newsArticle,
-    this.onTap,
-  });
+  const NewsArticleGridItem({super.key, required this.newsArticle, this.onTap});
 
   final NewsArticle newsArticle;
   final void Function()? onTap;
@@ -24,37 +20,22 @@ class NewsArticleGridItem extends StatelessWidget {
   }
 }
 
-@UseCase(
-  name: 'Enabled With Image',
-  type: NewsArticleGridItem,
-)
+@UseCase(name: 'Enabled With Image', type: NewsArticleGridItem)
 Widget buildNewsArticleGridItemEnabledWithImageUseCase(BuildContext context) {
   return NewsArticleGridItem(
-    newsArticle: NewsArticle(
-      title: 'Title',
-      urlToImage: _dummyImageUrl,
-    ),
+    newsArticle: NewsArticle(title: 'Title', urlToImage: _dummyImageUrl),
     onTap: () {},
   );
 }
 
-@UseCase(
-  name: 'Disabled With Image',
-  type: NewsArticleGridItem,
-)
+@UseCase(name: 'Disabled With Image', type: NewsArticleGridItem)
 Widget buildNewsArticleGridItemDisabledWithImageUseCase(BuildContext context) {
   return NewsArticleGridItem(
-    newsArticle: NewsArticle(
-      title: 'Title',
-      urlToImage: _dummyImageUrl,
-    ),
+    newsArticle: NewsArticle(title: 'Title', urlToImage: _dummyImageUrl),
   );
 }
 
-@UseCase(
-  name: 'Enabled Without Image',
-  type: NewsArticleGridItem,
-)
+@UseCase(name: 'Enabled Without Image', type: NewsArticleGridItem)
 Widget buildNewsArticleGridItemEnabledWithoutImageUseCase(
   BuildContext context,
 ) {
@@ -64,14 +45,9 @@ Widget buildNewsArticleGridItemEnabledWithoutImageUseCase(
   );
 }
 
-@UseCase(
-  name: 'Disabled Without Image',
-  type: NewsArticleGridItem,
-)
+@UseCase(name: 'Disabled Without Image', type: NewsArticleGridItem)
 Widget buildNewsArticleGridItemDisabledWithoutImageUseCase(
   BuildContext context,
 ) {
-  return NewsArticleGridItem(
-    newsArticle: NewsArticle(title: 'Title'),
-  );
+  return NewsArticleGridItem(newsArticle: NewsArticle(title: 'Title'));
 }

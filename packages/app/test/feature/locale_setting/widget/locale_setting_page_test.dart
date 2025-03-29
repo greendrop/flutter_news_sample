@@ -10,20 +10,14 @@ import '../../../support/widget/test_material_app.dart';
 void main() {
   group('LocaleSettingPage', () {
     Locale? updatedLocale;
-    UseLocale buildUseLocale({
-      required Locale? state,
-    }) {
+    UseLocale buildUseLocale({required Locale? state}) {
       UseLocaleReturn useLocale() {
         Future<void> initialize() async {}
         Future<void> update(Locale? locale) async {
           updatedLocale = locale;
         }
 
-        return (
-          state: state,
-          initialize: initialize,
-          update: update,
-        );
+        return (state: state, initialize: initialize, update: update);
       }
 
       return useLocale;
@@ -34,9 +28,7 @@ void main() {
         await tester.pumpWidget(
           ProviderScope(
             child: TestMaterialApp(
-              child: LocaleSettingPage(
-                useLocale: buildUseLocale(state: null),
-              ),
+              child: LocaleSettingPage(useLocale: buildUseLocale(state: null)),
             ),
           ),
         );
@@ -51,9 +43,7 @@ void main() {
         await tester.pumpWidget(
           ProviderScope(
             child: TestMaterialApp(
-              child: LocaleSettingPage(
-                useLocale: buildUseLocale(state: null),
-              ),
+              child: LocaleSettingPage(useLocale: buildUseLocale(state: null)),
             ),
           ),
         );

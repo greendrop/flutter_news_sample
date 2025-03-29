@@ -14,9 +14,7 @@ void main() {
     prepareGoldenFileComparatorWithThreshold();
 
     Widget buildThemeListTile({VoidCallback? onTap}) {
-      return TestMaterialApp(
-        child: ThemeListTile(onTap: onTap),
-      );
+      return TestMaterialApp(child: ThemeListTile(onTap: onTap));
     }
 
     final fileNamePrefix = 'theme_list_tile${Platform.pathSeparator}';

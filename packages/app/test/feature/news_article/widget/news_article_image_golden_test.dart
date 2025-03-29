@@ -27,11 +27,12 @@ void main() {
           goldenTest(
             '',
             fileName: '${fileNamePrefix}exist_image_${brightness.name}',
-            builder: () => GoldenTestWidgetScenario(
-              name: '',
-              brightness: brightness,
-              builder: () => buildNewsArticleImage(url: _dummyImageUrl),
-            ),
+            builder:
+                () => GoldenTestWidgetScenario(
+                  name: '',
+                  brightness: brightness,
+                  builder: () => buildNewsArticleImage(url: _dummyImageUrl),
+                ),
           );
         });
 

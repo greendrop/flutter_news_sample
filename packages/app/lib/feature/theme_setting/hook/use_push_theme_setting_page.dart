@@ -2,9 +2,7 @@ import 'package:app/feature/app_logger/hook/use_app_logger.dart';
 import 'package:app/feature/app_router/route_data/app_route_data.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-typedef UsePushThemeSettingPageReturn = ({
-  Future<void> Function() run,
-});
+typedef UsePushThemeSettingPageReturn = ({Future<void> Function() run});
 
 typedef UsePushThemeSettingPage = UsePushThemeSettingPageReturn Function();
 
@@ -19,7 +17,7 @@ UsePushThemeSettingPageReturn usePushThemeSettingPageImpl() {
     return ThemeSettingRouteData().push<void>(context);
   });
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UsePushThemeSettingPage usePushThemeSettingPage =

@@ -8,9 +8,7 @@ void main() {
   group('LocaleRepository', () {
     group('#fetch', () {
       test('空文字で保存されている場合、nullを返すこと', () async {
-        SharedPreferences.setMockInitialValues({
-          'locale': '',
-        });
+        SharedPreferences.setMockInitialValues({'locale': ''});
         final container = ProviderContainer();
 
         final repository = container.read(localeRepositoryProvider);
@@ -20,9 +18,7 @@ void main() {
       });
 
       test('enで保存されている場合、enを返すこと', () async {
-        SharedPreferences.setMockInitialValues({
-          'locale': 'en',
-        });
+        SharedPreferences.setMockInitialValues({'locale': 'en'});
         final container = ProviderContainer();
 
         final repository = container.read(localeRepositoryProvider);
@@ -32,9 +28,7 @@ void main() {
       });
 
       test('jaで保存されている場合、jaを返すこと', () async {
-        SharedPreferences.setMockInitialValues({
-          'locale': 'ja',
-        });
+        SharedPreferences.setMockInitialValues({'locale': 'ja'});
         final container = ProviderContainer();
 
         final repository = container.read(localeRepositoryProvider);
@@ -46,9 +40,7 @@ void main() {
 
     group('#update', () {
       test('#指定した値で更新されること', () async {
-        SharedPreferences.setMockInitialValues({
-          'locale': 'ja',
-        });
+        SharedPreferences.setMockInitialValues({'locale': 'ja'});
         final container = ProviderContainer();
 
         final repository = container.read(localeRepositoryProvider);

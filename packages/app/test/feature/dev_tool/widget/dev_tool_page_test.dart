@@ -38,34 +38,33 @@ void main() {
     }
 
     testWidgets(
-        [
-          'ListTileが表示されること',
-          'ListTileをタップすると、ページ遷移処理が呼ばれること',
-        ].join(', '), (tester) async {
-      await tester.runAsync(() async {
-        await tester.pumpWidget(
-          TestMaterialApp(
-            child: DevToolPage(
-              usePushAppLogListPage: buildUsePushAppLogListPage(),
-              useCrashReportTest: buildUseCrashReportTest(),
+      ['ListTileが表示されること', 'ListTileをタップすると、ページ遷移処理が呼ばれること'].join(', '),
+      (tester) async {
+        await tester.runAsync(() async {
+          await tester.pumpWidget(
+            TestMaterialApp(
+              child: DevToolPage(
+                usePushAppLogListPage: buildUsePushAppLogListPage(),
+                useCrashReportTest: buildUseCrashReportTest(),
+              ),
             ),
-          ),
-        );
-      });
-      await tester.pumpAndSettle();
+          );
+        });
+        await tester.pumpAndSettle();
 
-      expect(find.byType(AppLogListTile), findsOneWidget);
-      expect(find.byType(CrashReportListTile), findsOneWidget);
+        expect(find.byType(AppLogListTile), findsOneWidget);
+        expect(find.byType(CrashReportListTile), findsOneWidget);
 
-      runnedPushAppLogListPage = false;
-      await tester.tap(find.byType(AppLogListTile));
-      await tester.pumpAndSettle();
-      expect(runnedPushAppLogListPage, isTrue);
+        runnedPushAppLogListPage = false;
+        await tester.tap(find.byType(AppLogListTile));
+        await tester.pumpAndSettle();
+        expect(runnedPushAppLogListPage, isTrue);
 
-      runnedCrashReportTest = false;
-      await tester.tap(find.byType(CrashReportListTile));
-      await tester.pumpAndSettle();
-      expect(runnedCrashReportTest, isTrue);
-    });
+        runnedCrashReportTest = false;
+        await tester.tap(find.byType(CrashReportListTile));
+        await tester.pumpAndSettle();
+        expect(runnedCrashReportTest, isTrue);
+      },
+    );
   });
 }

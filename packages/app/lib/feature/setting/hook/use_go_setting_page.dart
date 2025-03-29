@@ -4,9 +4,7 @@ import 'package:app/feature/app_router/route_data/app_route_data.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-typedef UseGoSettingPageReturn = ({
-  void Function() run,
-});
+typedef UseGoSettingPageReturn = ({void Function() run});
 
 typedef UseGoSettingPage = UseGoSettingPageReturn Function();
 
@@ -17,15 +15,12 @@ UseGoSettingPageReturn useGoSettingPageImpl() {
   final ref = context as WidgetRef;
   final appLogger = useAppLogger();
 
-  final run = useCallback(
-    () {
-      appLogger.i(['$_hookName#run']);
-      return ref.read(settingRouteDataProvider).go(context);
-    },
-    [],
-  );
+  final run = useCallback(() {
+    appLogger.i(['$_hookName#run']);
+    return ref.read(settingRouteDataProvider).go(context);
+  }, []);
 
-  return (run: run,);
+  return (run: run);
 }
 
 const UseGoSettingPage useGoSettingPage = useGoSettingPageImpl;

@@ -23,8 +23,9 @@ void main() {
           ],
         );
 
-        when(localeRepository.fetch)
-            .thenAnswer((_) async => const Locale('ja'));
+        when(
+          localeRepository.fetch,
+        ).thenAnswer((_) async => const Locale('ja'));
 
         final notifier = container.read(localeNotifierProvider.notifier);
         await notifier.initialize();
@@ -44,8 +45,9 @@ void main() {
         ],
       );
 
-      when(() => localeRepository.update(const Locale('ja')))
-          .thenAnswer((_) async {});
+      when(
+        () => localeRepository.update(const Locale('ja')),
+      ).thenAnswer((_) async {});
 
       final notifier = container.read(localeNotifierProvider.notifier);
       await notifier.setLocale(const Locale('ja'));

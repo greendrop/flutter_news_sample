@@ -46,10 +46,7 @@ void main() {
           AppHttpException(statusCode: 409, body: '409').message,
           'Conflict',
         );
-        expect(
-          AppHttpException(statusCode: 410, body: '410').message,
-          'Gone',
-        );
+        expect(AppHttpException(statusCode: 410, body: '410').message, 'Gone');
         expect(
           AppHttpException(statusCode: 411, body: '411').message,
           'Length Required',

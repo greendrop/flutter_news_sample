@@ -1,8 +1,7 @@
 enum AppNavigationIndex {
   newsArticleList(value: 0),
   newsArticleSearch(value: 1),
-  setting(value: 2),
-  ;
+  setting(value: 2);
 
   const AppNavigationIndex({required this.value});
 

@@ -9,19 +9,17 @@ import '../../../support/widget/test_material_app.dart';
 void main() {
   group('NewsArticleImage', () {
     testWidgets('urlが存在する場合、画像が表示され、NO IMAGE ではないこと', (tester) async {
-      await mockNetworkImages(
-        () async {
-          await tester.pumpWidget(
-            const ProviderScope(
-              child: TestMaterialApp(
-                child: Scaffold(
-                  body: NewsArticleImage(url: 'https://example.com/image.png'),
-                ),
+      await mockNetworkImages(() async {
+        await tester.pumpWidget(
+          const ProviderScope(
+            child: TestMaterialApp(
+              child: Scaffold(
+                body: NewsArticleImage(url: 'https://example.com/image.png'),
               ),
             ),
-          );
-        },
-      );
+          ),
+        );
+      });
 
       expect(find.byType(Image), findsOneWidget);
       expect(find.text('NO IMAGE'), findsNothing);
@@ -31,9 +29,7 @@ void main() {
       await tester.pumpWidget(
         const ProviderScope(
           child: TestMaterialApp(
-            child: Scaffold(
-              body: NewsArticleImage(url: null),
-            ),
+            child: Scaffold(body: NewsArticleImage(url: null)),
           ),
         ),
       );

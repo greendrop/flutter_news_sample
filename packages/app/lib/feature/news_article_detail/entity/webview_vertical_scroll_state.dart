@@ -13,7 +13,4 @@ class WebViewVerticalScrollState with _$WebViewVerticalScrollState {
   const WebViewVerticalScrollState._();
 }
 
-enum WebviewVerticalScrollDirection {
-  up,
-  down,
-}
+enum WebviewVerticalScrollDirection { up, down }
