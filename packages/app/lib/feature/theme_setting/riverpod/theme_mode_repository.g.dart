@@ -14,9 +14,10 @@ String _$themeModeRepositoryHash() =>
 final themeModeRepositoryProvider = Provider<ThemeModeRepository>.internal(
   themeModeRepository,
   name: r'themeModeRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$themeModeRepositoryHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$themeModeRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

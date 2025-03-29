@@ -13,14 +13,15 @@ String _$appLoggerDirectoryHash() =>
 @ProviderFor(AppLoggerDirectory)
 final appLoggerDirectoryProvider =
     NotifierProvider<AppLoggerDirectory, Directory?>.internal(
-  AppLoggerDirectory.new,
-  name: r'appLoggerDirectoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$appLoggerDirectoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      AppLoggerDirectory.new,
+      name: r'appLoggerDirectoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$appLoggerDirectoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$AppLoggerDirectory = Notifier<Directory?>;
 // ignore_for_file: type=lint

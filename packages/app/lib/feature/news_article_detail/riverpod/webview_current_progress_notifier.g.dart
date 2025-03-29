@@ -13,14 +13,15 @@ String _$webViewCurrentProgressNotifierHash() =>
 @ProviderFor(WebViewCurrentProgressNotifier)
 final webViewCurrentProgressNotifierProvider =
     AutoDisposeNotifierProvider<WebViewCurrentProgressNotifier, int>.internal(
-  WebViewCurrentProgressNotifier.new,
-  name: r'webViewCurrentProgressNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$webViewCurrentProgressNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      WebViewCurrentProgressNotifier.new,
+      name: r'webViewCurrentProgressNotifierProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$webViewCurrentProgressNotifierHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$WebViewCurrentProgressNotifier = AutoDisposeNotifier<int>;
 // ignore_for_file: type=lint

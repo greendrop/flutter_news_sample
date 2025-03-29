@@ -6,85 +6,97 @@ part of 'app_route_data.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [
-      $appShellRouteData,
-      $notFoundRouteData,
-    ];
+List<RouteBase> get $appRoutes => [$appShellRouteData, $notFoundRouteData];
 
 RouteBase get $appShellRouteData => StatefulShellRouteData.$route(
-      factory: $AppShellRouteDataExtension._fromState,
-      branches: [
-        StatefulShellBranchData.$branch(
-          navigatorKey: NewsArticleBranchData.$navigatorKey,
+  factory: $AppShellRouteDataExtension._fromState,
+  branches: [
+    StatefulShellBranchData.$branch(
+      navigatorKey: NewsArticleBranchData.$navigatorKey,
+
+      routes: [
+        GoRouteData.$route(
+          path: '/news_articles',
+
+          factory: $NewsArticleListRouteDataExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: '/news_articles',
-              factory: $NewsArticleListRouteDataExtension._fromState,
-              routes: [
-                GoRouteData.$route(
-                  path: 'detail',
-                  parentNavigatorKey:
-                      NewsArticleDetailRouteData.$parentNavigatorKey,
-                  factory: $NewsArticleDetailRouteDataExtension._fromState,
-                ),
-              ],
+              path: 'detail',
+
+              parentNavigatorKey:
+                  NewsArticleDetailRouteData.$parentNavigatorKey,
+
+              factory: $NewsArticleDetailRouteDataExtension._fromState,
             ),
           ],
         ),
-        StatefulShellBranchData.$branch(
-          navigatorKey: NewsArticleSearchBranchData.$navigatorKey,
+      ],
+    ),
+    StatefulShellBranchData.$branch(
+      navigatorKey: NewsArticleSearchBranchData.$navigatorKey,
+
+      routes: [
+        GoRouteData.$route(
+          path: '/news_articles_search',
+
+          factory: $NewsArticleSearchRouteDataExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: '/news_articles_search',
-              factory: $NewsArticleSearchRouteDataExtension._fromState,
-              routes: [
-                GoRouteData.$route(
-                  path: 'detail',
-                  parentNavigatorKey:
-                      NewsArticleSearchDetailRouteData.$parentNavigatorKey,
-                  factory:
-                      $NewsArticleSearchDetailRouteDataExtension._fromState,
-                ),
-              ],
+              path: 'detail',
+
+              parentNavigatorKey:
+                  NewsArticleSearchDetailRouteData.$parentNavigatorKey,
+
+              factory: $NewsArticleSearchDetailRouteDataExtension._fromState,
             ),
           ],
         ),
-        StatefulShellBranchData.$branch(
-          navigatorKey: SettingBranchData.$navigatorKey,
+      ],
+    ),
+    StatefulShellBranchData.$branch(
+      navigatorKey: SettingBranchData.$navigatorKey,
+
+      routes: [
+        GoRouteData.$route(
+          path: '/setting',
+
+          factory: $SettingRouteDataExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: '/setting',
-              factory: $SettingRouteDataExtension._fromState,
+              path: 'theme',
+
+              parentNavigatorKey: ThemeSettingRouteData.$parentNavigatorKey,
+
+              factory: $ThemeSettingRouteDataExtension._fromState,
+            ),
+            GoRouteData.$route(
+              path: 'locale',
+
+              parentNavigatorKey: LocaleSettingRouteData.$parentNavigatorKey,
+
+              factory: $LocaleSettingRouteDataExtension._fromState,
+            ),
+            GoRouteData.$route(
+              path: 'dev_tool',
+
+              parentNavigatorKey: DevToolRouteData.$parentNavigatorKey,
+
+              factory: $DevToolRouteDataExtension._fromState,
               routes: [
                 GoRouteData.$route(
-                  path: 'theme',
-                  parentNavigatorKey: ThemeSettingRouteData.$parentNavigatorKey,
-                  factory: $ThemeSettingRouteDataExtension._fromState,
-                ),
-                GoRouteData.$route(
-                  path: 'locale',
-                  parentNavigatorKey:
-                      LocaleSettingRouteData.$parentNavigatorKey,
-                  factory: $LocaleSettingRouteDataExtension._fromState,
-                ),
-                GoRouteData.$route(
-                  path: 'dev_tool',
-                  parentNavigatorKey: DevToolRouteData.$parentNavigatorKey,
-                  factory: $DevToolRouteDataExtension._fromState,
+                  path: 'app_logs',
+
+                  parentNavigatorKey: AppLogListRouteData.$parentNavigatorKey,
+
+                  factory: $AppLogListRouteDataExtension._fromState,
                   routes: [
                     GoRouteData.$route(
-                      path: 'app_logs',
+                      path: ':filename',
+
                       parentNavigatorKey:
-                          AppLogListRouteData.$parentNavigatorKey,
-                      factory: $AppLogListRouteDataExtension._fromState,
-                      routes: [
-                        GoRouteData.$route(
-                          path: ':filename',
-                          parentNavigatorKey:
-                              AppLogDetailRouteData.$parentNavigatorKey,
-                          factory: $AppLogDetailRouteDataExtension._fromState,
-                        ),
-                      ],
+                          AppLogDetailRouteData.$parentNavigatorKey,
+
+                      factory: $AppLogDetailRouteDataExtension._fromState,
                     ),
                   ],
                 ),
@@ -93,7 +105,9 @@ RouteBase get $appShellRouteData => StatefulShellRouteData.$route(
           ],
         ),
       ],
-    );
+    ),
+  ],
+);
 
 extension $AppShellRouteDataExtension on AppShellRouteData {
   static AppShellRouteData _fromState(GoRouterState state) =>
@@ -102,16 +116,12 @@ extension $AppShellRouteDataExtension on AppShellRouteData {
 
 extension $NewsArticleListRouteDataExtension on NewsArticleListRouteData {
   static NewsArticleListRouteData _fromState(GoRouterState state) =>
-      NewsArticleListRouteData(
-        category: state.uri.queryParameters['category'],
-      );
+      NewsArticleListRouteData(category: state.uri.queryParameters['category']);
 
   String get location => GoRouteData.$location(
-        '/news_articles',
-        queryParams: {
-          if (category != null) 'category': category,
-        },
-      );
+    '/news_articles',
+    queryParams: {if (category != null) 'category': category},
+  );
 
   void go(BuildContext context) => context.go(location);
 
@@ -131,12 +141,9 @@ extension $NewsArticleDetailRouteDataExtension on NewsArticleDetailRouteData {
       );
 
   String get location => GoRouteData.$location(
-        '/news_articles/detail',
-        queryParams: {
-          'title': title,
-          'url': url,
-        },
-      );
+    '/news_articles/detail',
+    queryParams: {'title': title, 'url': url},
+  );
 
   void go(BuildContext context) => context.go(location);
 
@@ -152,9 +159,7 @@ extension $NewsArticleSearchRouteDataExtension on NewsArticleSearchRouteData {
   static NewsArticleSearchRouteData _fromState(GoRouterState state) =>
       NewsArticleSearchRouteData();
 
-  String get location => GoRouteData.$location(
-        '/news_articles_search',
-      );
+  String get location => GoRouteData.$location('/news_articles_search');
 
   void go(BuildContext context) => context.go(location);
 
@@ -175,12 +180,9 @@ extension $NewsArticleSearchDetailRouteDataExtension
       );
 
   String get location => GoRouteData.$location(
-        '/news_articles_search/detail',
-        queryParams: {
-          'title': title,
-          'url': url,
-        },
-      );
+    '/news_articles_search/detail',
+    queryParams: {'title': title, 'url': url},
+  );
 
   void go(BuildContext context) => context.go(location);
 
@@ -195,9 +197,7 @@ extension $NewsArticleSearchDetailRouteDataExtension
 extension $SettingRouteDataExtension on SettingRouteData {
   static SettingRouteData _fromState(GoRouterState state) => SettingRouteData();
 
-  String get location => GoRouteData.$location(
-        '/setting',
-      );
+  String get location => GoRouteData.$location('/setting');
 
   void go(BuildContext context) => context.go(location);
 
@@ -213,9 +213,7 @@ extension $ThemeSettingRouteDataExtension on ThemeSettingRouteData {
   static ThemeSettingRouteData _fromState(GoRouterState state) =>
       ThemeSettingRouteData();
 
-  String get location => GoRouteData.$location(
-        '/setting/theme',
-      );
+  String get location => GoRouteData.$location('/setting/theme');
 
   void go(BuildContext context) => context.go(location);
 
@@ -231,9 +229,7 @@ extension $LocaleSettingRouteDataExtension on LocaleSettingRouteData {
   static LocaleSettingRouteData _fromState(GoRouterState state) =>
       LocaleSettingRouteData();
 
-  String get location => GoRouteData.$location(
-        '/setting/locale',
-      );
+  String get location => GoRouteData.$location('/setting/locale');
 
   void go(BuildContext context) => context.go(location);
 
@@ -248,9 +244,7 @@ extension $LocaleSettingRouteDataExtension on LocaleSettingRouteData {
 extension $DevToolRouteDataExtension on DevToolRouteData {
   static DevToolRouteData _fromState(GoRouterState state) => DevToolRouteData();
 
-  String get location => GoRouteData.$location(
-        '/setting/dev_tool',
-      );
+  String get location => GoRouteData.$location('/setting/dev_tool');
 
   void go(BuildContext context) => context.go(location);
 
@@ -266,9 +260,7 @@ extension $AppLogListRouteDataExtension on AppLogListRouteData {
   static AppLogListRouteData _fromState(GoRouterState state) =>
       AppLogListRouteData();
 
-  String get location => GoRouteData.$location(
-        '/setting/dev_tool/app_logs',
-      );
+  String get location => GoRouteData.$location('/setting/dev_tool/app_logs');
 
   void go(BuildContext context) => context.go(location);
 
@@ -282,13 +274,11 @@ extension $AppLogListRouteDataExtension on AppLogListRouteData {
 
 extension $AppLogDetailRouteDataExtension on AppLogDetailRouteData {
   static AppLogDetailRouteData _fromState(GoRouterState state) =>
-      AppLogDetailRouteData(
-        filename: state.pathParameters['filename']!,
-      );
+      AppLogDetailRouteData(filename: state.pathParameters['filename']!);
 
   String get location => GoRouteData.$location(
-        '/setting/dev_tool/app_logs/${Uri.encodeComponent(filename)}',
-      );
+    '/setting/dev_tool/app_logs/${Uri.encodeComponent(filename)}',
+  );
 
   void go(BuildContext context) => context.go(location);
 
@@ -301,19 +291,18 @@ extension $AppLogDetailRouteDataExtension on AppLogDetailRouteData {
 }
 
 RouteBase get $notFoundRouteData => GoRouteData.$route(
-      path: '/:path(.*)',
-      parentNavigatorKey: NotFoundRouteData.$parentNavigatorKey,
-      factory: $NotFoundRouteDataExtension._fromState,
-    );
+  path: '/:path(.*)',
+
+  parentNavigatorKey: NotFoundRouteData.$parentNavigatorKey,
+
+  factory: $NotFoundRouteDataExtension._fromState,
+);
 
 extension $NotFoundRouteDataExtension on NotFoundRouteData {
-  static NotFoundRouteData _fromState(GoRouterState state) => NotFoundRouteData(
-        path: state.pathParameters['path']!,
-      );
+  static NotFoundRouteData _fromState(GoRouterState state) =>
+      NotFoundRouteData(path: state.pathParameters['path']!);
 
-  String get location => GoRouteData.$location(
-        '/${Uri.encodeComponent(path)}',
-      );
+  String get location => GoRouteData.$location('/${Uri.encodeComponent(path)}');
 
   void go(BuildContext context) => context.go(location);
 

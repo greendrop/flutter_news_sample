@@ -34,9 +34,7 @@ abstract class _$AppLogFileContentNotifier
     extends BuildlessAutoDisposeAsyncNotifier<String> {
   late final String filename;
 
-  FutureOr<String> build({
-    required String filename,
-  });
+  FutureOr<String> build({required String filename});
 }
 
 /// See also [AppLogFileContentNotifier].
@@ -49,21 +47,15 @@ class AppLogFileContentNotifierFamily extends Family<AsyncValue<String>> {
   const AppLogFileContentNotifierFamily();
 
   /// See also [AppLogFileContentNotifier].
-  AppLogFileContentNotifierProvider call({
-    required String filename,
-  }) {
-    return AppLogFileContentNotifierProvider(
-      filename: filename,
-    );
+  AppLogFileContentNotifierProvider call({required String filename}) {
+    return AppLogFileContentNotifierProvider(filename: filename);
   }
 
   @override
   AppLogFileContentNotifierProvider getProviderOverride(
     covariant AppLogFileContentNotifierProvider provider,
   ) {
-    return call(
-      filename: provider.filename,
-    );
+    return call(filename: provider.filename);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -83,24 +75,26 @@ class AppLogFileContentNotifierFamily extends Family<AsyncValue<String>> {
 
 /// See also [AppLogFileContentNotifier].
 class AppLogFileContentNotifierProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<AppLogFileContentNotifier,
-        String> {
+    extends
+        AutoDisposeAsyncNotifierProviderImpl<
+          AppLogFileContentNotifier,
+          String
+        > {
   /// See also [AppLogFileContentNotifier].
-  AppLogFileContentNotifierProvider({
-    required String filename,
-  }) : this._internal(
-          () => AppLogFileContentNotifier()..filename = filename,
-          from: appLogFileContentNotifierProvider,
-          name: r'appLogFileContentNotifierProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$appLogFileContentNotifierHash,
-          dependencies: AppLogFileContentNotifierFamily._dependencies,
-          allTransitiveDependencies:
-              AppLogFileContentNotifierFamily._allTransitiveDependencies,
-          filename: filename,
-        );
+  AppLogFileContentNotifierProvider({required String filename})
+    : this._internal(
+        () => AppLogFileContentNotifier()..filename = filename,
+        from: appLogFileContentNotifierProvider,
+        name: r'appLogFileContentNotifierProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$appLogFileContentNotifierHash,
+        dependencies: AppLogFileContentNotifierFamily._dependencies,
+        allTransitiveDependencies:
+            AppLogFileContentNotifierFamily._allTransitiveDependencies,
+        filename: filename,
+      );
 
   AppLogFileContentNotifierProvider._internal(
     super._createNotifier, {
@@ -118,9 +112,7 @@ class AppLogFileContentNotifierProvider
   FutureOr<String> runNotifierBuild(
     covariant AppLogFileContentNotifier notifier,
   ) {
-    return notifier.build(
-      filename: filename,
-    );
+    return notifier.build(filename: filename);
   }
 
   @override
@@ -141,7 +133,7 @@ class AppLogFileContentNotifierProvider
 
   @override
   AutoDisposeAsyncNotifierProviderElement<AppLogFileContentNotifier, String>
-      createElement() {
+  createElement() {
     return _AppLogFileContentNotifierProviderElement(this);
   }
 
@@ -169,12 +161,17 @@ mixin AppLogFileContentNotifierRef
 }
 
 class _AppLogFileContentNotifierProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<AppLogFileContentNotifier,
-        String> with AppLogFileContentNotifierRef {
+    extends
+        AutoDisposeAsyncNotifierProviderElement<
+          AppLogFileContentNotifier,
+          String
+        >
+    with AppLogFileContentNotifierRef {
   _AppLogFileContentNotifierProviderElement(super.provider);
 
   @override
   String get filename => (origin as AppLogFileContentNotifierProvider).filename;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

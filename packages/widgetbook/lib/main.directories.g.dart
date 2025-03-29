@@ -96,7 +96,7 @@ final directories = <_i1.WidgetbookNode>[
                 builder: _i2.buildAppLogDetailPageLoadingUseCase,
               ),
             ],
-          )
+          ),
         ],
       ),
       _i1.WidgetbookFolder(
@@ -118,7 +118,7 @@ final directories = <_i1.WidgetbookNode>[
                 builder: _i3.buildAppLogListPageLoadingUseCase,
               ),
             ],
-          )
+          ),
         ],
       ),
       _i1.WidgetbookFolder(
@@ -227,7 +227,7 @@ final directories = <_i1.WidgetbookNode>[
               name: 'Default',
               builder: _i11.buildNewsArticleDetailPageDefaultUseCase,
             ),
-          )
+          ),
         ],
       ),
       _i1.WidgetbookFolder(
@@ -249,7 +249,7 @@ final directories = <_i1.WidgetbookNode>[
                 builder: _i12.buildNewsArticleListPageLoadingUseCase,
               ),
             ],
-          )
+          ),
         ],
       ),
       _i1.WidgetbookFolder(
@@ -290,7 +290,7 @@ final directories = <_i1.WidgetbookNode>[
               name: 'Default',
               builder: _i15.buildSettingDefaultUseCase,
             ),
-          )
+          ),
         ],
       ),
       _i1.WidgetbookFolder(

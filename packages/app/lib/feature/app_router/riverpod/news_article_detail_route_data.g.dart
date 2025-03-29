@@ -45,20 +45,14 @@ class NewsArticleDetailRouteDataFamily
     required String title,
     required String url,
   }) {
-    return NewsArticleDetailRouteDataProvider(
-      title: title,
-      url: url,
-    );
+    return NewsArticleDetailRouteDataProvider(title: title, url: url);
   }
 
   @override
   NewsArticleDetailRouteDataProvider getProviderOverride(
     covariant NewsArticleDetailRouteDataProvider provider,
   ) {
-    return call(
-      title: provider.title,
-      url: provider.url,
-    );
+    return call(title: provider.title, url: provider.url);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -84,23 +78,23 @@ class NewsArticleDetailRouteDataProvider
     required String title,
     required String url,
   }) : this._internal(
-          (ref) => newsArticleDetailRouteData(
-            ref as NewsArticleDetailRouteDataRef,
-            title: title,
-            url: url,
-          ),
-          from: newsArticleDetailRouteDataProvider,
-          name: r'newsArticleDetailRouteDataProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$newsArticleDetailRouteDataHash,
-          dependencies: NewsArticleDetailRouteDataFamily._dependencies,
-          allTransitiveDependencies:
-              NewsArticleDetailRouteDataFamily._allTransitiveDependencies,
-          title: title,
-          url: url,
-        );
+         (ref) => newsArticleDetailRouteData(
+           ref as NewsArticleDetailRouteDataRef,
+           title: title,
+           url: url,
+         ),
+         from: newsArticleDetailRouteDataProvider,
+         name: r'newsArticleDetailRouteDataProvider',
+         debugGetCreateSourceHash:
+             const bool.fromEnvironment('dart.vm.product')
+                 ? null
+                 : _$newsArticleDetailRouteDataHash,
+         dependencies: NewsArticleDetailRouteDataFamily._dependencies,
+         allTransitiveDependencies:
+             NewsArticleDetailRouteDataFamily._allTransitiveDependencies,
+         title: title,
+         url: url,
+       );
 
   NewsArticleDetailRouteDataProvider._internal(
     super._createNotifier, {
@@ -119,7 +113,7 @@ class NewsArticleDetailRouteDataProvider
   @override
   Override overrideWith(
     NewsArticleDetailRouteData Function(NewsArticleDetailRouteDataRef provider)
-        create,
+    create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -179,5 +173,6 @@ class _NewsArticleDetailRouteDataProviderElement
   @override
   String get url => (origin as NewsArticleDetailRouteDataProvider).url;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

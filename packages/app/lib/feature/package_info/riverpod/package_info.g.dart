@@ -13,14 +13,15 @@ String _$packageInfoNotifierHash() =>
 @ProviderFor(PackageInfoNotifier)
 final packageInfoNotifierProvider =
     NotifierProvider<PackageInfoNotifier, PackageInfo?>.internal(
-  PackageInfoNotifier.new,
-  name: r'packageInfoNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$packageInfoNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      PackageInfoNotifier.new,
+      name: r'packageInfoNotifierProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$packageInfoNotifierHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$PackageInfoNotifier = Notifier<PackageInfo?>;
 // ignore_for_file: type=lint

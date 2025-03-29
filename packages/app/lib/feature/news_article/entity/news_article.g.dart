@@ -8,17 +8,21 @@ part of 'news_article.dart';
 
 _$NewsArticleImpl _$$NewsArticleImplFromJson(Map<String, dynamic> json) =>
     _$NewsArticleImpl(
-      source: json['source'] == null
-          ? null
-          : NewsArticleSource.fromJson(json['source'] as Map<String, dynamic>),
+      source:
+          json['source'] == null
+              ? null
+              : NewsArticleSource.fromJson(
+                json['source'] as Map<String, dynamic>,
+              ),
       author: json['author'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
       url: json['url'] as String?,
       urlToImage: json['urlToImage'] as String?,
-      publishedAt: json['publishedAt'] == null
-          ? null
-          : DateTime.parse(json['publishedAt'] as String),
+      publishedAt:
+          json['publishedAt'] == null
+              ? null
+              : DateTime.parse(json['publishedAt'] as String),
       content: json['content'] as String?,
     );
 

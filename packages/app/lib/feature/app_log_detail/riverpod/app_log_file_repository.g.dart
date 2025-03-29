@@ -13,14 +13,15 @@ String _$appLogFileRepositoryHash() =>
 @ProviderFor(appLogFileRepository)
 final appLogFileRepositoryProvider =
     AutoDisposeProvider<AppLogFileRepository>.internal(
-  appLogFileRepository,
-  name: r'appLogFileRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$appLogFileRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      appLogFileRepository,
+      name: r'appLogFileRepositoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$appLogFileRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element

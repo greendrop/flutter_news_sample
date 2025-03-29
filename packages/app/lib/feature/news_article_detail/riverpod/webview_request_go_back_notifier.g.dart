@@ -13,14 +13,15 @@ String _$webViewRequestGoBackNotifierHash() =>
 @ProviderFor(WebViewRequestGoBackNotifier)
 final webViewRequestGoBackNotifierProvider =
     AutoDisposeNotifierProvider<WebViewRequestGoBackNotifier, bool>.internal(
-  WebViewRequestGoBackNotifier.new,
-  name: r'webViewRequestGoBackNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$webViewRequestGoBackNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      WebViewRequestGoBackNotifier.new,
+      name: r'webViewRequestGoBackNotifierProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$webViewRequestGoBackNotifierHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$WebViewRequestGoBackNotifier = AutoDisposeNotifier<bool>;
 // ignore_for_file: type=lint

@@ -40,21 +40,15 @@ class NewsArticleListRouteDataFamily extends Family<NewsArticleListRouteData> {
   const NewsArticleListRouteDataFamily();
 
   /// See also [newsArticleListRouteData].
-  NewsArticleListRouteDataProvider call({
-    required String? category,
-  }) {
-    return NewsArticleListRouteDataProvider(
-      category: category,
-    );
+  NewsArticleListRouteDataProvider call({required String? category}) {
+    return NewsArticleListRouteDataProvider(category: category);
   }
 
   @override
   NewsArticleListRouteDataProvider getProviderOverride(
     covariant NewsArticleListRouteDataProvider provider,
   ) {
-    return call(
-      category: provider.category,
-    );
+    return call(category: provider.category);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -76,24 +70,23 @@ class NewsArticleListRouteDataFamily extends Family<NewsArticleListRouteData> {
 class NewsArticleListRouteDataProvider
     extends AutoDisposeProvider<NewsArticleListRouteData> {
   /// See also [newsArticleListRouteData].
-  NewsArticleListRouteDataProvider({
-    required String? category,
-  }) : this._internal(
-          (ref) => newsArticleListRouteData(
-            ref as NewsArticleListRouteDataRef,
-            category: category,
-          ),
-          from: newsArticleListRouteDataProvider,
-          name: r'newsArticleListRouteDataProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$newsArticleListRouteDataHash,
-          dependencies: NewsArticleListRouteDataFamily._dependencies,
-          allTransitiveDependencies:
-              NewsArticleListRouteDataFamily._allTransitiveDependencies,
+  NewsArticleListRouteDataProvider({required String? category})
+    : this._internal(
+        (ref) => newsArticleListRouteData(
+          ref as NewsArticleListRouteDataRef,
           category: category,
-        );
+        ),
+        from: newsArticleListRouteDataProvider,
+        name: r'newsArticleListRouteDataProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$newsArticleListRouteDataHash,
+        dependencies: NewsArticleListRouteDataFamily._dependencies,
+        allTransitiveDependencies:
+            NewsArticleListRouteDataFamily._allTransitiveDependencies,
+        category: category,
+      );
 
   NewsArticleListRouteDataProvider._internal(
     super._createNotifier, {
@@ -110,7 +103,7 @@ class NewsArticleListRouteDataProvider
   @override
   Override overrideWith(
     NewsArticleListRouteData Function(NewsArticleListRouteDataRef provider)
-        create,
+    create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -162,5 +155,6 @@ class _NewsArticleListRouteDataProviderElement
   @override
   String? get category => (origin as NewsArticleListRouteDataProvider).category;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

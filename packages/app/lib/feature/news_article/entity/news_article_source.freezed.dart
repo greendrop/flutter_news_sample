@@ -12,7 +12,8 @@ part of 'news_article_source.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 NewsArticleSource _$NewsArticleSourceFromJson(Map<String, dynamic> json) {
   return _NewsArticleSource.fromJson(json);
@@ -36,8 +37,9 @@ mixin _$NewsArticleSource {
 /// @nodoc
 abstract class $NewsArticleSourceCopyWith<$Res> {
   factory $NewsArticleSourceCopyWith(
-          NewsArticleSource value, $Res Function(NewsArticleSource) then) =
-      _$NewsArticleSourceCopyWithImpl<$Res, NewsArticleSource>;
+    NewsArticleSource value,
+    $Res Function(NewsArticleSource) then,
+  ) = _$NewsArticleSourceCopyWithImpl<$Res, NewsArticleSource>;
   @useResult
   $Res call({String? id, String? name});
 }
@@ -56,29 +58,32 @@ class _$NewsArticleSourceCopyWithImpl<$Res, $Val extends NewsArticleSource>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  $Res call({Object? id = freezed, Object? name = freezed}) {
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            name:
+                freezed == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$NewsArticleSourceImplCopyWith<$Res>
     implements $NewsArticleSourceCopyWith<$Res> {
-  factory _$$NewsArticleSourceImplCopyWith(_$NewsArticleSourceImpl value,
-          $Res Function(_$NewsArticleSourceImpl) then) =
-      __$$NewsArticleSourceImplCopyWithImpl<$Res>;
+  factory _$$NewsArticleSourceImplCopyWith(
+    _$NewsArticleSourceImpl value,
+    $Res Function(_$NewsArticleSourceImpl) then,
+  ) = __$$NewsArticleSourceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String? name});
@@ -88,28 +93,30 @@ abstract class _$$NewsArticleSourceImplCopyWith<$Res>
 class __$$NewsArticleSourceImplCopyWithImpl<$Res>
     extends _$NewsArticleSourceCopyWithImpl<$Res, _$NewsArticleSourceImpl>
     implements _$$NewsArticleSourceImplCopyWith<$Res> {
-  __$$NewsArticleSourceImplCopyWithImpl(_$NewsArticleSourceImpl _value,
-      $Res Function(_$NewsArticleSourceImpl) _then)
-      : super(_value, _then);
+  __$$NewsArticleSourceImplCopyWithImpl(
+    _$NewsArticleSourceImpl _value,
+    $Res Function(_$NewsArticleSourceImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of NewsArticleSource
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-  }) {
-    return _then(_$NewsArticleSourceImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? id = freezed, Object? name = freezed}) {
+    return _then(
+      _$NewsArticleSourceImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        name:
+            freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
@@ -151,13 +158,13 @@ class _$NewsArticleSourceImpl extends _NewsArticleSource {
   @pragma('vm:prefer-inline')
   _$$NewsArticleSourceImplCopyWith<_$NewsArticleSourceImpl> get copyWith =>
       __$$NewsArticleSourceImplCopyWithImpl<_$NewsArticleSourceImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NewsArticleSourceImplToJson(
-      this,
-    );
+    return _$$NewsArticleSourceImplToJson(this);
   }
 }
 

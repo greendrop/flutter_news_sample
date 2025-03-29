@@ -13,14 +13,15 @@ String _$webViewCurrentUrlNotifierHash() =>
 @ProviderFor(WebViewCurrentUrlNotifier)
 final webViewCurrentUrlNotifierProvider =
     AutoDisposeNotifierProvider<WebViewCurrentUrlNotifier, String>.internal(
-  WebViewCurrentUrlNotifier.new,
-  name: r'webViewCurrentUrlNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$webViewCurrentUrlNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      WebViewCurrentUrlNotifier.new,
+      name: r'webViewCurrentUrlNotifierProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$webViewCurrentUrlNotifierHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$WebViewCurrentUrlNotifier = AutoDisposeNotifier<String>;
 // ignore_for_file: type=lint

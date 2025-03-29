@@ -12,7 +12,8 @@ part of 'app_log_file.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 AppLogFile _$AppLogFileFromJson(Map<String, dynamic> json) {
   return _AppLogFile.fromJson(json);
@@ -35,8 +36,9 @@ mixin _$AppLogFile {
 /// @nodoc
 abstract class $AppLogFileCopyWith<$Res> {
   factory $AppLogFileCopyWith(
-          AppLogFile value, $Res Function(AppLogFile) then) =
-      _$AppLogFileCopyWithImpl<$Res, AppLogFile>;
+    AppLogFile value,
+    $Res Function(AppLogFile) then,
+  ) = _$AppLogFileCopyWithImpl<$Res, AppLogFile>;
   @useResult
   $Res call({String path});
 }
@@ -55,15 +57,17 @@ class _$AppLogFileCopyWithImpl<$Res, $Val extends AppLogFile>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? path = null,
-  }) {
-    return _then(_value.copyWith(
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  $Res call({Object? path = null}) {
+    return _then(
+      _value.copyWith(
+            path:
+                null == path
+                    ? _value.path
+                    : path // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -71,8 +75,9 @@ class _$AppLogFileCopyWithImpl<$Res, $Val extends AppLogFile>
 abstract class _$$AppLogFileImplCopyWith<$Res>
     implements $AppLogFileCopyWith<$Res> {
   factory _$$AppLogFileImplCopyWith(
-          _$AppLogFileImpl value, $Res Function(_$AppLogFileImpl) then) =
-      __$$AppLogFileImplCopyWithImpl<$Res>;
+    _$AppLogFileImpl value,
+    $Res Function(_$AppLogFileImpl) then,
+  ) = __$$AppLogFileImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String path});
@@ -83,22 +88,24 @@ class __$$AppLogFileImplCopyWithImpl<$Res>
     extends _$AppLogFileCopyWithImpl<$Res, _$AppLogFileImpl>
     implements _$$AppLogFileImplCopyWith<$Res> {
   __$$AppLogFileImplCopyWithImpl(
-      _$AppLogFileImpl _value, $Res Function(_$AppLogFileImpl) _then)
-      : super(_value, _then);
+    _$AppLogFileImpl _value,
+    $Res Function(_$AppLogFileImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of AppLogFile
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? path = null,
-  }) {
-    return _then(_$AppLogFileImpl(
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? path = null}) {
+    return _then(
+      _$AppLogFileImpl(
+        path:
+            null == path
+                ? _value.path
+                : path // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
@@ -141,9 +148,7 @@ class _$AppLogFileImpl extends _AppLogFile {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AppLogFileImplToJson(
-      this,
-    );
+    return _$$AppLogFileImplToJson(this);
   }
 }
 
