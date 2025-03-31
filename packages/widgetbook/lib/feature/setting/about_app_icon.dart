@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/setting/widget/about_app_icon.dart' as feature;
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';

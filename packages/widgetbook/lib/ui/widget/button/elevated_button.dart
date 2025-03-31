@@ -5,10 +5,10 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class ElevatedButton extends StatelessWidget {
   const ElevatedButton({
-    super.key,
     required this.onPressed,
     required this.child,
     this.iconData,
+    super.key,
   });
 
   final Widget child;

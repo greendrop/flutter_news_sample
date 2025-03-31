@@ -1,6 +1,4 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/theme_setting/hook/use_theme_mode.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/theme_setting/widget/theme_setting_page.dart'
     as feature;
 import 'package:flutter/material.dart';

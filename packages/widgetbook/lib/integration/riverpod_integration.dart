@@ -1,6 +1,7 @@
 // ref: https://zenn.dev/yumemi_inc/articles/flutter-with-widgetbook-riverpod
 
-// ignore: depend_on_referenced_packages
+// ignore_for_file: document_ignores
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:widgetbook/widgetbook.dart';
 

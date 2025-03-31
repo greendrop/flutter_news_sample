@@ -1,11 +1,10 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/config/design_token/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material show Color;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class ColorWidget extends StatelessWidget {
-  const ColorWidget({super.key, required this.color, required this.name});
+  const ColorWidget({required this.color, required this.name, super.key});
 
   final material.Color color;
   final String name;
@@ -25,8 +24,10 @@ class ColorWidget extends StatelessWidget {
               'RGB: ${color.r.round()}, ${color.g.round()}, ${color.b.round()}',
             ),
             Text(
-              // ignore: lines_longer_than_80_chars
-              'HEX: #${color.r.round().toRadixString(16).padLeft(2, '0')}${color.g.round().toRadixString(16).padLeft(2, '0')}${color.b.round().toRadixString(16).padLeft(2, '0')}',
+              'HEX: '
+              '#${color.r.round().toRadixString(16).padLeft(2, '0')}'
+              '${color.g.round().toRadixString(16).padLeft(2, '0')}'
+              '${color.b.round().toRadixString(16).padLeft(2, '0')}',
             ),
           ],
         ),

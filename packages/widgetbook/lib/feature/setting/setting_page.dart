@@ -1,20 +1,14 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/dev_tool/hook/use_push_dev_tool_page.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/locale_setting/hook/use_push_locale_setting_page.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/setting/hook/use_show_app_about_dialog.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/setting/widget/setting_page.dart' as feature;
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/theme_setting/hook/use_push_theme_setting_page.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/widget/scaffold_with_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class SettingPage extends StatelessWidget {
-  const SettingPage({super.key, required this.showDevTool});
+  const SettingPage({required this.showDevTool, super.key});
 
   final bool showDevTool;
 

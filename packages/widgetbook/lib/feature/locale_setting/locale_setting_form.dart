@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/locale_setting/widget/locale_setting_form.dart'
     as feature;
 import 'package:flutter/material.dart';

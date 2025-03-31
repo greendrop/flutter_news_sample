@@ -1,15 +1,11 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/config/l10n/l10n.g.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/config/theme/app_theme_data.dart';
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:widgetbook_workspace/integration/riverpod_integration.dart';
-
-import 'main.directories.g.dart';
+import 'package:widgetbook_workspace/main.directories.g.dart';
 
 void main() {
   runApp(const WidgetbookApp());

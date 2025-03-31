@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article/widget/news_article_image.dart'
     as feature;
 import 'package:flutter/material.dart';
@@ -7,7 +6,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 const String _dummyImageUrl = 'https://dummyimage.com/600x400/000/fff';
 
 class NewsArticleImage extends StatelessWidget {
-  const NewsArticleImage({super.key, required this.url});
+  const NewsArticleImage({required this.url, super.key});
 
   final String? url;
 

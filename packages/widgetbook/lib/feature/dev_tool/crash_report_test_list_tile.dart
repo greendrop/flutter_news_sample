@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/dev_tool/widget/crash_report_test_list_tile.dart'
     as feature;
 import 'package:flutter/material.dart';

@@ -1,18 +1,11 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article/entity/news_article.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article_detail/hook/use_push_news_article_detail_page.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article_list/entity/news_articles.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article_list/hook/use_news_articles.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article_list/widget/news_article_list_page.dart'
     as feature;
-// ignore: depend_on_referenced_packages
 import 'package:app/widget/scaffold_with_nav_bar.dart';
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 

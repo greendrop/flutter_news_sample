@@ -1,6 +1,4 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/locale_setting/hook/use_locale.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/locale_setting/widget/locale_setting_page.dart'
     as feature;
 import 'package:flutter/material.dart';

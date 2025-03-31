@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article_search/widget/news_article_search_form.dart'
     as feature;
 import 'package:flutter/material.dart';
