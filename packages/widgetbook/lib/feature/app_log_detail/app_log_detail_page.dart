@@ -1,10 +1,7 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/app_log_detail/hook/use_app_log_file_content.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/app_log_detail/widget/app_log_detail_page.dart'
     as feature;
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
@@ -32,8 +29,9 @@ class AppLogDetailPage extends StatelessWidget {
       } else {
         state = AsyncValue.data(
           List.generate(30, (index) {
-            // ignore: lines_longer_than_80_chars
-            return '{"level":"info","timestamp":"${DateTime.utc(2024, 1, 1, 0, index).toUtc()}","message":"message${index + 1}"}';
+            return '{"level":"info",'
+                '"timestamp":"${DateTime.utc(2024, 1, 1, 0, index).toUtc()}",'
+                '"message":"message${index + 1}"}';
           }).join('\n'),
         );
       }

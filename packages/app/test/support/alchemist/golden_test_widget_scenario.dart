@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class GoldenTestWidgetScenario extends StatelessWidget {
   const GoldenTestWidgetScenario({
-    super.key,
     required this.name,
     required this.brightness,
     required this.builder,
@@ -11,6 +10,7 @@ class GoldenTestWidgetScenario extends StatelessWidget {
     this.minHeight = 50,
     this.maxWidth = 400,
     this.maxHeight = 400,
+    super.key,
   });
 
   final String name;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NewsArticleImage extends HookConsumerWidget {
-  const NewsArticleImage({super.key, required this.url});
+  const NewsArticleImage({required this.url, super.key});
 
   final String? url;
 

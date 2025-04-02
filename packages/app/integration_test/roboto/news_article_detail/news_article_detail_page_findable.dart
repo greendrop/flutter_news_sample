@@ -7,5 +7,5 @@ class NewsArticleDetailPageFindable
     extends BaseFindable<NewsArticleDetailPage> {
   NewsArticleDetailPageFindable();
 
-  final back = find.byTooltip(RegExp(r'Back|戻る'));
+  final back = find.byTooltip(RegExp('Back|戻る'));
 }

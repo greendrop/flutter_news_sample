@@ -5,9 +5,9 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class OutlinedButton extends StatelessWidget {
   const OutlinedButton({
-    super.key,
     required this.onPressed,
     required this.child,
+    super.key,
   });
 
   final Widget child;

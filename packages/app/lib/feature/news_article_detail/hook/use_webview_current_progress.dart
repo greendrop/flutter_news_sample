@@ -4,11 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 typedef UseWebViewCurrentProgressReturn =
-    ({
-      int state,
-      // ignore: avoid_positional_boolean_parameters
-      void Function(int) setState,
-    });
+    ({int state, void Function(int) setState});
 
 typedef UseWebViewCurrentProgress = UseWebViewCurrentProgressReturn Function();
 

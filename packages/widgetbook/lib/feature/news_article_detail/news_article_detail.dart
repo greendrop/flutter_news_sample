@@ -1,10 +1,7 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article_detail/widget/news_article_detail_page.dart'
     as feature;
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/share/hook/use_share.dart';
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:share_plus/share_plus.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 

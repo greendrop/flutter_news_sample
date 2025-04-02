@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NewsArticleGridItem extends HookConsumerWidget {
-  const NewsArticleGridItem({super.key, required this.newsArticle, this.onTap});
+  const NewsArticleGridItem({required this.newsArticle, super.key, this.onTap});
 
   final NewsArticle newsArticle;
   final void Function()? onTap;

@@ -6,10 +6,10 @@ export 'device.dart';
 
 class GoldenTestDeviceScenario extends StatelessWidget {
   const GoldenTestDeviceScenario({
-    super.key,
     required this.name,
     required this.device,
     required this.builder,
+    super.key,
   });
 
   final String name;

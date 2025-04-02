@@ -1,10 +1,9 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/config/design_token/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class SpacingWidget extends StatelessWidget {
-  const SpacingWidget({super.key, required this.spacing, required this.name});
+  const SpacingWidget({required this.spacing, required this.name, super.key});
 
   final double spacing;
   final String name;

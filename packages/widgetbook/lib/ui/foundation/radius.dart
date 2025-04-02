@@ -1,10 +1,9 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/config/design_token/radius.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class RadiusWidget extends StatelessWidget {
-  const RadiusWidget({super.key, required this.radius, required this.name});
+  const RadiusWidget({required this.radius, required this.name, super.key});
 
   final double radius;
   final String name;

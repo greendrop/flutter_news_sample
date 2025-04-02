@@ -5,11 +5,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class FilledButton extends StatelessWidget {
   const FilledButton({
-    super.key,
     required this.onPressed,
     required this.child,
     this.tonal = false,
     this.iconData,
+    super.key,
   });
 
   final Widget child;

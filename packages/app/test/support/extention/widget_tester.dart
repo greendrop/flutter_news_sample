@@ -31,12 +31,12 @@ extension WidgetTesterScreenshot on WidgetTester {
   }
 
   Future<ui.Image> _captureImage(Element element) async {
-    assert(element.renderObject != null);
+    assert(element.renderObject != null, 'Element has no renderObject');
     var renderObject = element.renderObject!;
     while (!renderObject.isRepaintBoundary) {
       renderObject = renderObject.parent!;
     }
-    assert(!renderObject.debugNeedsPaint);
+    assert(!renderObject.debugNeedsPaint, 'RenderObject needs paint');
 
     final layer = renderObject.debugLayer! as OffsetLayer;
     final image = await layer.toImage(renderObject.paintBounds);
@@ -46,13 +46,12 @@ extension WidgetTesterScreenshot on WidgetTester {
       if (expectedSize.width != image.width ||
           expectedSize.height != image.height) {
         final el = element.toStringShort();
-        // ignore: avoid_print
-        print(
+        debugPrint(
           'Warning: The screenshot captured of $el is '
           'larger (${image.width}, ${image.height}) than '
           '$el (${expectedSize.width}, ${expectedSize.height}) itself.\n'
-          // ignore: lines_longer_than_80_chars
-          'Wrap the $el in a RepaintBoundary to be able to capture only that layer.',
+          'Wrap the $el in a RepaintBoundary '
+          'to be able to capture only that layer.',
         );
       }
     }

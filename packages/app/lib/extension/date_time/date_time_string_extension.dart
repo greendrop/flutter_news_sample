@@ -3,8 +3,11 @@ extension DateTimeStringExtension on DateTime {
     // NOTE: https://github.com/dart-lang/sdk/issues/43391
 
     final offset = timeZoneOffset;
-    // ignore: lines_longer_than_80_chars
-    return '${offset.isNegative ? '-' : '+'}${offset.inHours.abs().toString().padLeft(2, '0')}:${(offset.inMinutes - offset.inHours * 60).toString().padLeft(2, '0')}';
+    final hour = offset.inHours.abs();
+    final minute = offset.inMinutes - offset.inHours * 60;
+    return '${offset.isNegative ? '-' : '+'}'
+        '${hour.toString().padLeft(2, '0')}:'
+        '${minute.toString().padLeft(2, '0')}';
   }
 
   String get toIso8601StringWithTimeZoneOffsetString {

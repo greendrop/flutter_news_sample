@@ -5,9 +5,9 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class LocaleSettingForm extends StatefulHookConsumerWidget {
   const LocaleSettingForm({
-    super.key,
     required this.initialLocale,
     this.onSubmit,
+    super.key,
   });
 
   final Locale? initialLocale;

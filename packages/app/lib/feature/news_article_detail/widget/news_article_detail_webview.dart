@@ -17,9 +17,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NewsArticleDetailWebView extends HookConsumerWidget {
   const NewsArticleDetailWebView({
-    super.key,
     required this.url,
     this.isDummyWebView = false,
+    super.key,
   });
 
   final String url;
@@ -136,9 +136,10 @@ class NewsArticleDetailWebView extends HookConsumerWidget {
             }
           },
         ),
-        webViewCurrentProgress.state < 100
-            ? LinearProgressIndicator(value: webViewCurrentProgress.state / 100)
-            : Container(),
+        if (webViewCurrentProgress.state < 100)
+          LinearProgressIndicator(value: webViewCurrentProgress.state / 100)
+        else
+          Container(),
       ],
     );
   }

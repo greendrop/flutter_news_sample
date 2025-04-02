@@ -49,6 +49,7 @@ void main() {
         [
           'TabBar,TabBarViewが表示されること',
           'NewsArticleGridItemが表示されること',
+          // 内容が長いため
           // ignore: lines_longer_than_80_chars
           'NewsArticleGridItemをタップした場合、usePushNewsArticleDetailPage#runが呼ばれること',
         ].join(', '),

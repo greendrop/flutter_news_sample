@@ -10,10 +10,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AppLogDetailPage extends HookConsumerWidget {
   const AppLogDetailPage({
-    super.key,
     required this.filename,
     this.useAppLogFileContent = useAppLogFileContentImpl,
     this.stopLoadingIndicator = false,
+    super.key,
   });
 
   final String filename;

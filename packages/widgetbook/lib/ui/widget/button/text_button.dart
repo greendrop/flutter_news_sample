@@ -5,10 +5,10 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class TextButton extends StatelessWidget {
   const TextButton({
-    super.key,
     required this.onPressed,
     required this.child,
     this.iconData,
+    super.key,
   });
 
   final Widget child;

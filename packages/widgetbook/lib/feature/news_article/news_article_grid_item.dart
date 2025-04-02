@@ -1,6 +1,4 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article/entity/news_article.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/news_article/widget/news_article_grid_item.dart'
     as feature;
 import 'package:flutter/material.dart';
@@ -9,7 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 const String _dummyImageUrl = 'https://dummyimage.com/600x400/000/fff';
 
 class NewsArticleGridItem extends StatelessWidget {
-  const NewsArticleGridItem({super.key, required this.newsArticle, this.onTap});
+  const NewsArticleGridItem({required this.newsArticle, super.key, this.onTap});
 
   final NewsArticle newsArticle;
   final void Function()? onTap;

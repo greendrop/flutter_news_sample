@@ -8,6 +8,7 @@ const _baseUrl = 'https://newsapi.org';
 const newsEverythingClientPath = '/v2/everything';
 
 @RestApi(baseUrl: _baseUrl + newsEverythingClientPath)
+// dioを使用するため
 // ignore: one_member_abstracts
 abstract class NewsEverythingClient {
   factory NewsEverythingClient(Dio dio, {String baseUrl}) =

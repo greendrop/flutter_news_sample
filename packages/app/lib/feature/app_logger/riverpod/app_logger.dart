@@ -14,13 +14,11 @@ Logger appLogger(Ref ref) {
     printer: JsonFmtPrinter(),
     output: MultiOutput(
       [
-        AppConfig.instance.appLogConsoleEnabled ? ConsoleOutput() : null,
-        logDirectory != null
-            ? AdvancedFileOutput(
-              path: logDirectory.path,
-              maxRotatedFilesCount: 8,
-            )
-            : null,
+        if (AppConfig.instance.appLogConsoleEnabled) ConsoleOutput() else null,
+        if (logDirectory != null)
+          AdvancedFileOutput(path: logDirectory.path, maxRotatedFilesCount: 8)
+        else
+          null,
       ].nonNulls.toList(),
     ),
   );

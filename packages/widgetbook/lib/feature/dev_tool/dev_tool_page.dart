@@ -1,8 +1,5 @@
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/app_log_list/hook/use_push_app_log_list_page.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/dev_tool/hook/use_crash_report_test.dart';
-// ignore: depend_on_referenced_packages
 import 'package:app/feature/dev_tool/widget/dev_tool_page.dart' as feature;
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';

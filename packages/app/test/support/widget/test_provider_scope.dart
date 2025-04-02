@@ -6,9 +6,9 @@ import '../logger.dart';
 
 class TestProviderScope extends HookConsumerWidget {
   const TestProviderScope({
-    super.key,
     required this.child,
     this.providerScopeOverrides = const [],
+    super.key,
   });
 
   final Widget child;
@@ -18,7 +18,6 @@ class TestProviderScope extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ProviderScope(
       overrides: [
-        // ignore: scoped_providers_should_specify_dependencies
         appLoggerProvider.overrideWithValue(buildAppTestLogger()),
         ...providerScopeOverrides,
       ],

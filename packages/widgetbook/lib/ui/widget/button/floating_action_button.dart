@@ -4,9 +4,9 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class FloatingActionButton extends StatelessWidget {
   const FloatingActionButton({
-    super.key,
     required this.onPressed,
     required this.child,
+    super.key,
   });
 
   final Widget child;

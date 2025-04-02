@@ -14,3 +14,5 @@ workspace:
 
 flutter:
   generate: true
+dev_dependencies:
+  very_good_analysis: ^7.0.0

@@ -8,6 +8,7 @@ const _baseUrl = 'https://newsapi.org';
 const newsTopHeadlinesClientPath = '/v2/top-headlines';
 
 @RestApi(baseUrl: _baseUrl + newsTopHeadlinesClientPath)
+// dioを使用するため
 // ignore: one_member_abstracts
 abstract class NewsTopHeadlinesClient {
   factory NewsTopHeadlinesClient(Dio dio, {String baseUrl}) =

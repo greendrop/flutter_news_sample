@@ -4,7 +4,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class AppBar extends StatelessWidget {
-  const AppBar({super.key, required this.title, this.leading, this.actions});
+  const AppBar({required this.title, this.leading, this.actions, super.key});
 
   final Widget title;
   final Widget? leading;
