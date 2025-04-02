@@ -9,7 +9,6 @@ class WebViewCurrentProgressNotifier extends _$WebViewCurrentProgressNotifier {
     return 0;
   }
 
-  // ignore: avoid_positional_boolean_parameters
   Future<void> setState(int value) async {
     state = value;
   }

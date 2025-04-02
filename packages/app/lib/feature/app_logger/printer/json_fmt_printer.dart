@@ -15,14 +15,12 @@ class JsonFmtPrinter extends LogPrinter {
   final int errorMethodCount;
 
   static final levelPrefixes = {
-    // ignore: deprecated_member_use
-    Level.verbose: 'verbose',
+    Level.trace: 'trace',
     Level.debug: 'debug',
     Level.info: 'info',
     Level.warning: 'warning',
     Level.error: 'error',
-    // ignore: deprecated_member_use
-    Level.wtf: 'wtf',
+    Level.fatal: 'fatal',
   };
 
   /// Matches a stacktrace line as generated on Android/iOS devices.

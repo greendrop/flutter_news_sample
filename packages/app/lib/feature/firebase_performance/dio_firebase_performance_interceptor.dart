@@ -1,18 +1,21 @@
 // Ref: https://github.com/darkxanter/firebase_performance_dio/blob/master/lib/src/firebase_performance_dio.dart
 
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:dio/dio.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 
 /// [Dio] client interceptor that hooks into request/response process
-/// and calls Firebase Metric API in between. The [HttpMetric] stored in [RequestOptions.extra] field.
+/// and calls Firebase Metric API in between.
+/// The [HttpMetric] stored in [RequestOptions.extra] field.
 ///
-/// Additionally there is no good API of obtaining content length from interceptor
-/// API so we're "approximating" the byte length based on headers & request data.
-/// If you're not fine with this, you can provide your own implementation in the constructor
+/// Additionally there is no good API of obtaining content length
+/// from interceptor
+/// API so we're "approximating" the byte length based on headers &
+/// request data.
+/// If you're not fine with this, you can provide your own implementation
+/// in the constructor
 ///
-/// This interceptor might be counting parsing time into elapsed API call duration.
+/// This interceptor might be counting parsing time
+/// into elapsed API call duration.
 /// I am not fully aware of [Dio] internal architecture.
 class DioFirebasePerformanceInterceptor extends Interceptor {
   DioFirebasePerformanceInterceptor({
@@ -47,8 +50,7 @@ class DioFirebasePerformanceInterceptor extends Interceptor {
 
   @override
   Future<void> onResponse(
-    // ignore: strict_raw_type
-    Response response,
+    Response<dynamic> response,
     ResponseInterceptorHandler handler,
   ) async {
     await _stopMetric(response, response.requestOptions);
@@ -64,8 +66,10 @@ class DioFirebasePerformanceInterceptor extends Interceptor {
     return super.onError(err, handler);
   }
 
-  // ignore: strict_raw_type
-  Future<void> _stopMetric(Response? response, RequestOptions options) async {
+  Future<void> _stopMetric(
+    Response<dynamic>? response,
+    RequestOptions options,
+  ) async {
     try {
       final metric = options.extra[extraKey];
       if (metric is HttpMetric) {
@@ -86,10 +90,8 @@ int? defaultRequestContentLength(RequestOptions options) {
   }
 }
 
-// ignore: strict_raw_type
-typedef ResponseContentLengthMethod = int? Function(Response options);
-// ignore: strict_raw_type
-int? defaultResponseContentLength(Response response) {
+typedef ResponseContentLengthMethod = int? Function(Response<dynamic> options);
+int? defaultResponseContentLength(Response<dynamic> response) {
   try {
     final lengthHeader = response.headers[Headers.contentLengthHeader]?.first;
     var length = int.parse(lengthHeader ?? '-1');
@@ -105,8 +107,7 @@ int? defaultResponseContentLength(Response response) {
 
 extension _ResponseHttpMetric on HttpMetric {
   void setResponse(
-    // ignore: strict_raw_type
-    Response? value,
+    Response<dynamic>? value,
     ResponseContentLengthMethod responseContentLengthMethod,
   ) {
     if (value == null) {
@@ -133,8 +134,7 @@ String defaultRequestUrl(RequestOptions options) {
 
 extension _UriHttpMethod on Uri {
   String normalized() {
-    // ignore: prefer_single_quotes
-    return "$scheme://$host$path";
+    return '$scheme://$host$path';
   }
 }
 

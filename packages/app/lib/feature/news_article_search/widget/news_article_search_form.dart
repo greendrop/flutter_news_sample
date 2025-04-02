@@ -5,10 +5,10 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class NewsArticleSearchForm extends StatefulHookConsumerWidget {
   const NewsArticleSearchForm({
-    super.key,
     required this.initialKeyword,
     this.initiallidationEnabled = false,
     this.onSubmit,
+    super.key,
   });
 
   static const keywordMaxLength = 255;

@@ -15,11 +15,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NewsArticleDetailPage extends HookConsumerWidget {
   const NewsArticleDetailPage({
-    super.key,
     required this.title,
     required this.url,
     this.isDummyWebView = false,
     this.useShare = useShareImpl,
+    super.key,
   });
 
   final String title;

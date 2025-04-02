@@ -6,9 +6,9 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class ThemeSettingForm extends StatefulHookConsumerWidget {
   const ThemeSettingForm({
-    super.key,
     required this.initialThemeMode,
     this.onSubmit,
+    super.key,
   });
 
   final ThemeMode initialThemeMode;

@@ -25,10 +25,13 @@ void main() {
           [
             'fetchを実行しRepository#getのレスポンス3件の場合、state.itemsに設定されること',
             'fetchMoreを実行しRepositoryのレスポンスが3件の場合、state.itemsに追加されること',
+            // 内容が長いため
             // ignore: lines_longer_than_80_chars
             'fetchMoreを実行しRepositoryのレスポンスが0件の場合、state.hasNextPageがfalseになること',
+            // 内容が長いため
             // ignore: lines_longer_than_80_chars
             'state.hasNextPageがfalseの場合、fetchMoreを実行してもRepository#getが呼ばれないこと',
+            // 内容が長いため
             // ignore: lines_longer_than_80_chars
             'fetch(isRefresh: true)を実行しRepository#getのレスポンス3件の場合、state.itemsが上書きされること',
           ].join(', '),
@@ -235,8 +238,8 @@ void main() {
             expect(newsArticles.state.valueOrNull?.currentPage, 2);
             expect(newsArticles.state.valueOrNull?.hasNextPage, false);
 
-            // ignore: lines_longer_than_80_chars
-            // fetch(isRefresh: true)を実行しRepository#getのレスポンス3件の場合、state.itemsが上書きされること
+            // fetch(isRefresh: true)を実行しRepository#getのレスポンス3件の場合、
+            // state.itemsが上書きされること
             when(
               () => newsTopHeadlinesRepository.get(category: category),
             ).thenAnswer(

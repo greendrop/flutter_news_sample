@@ -74,6 +74,7 @@ void main() {
       testWidgets(
         [
           'NewsArticleGridItemが表示されること',
+          // 内容が長いため
           // ignore: lines_longer_than_80_chars
           'NewsArticleGridItemをタップし、usePushNewsArticleSearchDetailPage#runが呼ばれること',
         ].join(', '),

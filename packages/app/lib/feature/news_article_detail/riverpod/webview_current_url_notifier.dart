@@ -9,7 +9,6 @@ class WebViewCurrentUrlNotifier extends _$WebViewCurrentUrlNotifier {
     return '';
   }
 
-  // ignore: avoid_positional_boolean_parameters
   Future<void> setState(String value) async {
     state = value;
   }

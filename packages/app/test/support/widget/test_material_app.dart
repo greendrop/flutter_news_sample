@@ -7,12 +7,12 @@ import 'test_provider_scope.dart';
 
 class TestMaterialApp extends HookConsumerWidget {
   const TestMaterialApp({
-    super.key,
     required this.child,
     this.locale = const Locale('ja'),
     this.themeMode = ThemeMode.system,
     this.providerScopeOverrides = const [],
     this.withTranslationProvider = true,
+    super.key,
   });
 
   final Widget child;

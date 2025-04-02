@@ -2,9 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-// ignore: depend_on_referenced_packages
 import 'package:leak_tracker_flutter_testing/leak_tracker_flutter_testing.dart';
-// ignore: depend_on_referenced_packages
 import 'package:test_api/scaffolding.dart' as test_package;
 
 void integrationTestWidgets(
@@ -41,8 +39,11 @@ void integrationTestWidgets(
 
         if (targetLine.isNotEmpty) {
           // ターゲット行から相対パスを抽出
-          final relativePath =
-              targetLine.split(baseDir).last.substring(1).replaceAll(')', '');
+          final relativePath = targetLine
+              .split(baseDir)
+              .last
+              .substring(1)
+              .replaceAll(')', '');
 
           // スクリーンショットを取得
           await binding.takeScreenshot(relativePath);

@@ -5,9 +5,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AppNavigationRail extends HookConsumerWidget {
   const AppNavigationRail({
-    super.key,
     required this.selectedIndex,
     required this.onDestinationSelected,
+    super.key,
   });
 
   final int selectedIndex;

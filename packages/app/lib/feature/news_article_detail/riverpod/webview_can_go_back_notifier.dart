@@ -9,6 +9,7 @@ class WebViewCanGoBackNotifier extends _$WebViewCanGoBackNotifier {
     return false;
   }
 
+  // boolを引数にするため
   // ignore: avoid_positional_boolean_parameters
   Future<void> setState(bool value) async {
     state = value;

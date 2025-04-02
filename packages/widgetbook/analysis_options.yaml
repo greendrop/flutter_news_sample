@@ -7,3 +7,5 @@ linter:
   rules:
     depend_on_referenced_packages: false
     public_member_api_docs: false
+    # dart format と require_trailing_commas が競合するため無効化
+    require_trailing_commas: false

@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 typedef UseWebViewRequestGoBackReturn =
     ({
       bool state,
+      // boolを引数にするため
       // ignore: avoid_positional_boolean_parameters
       void Function(bool) setState,
     });

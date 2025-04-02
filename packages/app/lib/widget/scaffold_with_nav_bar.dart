@@ -6,10 +6,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ScaffoldWithNavBar extends HookConsumerWidget {
   const ScaffoldWithNavBar({
-    super.key,
     required this.currentIndex,
     required this.onDestinationSelected,
     required this.child,
+    super.key,
   });
 
   final int currentIndex;

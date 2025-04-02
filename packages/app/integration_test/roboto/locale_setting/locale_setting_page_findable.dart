@@ -7,14 +7,17 @@ import '../base_findable.dart';
 class LocaleSettingPageFindable extends BaseFindable<LocaleSettingPage> {
   LocaleSettingPageFindable();
 
-  final localeSystemRadioListTile =
-      find.byKey(const ValueKey('localeSystemRadioListTile'));
+  final localeSystemRadioListTile = find.byKey(
+    const ValueKey('localeSystemRadioListTile'),
+  );
 
-  final localeEnRadioListTile =
-      find.byKey(const ValueKey('localeEnRadioListTile'));
+  final localeEnRadioListTile = find.byKey(
+    const ValueKey('localeEnRadioListTile'),
+  );
 
-  final localeJaRadioListTile =
-      find.byKey(const ValueKey('localeJaRadioListTile'));
+  final localeJaRadioListTile = find.byKey(
+    const ValueKey('localeJaRadioListTile'),
+  );
 
-  final back = find.byTooltip(RegExp(r'Back|戻る'));
+  final back = find.byTooltip(RegExp('Back|戻る'));
 }

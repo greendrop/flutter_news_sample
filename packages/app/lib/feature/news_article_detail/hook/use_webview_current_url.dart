@@ -4,11 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 typedef UseWebViewCurrentUrlReturn =
-    ({
-      String state,
-      // ignore: avoid_positional_boolean_parameters
-      void Function(String) setState,
-    });
+    ({String state, void Function(String) setState});
 
 typedef UseWebViewCurrentUrl = UseWebViewCurrentUrlReturn Function();
 

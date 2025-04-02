@@ -116,21 +116,20 @@ class SettingPage extends HookConsumerWidget {
                   ),
                 ),
               ),
-              showDevTool
-                  ? Padding(
-                    padding: const EdgeInsets.all(DesignTokenSpacing.sm),
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(DesignTokenSpacing.sm),
-                        child: Column(
-                          children: [
-                            DevToolListTile(onTap: pushDevToolPage.run),
-                          ],
-                        ),
+              if (showDevTool)
+                Padding(
+                  padding: const EdgeInsets.all(DesignTokenSpacing.sm),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(DesignTokenSpacing.sm),
+                      child: Column(
+                        children: [DevToolListTile(onTap: pushDevToolPage.run)],
                       ),
                     ),
-                  )
-                  : null,
+                  ),
+                )
+              else
+                null,
             ].nonNulls.toList(),
       ),
     );
