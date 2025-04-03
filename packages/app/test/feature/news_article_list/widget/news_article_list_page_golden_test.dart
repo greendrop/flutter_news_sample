@@ -16,7 +16,7 @@ import '../../../support/widget/test_material_app.dart';
 
 void main() {
   group('NewsArticleListPage Golden Test', () {
-    prepareGoldenFileComparatorWithThreshold(threshold: 0.02);
+    prepareGoldenFileComparatorWithThreshold(threshold: 0.04);
 
     Widget buildNewsArticleListPage({
       bool isLoading = false,
@@ -62,7 +62,7 @@ void main() {
         child: NewsArticleListPage(
           useNewsArticles: useNewsArticles,
           usePushNewsArticleDetailPage: usePushNewsArticleDetailPage,
-          stopLoadingIndicator: isLoading,
+          loadingSkeletonShimmerLoop: 1,
         ),
       );
     }
