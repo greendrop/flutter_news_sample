@@ -152,6 +152,9 @@ jobs:
         with:
           app-id: ${{ vars.GH_APPS_CREATE_PULL_REQEST_BOT_APP_ID }}
           private-key: ${{ secrets.GH_APPS_CREATE_PULL_REQEST_BOT_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-workflows: write
 
       - name: Create Pull Request
         if: steps.check-binary-version.outputs.result == 'false'
