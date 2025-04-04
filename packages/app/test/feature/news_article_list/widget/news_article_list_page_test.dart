@@ -1,5 +1,6 @@
 import 'package:app/feature/news_article/entity/news_article.dart';
 import 'package:app/feature/news_article/widget/news_article_grid_item.dart';
+import 'package:app/feature/news_article/widget/news_article_grid_item_skeleton.dart';
 import 'package:app/feature/news_article_detail/hook/use_push_news_article_detail_page.dart';
 import 'package:app/feature/news_article_list/entity/news_articles.dart';
 import 'package:app/feature/news_article_list/hook/use_news_articles.dart';
@@ -141,7 +142,7 @@ void main() {
               child: Scaffold(
                 body: NewsArticleListPage(
                   useNewsArticles: buildUseNewsArticles(state: state),
-                  stopLoadingIndicator: true,
+                  loadingSkeletonShimmerLoop: 1,
                 ),
               ),
             ),
@@ -155,7 +156,7 @@ void main() {
           expect(tabBar.controller!.index, 0);
           expect(find.byType(TabBarView), findsOneWidget);
           expect(find.byType(NewsArticleGridItem), findsNothing);
-          expect(find.byType(CircularProgressIndicator), findsOneWidget);
+          expect(find.byType(NewsArticleGridItemSkeleton), findsNWidgets(8));
         },
       );
     });

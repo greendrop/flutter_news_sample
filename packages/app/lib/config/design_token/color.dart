@@ -16,6 +16,8 @@ class DesignTokenColor {
     required this.warningBackground,
     required this.dangerText,
     required this.dangerBackground,
+    required this.skeletonBase,
+    required this.skeletonHighlight,
   });
 
   factory DesignTokenColor.fromBrightness(Brightness brightness) {
@@ -41,6 +43,8 @@ class DesignTokenColor {
       warningBackground: designTokenBaseColor.warningBackground,
       dangerText: designTokenBaseColor.dangerText,
       dangerBackground: designTokenBaseColor.dangerBackground,
+      skeletonBase: designTokenBaseColor.skeletonBase,
+      skeletonHighlight: designTokenBaseColor.skeletonHighlight,
     );
   }
 
@@ -58,6 +62,8 @@ class DesignTokenColor {
   final Color warningBackground;
   final Color dangerText;
   final Color dangerBackground;
+  final Color skeletonBase;
+  final Color skeletonHighlight;
 
   static final DesignTokenColor light = DesignTokenColor.fromBrightness(
     Brightness.light,
@@ -83,6 +89,8 @@ abstract class DesignTokenBaseColor {
   Color get warningBackground => const Color.fromARGB(255, 255, 243, 205);
   Color get dangerText => const Color.fromARGB(255, 114, 28, 36);
   Color get dangerBackground => const Color.fromARGB(255, 248, 215, 218);
+  Color get skeletonBase => const Color.fromARGB(255, 200, 200, 200);
+  Color get skeletonHighlight => const Color.fromARGB(255, 230, 230, 230);
 }
 
 class DesignTokenLightColor extends DesignTokenBaseColor {
@@ -132,4 +140,8 @@ class DesignTokenDarkColor extends DesignTokenBaseColor {
   Color get surface => const Color.fromARGB(255, 17, 20, 24);
   @override
   Color get onSurface => const Color.fromARGB(255, 225, 226, 232);
+  @override
+  Color get skeletonBase => const Color.fromARGB(255, 60, 60, 60);
+  @override
+  Color get skeletonHighlight => const Color.fromARGB(255, 90, 90, 90);
 }

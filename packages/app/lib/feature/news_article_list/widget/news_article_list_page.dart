@@ -1,6 +1,7 @@
 import 'package:app/exception/app_exception.dart';
 import 'package:app/feature/localization/hook/use_l10n.dart';
 import 'package:app/feature/news_article/widget/news_article_grid_item.dart';
+import 'package:app/feature/news_article/widget/news_article_grid_item_skeleton.dart';
 import 'package:app/feature/news_article_detail/hook/use_push_news_article_detail_page.dart';
 import 'package:app/feature/news_article_list/enum/news_headline_category.dart';
 import 'package:app/feature/news_article_list/hook/use_news_articles.dart';
@@ -19,13 +20,15 @@ class NewsArticleListPage extends HookConsumerWidget {
     this.initialCategory = defaultCategory,
     this.useNewsArticles = useNewsArticlesImpl,
     this.usePushNewsArticleDetailPage = usePushNewsArticleDetailPageImpl,
-    this.stopLoadingIndicator = false,
+    this.loadingSkeletonCount = 8,
+    this.loadingSkeletonShimmerLoop = 0,
   });
 
   final NewsHeadlineCategory initialCategory;
   final UseNewsArticles useNewsArticles;
   final UsePushNewsArticleDetailPage usePushNewsArticleDetailPage;
-  final bool stopLoadingIndicator;
+  final int loadingSkeletonCount;
+  final int loadingSkeletonShimmerLoop;
 
   static const defaultCategory = NewsHeadlineCategory.general;
 
@@ -169,10 +172,16 @@ class NewsArticleListPage extends HookConsumerWidget {
               },
               child: newsArticles.state.when(
                 loading: () {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: stopLoadingIndicator ? 0.8 : null,
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: gridCrossAxisCount,
                     ),
+                    itemCount: loadingSkeletonCount,
+                    itemBuilder: (BuildContext context, int index) {
+                      return NewsArticleGridItemSkeleton(
+                        shimmerLoop: loadingSkeletonShimmerLoop,
+                      );
+                    },
                   );
                 },
                 error: (error, stackTrace) {

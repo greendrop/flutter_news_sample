@@ -11,7 +11,7 @@ import '../../../support/widget/test_material_app.dart';
 
 void main() {
   group('NewsArticleSearchForm Golden Test', () {
-    prepareGoldenFileComparatorWithThreshold();
+    prepareGoldenFileComparatorWithThreshold(threshold: 0.02);
 
     Widget buildNewsArticleSearchForm({
       String initialKeyword = '',

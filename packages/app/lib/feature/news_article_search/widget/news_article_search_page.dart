@@ -2,6 +2,7 @@ import 'package:app/config/design_token/spacing.dart';
 import 'package:app/exception/app_exception.dart';
 import 'package:app/feature/localization/hook/use_l10n.dart';
 import 'package:app/feature/news_article/widget/news_article_grid_item.dart';
+import 'package:app/feature/news_article/widget/news_article_grid_item_skeleton.dart';
 import 'package:app/feature/news_article_detail/hook/use_push_news_article_search_detail_page.dart';
 import 'package:app/feature/news_article_search/hook/use_news_articles.dart';
 import 'package:app/feature/news_article_search/widget/news_article_search_form.dart';
@@ -22,14 +23,16 @@ class NewsArticleSearchPage extends HookConsumerWidget {
     this.usePushNewsArticleSearchDetailPage =
         usePushNewsArticleSearchDetailPageImpl,
     this.useUrlLauncher = useUrlLauncherImpl,
-    this.stopLoadingIndicator = false,
+    this.loadingSkeletonCount = 8,
+    this.loadingSkeletonShimmerLoop = 0,
   });
 
   final UseNewsArticles useNewsArticles;
   final UseShowDangerTextSnackBar useShowDangerTextSnackBar;
   final UsePushNewsArticleSearchDetailPage usePushNewsArticleSearchDetailPage;
   final UseUrlLauncher useUrlLauncher;
-  final bool stopLoadingIndicator;
+  final int loadingSkeletonCount;
+  final int loadingSkeletonShimmerLoop;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -139,12 +142,16 @@ class NewsArticleSearchPage extends HookConsumerWidget {
   }) {
     return newsArticles.state.when(
       loading: () {
-        return SliverFillRemaining(
-          child: Center(
-            child: CircularProgressIndicator(
-              value: stopLoadingIndicator ? 0.8 : null,
-            ),
+        return SliverGrid.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: gridCrossAxisCount,
           ),
+          itemCount: loadingSkeletonCount,
+          itemBuilder: (BuildContext context, int index) {
+            return NewsArticleGridItemSkeleton(
+              shimmerLoop: loadingSkeletonShimmerLoop,
+            );
+          },
         );
       },
       error: (error, stackTrace) {
