@@ -1,12 +1,18 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 class AppConfig {
   factory AppConfig() => instance;
   AppConfig._internal() {
     flavor = const String.fromEnvironment('flavor');
-    showDevTool =
-        Platform.environment['SHOW_DEV_TOOL'] == 'true' ||
-        const bool.fromEnvironment('showDevTool');
+    if (kIsWeb) {
+      showDevTool = const bool.fromEnvironment('showDevTool');
+    } else {
+      showDevTool =
+          Platform.environment['SHOW_DEV_TOOL'] == 'true' ||
+          const bool.fromEnvironment('showDevTool');
+    }
     crashReportEnabled = const bool.fromEnvironment('crashReportEnabled');
     appLogConsoleEnabled = const bool.fromEnvironment(
       'appLogConsoleEnabled',
