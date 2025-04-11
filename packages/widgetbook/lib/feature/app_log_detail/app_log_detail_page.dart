@@ -10,10 +10,12 @@ class AppLogDetailPage extends StatelessWidget {
     super.key,
     this.isLoading = false,
     this.isEmpty = false,
+    this.stopLoadingIndicator = false,
   });
 
   final bool isLoading;
   final bool isEmpty;
+  final bool stopLoadingIndicator;
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +46,43 @@ class AppLogDetailPage extends StatelessWidget {
     return feature.AppLogDetailPage(
       filename: 'test1.log',
       useAppLogFileContent: useAppLogFileContent,
+      stopLoadingIndicator: stopLoadingIndicator,
     );
   }
 }
 
-@UseCase(name: 'Default', type: AppLogDetailPage)
-Widget buildAppLogDetailPageDefaultUseCase(BuildContext context) {
+Widget buildAppLogDetailPageDefault(BuildContext context) {
   return const AppLogDetailPage();
 }
 
+Widget buildAppLogDetailPageLoading(
+  BuildContext context, {
+  bool stopLoadingIndicator = false,
+}) {
+  return const AppLogDetailPage(isLoading: true, stopLoadingIndicator: true);
+}
+
+Widget buildAppLogDetailPageEmpty(BuildContext context) {
+  return const AppLogDetailPage(isEmpty: true);
+}
+
+@UseCase(name: 'Default', type: AppLogDetailPage)
+Widget buildAppLogDetailPageDefaultUseCase(BuildContext context) {
+  return buildAppLogDetailPageDefault(context);
+}
+
 @UseCase(name: 'Loading', type: AppLogDetailPage)
-Widget buildAppLogDetailPageLoadingUseCase(BuildContext context) {
-  return const AppLogDetailPage(isLoading: true);
+Widget buildAppLogDetailPageLoadingUseCase(
+  BuildContext context, {
+  bool stopLoadingIndicator = false,
+}) {
+  return buildAppLogDetailPageLoading(
+    context,
+    stopLoadingIndicator: stopLoadingIndicator,
+  );
 }
 
 @UseCase(name: 'Empty', type: AppLogDetailPage)
 Widget buildAppLogDetailPageEmptyUseCase(BuildContext context) {
-  return const AppLogDetailPage(isEmpty: true);
+  return buildAppLogDetailPageEmpty(context);
 }

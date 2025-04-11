@@ -165,6 +165,31 @@
       "cwd": "packages/app"
     },
     {
+      "label": "flutter test --tags golden (widgetbook)",
+      "detail": "golden タグのテストを実行 (widgetbook)",
+      "type": "dart",
+      "command": "flutter",
+      "args": [
+        "test",
+        "--tags",
+        "golden"
+      ],
+      "cwd": "packages/widgetbook"
+    },
+    {
+      "label": "flutter test --update-goldens --tags golden (widgetbook)",
+      "detail": "golden タグのテストを実行してゴールデンファイルを更新 (widgetbook)",
+      "type": "dart",
+      "command": "flutter",
+      "args": [
+        "test",
+        "--update-goldens",
+        "--tags",
+        "golden"
+      ],
+      "cwd": "packages/widgetbook"
+    },
+    {
       "label": "npm run textlint",
       "detail": "textlint による文章チェック",
       "type": "npm",
