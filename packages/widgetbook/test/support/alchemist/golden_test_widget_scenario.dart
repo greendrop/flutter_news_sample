@@ -15,7 +15,7 @@ class GoldenTestWidgetScenario extends StatelessWidget {
 
   final String name;
   final Brightness brightness;
-  final ValueGetter<Widget> builder;
+  final Widget Function(BuildContext context) builder;
   final double minWidth;
   final double minHeight;
   final double maxWidth;
@@ -37,7 +37,7 @@ class GoldenTestWidgetScenario extends StatelessWidget {
             data: MediaQuery.of(
               context,
             ).copyWith(platformBrightness: brightness),
-            child: builder(),
+            child: builder(context),
           ),
         ),
       ),
