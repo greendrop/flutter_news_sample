@@ -11,7 +11,11 @@ class NotFoundPage extends StatelessWidget {
   }
 }
 
-@UseCase(name: 'Default', type: NotFoundPage)
-Widget buildSettingDefaultUseCase(BuildContext context) {
+Widget buildNotFoundPageDefault(BuildContext context) {
   return const NotFoundPage();
+}
+
+@UseCase(name: 'Default', type: NotFoundPage)
+Widget buildNotFoundPageDefaultUseCase(BuildContext context) {
+  return buildNotFoundPageDefault(context);
 }
