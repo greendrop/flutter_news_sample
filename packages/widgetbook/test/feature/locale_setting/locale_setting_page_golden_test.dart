@@ -14,19 +14,21 @@ void main() {
 
     for (final device in devices) {
       group(device.name, () {
-        goldenTest(
-          'Default',
-          fileName: '${fileNamePrefix}default_${device.name}',
-          builder: () {
-            return GoldenTestDeviceScenario(
-              name: device.name,
-              device: device,
-              builder: (context) {
-                return const TestMaterialApp(child: LocaleSettingPage());
-              },
-            );
-          },
-        );
+        group('Default', () {
+          goldenTest(
+            '正しくレンダリングされること',
+            fileName: '${fileNamePrefix}default_${device.name}',
+            builder: () {
+              return GoldenTestDeviceScenario(
+                name: device.name,
+                device: device,
+                builder: (context) {
+                  return const TestMaterialApp(child: LocaleSettingPage());
+                },
+              );
+            },
+          );
+        });
       });
     }
   });

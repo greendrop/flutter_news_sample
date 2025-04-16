@@ -13,22 +13,31 @@ void main() {
     final fileNamePrefix = 'locale_setting_form${Platform.pathSeparator}';
     const brightnesses = Brightness.values;
 
-    for (final brightness in brightnesses) {
-      group(brightness.name, () {
-        goldenTest(
-          'Default',
-          fileName: '${fileNamePrefix}default_${brightness.name}',
-          builder: () {
-            return GoldenTestWidgetScenario(
-              name: brightness.name,
-              brightness: brightness,
-              builder: (context) {
-                return const TestMaterialApp(child: LocaleSettingForm());
-              },
+    group('Default', () {
+      goldenTest(
+        '正しくレンダリングされること',
+        fileName: '${fileNamePrefix}default',
+        builder: () {
+          final children = <Widget>[];
+          for (final brightness in brightnesses) {
+            children.add(
+              GoldenTestWidgetScenario(
+                name: brightness.name,
+                brightness: brightness,
+                builder: (context) {
+                  return TestMaterialApp(
+                    child: buildLocaleSettingFormDefault(context),
+                  );
+                },
+              ),
             );
-          },
-        );
-      });
-    }
+          }
+          return GoldenTestGroup(
+            columns: brightnesses.length,
+            children: children,
+          );
+        },
+      );
+    });
   });
 }
