@@ -21,7 +21,11 @@ class LocaleSettingPage extends StatelessWidget {
   }
 }
 
+Widget buildLocaleSettingPageDefault(BuildContext context) {
+  return const LocaleSettingPage();
+}
+
 @UseCase(name: 'Default', type: LocaleSettingPage)
 Widget buildLocaleSettingPageDefaultUseCase(BuildContext context) {
-  return const LocaleSettingPage();
+  return buildLocaleSettingPageDefault(context);
 }

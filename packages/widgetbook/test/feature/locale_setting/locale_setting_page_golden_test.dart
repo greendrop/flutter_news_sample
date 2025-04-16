@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:alchemist/alchemist.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:widgetbook_workspace/feature/locale_setting/locale_setting_page.dart';
 
@@ -12,24 +13,29 @@ void main() {
     final fileNamePrefix = 'locale_setting_page${Platform.pathSeparator}';
     final devices = Device.all;
 
-    for (final device in devices) {
-      group(device.name, () {
-        group('Default', () {
-          goldenTest(
-            '正しくレンダリングされること',
-            fileName: '${fileNamePrefix}default_${device.name}',
-            builder: () {
-              return GoldenTestDeviceScenario(
-                name: device.name,
-                device: device,
-                builder: (context) {
-                  return const TestMaterialApp(child: LocaleSettingPage());
-                },
+    group('Default', () {
+      final children = <Widget>[];
+      for (final device in devices) {
+        children.add(
+          GoldenTestDeviceScenario(
+            name: device.name,
+            device: device,
+            builder: (context) {
+              return TestMaterialApp(
+                child: buildLocaleSettingPageDefault(context),
               );
             },
-          );
-        });
-      });
-    }
+          ),
+        );
+      }
+
+      goldenTest(
+        '正しくレンダリングされること',
+        fileName: '${fileNamePrefix}default',
+        builder: () {
+          return GoldenTestGroup(columns: devices.length, children: children);
+        },
+      );
+    });
   });
 }
