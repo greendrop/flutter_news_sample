@@ -14,12 +14,20 @@ class CrashReportListTile extends StatelessWidget {
   }
 }
 
+Widget buildCrashReportListTileEnabled(BuildContext context) {
+  return CrashReportListTile(onTap: () {});
+}
+
+Widget buildCrashReportListTileDisabled(BuildContext context) {
+  return const CrashReportListTile();
+}
+
 @UseCase(name: 'Enabled', type: CrashReportListTile)
 Widget buildCrashReportListTileEnabledUseCase(BuildContext context) {
-  return CrashReportListTile(onTap: () {});
+  return buildCrashReportListTileEnabled(context);
 }
 
 @UseCase(name: 'Disabled', type: CrashReportListTile)
 Widget buildCrashReportListTileDisabledUseCase(BuildContext context) {
-  return const CrashReportListTile();
+  return buildCrashReportListTileDisabled(context);
 }

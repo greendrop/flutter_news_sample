@@ -32,7 +32,11 @@ class DevToolPage extends StatelessWidget {
   }
 }
 
+Widget buildAppLogListPageDefault(BuildContext context) {
+  return const DevToolPage();
+}
+
 @UseCase(name: 'Default', type: DevToolPage)
 Widget buildAppLogListPageDefaultUseCase(BuildContext context) {
-  return const DevToolPage();
+  return buildAppLogListPageDefault(context);
 }

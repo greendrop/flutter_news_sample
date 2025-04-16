@@ -13,12 +13,20 @@ class AppLogListTile extends StatelessWidget {
   }
 }
 
+Widget buildAppLogListTileEnabled(BuildContext context) {
+  return AppLogListTile(onTap: () {});
+}
+
+Widget buildAppLogListTileDisabled(BuildContext context) {
+  return const AppLogListTile();
+}
+
 @UseCase(name: 'Enabled', type: AppLogListTile)
 Widget buildAppLogListTileEnabledUseCase(BuildContext context) {
-  return AppLogListTile(onTap: () {});
+  return buildAppLogListTileEnabled(context);
 }
 
 @UseCase(name: 'Disabled', type: AppLogListTile)
 Widget buildAppLogListTileDisabledUseCase(BuildContext context) {
-  return const AppLogListTile();
+  return buildAppLogListTileDisabled(context);
 }
