@@ -288,7 +288,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'NotFoundPage',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i15.buildSettingDefaultUseCase,
+              builder: _i15.buildNotFoundPageDefaultUseCase,
             ),
           ),
         ],
