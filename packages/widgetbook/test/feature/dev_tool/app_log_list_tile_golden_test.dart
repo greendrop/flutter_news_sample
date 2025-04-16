@@ -13,54 +13,58 @@ void main() {
     final fileNamePrefix = 'app_log_list_tile${Platform.pathSeparator}';
     const brightnesses = Brightness.values;
 
-    goldenTest(
-      'Enabled',
-      fileName: '${fileNamePrefix}enabled',
-      builder: () {
-        final children = <Widget>[];
-        for (final brightness in brightnesses) {
-          children.add(
-            GoldenTestWidgetScenario(
-              name: brightness.name,
-              brightness: brightness,
-              builder: (context) {
-                return TestMaterialApp(
-                  child: buildAppLogListTileEnabled(context),
-                );
-              },
-            ),
+    group('Enabled', () {
+      goldenTest(
+        '正しくレンダリングされること',
+        fileName: '${fileNamePrefix}enabled',
+        builder: () {
+          final children = <Widget>[];
+          for (final brightness in brightnesses) {
+            children.add(
+              GoldenTestWidgetScenario(
+                name: brightness.name,
+                brightness: brightness,
+                builder: (context) {
+                  return TestMaterialApp(
+                    child: buildAppLogListTileEnabled(context),
+                  );
+                },
+              ),
+            );
+          }
+          return GoldenTestGroup(
+            columns: brightnesses.length,
+            children: children,
           );
-        }
-        return GoldenTestGroup(
-          columns: brightnesses.length,
-          children: children,
-        );
-      },
-    );
+        },
+      );
+    });
 
-    goldenTest(
-      'Disabled',
-      fileName: '${fileNamePrefix}disabled',
-      builder: () {
-        final children = <Widget>[];
-        for (final brightness in brightnesses) {
-          children.add(
-            GoldenTestWidgetScenario(
-              name: brightness.name,
-              brightness: brightness,
-              builder: (context) {
-                return TestMaterialApp(
-                  child: buildAppLogListTileDisabled(context),
-                );
-              },
-            ),
+    group('Disabled', () {
+      goldenTest(
+        '正しくレンダリングされること',
+        fileName: '${fileNamePrefix}disabled',
+        builder: () {
+          final children = <Widget>[];
+          for (final brightness in brightnesses) {
+            children.add(
+              GoldenTestWidgetScenario(
+                name: brightness.name,
+                brightness: brightness,
+                builder: (context) {
+                  return TestMaterialApp(
+                    child: buildAppLogListTileDisabled(context),
+                  );
+                },
+              ),
+            );
+          }
+          return GoldenTestGroup(
+            columns: brightnesses.length,
+            children: children,
           );
-        }
-        return GoldenTestGroup(
-          columns: brightnesses.length,
-          children: children,
-        );
-      },
-    );
+        },
+      );
+    });
   });
 }

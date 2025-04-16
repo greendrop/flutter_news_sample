@@ -13,26 +13,28 @@ void main() {
     final fileNamePrefix = 'dev_tool_page${Platform.pathSeparator}';
     final devices = Device.all;
 
-    goldenTest(
-      'Default',
-      fileName: '${fileNamePrefix}default',
-      builder: () {
-        final children = <Widget>[];
-        for (final device in devices) {
-          children.add(
-            GoldenTestDeviceScenario(
-              name: device.name,
-              device: device,
-              builder: (context) {
-                return TestMaterialApp(
-                  child: buildAppLogListPageDefault(context),
-                );
-              },
-            ),
-          );
-        }
-        return GoldenTestGroup(columns: devices.length, children: children);
-      },
-    );
+    group('Default', () {
+      goldenTest(
+        '正しくレンダリングされること',
+        fileName: '${fileNamePrefix}default',
+        builder: () {
+          final children = <Widget>[];
+          for (final device in devices) {
+            children.add(
+              GoldenTestDeviceScenario(
+                name: device.name,
+                device: device,
+                builder: (context) {
+                  return TestMaterialApp(
+                    child: buildAppLogListPageDefault(context),
+                  );
+                },
+              ),
+            );
+          }
+          return GoldenTestGroup(columns: devices.length, children: children);
+        },
+      );
+    });
   });
 }
