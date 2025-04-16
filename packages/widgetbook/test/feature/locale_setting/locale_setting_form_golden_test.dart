@@ -1,0 +1,34 @@
+import 'dart:io';
+
+import 'package:alchemist/alchemist.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:widgetbook_workspace/feature/locale_setting/locale_setting_form.dart';
+
+import '../../support/alchemist/golden_test_widget_scenario.dart';
+import '../../support/widget/test_material_app.dart';
+
+void main() {
+  group('LocaleSettingForm Golden Test', () {
+    final fileNamePrefix = 'locale_setting_form${Platform.pathSeparator}';
+    const brightnesses = Brightness.values;
+
+    for (final brightness in brightnesses) {
+      group(brightness.name, () {
+        goldenTest(
+          'Default',
+          fileName: '${fileNamePrefix}default_${brightness.name}',
+          builder: () {
+            return GoldenTestWidgetScenario(
+              name: brightness.name,
+              brightness: brightness,
+              builder: (context) {
+                return const TestMaterialApp(child: LocaleSettingForm());
+              },
+            );
+          },
+        );
+      });
+    }
+  });
+}
