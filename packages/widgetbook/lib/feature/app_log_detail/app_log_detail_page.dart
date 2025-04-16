@@ -59,7 +59,10 @@ Widget buildAppLogDetailPageLoading(
   BuildContext context, {
   bool stopLoadingIndicator = false,
 }) {
-  return const AppLogDetailPage(isLoading: true, stopLoadingIndicator: true);
+  return AppLogDetailPage(
+    isLoading: true,
+    stopLoadingIndicator: stopLoadingIndicator,
+  );
 }
 
 Widget buildAppLogDetailPageEmpty(BuildContext context) {

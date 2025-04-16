@@ -69,7 +69,10 @@ void main() {
               device: device,
               builder: (context) {
                 return TestMaterialApp(
-                  child: buildAppLogDetailPageLoading(context),
+                  child: buildAppLogDetailPageLoading(
+                    context,
+                    stopLoadingIndicator: true,
+                  ),
                 );
               },
             ),
