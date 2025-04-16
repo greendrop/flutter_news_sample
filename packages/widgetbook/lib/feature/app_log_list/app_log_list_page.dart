@@ -12,10 +12,12 @@ class AppLogListPage extends StatelessWidget {
     super.key,
     this.isLoading = false,
     this.isEmpty = false,
+    this.stopLoadingIndicator = false,
   });
 
   final bool isLoading;
   final bool isEmpty;
+  final bool stopLoadingIndicator;
 
   @override
   Widget build(BuildContext context) {
@@ -51,21 +53,40 @@ class AppLogListPage extends StatelessWidget {
     return feature.AppLogListPage(
       useAppLogFiles: useAppLogFiles,
       usePushAppLogDetailPage: useMockPushAppLogDetailPage,
+      stopLoadingIndicator: stopLoadingIndicator,
     );
   }
 }
 
+Widget buildAppLogListPageDefault(BuildContext context) {
+  return const AppLogListPage();
+}
+
+Widget buildAppLogListPageLoading(
+  BuildContext context, {
+  bool stopLoadingIndicator = false,
+}) {
+  return AppLogListPage(
+    isLoading: true,
+    stopLoadingIndicator: stopLoadingIndicator,
+  );
+}
+
+Widget buildAppLogListPageEmpty(BuildContext context) {
+  return const AppLogListPage(isEmpty: true);
+}
+
 @UseCase(name: 'Default', type: AppLogListPage)
 Widget buildAppLogListPageDefaultUseCase(BuildContext context) {
-  return const AppLogListPage();
+  return buildAppLogListPageDefault(context);
 }
 
 @UseCase(name: 'Loading', type: AppLogListPage)
 Widget buildAppLogListPageLoadingUseCase(BuildContext context) {
-  return const AppLogListPage(isLoading: true);
+  return buildAppLogListPageLoading(context);
 }
 
 @UseCase(name: 'Empty', type: AppLogListPage)
 Widget buildAppLogListPageEmptyUseCase(BuildContext context) {
-  return const AppLogListPage(isEmpty: true);
+  return buildAppLogListPageEmpty(context);
 }

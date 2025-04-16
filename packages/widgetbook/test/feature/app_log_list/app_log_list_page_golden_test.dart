@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:widgetbook_workspace/feature/app_log_detail/app_log_detail_page.dart';
+import 'package:widgetbook_workspace/feature/app_log_list/app_log_list_page.dart';
 
 import '../../support/alchemist/golden_test_device_scenario.dart';
 import '../../support/widget/test_material_app.dart';
 
 void main() {
-  group('AppLogDetailPage Golden Test', () {
-    final fileNamePrefix = 'app_log_detail_page${Platform.pathSeparator}';
+  group('AppLogListPage Golden Test', () {
+    final fileNamePrefix = 'app_log_list_page${Platform.pathSeparator}';
     final devices = Device.all;
 
     goldenTest(
@@ -25,7 +25,7 @@ void main() {
               device: device,
               builder: (context) {
                 return TestMaterialApp(
-                  child: buildAppLogDetailPageDefault(context),
+                  child: buildAppLogListPageDefault(context),
                 );
               },
             ),
@@ -47,7 +47,7 @@ void main() {
               device: device,
               builder: (context) {
                 return TestMaterialApp(
-                  child: buildAppLogDetailPageEmpty(context),
+                  child: buildAppLogListPageEmpty(context),
                 );
               },
             ),
@@ -69,7 +69,7 @@ void main() {
               device: device,
               builder: (context) {
                 return TestMaterialApp(
-                  child: buildAppLogDetailPageLoading(
+                  child: buildAppLogListPageLoading(
                     context,
                     stopLoadingIndicator: true,
                   ),
