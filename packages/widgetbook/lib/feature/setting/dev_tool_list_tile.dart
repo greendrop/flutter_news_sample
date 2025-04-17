@@ -13,12 +13,20 @@ class DevToolListTile extends StatelessWidget {
   }
 }
 
+Widget buildDevToolListTileEnabled(BuildContext context) {
+  return DevToolListTile(onTap: () {});
+}
+
+Widget buildDevToolListTileDisabled(BuildContext context) {
+  return const DevToolListTile();
+}
+
 @UseCase(name: 'Enabled', type: DevToolListTile)
 Widget buildDevToolListTileEnabledUseCase(BuildContext context) {
-  return DevToolListTile(onTap: () {});
+  return buildDevToolListTileEnabled(context);
 }
 
 @UseCase(name: 'Disabled', type: DevToolListTile)
 Widget buildDevToolListTileDisabledUseCase(BuildContext context) {
-  return const DevToolListTile();
+  return buildDevToolListTileDisabled(context);
 }

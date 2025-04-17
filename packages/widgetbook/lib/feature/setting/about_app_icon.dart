@@ -11,7 +11,11 @@ class AboutAppIcon extends StatelessWidget {
   }
 }
 
+Widget buildAboutAppIconDefault(BuildContext context) {
+  return const AboutAppIcon();
+}
+
 @UseCase(name: 'Default', type: AboutAppIcon)
 Widget buildAboutAppIconDefaultUseCase(BuildContext context) {
-  return const AboutAppIcon();
+  return buildAboutAppIconDefault(context);
 }
