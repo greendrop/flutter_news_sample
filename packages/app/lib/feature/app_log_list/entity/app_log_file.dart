@@ -4,7 +4,7 @@ part 'app_log_file.freezed.dart';
 part 'app_log_file.g.dart';
 
 @freezed
-class AppLogFile with _$AppLogFile {
+abstract class AppLogFile with _$AppLogFile {
   factory AppLogFile({@Default('') String path}) = _AppLogFile;
   const AppLogFile._();
 

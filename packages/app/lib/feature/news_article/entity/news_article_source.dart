@@ -4,7 +4,7 @@ part 'news_article_source.freezed.dart';
 part 'news_article_source.g.dart';
 
 @freezed
-class NewsArticleSource with _$NewsArticleSource {
+abstract class NewsArticleSource with _$NewsArticleSource {
   factory NewsArticleSource({String? id, String? name}) = _NewsArticleSource;
   const NewsArticleSource._();
 

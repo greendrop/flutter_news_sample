@@ -6,9 +6,9 @@ part of 'news_top_headlines_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$NewsTopHeadlinesResponseImpl _$$NewsTopHeadlinesResponseImplFromJson(
+_NewsTopHeadlinesResponse _$NewsTopHeadlinesResponseFromJson(
   Map<String, dynamic> json,
-) => _$NewsTopHeadlinesResponseImpl(
+) => _NewsTopHeadlinesResponse(
   status: json['status'] as String?,
   totalResults: (json['totalResults'] as num?)?.toInt(),
   articles:
@@ -17,8 +17,8 @@ _$NewsTopHeadlinesResponseImpl _$$NewsTopHeadlinesResponseImplFromJson(
           .toList(),
 );
 
-Map<String, dynamic> _$$NewsTopHeadlinesResponseImplToJson(
-  _$NewsTopHeadlinesResponseImpl instance,
+Map<String, dynamic> _$NewsTopHeadlinesResponseToJson(
+  _NewsTopHeadlinesResponse instance,
 ) => <String, dynamic>{
   'status': instance.status,
   'totalResults': instance.totalResults,

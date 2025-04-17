@@ -5,7 +5,7 @@ part 'news_everything_response.freezed.dart';
 part 'news_everything_response.g.dart';
 
 @freezed
-class NewsEverythingResponse with _$NewsEverythingResponse {
+abstract class NewsEverythingResponse with _$NewsEverythingResponse {
   factory NewsEverythingResponse({
     String? status,
     int? totalResults,

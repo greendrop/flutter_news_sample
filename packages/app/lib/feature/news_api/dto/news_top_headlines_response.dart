@@ -5,7 +5,7 @@ part 'news_top_headlines_response.freezed.dart';
 part 'news_top_headlines_response.g.dart';
 
 @freezed
-class NewsTopHeadlinesResponse with _$NewsTopHeadlinesResponse {
+abstract class NewsTopHeadlinesResponse with _$NewsTopHeadlinesResponse {
   factory NewsTopHeadlinesResponse({
     String? status,
     int? totalResults,

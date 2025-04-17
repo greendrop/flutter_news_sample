@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'webview_vertical_scroll_state.freezed.dart';
 
 @freezed
-class WebViewVerticalScrollState with _$WebViewVerticalScrollState {
+abstract class WebViewVerticalScrollState with _$WebViewVerticalScrollState {
   factory WebViewVerticalScrollState({
     @Default(WebviewVerticalScrollDirection.up)
     WebviewVerticalScrollDirection direction,

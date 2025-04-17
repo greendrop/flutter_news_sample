@@ -6,8 +6,8 @@ part of 'app_log_file.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AppLogFileImpl _$$AppLogFileImplFromJson(Map<String, dynamic> json) =>
-    _$AppLogFileImpl(path: json['path'] as String? ?? '');
+_AppLogFile _$AppLogFileFromJson(Map<String, dynamic> json) =>
+    _AppLogFile(path: json['path'] as String? ?? '');
 
-Map<String, dynamic> _$$AppLogFileImplToJson(_$AppLogFileImpl instance) =>
+Map<String, dynamic> _$AppLogFileToJson(_AppLogFile instance) =>
     <String, dynamic>{'path': instance.path};
