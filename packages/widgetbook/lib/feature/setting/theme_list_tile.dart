@@ -13,12 +13,20 @@ class ThemeListTile extends StatelessWidget {
   }
 }
 
+Widget buildThemeListTileEnabled(BuildContext context) {
+  return ThemeListTile(onTap: () {});
+}
+
+Widget buildThemeListTileDisabled(BuildContext context) {
+  return const ThemeListTile();
+}
+
 @UseCase(name: 'Enabled', type: ThemeListTile)
 Widget buildThemeListTileEnabledUseCase(BuildContext context) {
-  return ThemeListTile(onTap: () {});
+  return buildThemeListTileEnabled(context);
 }
 
 @UseCase(name: 'Disabled', type: ThemeListTile)
 Widget buildThemeListTileDisabledUseCase(BuildContext context) {
-  return const ThemeListTile();
+  return buildThemeListTileEnabled(context);
 }
