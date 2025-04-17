@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,163 +10,139 @@ part of 'app_log_file.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-AppLogFile _$AppLogFileFromJson(Map<String, dynamic> json) {
-  return _AppLogFile.fromJson(json);
-}
 
 /// @nodoc
 mixin _$AppLogFile {
-  String get path => throw _privateConstructorUsedError;
+
+ String get path;
+/// Create a copy of AppLogFile
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AppLogFileCopyWith<AppLogFile> get copyWith => _$AppLogFileCopyWithImpl<AppLogFile>(this as AppLogFile, _$identity);
 
   /// Serializes this AppLogFile to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of AppLogFile
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AppLogFileCopyWith<AppLogFile> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppLogFile&&(identical(other.path, path) || other.path == path));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,path);
+
+@override
+String toString() {
+  return 'AppLogFile(path: $path)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $AppLogFileCopyWith<$Res> {
-  factory $AppLogFileCopyWith(
-    AppLogFile value,
-    $Res Function(AppLogFile) then,
-  ) = _$AppLogFileCopyWithImpl<$Res, AppLogFile>;
-  @useResult
-  $Res call({String path});
-}
+abstract mixin class $AppLogFileCopyWith<$Res>  {
+  factory $AppLogFileCopyWith(AppLogFile value, $Res Function(AppLogFile) _then) = _$AppLogFileCopyWithImpl;
+@useResult
+$Res call({
+ String path
+});
 
+
+
+
+}
 /// @nodoc
-class _$AppLogFileCopyWithImpl<$Res, $Val extends AppLogFile>
+class _$AppLogFileCopyWithImpl<$Res>
     implements $AppLogFileCopyWith<$Res> {
-  _$AppLogFileCopyWithImpl(this._value, this._then);
+  _$AppLogFileCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final AppLogFile _self;
+  final $Res Function(AppLogFile) _then;
 
-  /// Create a copy of AppLogFile
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? path = null}) {
-    return _then(
-      _value.copyWith(
-            path:
-                null == path
-                    ? _value.path
-                    : path // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of AppLogFile
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? path = null,}) {
+  return _then(_self.copyWith(
+path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$AppLogFileImplCopyWith<$Res>
-    implements $AppLogFileCopyWith<$Res> {
-  factory _$$AppLogFileImplCopyWith(
-    _$AppLogFileImpl value,
-    $Res Function(_$AppLogFileImpl) then,
-  ) = __$$AppLogFileImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String path});
 }
 
-/// @nodoc
-class __$$AppLogFileImplCopyWithImpl<$Res>
-    extends _$AppLogFileCopyWithImpl<$Res, _$AppLogFileImpl>
-    implements _$$AppLogFileImplCopyWith<$Res> {
-  __$$AppLogFileImplCopyWithImpl(
-    _$AppLogFileImpl _value,
-    $Res Function(_$AppLogFileImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of AppLogFile
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? path = null}) {
-    return _then(
-      _$AppLogFileImpl(
-        path:
-            null == path
-                ? _value.path
-                : path // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 @JsonSerializable()
-class _$AppLogFileImpl extends _AppLogFile {
-  _$AppLogFileImpl({this.path = ''}) : super._();
 
-  factory _$AppLogFileImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AppLogFileImplFromJson(json);
+class _AppLogFile extends AppLogFile {
+   _AppLogFile({this.path = ''}): super._();
+  factory _AppLogFile.fromJson(Map<String, dynamic> json) => _$AppLogFileFromJson(json);
 
-  @override
-  @JsonKey()
-  final String path;
+@override@JsonKey() final  String path;
 
-  @override
-  String toString() {
-    return 'AppLogFile(path: $path)';
-  }
+/// Create a copy of AppLogFile
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AppLogFileCopyWith<_AppLogFile> get copyWith => __$AppLogFileCopyWithImpl<_AppLogFile>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AppLogFileImpl &&
-            (identical(other.path, path) || other.path == path));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, path);
-
-  /// Create a copy of AppLogFile
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AppLogFileImplCopyWith<_$AppLogFileImpl> get copyWith =>
-      __$$AppLogFileImplCopyWithImpl<_$AppLogFileImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AppLogFileImplToJson(this);
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$AppLogFileToJson(this, );
 }
 
-abstract class _AppLogFile extends AppLogFile {
-  factory _AppLogFile({final String path}) = _$AppLogFileImpl;
-  _AppLogFile._() : super._();
-
-  factory _AppLogFile.fromJson(Map<String, dynamic> json) =
-      _$AppLogFileImpl.fromJson;
-
-  @override
-  String get path;
-
-  /// Create a copy of AppLogFile
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AppLogFileImplCopyWith<_$AppLogFileImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppLogFile&&(identical(other.path, path) || other.path == path));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,path);
+
+@override
+String toString() {
+  return 'AppLogFile(path: $path)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AppLogFileCopyWith<$Res> implements $AppLogFileCopyWith<$Res> {
+  factory _$AppLogFileCopyWith(_AppLogFile value, $Res Function(_AppLogFile) _then) = __$AppLogFileCopyWithImpl;
+@override @useResult
+$Res call({
+ String path
+});
+
+
+
+
+}
+/// @nodoc
+class __$AppLogFileCopyWithImpl<$Res>
+    implements _$AppLogFileCopyWith<$Res> {
+  __$AppLogFileCopyWithImpl(this._self, this._then);
+
+  final _AppLogFile _self;
+  final $Res Function(_AppLogFile) _then;
+
+/// Create a copy of AppLogFile
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? path = null,}) {
+  return _then(_AppLogFile(
+path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on
