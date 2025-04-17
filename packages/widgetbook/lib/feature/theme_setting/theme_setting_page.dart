@@ -21,7 +21,11 @@ class ThemeSettingPage extends StatelessWidget {
   }
 }
 
+Widget buildThemeSettingPageDefault(BuildContext context) {
+  return const ThemeSettingPage();
+}
+
 @UseCase(name: 'Default', type: ThemeSettingPage)
 Widget buildThemeSettingPageDefaultUseCase(BuildContext context) {
-  return const ThemeSettingPage();
+  return buildThemeSettingPageDefault(context);
 }
