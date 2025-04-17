@@ -60,12 +60,20 @@ class SettingPage extends StatelessWidget {
   }
 }
 
+Widget buildSettingDefault(BuildContext context) {
+  return const SettingPage(showDevTool: false);
+}
+
+Widget buildSettingDefaultWithDevTool(BuildContext context) {
+  return const SettingPage(showDevTool: true);
+}
+
 @UseCase(name: 'Default', type: SettingPage)
 Widget buildSettingDefaultUseCase(BuildContext context) {
-  return const SettingPage(showDevTool: false);
+  return buildSettingDefault(context);
 }
 
 @UseCase(name: 'Default With Dev Tool', type: SettingPage)
 Widget buildSettingDefaultWithDevToolUseCase(BuildContext context) {
-  return const SettingPage(showDevTool: true);
+  return buildSettingDefaultWithDevTool(context);
 }
