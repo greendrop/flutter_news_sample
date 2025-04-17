@@ -15,7 +15,11 @@ class ThemeSettingForm extends StatelessWidget {
   }
 }
 
+Widget buildThemeSettingFormDefault(BuildContext context) {
+  return const ThemeSettingForm();
+}
+
 @UseCase(name: 'Default', type: ThemeSettingForm)
 Widget buildThemeSettingFormDefaultUseCase(BuildContext context) {
-  return const ThemeSettingForm();
+  return buildThemeSettingFormDefault(context);
 }
