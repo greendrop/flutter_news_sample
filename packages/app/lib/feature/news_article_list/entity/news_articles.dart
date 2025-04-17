@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'news_articles.freezed.dart';
 
 @freezed
-class NewsArticles with _$NewsArticles {
+abstract class NewsArticles with _$NewsArticles {
   factory NewsArticles({
     @Default([]) List<NewsArticle> items,
     @Default(false) bool hasNextPage,

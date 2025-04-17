@@ -5,7 +5,7 @@ part 'news_article.freezed.dart';
 part 'news_article.g.dart';
 
 @freezed
-class NewsArticle with _$NewsArticle {
+abstract class NewsArticle with _$NewsArticle {
   factory NewsArticle({
     NewsArticleSource? source,
     String? author,
