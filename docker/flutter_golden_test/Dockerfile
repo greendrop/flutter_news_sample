@@ -23,5 +23,4 @@ ENV PATH="/usr/local/flutter/bin:$PATH"
 
 RUN flutter doctor --android-licenses || true && flutter doctor || true
 
-#ENTRYPOINT ["flutter", "--version"]
 CMD ["flutter", "--version"]
