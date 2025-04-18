@@ -18,34 +18,50 @@ class NewsArticleGridItem extends StatelessWidget {
   }
 }
 
-@UseCase(name: 'Enabled With Image', type: NewsArticleGridItem)
-Widget buildNewsArticleGridItemEnabledWithImageUseCase(BuildContext context) {
+Widget buildNewsArticleGridItemEnabledWithImage(BuildContext context) {
   return NewsArticleGridItem(
     newsArticle: NewsArticle(title: 'Title', urlToImage: _dummyImageUrl),
     onTap: () {},
   );
 }
 
-@UseCase(name: 'Disabled With Image', type: NewsArticleGridItem)
-Widget buildNewsArticleGridItemDisabledWithImageUseCase(BuildContext context) {
+Widget buildNewsArticleGridItemDisabledWithImage(BuildContext context) {
   return NewsArticleGridItem(
     newsArticle: NewsArticle(title: 'Title', urlToImage: _dummyImageUrl),
   );
 }
 
-@UseCase(name: 'Enabled Without Image', type: NewsArticleGridItem)
-Widget buildNewsArticleGridItemEnabledWithoutImageUseCase(
-  BuildContext context,
-) {
+Widget buildNewsArticleGridItemEnabledWithoutImage(BuildContext context) {
   return NewsArticleGridItem(
     newsArticle: NewsArticle(title: 'Title'),
     onTap: () {},
   );
 }
 
+Widget buildNewsArticleGridItemDisabledWithoutImage(BuildContext context) {
+  return NewsArticleGridItem(newsArticle: NewsArticle(title: 'Title'));
+}
+
+@UseCase(name: 'Enabled With Image', type: NewsArticleGridItem)
+Widget buildNewsArticleGridItemEnabledWithImageUseCase(BuildContext context) {
+  return buildNewsArticleGridItemEnabledWithImage(context);
+}
+
+@UseCase(name: 'Disabled With Image', type: NewsArticleGridItem)
+Widget buildNewsArticleGridItemDisabledWithImageUseCase(BuildContext context) {
+  return buildNewsArticleGridItemDisabledWithImage(context);
+}
+
+@UseCase(name: 'Enabled Without Image', type: NewsArticleGridItem)
+Widget buildNewsArticleGridItemEnabledWithoutImageUseCase(
+  BuildContext context,
+) {
+  return buildNewsArticleGridItemEnabledWithoutImage(context);
+}
+
 @UseCase(name: 'Disabled Without Image', type: NewsArticleGridItem)
 Widget buildNewsArticleGridItemDisabledWithoutImageUseCase(
   BuildContext context,
 ) {
-  return NewsArticleGridItem(newsArticle: NewsArticle(title: 'Title'));
+  return buildNewsArticleGridItemEnabledWithoutImage(context);
 }
