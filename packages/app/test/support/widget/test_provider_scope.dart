@@ -18,8 +18,6 @@ class TestProviderScope extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ProviderScope(
       overrides: [
-        // テスト用のLoggerで上書きするため
-        // ignore: scoped_providers_should_specify_dependencies
         appLoggerProvider.overrideWithValue(buildAppTestLogger()),
         ...providerScopeOverrides,
       ],
