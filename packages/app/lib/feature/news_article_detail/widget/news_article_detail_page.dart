@@ -156,7 +156,7 @@ class NewsArticleDetailPage extends HookConsumerWidget {
           icon: const Icon(Icons.share),
           tooltip: l10n.generalShare,
           onPressed: () async {
-            await share.run(webViewCurrentUrl.state);
+            await share.run(ShareParams(text: webViewCurrentUrl.state));
           },
         ),
       ],

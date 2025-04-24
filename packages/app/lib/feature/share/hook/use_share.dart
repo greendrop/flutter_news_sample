@@ -1,27 +1,12 @@
-import 'dart:ui';
-
 import 'package:app/feature/app_logger/riverpod/app_logger.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
+export 'package:share_plus/share_plus.dart' show ShareParams, ShareResult;
+
 typedef UseShareReturn =
-    ({
-      Future<void> Function(
-        String text, {
-        String? subject,
-        Rect? sharePositionOrigin,
-      })
-      run,
-      Future<void> Function(
-        List<XFile> files, {
-        String? subject,
-        String? text,
-        Rect? sharePositionOrigin,
-        List<String>? fileNameOverrides,
-      })
-      runXFiles,
-    });
+    ({Future<ShareResult> Function(ShareParams params) run});
 
 typedef UseShare = UseShareReturn Function();
 
@@ -31,53 +16,15 @@ UseShareReturn useShareImpl() {
   final context = useContext();
   final ref = context as WidgetRef;
 
-  final run = useCallback((
-    String text, {
-    String? subject,
-    Rect? sharePositionOrigin,
-  }) {
+  final run = useCallback((ShareParams params) {
     ref.read(appLoggerProvider).i([
       '$_hookName#run',
-      {
-        'text': text,
-        'subject': subject,
-        'sharePositionOrigin': sharePositionOrigin,
-      },
+      {'params': params},
     ]);
-
-    return Share.share(
-      text,
-      subject: subject,
-      sharePositionOrigin: sharePositionOrigin,
-    );
-  }, []);
-  final runXFiles = useCallback((
-    List<XFile> files, {
-    String? subject,
-    String? text,
-    Rect? sharePositionOrigin,
-    List<String>? fileNameOverrides,
-  }) {
-    ref.read(appLoggerProvider).i([
-      '$_hookName#runXFiles',
-      {
-        'files': files,
-        'subject': subject,
-        'text': text,
-        'sharePositionOrigin': sharePositionOrigin,
-        'fileNameOverrides': fileNameOverrides,
-      },
-    ]);
-
-    return Share.shareXFiles(
-      files,
-      text: text,
-      subject: subject,
-      sharePositionOrigin: sharePositionOrigin,
-    );
+    return SharePlus.instance.share(params);
   }, []);
 
-  return (run: run, runXFiles: runXFiles);
+  return (run: run);
 }
 
 const UseShare useShare = useShareImpl;
