@@ -23,8 +23,9 @@ void main() {
 
   group('useShare', () {
     group('#run', () {
-      testWidgets('Share.shareが呼ばれること', (tester) async {
+      testWidgets('SharePlus#shareが呼ばれること', (tester) async {
         late UseShareReturn share;
+        final shareParams = ShareParams(text: 'Share text');
 
         await tester.pumpWidget(
           TestMaterialApp(
@@ -38,13 +39,13 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        when(() => mockMethodChannelShare.share('Share text')).thenAnswer(
+        when(() => mockMethodChannelShare.share(shareParams)).thenAnswer(
           (_) async => const ShareResult('', ShareResultStatus.success),
         );
 
-        await share.run('Share text');
+        await share.run(shareParams);
 
-        verify(() => mockMethodChannelShare.share('Share text')).called(1);
+        verify(() => mockMethodChannelShare.share(shareParams)).called(1);
       });
     });
   });

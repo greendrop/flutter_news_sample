@@ -11,25 +11,11 @@ class NewsArticleDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UseShareReturn useShare() {
-      Future<void> run(
-        String text, {
-        String? subject,
-        Rect? sharePositionOrigin,
-      }) {
-        return Future.value();
+      Future<ShareResult> run(ShareParams params) {
+        return Future.value(const ShareResult('', ShareResultStatus.success));
       }
 
-      Future<void> runXFiles(
-        List<XFile> files, {
-        String? subject,
-        String? text,
-        Rect? sharePositionOrigin,
-        List<String>? fileNameOverrides,
-      }) {
-        return Future.value();
-      }
-
-      return (run: run, runXFiles: runXFiles);
+      return (run: run);
     }
 
     return feature.NewsArticleDetailPage(
