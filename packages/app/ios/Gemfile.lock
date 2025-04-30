@@ -232,7 +232,7 @@ GEM
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     jmespath (1.6.2)
-    json (2.10.2)
+    json (2.11.3)
     jwt (2.10.1)
       base64
     language_server-protocol (3.17.0.4)
@@ -270,7 +270,7 @@ GEM
     retriable (3.1.2)
     rexml (3.4.1)
     rouge (3.28.0)
-    rubocop (1.75.3)
+    rubocop (1.75.4)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
