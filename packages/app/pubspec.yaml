@@ -42,7 +42,7 @@ dependencies:
   share_plus: ^11.0.0
   shared_preferences: ^2.5.2
   shimmer: ^3.0.0
-  timezone: ^0.10.0
+  timezone: ^0.10.1
   url_launcher: ^6.3.1
 
 dev_dependencies:
