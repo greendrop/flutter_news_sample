@@ -41,7 +41,7 @@ jobs:
           set -e
       - name: Setup Ruby
         if: steps.check_for_changes.outputs.has_changes == 'true'
-        uses: ruby/setup-ruby@eaecf785f6a34567a6d97f686bbb7bccc1ac1e5c # v1.237.0
+        uses: ruby/setup-ruby@e34163cd15f4bb403dcd72d98e295997e6a55798 # v1.238.0
       - name: Install git-pr-release
         if: steps.check_for_changes.outputs.has_changes == 'true'
         run: gem install --no-document git-pr-release
