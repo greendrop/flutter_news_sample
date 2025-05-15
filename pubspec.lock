@@ -1557,26 +1557,26 @@ packages:
     dependency: transitive
     description:
       name: widgetbook
-      sha256: "8e3cd3157c0c24e28278d62835383fab65098433dcde946fe958361094aa1401"
+      sha256: "6a89bf28efd62e07824fa56a4394352e04dc9a84e01a233887a9cb0f7d5aa60d"
       url: "https://pub.dev"
     source: hosted
-    version: "3.13.1"
+    version: "3.14.0"
   widgetbook_annotation:
     dependency: transitive
     description:
       name: widgetbook_annotation
-      sha256: "03274209fe93f32a2e548663a6fc671341804271980e2c65550e7f989c356fdf"
+      sha256: "41662c48c2a0e82cac676a83727203d863621a5f6fb2505395287b8789afdf38"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0"
+    version: "3.5.0"
   widgetbook_generator:
     dependency: transitive
     description:
       name: widgetbook_generator
-      sha256: ee9c0304a9c682ad1fe669881e117e0c263b452e3da3a95ac11c26a8cf7abab5
+      sha256: "38320c313a425e5a354bfdf6d2922efd69b5c3e9c0bf414d3ba7f947c303448a"
       url: "https://pub.dev"
     source: hosted
-    version: "3.12.0"
+    version: "3.13.0"
   win32:
     dependency: transitive
     description:
