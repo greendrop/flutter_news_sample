@@ -64,7 +64,7 @@ dev_dependencies:
   mocktail: ^1.0.4
   mocktail_image_network: ^1.2.0
   plugin_platform_interface: ^2.1.8
-  retrofit_generator: ^9.1.9
+  retrofit_generator: ^9.2.0
   riverpod_generator: ^2.6.5
   riverpod_lint: ^2.6.5
   share_plus_platform_interface: ^6.0.0
