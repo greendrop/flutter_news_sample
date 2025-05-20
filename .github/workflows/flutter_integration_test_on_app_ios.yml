@@ -36,7 +36,7 @@ jobs:
           xcode-version: latest-stable
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@1a0ff446f5856bdfec298b61a09727c860d9d480 # v1.240.0
+        uses: ruby/setup-ruby@c95ae3725f6ebdd095f2bd19caed7ebc14435ba5 # v1.243.0
 
       - name: Install CocoaPods
         run: |
