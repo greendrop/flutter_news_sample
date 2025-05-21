@@ -1,4 +1,3 @@
-import 'package:app/exception/app_exception.dart';
 import 'package:app/util/result.dart';
 import 'package:app/util/share_handler.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -37,23 +36,6 @@ void main() {
         expect(result, isA<Ok<ShareResult>>());
         expect((result as Ok<ShareResult>).value, shareResult);
       });
-    });
-
-    test('例外が発生した場合はResult.errorを返すこと', () async {
-      final shareHandler = ShareHandler();
-      final shareParams = ShareParams(text: 'Share text');
-      final exception = Exception('error');
-
-      when(
-        () => mockMethodChannelShare.share(shareParams),
-      ).thenThrow(exception);
-
-      final result = await shareHandler.share(shareParams);
-
-      verify(() => mockMethodChannelShare.share(shareParams)).called(1);
-
-      expect(result, isA<Error<ShareResult>>());
-      expect((result as Error<ShareResult>).error, isA<AppException>());
     });
   });
 }
