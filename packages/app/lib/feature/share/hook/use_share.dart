@@ -1,12 +1,14 @@
 import 'package:app/feature/app_logger/riverpod/app_logger.dart';
+import 'package:app/riverpod/share_handler.dart';
+import 'package:app/util/result.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:share_plus/share_plus.dart';
 
-export 'package:share_plus/share_plus.dart' show ShareParams, ShareResult;
+export 'package:app/riverpod/share_handler.dart'
+    show ShareParams, ShareResult, ShareResultStatus;
 
 typedef UseShareReturn =
-    ({Future<ShareResult> Function(ShareParams params) run});
+    ({Future<Result<ShareResult>> Function(ShareParams params) run});
 
 typedef UseShare = UseShareReturn Function();
 
@@ -21,7 +23,8 @@ UseShareReturn useShareImpl() {
       '$_hookName#run',
       {'params': params},
     ]);
-    return SharePlus.instance.share(params);
+
+    return ref.read(shareHandlerProvider).share(params);
   }, []);
 
   return (run: run);
