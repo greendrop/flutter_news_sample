@@ -21,8 +21,8 @@ env:
   # NOTE: ghalint をアップデートする場合は、 GHALINT_VERSION, GHALINT_CHECKSUM を更新してください
   GHALINT_OS: linux
   GHALINT_ARCH: amd64
-  GHALINT_VERSION: 1.4.0
-  GHALINT_CHECKSUM: 3efb47689167995cec2564b84476e84bc77df93e29554ea34926a6a2b654c825
+  GHALINT_VERSION: 1.4.1
+  GHALINT_CHECKSUM: 6a8eaa2568fa1fed64d63ccdd4538c3e329b873a7d78f49d207e9fa2fa6a65bb
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
