@@ -147,7 +147,7 @@ jobs:
           sed -i "s/${BINARY_CHECKSUM_ENV_NAME}: .*/${BINARY_CHECKSUM_ENV_NAME}: ${LATEST_CHECKSUM}/g" "${GHA_LINT_WORKFLOW_FILE}"
       - name: Create GitHub App Token
         if: steps.check-binary-version.outputs.result == 'false'
-        uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+        uses: actions/create-github-app-token@a8d616148505b5069dccd32f177bb87d7f39123b # v2.1.1
         id: app-token
         with:
           app-id: ${{ vars.GH_APPS_CREATE_PULL_REQEST_BOT_APP_ID }}
